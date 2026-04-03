@@ -3,13 +3,13 @@ import { ExpTrustBadge } from "@/components/brand/ExpTrustBadge";
 export function ContactSection() {
   return (
     <section id="contacto" className="pe-section">
-      <div className="pe-container" style={{ display: "grid", gap: "2rem", gridTemplateColumns: "minmax(0, 0.95fr) minmax(0, 1.05fr)" }}>
+      <div className="pe-container pe-split-grid" style={{ gap: "2rem" }}>
         <div>
           <p className="pe-eyebrow">Contacto</p>
-          <h2 style={{ fontFamily: "var(--pe-font-display)", fontSize: "clamp(2.4rem, 5vw, 4rem)", margin: "1rem 0 0" }}>
+          <h2 className="pe-section-title" style={{ marginTop: "1rem" }}>
             Abramos una conversación privada.
           </h2>
-          <p style={{ color: "var(--pe-text-soft)", lineHeight: 1.9, marginTop: "1.25rem" }}>
+          <p className="pe-section-copy" style={{ marginTop: "1.25rem" }}>
             Si estás valorando vender, invertir o explorar una oportunidad patrimonial en Palma o el suroeste de Mallorca, podemos estudiar tu caso con criterio, confidencialidad y enfoque premium.
           </p>
           <div style={{ marginTop: "1rem" }}>

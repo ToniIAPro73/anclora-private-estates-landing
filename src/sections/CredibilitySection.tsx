@@ -6,15 +6,15 @@ export function CredibilitySection() {
   ];
 
   return (
-    <section className="pe-section" style={{ background: "var(--pe-surface-soft)" }}>
+    <section className="pe-section pe-section-soft">
       <div className="pe-container">
-        <p className="pe-eyebrow">Credibilidad</p>
-        <h2 style={{ fontFamily: "var(--pe-font-display)", fontSize: "clamp(2.4rem, 5vw, 4rem)", margin: "1rem 0 0" }}>
-          Por qué confiar en una propuesta premium que no necesita aparentar volumen.
-        </h2>
-        <div style={{ display: "grid", gap: "1.25rem", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", marginTop: "2rem" }}>
+        <div className="pe-section-heading">
+          <p className="pe-eyebrow">Credibilidad</p>
+          <h2 className="pe-section-title">Por qué confiar en una propuesta premium que no necesita aparentar volumen.</h2>
+        </div>
+        <div className="pe-grid-3" style={{ marginTop: "2rem" }}>
           {pillars.map((pillar) => (
-            <article key={pillar} className="pe-card" style={{ padding: "1.5rem" }}>
+            <article key={pillar} className="pe-card pe-offset-card" style={{ padding: "1.5rem" }}>
               <p style={{ color: "var(--pe-text-soft)", lineHeight: 1.85 }}>{pillar}</p>
             </article>
           ))}

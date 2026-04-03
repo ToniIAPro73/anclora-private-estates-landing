@@ -23,6 +23,8 @@
   background: var(--pe-surface-low);
   border-radius: var(--pe-radius-lg);
   box-shadow: var(--pe-shadow-soft);
+  position: relative;
+  overflow: hidden;
 }
 
 .pe-card-deep {
@@ -30,6 +32,8 @@
   color: var(--pe-deep-text);
   border-radius: var(--pe-radius-lg);
   box-shadow: var(--pe-shadow-medium);
+  position: relative;
+  overflow: hidden;
 }
 
 .pe-glass {
@@ -37,6 +41,7 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--pe-glass-border);
+  box-shadow: var(--pe-nav-shadow);
 }
 
 .pe-eyebrow {
@@ -53,6 +58,135 @@
   line-height: 0.94;
 }
 
+.pe-section-soft {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--pe-surface-soft) 92%, transparent),
+    color-mix(in srgb, var(--pe-surface-low) 86%, transparent)
+  );
+}
+
+.pe-section-heading {
+  display: grid;
+  gap: 1rem;
+  max-width: 54rem;
+}
+
+.pe-section-title {
+  font-family: var(--pe-font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+.pe-section-copy {
+  color: var(--pe-text-soft);
+  line-height: 1.85;
+  font-size: 1.04rem;
+}
+
+.pe-grid-3 {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.pe-grid-feature {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pe-hero-grid,
+.pe-split-grid,
+.pe-dual-panel,
+.pe-microzone-card {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pe-slab {
+  padding: 1.75rem;
+}
+
+.pe-offset-card {
+  transform: translateY(0);
+  transition:
+    transform var(--pe-duration-base) var(--pe-ease),
+    background var(--pe-duration-base) var(--pe-ease);
+}
+
+.pe-offset-card:hover {
+  transform: translateY(-4px);
+}
+
+.pe-pull-quote {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pe-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pe-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.4rem;
+  padding: 0 0.95rem;
+  border-radius: var(--pe-radius-pill);
+  background: color-mix(in srgb, var(--pe-surface-high) 86%, transparent);
+  color: var(--pe-text-soft);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pe-brand-panel {
+  position: relative;
+  isolation: isolate;
+}
+
+.pe-brand-panel::before {
+  content: "";
+  position: absolute;
+  inset: auto auto -14% -8%;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--pe-hero-orb-1), transparent 70%);
+  z-index: -1;
+  filter: blur(6px);
+}
+
+.pe-brand-panel::after {
+  content: "";
+  position: absolute;
+  inset: 8% -8% auto auto;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--pe-hero-orb-2), transparent 70%);
+  z-index: -1;
+  filter: blur(12px);
+}
+
+.pe-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.pe-kicker {
+  color: var(--pe-gold);
+}
+
+.pe-note {
+  color: var(--pe-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
 .pe-btn-primary,
 .pe-btn-secondary {
   display: inline-flex;
@@ -67,7 +201,8 @@
   transition:
     transform var(--pe-duration-fast) var(--pe-ease),
     opacity var(--pe-duration-fast) var(--pe-ease),
-    background var(--pe-duration-fast) var(--pe-ease);
+    background var(--pe-duration-fast) var(--pe-ease),
+    color var(--pe-duration-fast) var(--pe-ease);
 }
 
 .pe-btn-primary {
@@ -76,7 +211,7 @@
 }
 
 .pe-btn-secondary {
-  background: var(--pe-surface-high);
+  background: color-mix(in srgb, var(--pe-surface-high) 82%, transparent);
   color: var(--pe-text);
 }
 
@@ -105,4 +240,37 @@
   min-height: 140px;
   padding: 1rem;
   resize: vertical;
+}
+
+@media (min-width: 768px) {
+  .pe-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pe-grid-feature {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+  }
+
+  .pe-hero-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .pe-split-grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: start;
+  }
+
+  .pe-dual-panel {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+
+  .pe-microzone-card {
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  }
+
+  .pe-pull-quote {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+  }
 }

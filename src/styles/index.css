@@ -17,8 +17,9 @@ body,
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--pe-gold) 10%, transparent), transparent 24%),
-    radial-gradient(circle at top left, color-mix(in srgb, var(--pe-brand) 14%, transparent), transparent 28%),
+    radial-gradient(circle at 82% 8%, color-mix(in srgb, var(--pe-gold) 14%, transparent), transparent 22%),
+    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--pe-brand) 15%, transparent), transparent 28%),
+    linear-gradient(180deg, color-mix(in srgb, var(--pe-surface-soft) 44%, transparent), transparent 28rem),
     var(--pe-bg);
   color: var(--pe-text);
   font-family: var(--pe-font-body);
@@ -52,4 +53,9 @@ select:focus-visible,
 textarea:focus-visible {
   outline: none;
   box-shadow: var(--pe-focus);
+}
+
+#root {
+  position: relative;
+  overflow: clip;
 }

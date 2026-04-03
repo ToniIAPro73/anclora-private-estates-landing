@@ -1,12 +1,12 @@
 export function DataLabSignalsSection() {
   return (
-    <section id="data-lab" className="pe-section" style={{ background: "var(--pe-surface-soft)" }}>
+    <section id="data-lab" className="pe-section pe-section-soft">
       <div className="pe-container">
-        <p className="pe-eyebrow">Anclora Data Lab</p>
-        <h2 style={{ fontFamily: "var(--pe-font-display)", fontSize: "clamp(2.4rem, 5vw, 4rem)", margin: "1rem 0 0" }}>
-          Señales territoriales para leer mejor el mercado premium.
-        </h2>
-        <div style={{ display: "grid", gap: "1.5rem", gridTemplateColumns: "minmax(0, 1.02fr) minmax(0, 0.98fr)", marginTop: "2rem" }}>
+        <div className="pe-section-heading">
+          <p className="pe-eyebrow">Anclora Data Lab</p>
+          <h2 className="pe-section-title">Señales territoriales para leer mejor el mercado premium.</h2>
+        </div>
+        <div className="pe-grid-feature" style={{ marginTop: "2rem" }}>
           <article className="pe-card-deep" style={{ padding: "1.75rem" }}>
             <p className="pe-eyebrow" style={{ color: "var(--pe-deep-muted)" }}>
               Signal 01

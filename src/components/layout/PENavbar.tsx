@@ -7,8 +7,8 @@ type PENavbarProps = {
 
 export function PENavbar({ theme, onToggleTheme }: PENavbarProps) {
   return (
-    <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "1.25rem 0 0" }}>
-      <nav aria-label="Principal" className="pe-container pe-glass" style={{ borderRadius: "999px", padding: "1rem 1.25rem" }}>
+    <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "1rem 0 0" }}>
+      <nav aria-label="Principal" className="pe-container pe-glass" style={{ borderRadius: "999px", padding: "0.9rem 1.1rem" }}>
         <div
           style={{
             display: "grid",
@@ -24,8 +24,11 @@ export function PENavbar({ theme, onToggleTheme }: PENavbarProps) {
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
-              gap: "1rem",
-              fontSize: "0.85rem",
+              gap: "1.1rem",
+              fontSize: "0.82rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--pe-text-soft)",
             }}
           >
             <a href="#mallorca-focus">Mallorca</a>
@@ -41,10 +44,11 @@ export function PENavbar({ theme, onToggleTheme }: PENavbarProps) {
               onClick={onToggleTheme}
               aria-label={theme === "dark" ? "Cambiar a light" : "Cambiar a dark"}
               className="pe-btn-secondary"
+              style={{ minHeight: "46px", paddingInline: "1rem" }}
             >
               Tema {theme === "dark" ? "light" : "dark"}
             </button>
-            <a className="pe-btn-primary" href="#propietarios">
+            <a className="pe-btn-primary" href="#propietarios" style={{ minHeight: "46px" }}>
               Solicitar evaluación confidencial
             </a>
           </div>
