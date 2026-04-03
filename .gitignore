@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .worktrees/
+.vscode/
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
