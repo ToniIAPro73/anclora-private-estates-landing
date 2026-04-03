@@ -1,5 +1,4 @@
 import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, expect, test } from "vitest";
 import App from "./App";
 
@@ -42,19 +41,18 @@ describe("App landing home", () => {
     ).toBeInTheDocument();
   });
 
-  test("exposes a visible theme toggle that switches the landing root between dark and light", async () => {
-    const user = userEvent.setup();
+  test("renders a dark-only shell with premium language switcher and no theme toggle", () => {
     render(<App />);
 
     const root = document.documentElement;
     expect(root.dataset.theme).toBe("dark");
 
-    const toggle = screen.getByRole("button", { name: /cambiar a light|tema light/i });
-    await user.click(toggle);
-
-    expect(root.dataset.theme).toBe("light");
     expect(
-      screen.getByRole("button", { name: /cambiar a dark|tema dark/i }),
-    ).toBeInTheDocument();
+      screen.queryByRole("button", { name: /cambiar a light|cambiar a dark|tema light|tema dark/i }),
+    ).not.toBeInTheDocument();
+
+    expect(screen.getByRole("button", { name: /idioma español|español/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /idioma inglés|english/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /idioma alemán|deutsch/i })).toBeInTheDocument();
   });
 });

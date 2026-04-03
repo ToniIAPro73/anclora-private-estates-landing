@@ -10,20 +10,23 @@ import { InvestorSection } from "@/sections/InvestorSection";
 import { MallorcaFocusSection } from "@/sections/MallorcaFocusSection";
 import { SellerIntakeSection } from "@/sections/SellerIntakeSection";
 
+const STORAGE_KEY = "ape:language";
+
 export default function App() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [language, setLanguage] = useState<"es" | "en" | "de">(() => {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    return stored === "en" || stored === "de" ? stored : "es";
+  });
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.lang = "es";
-  }, [theme]);
+    document.documentElement.dataset.theme = "dark";
+    document.documentElement.lang = language;
+    window.localStorage.setItem(STORAGE_KEY, language);
+  }, [language]);
 
   return (
     <>
-      <PENavbar
-        theme={theme}
-        onToggleTheme={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
-      />
+      <PENavbar language={language} onLanguageChange={setLanguage} />
 
       <main>
         <HeroSection />
