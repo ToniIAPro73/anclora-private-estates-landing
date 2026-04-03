@@ -8,15 +8,17 @@ export function BrandLockup({ variant = "full" }: BrandLockupProps) {
   }
 
   return (
-    <div className="pe-stack" style={{ gap: "0.2rem" }}>
-      <div style={{ fontFamily: "var(--pe-font-display)", fontSize: "1.55rem", fontStyle: "italic", letterSpacing: "-0.03em" }}>
-        Anclora Private Estates
-      </div>
-      {variant === "full-exp" ? (
-        <div className="pe-eyebrow" style={{ marginTop: 0, color: "var(--pe-text-muted)" }}>
-          by eXp Group Spain
-        </div>
-      ) : null}
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <img
+        src="/brand/logo-anclora-private-estates-exp.png"
+        alt={variant === "full-exp" ? "Anclora Private Estates by eXp Group Spain" : "Anclora Private Estates"}
+        style={{
+          display: "block",
+          width: "auto",
+          height: variant === "full-exp" ? "clamp(2.5rem, 4vw, 3.35rem)" : "2.6rem",
+          maxWidth: "100%",
+        }}
+      />
     </div>
   );
 }
