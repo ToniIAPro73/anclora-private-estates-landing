@@ -37,7 +37,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           </div>
 
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <a className="pe-btn-primary" href="#propietarios">
+            <a className="pe-btn-primary pe-btn-primary-gold" href="#propietarios">
               {copy.primaryCta}
             </a>
             <a className="pe-btn-secondary" href="#mallorca-focus">
@@ -48,7 +48,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           <ExpTrustBadge text={trustBadgeText} />
         </div>
 
-        <div className="pe-card-deep" style={{ minHeight: "38rem", padding: "2.1rem", position: "relative" }}>
+        <div className="pe-hero-visual pe-card-deep" style={{ minHeight: "38rem", padding: "2.1rem", position: "relative" }}>
           <div
             style={{
               position: "absolute",
@@ -64,6 +64,27 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
               </p>
               <div style={{ fontFamily: "var(--pe-font-display)", fontSize: "clamp(2.2rem, 4vw, 3.3rem)", lineHeight: 0.98, maxWidth: "12ch" }}>
                 {copy.media.title}
+              </div>
+            </div>
+
+            <div className="pe-hero-art" aria-hidden="true">
+              <div className="pe-hero-art__window">
+                <div className="pe-hero-art__sky" />
+                <div className="pe-hero-art__silhouette" />
+                <div className="pe-hero-art__glow pe-hero-art__glow--gold" />
+                <div className="pe-hero-art__glow pe-hero-art__glow--teal" />
+              </div>
+              <div className="pe-hero-art__card pe-hero-art__card--top">
+                <span className="pe-eyebrow" style={{ color: "var(--pe-deep-muted)", margin: 0 }}>
+                  {copy.media.methodEyebrow}
+                </span>
+                <span style={{ color: "var(--pe-deep-text)", lineHeight: 1.6 }}>{copy.media.method}</span>
+              </div>
+              <div className="pe-hero-art__card pe-hero-art__card--bottom">
+                <span style={{ color: "var(--pe-gold)", fontFamily: "var(--pe-font-display)", fontSize: "2rem" }}>
+                  {copy.media.statValue}
+                </span>
+                <span style={{ color: "var(--pe-deep-muted)", lineHeight: 1.7 }}>{copy.media.statCopy}</span>
               </div>
             </div>
 

@@ -112,11 +112,24 @@
   transform: translateY(0);
   transition:
     transform var(--pe-duration-base) var(--pe-ease),
-    background var(--pe-duration-base) var(--pe-ease);
+    background var(--pe-duration-base) var(--pe-ease),
+    box-shadow var(--pe-duration-base) var(--pe-ease),
+    border-color var(--pe-duration-base) var(--pe-ease);
 }
 
 .pe-offset-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+}
+
+.pe-card-hover-gold {
+  border: 1px solid transparent;
+}
+
+.pe-card-hover-gold:hover {
+  box-shadow:
+    0 22px 60px rgba(233, 195, 73, 0.08),
+    0 24px 80px rgba(0, 0, 0, 0.24);
+  border-color: rgba(233, 195, 73, 0.12);
 }
 
 .pe-pull-quote {
@@ -170,6 +183,132 @@
   background: radial-gradient(circle, var(--pe-hero-orb-2), transparent 70%);
   z-index: -1;
   filter: blur(12px);
+}
+
+.pe-hero-visual {
+  overflow: hidden;
+}
+
+.pe-hero-art {
+  position: relative;
+  min-height: 19rem;
+  display: grid;
+  align-items: stretch;
+}
+
+.pe-hero-art__window {
+  position: relative;
+  min-height: 19rem;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(7, 14, 25, 0.06), rgba(7, 14, 25, 0.62)),
+    radial-gradient(circle at 18% 18%, rgba(233, 195, 73, 0.14), transparent 24%),
+    radial-gradient(circle at 78% 18%, rgba(149, 209, 206, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(16, 33, 31, 0.94), rgba(10, 18, 30, 0.98));
+  border: 1px solid rgba(233, 195, 73, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.pe-hero-art__window::before {
+  content: "";
+  position: absolute;
+  inset: auto 9% 0 18%;
+  height: 88%;
+  border-radius: 1.1rem 1.1rem 0 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.08)),
+    linear-gradient(120deg, rgba(7, 14, 25, 0.08), rgba(7, 14, 25, 0.72)),
+    linear-gradient(180deg, rgba(17, 26, 39, 0.96), rgba(7, 14, 25, 0.36));
+  box-shadow: inset 0 0 0 1px rgba(233, 195, 73, 0.06);
+  clip-path: polygon(0 100%, 0 28%, 16% 0, 84% 0, 100% 28%, 100% 100%);
+}
+
+.pe-hero-art__window::after {
+  content: "";
+  position: absolute;
+  inset: 12% auto auto 12%;
+  width: 56%;
+  height: 36%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(233, 195, 73, 0.2), transparent 70%);
+  filter: blur(18px);
+}
+
+.pe-hero-art__sky,
+.pe-hero-art__silhouette,
+.pe-hero-art__glow {
+  position: absolute;
+  inset: 0;
+}
+
+.pe-hero-art__sky {
+  background:
+    radial-gradient(circle at 82% 14%, rgba(233, 195, 73, 0.14), transparent 18%),
+    radial-gradient(circle at 26% 18%, rgba(149, 209, 206, 0.16), transparent 22%),
+    linear-gradient(180deg, rgba(12, 20, 34, 0.3), transparent 58%);
+}
+
+.pe-hero-art__silhouette {
+  background:
+    linear-gradient(180deg, transparent 52%, rgba(3, 7, 13, 0.72) 52%),
+    linear-gradient(90deg, transparent 0 12%, rgba(255, 255, 255, 0.02) 12% 16%, transparent 16% 24%, rgba(255, 255, 255, 0.02) 24% 30%, transparent 30% 100%);
+  clip-path: polygon(0 100%, 0 54%, 11% 54%, 16% 20%, 24% 20%, 29% 46%, 42% 46%, 47% 14%, 58% 14%, 64% 50%, 82% 50%, 86% 28%, 100% 28%, 100% 100%);
+}
+
+.pe-hero-art__glow--gold {
+  background: radial-gradient(circle at 72% 18%, rgba(233, 195, 73, 0.34), transparent 30%);
+}
+
+.pe-hero-art__glow--teal {
+  background: radial-gradient(circle at 24% 72%, rgba(149, 209, 206, 0.22), transparent 28%);
+}
+
+.pe-hero-art__card {
+  position: absolute;
+  max-width: 17rem;
+  border-radius: 1.35rem;
+  padding: 1rem 1.05rem;
+  display: grid;
+  gap: 0.55rem;
+  background: color-mix(in srgb, var(--pe-deep-surface) 74%, transparent);
+  border: 1px solid rgba(233, 195, 73, 0.1);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.pe-hero-art__card--top {
+  top: 1rem;
+  right: 1rem;
+}
+
+.pe-hero-art__card--bottom {
+  left: 1rem;
+  bottom: 1rem;
+  max-width: 14rem;
+}
+
+.pe-card-gold-title {
+  color: var(--pe-gold);
+}
+
+.pe-btn-primary-gold {
+  background: linear-gradient(135deg, rgba(233, 195, 73, 0.98), rgba(255, 221, 124, 0.96));
+  color: #1b1402;
+  box-shadow: 0 18px 32px rgba(233, 195, 73, 0.12);
+}
+
+.pe-btn-primary-gold:hover {
+  box-shadow: 0 22px 40px rgba(233, 195, 73, 0.16);
+}
+
+.pe-btn-secondary-ghost {
+  background: color-mix(in srgb, var(--pe-deep-surface) 68%, transparent);
+  color: var(--pe-deep-text);
+  box-shadow: inset 0 0 0 1px rgba(233, 195, 73, 0.12);
 }
 
 .pe-stack {
@@ -322,5 +461,13 @@
   .pe-pull-quote {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     align-items: start;
+  }
+
+  .pe-hero-art {
+    min-height: 24rem;
+  }
+
+  .pe-hero-art__window {
+    min-height: 24rem;
   }
 }

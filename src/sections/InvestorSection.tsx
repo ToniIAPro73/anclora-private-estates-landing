@@ -14,8 +14,10 @@ export function InvestorSection({ copy }: InvestorSectionProps) {
         </div>
         <div className="pe-grid-3" style={{ marginTop: "2rem" }}>
           {copy.profiles.map((profile) => (
-            <article key={profile.title} className="pe-card pe-offset-card" style={{ padding: "1.5rem" }}>
-              <h3 style={{ fontFamily: "var(--pe-font-display)", fontSize: "1.9rem", marginTop: 0 }}>{profile.title}</h3>
+            <article key={profile.title} className="pe-card pe-offset-card pe-card-hover-gold" style={{ padding: "1.5rem" }}>
+              <h3 className="pe-card-gold-title" style={{ fontFamily: "var(--pe-font-display)", fontSize: "1.9rem", marginTop: 0 }}>
+                {profile.title}
+              </h3>
               <p style={{ color: "var(--pe-text-soft)", lineHeight: 1.8 }}>{profile.body}</p>
             </article>
           ))}

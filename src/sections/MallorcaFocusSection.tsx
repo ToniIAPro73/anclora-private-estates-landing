@@ -23,7 +23,12 @@ export function MallorcaFocusSection({ copy }: MallorcaFocusSectionProps) {
                 <p className="pe-eyebrow" style={{ color: index === 0 ? "var(--pe-deep-muted)" : "var(--pe-text-muted)" }}>
                   {cluster.eyebrow}
                 </p>
-                <h3 style={{ fontFamily: "var(--pe-font-display)", fontSize: "2rem", margin: "0.75rem 0 0" }}>{cluster.title}</h3>
+                <h3
+                  className="pe-card-gold-title"
+                  style={{ fontFamily: "var(--pe-font-display)", fontSize: "2rem", margin: "0.75rem 0 0" }}
+                >
+                  {cluster.title}
+                </h3>
               </div>
               <div>
                 <p style={{ color: index === 0 ? "var(--pe-deep-muted)" : "var(--pe-text-soft)", lineHeight: 1.85 }}>
