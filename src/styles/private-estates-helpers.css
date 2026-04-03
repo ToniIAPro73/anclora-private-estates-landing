@@ -1,0 +1,108 @@
+.pe-section {
+  padding-block: var(--pe-space-20);
+}
+
+@media (min-width: 1024px) {
+  .pe-section {
+    padding-block: var(--pe-space-28);
+  }
+}
+
+.pe-container {
+  width: min(1280px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .pe-container {
+    width: min(1280px, calc(100% - 5rem));
+  }
+}
+
+.pe-card {
+  background: var(--pe-surface-low);
+  border-radius: var(--pe-radius-lg);
+  box-shadow: var(--pe-shadow-soft);
+}
+
+.pe-card-deep {
+  background: var(--pe-deep-surface);
+  color: var(--pe-deep-text);
+  border-radius: var(--pe-radius-lg);
+  box-shadow: var(--pe-shadow-medium);
+}
+
+.pe-glass {
+  background: var(--pe-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--pe-glass-border);
+}
+
+.pe-eyebrow {
+  font-size: var(--pe-text-xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--pe-text-muted);
+  font-weight: 700;
+}
+
+.pe-display {
+  font-family: var(--pe-font-display);
+  letter-spacing: -0.03em;
+  line-height: 0.94;
+}
+
+.pe-btn-primary,
+.pe-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border-radius: var(--pe-radius-pill);
+  padding: 0 1.5rem;
+  font-size: var(--pe-text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform var(--pe-duration-fast) var(--pe-ease),
+    opacity var(--pe-duration-fast) var(--pe-ease),
+    background var(--pe-duration-fast) var(--pe-ease);
+}
+
+.pe-btn-primary {
+  background: linear-gradient(135deg, var(--pe-brand), var(--pe-brand-2));
+  color: var(--pe-text-inverse);
+}
+
+.pe-btn-secondary {
+  background: var(--pe-surface-high);
+  color: var(--pe-text);
+}
+
+.pe-btn-primary:hover,
+.pe-btn-secondary:hover {
+  transform: translateY(-1px);
+}
+
+.pe-input,
+.pe-textarea,
+.pe-select {
+  width: 100%;
+  border: 0;
+  border-radius: 1.25rem;
+  background: var(--pe-surface-high);
+  color: var(--pe-text);
+}
+
+.pe-input,
+.pe-select {
+  min-height: 54px;
+  padding: 0.95rem 1rem;
+}
+
+.pe-textarea {
+  min-height: 140px;
+  padding: 1rem;
+  resize: vertical;
+}
