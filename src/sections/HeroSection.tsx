@@ -14,7 +14,10 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           <p className="pe-eyebrow pe-kicker" style={{ margin: 0 }}>
             {copy.eyebrow}
           </p>
-          <h1 className="pe-display" style={{ fontSize: "clamp(3.8rem, 8vw, 7.2rem)", margin: 0, maxWidth: "12ch" }}>
+          <h1
+            className="pe-display pe-shimmer-gold"
+            style={{ fontSize: "clamp(3.8rem, 8vw, 7.2rem)", margin: 0, maxWidth: "12ch" }}
+          >
             {copy.title}
           </h1>
 
@@ -48,46 +51,82 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           <ExpTrustBadge text={trustBadgeText} />
         </div>
 
-        <div className="pe-hero-visual pe-card-deep" style={{ minHeight: "38rem", padding: "2.1rem", position: "relative" }}>
+        <div
+          className="pe-hero-visual"
+          style={{
+            minHeight: "38rem",
+            borderRadius: "var(--pe-radius-xl)",
+            overflow: "hidden",
+            position: "relative",
+            boxShadow: "var(--pe-shadow-gold)",
+          }}
+        >
+          {/* Premium photo — luxury villa, Mallorca southwest */}
+          <img
+            src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&h=900&q=85&auto=format&fit=crop"
+            alt="Villa de lujo en Mallorca"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 40%",
+            }}
+          />
+          {/* Dark editorial overlay */}
           <div
             style={{
               position: "absolute",
               inset: 0,
               background:
-                "radial-gradient(circle at top right, color-mix(in srgb, var(--pe-gold) 18%, transparent), transparent 28%), linear-gradient(180deg, color-mix(in srgb, var(--pe-brand) 18%, transparent), transparent 58%)",
+                "linear-gradient(180deg, rgba(7,37,47,0.38) 0%, rgba(7,37,47,0.72) 70%, rgba(7,37,47,0.92) 100%)",
             }}
           />
-          <div style={{ position: "relative", display: "grid", gap: "1.5rem", minHeight: "100%" }}>
+          {/* Gold accent orbs */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(circle at 80% 10%, rgba(212,175,55,0.22), transparent 28%), radial-gradient(circle at 18% 80%, rgba(58,160,144,0.16), transparent 30%)",
+            }}
+          />
+          {/* Content overlay */}
+          <div style={{ position: "relative", display: "grid", gap: "1.5rem", minHeight: "38rem", padding: "2.1rem", alignContent: "space-between" }}>
             <div className="pe-stack" style={{ gap: "0.75rem" }}>
               <p className="pe-eyebrow" style={{ color: "var(--pe-deep-muted)", margin: 0 }}>
                 {copy.media.eyebrow}
               </p>
-              <div style={{ fontFamily: "var(--pe-font-display)", fontSize: "clamp(2.2rem, 4vw, 3.3rem)", lineHeight: 0.98, maxWidth: "12ch" }}>
+              <div style={{ fontFamily: "var(--pe-font-display)", fontSize: "clamp(2.2rem, 4vw, 3.3rem)", lineHeight: 0.98, maxWidth: "12ch", color: "var(--pe-deep-text)" }}>
                 {copy.media.title}
               </div>
             </div>
 
-            <div className="pe-hero-art" aria-hidden="true">
-              <div className="pe-hero-art__window">
-                <div className="pe-hero-art__sky" />
-                <div className="pe-hero-art__silhouette" />
-                <div className="pe-hero-art__glow pe-hero-art__glow--gold" />
-                <div className="pe-hero-art__glow pe-hero-art__glow--teal" />
-              </div>
-              <div className="pe-hero-art__card pe-hero-art__card--top">
+            <div style={{ display: "grid", gap: "1rem" }}>
+              {/* Method card */}
+              <div className="pe-hero-art__card pe-hero-art__card--top" style={{ position: "relative", maxWidth: "100%" }}>
                 <span className="pe-eyebrow" style={{ color: "var(--pe-deep-muted)", margin: 0 }}>
                   {copy.media.methodEyebrow}
                 </span>
                 <span style={{ color: "var(--pe-deep-text)", lineHeight: 1.6 }}>{copy.media.method}</span>
               </div>
-              <div className="pe-hero-art__card pe-hero-art__card--bottom">
-                <span style={{ color: "var(--pe-gold)", fontFamily: "var(--pe-font-display)", fontSize: "2rem" }}>
+              {/* Stat card */}
+              <div className="pe-hero-art__card" style={{ position: "relative", display: "grid", gap: "0.4rem" }}>
+                <span
+                  style={{
+                    color: "var(--pe-gold)",
+                    fontFamily: "var(--pe-font-accent)",
+                    fontStyle: "italic",
+                    fontSize: "2.4rem",
+                    lineHeight: 1,
+                  }}
+                >
                   {copy.media.statValue}
                 </span>
-                <span style={{ color: "var(--pe-deep-muted)", lineHeight: 1.7 }}>{copy.media.statCopy}</span>
+                <span style={{ color: "var(--pe-deep-muted)", lineHeight: 1.7, fontSize: "0.9rem" }}>{copy.media.statCopy}</span>
               </div>
             </div>
-
           </div>
         </div>
       </div>

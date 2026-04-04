@@ -21,14 +21,24 @@ export function DataLabSignalsSection({ copy }: DataLabSignalsSectionProps) {
               {copy.lead.title}
             </h3>
             {copy.lead.body ? (
-              <p style={{ color: "var(--pe-deep-muted)", lineHeight: 1.8 }}>{copy.lead.body}</p>
+              <p
+                style={{
+                  color: "var(--pe-deep-muted)",
+                  lineHeight: 1.85,
+                  fontFamily: "var(--pe-font-accent)",
+                  fontStyle: "italic",
+                  fontSize: "1.05rem",
+                }}
+              >
+                {copy.lead.body}
+              </p>
             ) : null}
           </article>
           <div style={{ display: "grid", gap: "1rem" }}>
             {copy.signals.map((signal) => (
-              <article key={signal.eyebrow} className="pe-card" style={{ padding: "1.5rem" }}>
-                <p className="pe-eyebrow">{signal.eyebrow}</p>
-                <h3 style={{ fontFamily: "var(--pe-font-display)", fontSize: "1.8rem", marginTop: "0.75rem" }}>
+              <article key={signal.eyebrow} className="pe-card pe-offset-card" style={{ padding: "1.5rem" }}>
+                <p className="pe-eyebrow" style={{ color: "var(--pe-gold)" }}>{signal.eyebrow}</p>
+                <h3 style={{ fontFamily: "var(--pe-font-display)", fontSize: "1.8rem", marginTop: "0.75rem", marginBottom: 0 }}>
                   {signal.title}
                 </h3>
               </article>

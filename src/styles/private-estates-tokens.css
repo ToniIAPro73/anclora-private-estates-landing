@@ -1,6 +1,8 @@
 :root {
-  --pe-font-display: "Newsreader", serif;
-  --pe-font-body: "Manrope", system-ui, sans-serif;
+  /* Ultra-premium typography — ANCLORA_BRANDING_TYPOGRAPHY */
+  --pe-font-display: "Cardo", Georgia, serif;
+  --pe-font-body: "Inter", system-ui, sans-serif;
+  --pe-font-accent: "Fraunces", Georgia, serif;
 
   --pe-radius-sm: 0.75rem;
   --pe-radius-md: 1.25rem;
@@ -39,57 +41,78 @@
 
 :root,
 html[data-theme="light"] {
-  --pe-bg: #fbf9f4;
-  --pe-surface-soft: #f5f3ee;
-  --pe-surface-low: #f0eee9;
-  --pe-surface-high: #eae8e3;
+  /* Canonical ultra-premium light palette — ANCLORA_BRANDING_COLOR_TOKENS */
+  --pe-bg: #FBF9F4;
+  --pe-surface-soft: #F4F0E8;
+  --pe-surface-low: #EBE5DB;
+  --pe-surface-high: #DDD4C7;
   --pe-brand: #003331;
   --pe-brand-2: #004b49;
-  --pe-gold: #c9a95f;
-  --pe-text: #1b1c19;
-  --pe-text-soft: #3f4948;
-  --pe-text-muted: #707978;
-  --pe-text-inverse: #f8f6f2;
+  --pe-gold: #C9A95F;
+  --pe-gold-hover: #A8843E;
+  --pe-gold-dim: #D8BF86;
+  --pe-text: #13211F;
+  --pe-text-soft: #31423F;
+  --pe-text-muted: #64716E;
+  --pe-text-inverse: #F8F6F2;
   --pe-deep-bg: #10211f;
   --pe-deep-surface: #16302d;
   --pe-deep-text: #f7f4ee;
   --pe-deep-muted: rgba(247, 244, 238, 0.72);
   --pe-line-soft: rgba(27, 28, 25, 0.08);
-  --pe-shadow-soft: 0 16px 48px rgba(27, 28, 25, 0.08);
-  --pe-shadow-medium: 0 24px 70px rgba(27, 28, 25, 0.12);
-  --pe-glass-bg: rgba(251, 249, 244, 0.78);
+  --pe-line-mid: rgba(201, 169, 95, 0.20);
+  --pe-line-strong: rgba(201, 169, 95, 0.35);
+  --pe-shadow-soft: 0 4px 12px rgba(19, 33, 31, 0.10);
+  --pe-shadow-medium: 0 16px 48px rgba(19, 33, 31, 0.14);
+  --pe-shadow-deep: 0 30px 90px rgba(19, 33, 31, 0.18);
+  --pe-shadow-gold: 0 15px 35px rgba(201, 169, 95, 0.20);
+  --pe-shadow-gold-hover: 0 20px 45px rgba(201, 169, 95, 0.30);
+  --pe-gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 50%, #FBF5B7 55%, #AA771C 100%);
+  --pe-glass-bg: rgba(251, 249, 244, 0.82);
   --pe-glass-border: rgba(27, 28, 25, 0.08);
   --pe-focus: 0 0 0 3px rgba(0, 75, 73, 0.18);
   --pe-hero-orb-1: rgba(201, 169, 95, 0.18);
   --pe-hero-orb-2: rgba(0, 75, 73, 0.12);
-  --pe-nav-shadow: 0 12px 40px rgba(27, 28, 25, 0.08);
+  --pe-nav-shadow: 0 12px 40px rgba(19, 33, 31, 0.10);
 }
 
 html[data-theme="dark"] {
-  --pe-bg: #070e19;
-  --pe-surface-soft: #0d1522;
-  --pe-surface-low: #111a27;
-  --pe-surface-high: #131d2a;
-  --pe-brand: #95d1ce;
-  --pe-brand-2: #b1eeea;
-  --pe-gold: #e9c349;
-  --pe-text: #f1f5f9;
-  --pe-text-soft: #cbd5e1;
-  --pe-text-muted: #94a3b8;
-  --pe-text-inverse: #003735;
-  --pe-deep-bg: #03070d;
-  --pe-deep-surface: #0a121e;
-  --pe-deep-text: #f7f4ee;
+  /* Canonical ultra-premium dark palette — ANCLORA_BRANDING_COLOR_TOKENS */
+  --pe-bg: #07252F;
+  --pe-surface-soft: #0B313F;
+  --pe-surface-low: #0F3F45;
+  --pe-surface-high: #124A50;
+  --pe-brand: #3AA090;
+  --pe-brand-2: #4DB8A8;
+  --pe-gold: #D4AF37;
+  --pe-gold-hover: #E6C96E;
+  --pe-gold-dim: #B8962E;
+  --pe-text: #F5F5F0;
+  --pe-text-soft: #C8D0CC;
+  --pe-text-muted: #7A8A85;
+  --pe-text-inverse: #07252F;
+  --pe-deep-bg: #0D1B1A;
+  --pe-deep-surface: #102423;
+  --pe-deep-text: #F7F4EE;
   --pe-deep-muted: rgba(247, 244, 238, 0.72);
-  --pe-line-soft: rgba(241, 245, 249, 0.08);
-  --pe-shadow-soft: 0 16px 48px rgba(0, 0, 0, 0.24);
-  --pe-shadow-medium: 0 24px 70px rgba(0, 0, 0, 0.34);
-  --pe-glass-bg: rgba(7, 14, 25, 0.72);
-  --pe-glass-border: rgba(241, 245, 249, 0.08);
-  --pe-focus: 0 0 0 3px rgba(149, 209, 206, 0.22);
-  --pe-hero-orb-1: rgba(233, 195, 73, 0.16);
-  --pe-hero-orb-2: rgba(149, 209, 206, 0.14);
-  --pe-nav-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
+  /* Gold-tinted borders — ultra-premium */
+  --pe-line-soft: rgba(212, 175, 55, 0.12);
+  --pe-line-mid: rgba(212, 175, 55, 0.20);
+  --pe-line-strong: rgba(212, 175, 55, 0.30);
+  /* Canonical shadow scale */
+  --pe-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.18);
+  --pe-shadow-medium: 0 16px 48px rgba(0, 0, 0, 0.28);
+  --pe-shadow-deep: 0 30px 90px rgba(0, 0, 0, 0.38);
+  --pe-shadow-gold: 0 15px 35px rgba(212, 175, 55, 0.20);
+  --pe-shadow-gold-hover: 0 20px 45px rgba(212, 175, 55, 0.30);
+  /* Gold gradient — ANCLORA_BRANDING_COLOR_TOKENS accent-gradient */
+  --pe-gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 50%, #FBF5B7 55%, #AA771C 100%);
+  --pe-glass-bg: rgba(7, 37, 47, 0.76);
+  --pe-glass-border: rgba(212, 175, 55, 0.12);
+  --pe-focus: 0 0 0 3px rgba(212, 175, 55, 0.28);
+  --pe-hero-orb-1: rgba(212, 175, 55, 0.16);
+  --pe-hero-orb-2: rgba(58, 160, 144, 0.14);
+  --pe-nav-shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
 }
 
 html {

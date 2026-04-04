@@ -152,13 +152,41 @@
 
 .pe-card-hover-gold {
   border: 1px solid transparent;
+  transition:
+    transform var(--pe-duration-base) var(--pe-ease),
+    box-shadow var(--pe-duration-base) var(--pe-ease),
+    border-color var(--pe-duration-base) var(--pe-ease);
 }
 
 .pe-card-hover-gold:hover {
-  box-shadow:
-    0 22px 60px rgba(233, 195, 73, 0.08),
-    0 24px 80px rgba(0, 0, 0, 0.24);
-  border-color: rgba(233, 195, 73, 0.12);
+  box-shadow: var(--pe-shadow-gold-hover, 0 20px 45px rgba(212, 175, 55, 0.30));
+  border-color: var(--pe-line-mid, rgba(212, 175, 55, 0.20));
+  transform: translateY(-4px);
+}
+
+/* Ultra-premium shimmer — UI_MOTION_CONTRACT */
+@keyframes pe-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.pe-shimmer-gold {
+  background: var(--pe-gold-gradient, linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 50%, #FBF5B7 55%, #AA771C 100%));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pe-shimmer 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pe-shimmer-gold {
+    animation: none;
+  }
+  .pe-offset-card,
+  .pe-card-hover-gold {
+    transition: none;
+  }
 }
 
 .pe-pull-quote {
@@ -325,13 +353,14 @@
 }
 
 .pe-btn-primary-gold {
-  background: linear-gradient(135deg, rgba(233, 195, 73, 0.98), rgba(255, 221, 124, 0.96));
+  background: var(--pe-gold-gradient, linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 50%, #FBF5B7 55%, #AA771C 100%));
   color: #1b1402;
-  box-shadow: 0 18px 32px rgba(233, 195, 73, 0.12);
+  box-shadow: var(--pe-shadow-gold);
 }
 
 .pe-btn-primary-gold:hover {
-  box-shadow: 0 22px 40px rgba(233, 195, 73, 0.16);
+  box-shadow: var(--pe-shadow-gold-hover);
+  transform: translateY(-2px);
 }
 
 .pe-btn-secondary-ghost {

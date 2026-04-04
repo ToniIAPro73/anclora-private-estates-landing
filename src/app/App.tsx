@@ -17,7 +17,7 @@ const STORAGE_KEY = "ape:language";
 export default function App() {
   const [language, setLanguage] = useState<LanguageCode>(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    return stored === "en" || stored === "de" ? stored : "es";
+    return stored === "en" || stored === "de" || stored === "fr" ? stored : "es";
   });
   const copy = siteCopyByLanguage[language];
 
