@@ -1,10 +1,10 @@
 .pe-section {
-  padding-block: var(--pe-space-20);
+  padding-block: clamp(4.75rem, 8vw, var(--pe-space-28));
 }
 
 @media (min-width: 1024px) {
   .pe-section {
-    padding-block: var(--pe-space-28);
+    padding-block: clamp(5.75rem, 8vw, 7.5rem);
   }
 }
 
@@ -60,7 +60,7 @@
 
 .pe-nav-shell {
   border-radius: 999px;
-  padding: 0.9rem 1rem;
+  padding: 0.82rem 1rem;
 }
 
 .pe-nav-inner {
@@ -123,7 +123,7 @@
 
 .pe-section-heading {
   display: grid;
-  gap: 1rem;
+  gap: 1.15rem;
   max-width: 60rem;
 }
 
@@ -133,16 +133,17 @@
 
 .pe-section-title {
   font-family: var(--pe-font-display);
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-size: clamp(2.35rem, 4.8vw, 4.35rem);
   margin: 0;
-  letter-spacing: -0.03em;
-  line-height: 0.98;
+  letter-spacing: -0.032em;
+  line-height: 1;
 }
 
 .pe-section-copy {
   color: var(--pe-text-soft);
-  line-height: 1.85;
+  line-height: 1.9;
   font-size: 1rem;
+  max-width: 42rem;
 }
 
 .pe-section-copy--narrow {
@@ -156,7 +157,7 @@
 .pe-dual-panel,
 .pe-microzone-card {
   display: grid;
-  gap: 1.5rem;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
 }
 
 .pe-stack {
@@ -845,7 +846,7 @@
 
 .pe-final-cta-card {
   position: relative;
-  padding: clamp(1.6rem, 4vw, 2.8rem);
+  padding: clamp(1.7rem, 4.2vw, 3rem);
   border-radius: var(--pe-radius-xl);
   border: 1px solid rgba(212, 175, 55, 0.08);
   background: rgba(7, 37, 47, 0.34);
@@ -870,9 +871,9 @@
 
 .pe-footer-inner {
   border-top: 1px solid var(--pe-line-soft);
-  padding-top: 2.5rem;
+  padding-top: 2.8rem;
   display: grid;
-  gap: 2rem;
+  gap: 2.2rem;
 }
 
 .pe-footer-brand {
