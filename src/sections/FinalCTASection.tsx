@@ -1,7 +1,7 @@
 import type { FinalCtaCopy } from "@/content/site-copy";
 
 const FINAL_CTA_IMAGE =
-  "https://customer-assets.emergentagent.com/job_luxury-landing-hub/artifacts/08qv4ckf_CTA_v1.png";
+  "https://customer-assets.emergentagent.com/job_luxury-landing-hub/artifacts/lo9adrm5_CTA_v1.png";
 
 type FinalCTASectionProps = {
   copy: FinalCtaCopy;

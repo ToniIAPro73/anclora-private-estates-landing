@@ -10,19 +10,12 @@ type MallorcaFocusSectionProps = {
 export function MallorcaFocusSection({ copy }: MallorcaFocusSectionProps) {
   return (
     <section id="mallorca-focus" className="pe-section pe-section-territory">
-      <div className="pe-territory-band">
+      <div className="pe-territory-band" aria-hidden="true">
         <img className="pe-territory-band__image" src={MALLORCA_FOCUS_IMAGE} alt="Costa de Mallorca con aguas turquesa y embarcación en cala privada" />
         <div className="pe-territory-band__photo-overlay" />
         <div className="pe-territory-band__glow pe-territory-band__glow--gold" />
         <div className="pe-territory-band__glow pe-territory-band__glow--teal" />
         <div className="pe-territory-band__grid" />
-        <div className="pe-territory-band__line pe-territory-band__line--one" />
-        <div className="pe-territory-band__line pe-territory-band__line--two" />
-        <div className="pe-territory-band__line pe-territory-band__line--three" />
-        <div className="pe-territory-band__content">
-          <p className="pe-eyebrow pe-kicker" style={{ margin: 0 }}>{copy.eyebrow}</p>
-          <h2 className="pe-territory-band__title">{copy.title}</h2>
-        </div>
       </div>
 
       <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
@@ -37,16 +30,14 @@ export function MallorcaFocusSection({ copy }: MallorcaFocusSectionProps) {
         </div>
 
         <div className="pe-stack" style={{ gap: "1.5rem" }}>
-          {copy.clusters.map((cluster, index) => (
+          {copy.clusters.map((cluster) => (
             <article
               key={cluster.id}
-              className={`${index === 0 ? "pe-card-deep" : "pe-card"} pe-microzone-card pe-microzone-card--editorial`}
+              className="pe-card pe-offset-card pe-card-hover-gold pe-microzone-card pe-microzone-card--editorial pe-microzone-card--interactive"
               data-testid={`mallorca-cluster-${cluster.id}`}
             >
               <div className="pe-microzone-card__meta">
-                <p className="pe-eyebrow" style={{ color: index === 0 ? "var(--pe-deep-muted)" : "var(--pe-text-muted)" }}>
-                  {cluster.eyebrow}
-                </p>
+                <p className="pe-eyebrow pe-microzone-card__eyebrow">{cluster.eyebrow}</p>
                 <h3 className="pe-microzone-card__title">{cluster.title}</h3>
                 <div className="pe-microzone-card__areas">
                   <strong>{copy.areasLabel}</strong>
@@ -55,9 +46,7 @@ export function MallorcaFocusSection({ copy }: MallorcaFocusSectionProps) {
               </div>
 
               <div className="pe-stack" style={{ gap: "1rem" }}>
-                <p style={{ color: index === 0 ? "var(--pe-deep-muted)" : "var(--pe-text-soft)", lineHeight: 1.9, margin: 0 }}>
-                  {cluster.body}
-                </p>
+                <p className="pe-microzone-card__body">{cluster.body}</p>
                 <div className="pe-microzone-card__audience">
                   <span>{cluster.audienceLabel}</span>
                   <p style={{ margin: 0 }}>{cluster.audience}</p>

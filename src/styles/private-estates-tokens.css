@@ -1,5 +1,4 @@
 :root {
-  /* Ultra-premium typography — ANCLORA_BRANDING_TYPOGRAPHY */
   --pe-font-display: "Cardo", Georgia, serif;
   --pe-font-body: "Inter", system-ui, sans-serif;
   --pe-font-accent: "Fraunces", Georgia, serif;
@@ -41,7 +40,6 @@
 
 :root,
 html[data-theme="light"] {
-  /* Canonical ultra-premium light palette — ANCLORA_BRANDING_COLOR_TOKENS */
   --pe-bg: #FBF9F4;
   --pe-surface-soft: #F4F0E8;
   --pe-surface-low: #EBE5DB;
@@ -77,7 +75,6 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-  /* Canonical ultra-premium dark palette — ANCLORA_BRANDING_COLOR_TOKENS */
   --pe-bg: #07252F;
   --pe-surface-soft: #0B313F;
   --pe-surface-low: #0F3F45;
@@ -95,17 +92,14 @@ html[data-theme="dark"] {
   --pe-deep-surface: #102423;
   --pe-deep-text: #F7F4EE;
   --pe-deep-muted: rgba(247, 244, 238, 0.72);
-  /* Gold-tinted borders — ultra-premium */
   --pe-line-soft: rgba(212, 175, 55, 0.12);
   --pe-line-mid: rgba(212, 175, 55, 0.20);
   --pe-line-strong: rgba(212, 175, 55, 0.30);
-  /* Canonical shadow scale */
   --pe-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.18);
   --pe-shadow-medium: 0 16px 48px rgba(0, 0, 0, 0.28);
   --pe-shadow-deep: 0 30px 90px rgba(0, 0, 0, 0.38);
   --pe-shadow-gold: 0 15px 35px rgba(212, 175, 55, 0.20);
   --pe-shadow-gold-hover: 0 20px 45px rgba(212, 175, 55, 0.30);
-  /* Gold gradient — ANCLORA_BRANDING_COLOR_TOKENS accent-gradient */
   --pe-gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 50%, #FBF5B7 55%, #AA771C 100%);
   --pe-glass-bg: rgba(7, 37, 47, 0.76);
   --pe-glass-border: rgba(212, 175, 55, 0.12);
@@ -113,6 +107,7 @@ html[data-theme="dark"] {
   --pe-hero-orb-1: rgba(212, 175, 55, 0.16);
   --pe-hero-orb-2: rgba(58, 160, 144, 0.14);
   --pe-nav-shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
+  --pe-title-gold: #E0C050;
 }
 
 html {

@@ -17,8 +17,8 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
 
           <div className="pe-nav-links" data-testid="navbar-links">
             {copy.links.map((link) => (
-              <a key={link.href} href={link.href}>
-                {link.label}
+              <a key={link.href} href={link.href} className="pe-nav-link">
+                <span>{link.label}</span>
               </a>
             ))}
           </div>
