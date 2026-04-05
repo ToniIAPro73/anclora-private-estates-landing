@@ -15,7 +15,7 @@ export function BrandLockup({ variant = "full" }: BrandLockupProps) {
         style={{
           display: "block",
           width: "auto",
-          height: variant === "full-exp" ? "clamp(2.5rem, 4vw, 3.35rem)" : "2.6rem",
+          height: variant === "full-exp" ? "clamp(2.9rem, 4.5vw, 3.8rem)" : "2.6rem",
           maxWidth: "100%",
         }}
       />
