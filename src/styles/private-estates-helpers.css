@@ -707,6 +707,108 @@
   color: var(--pe-text-soft);
 }
 
+/* ── Access card (Partners whitelist + Data Lab whitelist) ── */
+.pe-access-card {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(212, 175, 55, 0.06);
+  transition: box-shadow var(--pe-duration-base) var(--pe-ease), border-color var(--pe-duration-base) var(--pe-ease), transform var(--pe-duration-base) var(--pe-ease);
+}
+
+.pe-access-card:hover {
+  box-shadow: var(--pe-shadow-gold-hover), 0 20px 60px rgba(0, 0, 0, 0.28);
+  border-color: rgba(212, 175, 55, 0.26);
+  transform: translateY(-4px);
+}
+
+.pe-access-card__header {
+  margin-bottom: 0.25rem;
+}
+
+.pe-access-card__success {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* Feature pillars row (Partners section) */
+.pe-access-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.pe-access-pillar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pe-text-soft);
+}
+
+.pe-access-pillar__dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pe-gold);
+  flex-shrink: 0;
+}
+
+/* Input hover and focus interactions */
+.pe-input--interactive {
+  transition: box-shadow var(--pe-duration-fast) var(--pe-ease), background var(--pe-duration-fast) var(--pe-ease);
+}
+
+.pe-input--interactive:hover {
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.22);
+  background: color-mix(in srgb, var(--pe-surface-high) 92%, rgba(212, 175, 55, 0.08));
+}
+
+.pe-input--interactive:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1.5px rgba(212, 175, 55, 0.42), 0 0 0 3px rgba(212, 175, 55, 0.1);
+  background: color-mix(in srgb, var(--pe-surface-high) 88%, rgba(212, 175, 55, 0.1));
+}
+
+/* Privacy checkbox row */
+.pe-privacy-row {
+  display: flex !important;
+  gap: 0.75rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.pe-checkbox {
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+  accent-color: var(--pe-gold);
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+/* Form error message */
+.pe-form-error {
+  color: var(--pe-gold);
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+/* Full-width submit button */
+.pe-btn-full {
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
 .pe-form {
   display: grid;
   gap: 1rem;

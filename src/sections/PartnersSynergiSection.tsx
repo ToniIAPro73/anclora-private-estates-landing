@@ -17,9 +17,6 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const PARTNER_IMAGE =
-    "https://customer-assets.emergentagent.com/job_luxury-landing-hub/artifacts/0dk4cme3_Investor_v2.png";
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -57,40 +54,33 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
 
   return (
     <section id="partners" className="pe-section">
-      <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
-        <div className="pe-grid-feature pe-investor-intro">
-          <div className="pe-section-heading">
-            <p className="pe-eyebrow pe-kicker">{copy.eyebrow}</p>
-            <h2 className="pe-section-title">{copy.title}</h2>
-            <p className="pe-section-copy" style={{ margin: 0, maxWidth: "36rem" }}>
-              {copy.body}
-            </p>
-            <ul className="pe-owner-checklist" style={{ marginTop: "1.5rem" }}>
-              {copy.features.map((feature) => (
-                <li key={feature} style={{ marginBottom: "0.5rem" }}>{feature}</li>
-              ))}
-            </ul>
-          </div>
+      <div className="pe-container">
 
-          <aside className="pe-investor-aside pe-investor-aside--image">
-            <img
-              className="pe-investor-aside__image"
-              src={PARTNER_IMAGE}
-              alt="Anclora Synergi partner network"
-            />
-            <div className="pe-investor-aside__overlay" />
-          </aside>
+        {/* Section header */}
+        <div className="pe-section-heading" style={{ marginBottom: "2.5rem", maxWidth: "52rem", margin: "0 auto 2.5rem" }}>
+          <p className="pe-eyebrow pe-kicker" style={{ textAlign: "center" }}>{copy.eyebrow}</p>
+          <h2 className="pe-section-title" style={{ textAlign: "center", marginTop: "0.75rem" }}>{copy.title}</h2>
+          <p className="pe-section-copy" style={{ textAlign: "center", margin: "1rem auto 0", maxWidth: "38rem" }}>
+            {copy.body}
+          </p>
         </div>
 
-        <div className="pe-card pe-offset-card" style={{ maxWidth: "640px" }} data-testid="partners-form-card">
+        {/* Feature pillars */}
+        <div className="pe-access-pillars">
+          {copy.features.map((feature) => (
+            <div key={feature} className="pe-access-pillar">
+              <span className="pe-access-pillar__dot" aria-hidden="true" />
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Centered form card */}
+        <div className="pe-access-card pe-card" data-testid="partners-form-card">
           {success ? (
-            <div data-testid="partners-success">
-              <p className="pe-eyebrow pe-kicker" style={{ color: "var(--pe-gold)", margin: 0 }}>
-                {copy.form.successTitle}
-              </p>
-              <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>
-                {copy.form.successBody}
-              </p>
+            <div className="pe-access-card__success" data-testid="partners-success">
+              <p className="pe-eyebrow pe-kicker" style={{ margin: 0 }}>{copy.form.successTitle}</p>
+              <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>{copy.form.successBody}</p>
             </div>
           ) : (
             <form className="pe-form" onSubmit={handleSubmit} data-testid="partners-admission-form">
@@ -98,7 +88,7 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
                 <label className="pe-form-field">
                   <span className="pe-eyebrow">{copy.form.name}</span>
                   <input
-                    className="pe-input"
+                    className="pe-input pe-input--interactive"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -109,7 +99,7 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
                 <label className="pe-form-field">
                   <span className="pe-eyebrow">{copy.form.email}</span>
                   <input
-                    className="pe-input"
+                    className="pe-input pe-input--interactive"
                     type="email"
                     required
                     value={email}
@@ -120,10 +110,10 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
                 </label>
               </div>
 
-              <label className="pe-form-field" style={{ marginTop: "1rem" }}>
+              <label className="pe-form-field" style={{ marginTop: "1.25rem" }}>
                 <span className="pe-eyebrow">{copy.form.serviceCategory}</span>
                 <select
-                  className="pe-select"
+                  className="pe-select pe-input--interactive"
                   required
                   value={serviceCategory}
                   onChange={(e) => setServiceCategory(e.target.value)}
@@ -136,45 +126,41 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
                 </select>
               </label>
 
-              <label className="pe-form-field" style={{ marginTop: "1rem" }}>
+              <label className="pe-form-field" style={{ marginTop: "1.25rem" }}>
                 <span className="pe-eyebrow">{copy.form.serviceSummary}</span>
                 <textarea
-                  className="pe-textarea"
+                  className="pe-textarea pe-input--interactive"
                   required
                   minLength={20}
                   value={serviceSummary}
                   onChange={(e) => setServiceSummary(e.target.value)}
                   placeholder={copy.form.placeholders.serviceSummary}
                   data-testid="partners-summary-textarea"
+                  style={{ minHeight: "130px" }}
                 />
               </label>
 
-              <label
-                className="pe-form-field pe-form-field--checkbox"
-                style={{ marginTop: "1rem", display: "flex", gap: "0.75rem", alignItems: "flex-start", cursor: "pointer" }}
-              >
+              <label className="pe-form-field pe-privacy-row" style={{ marginTop: "1.5rem" }}>
                 <input
                   type="checkbox"
                   required
                   checked={privacyAccepted}
                   onChange={(e) => setPrivacyAccepted(e.target.checked)}
                   data-testid="partners-privacy-checkbox"
-                  style={{ marginTop: "0.15rem", flexShrink: 0 }}
+                  className="pe-checkbox"
                 />
                 <span className="pe-note">{copy.form.privacyLabel}</span>
               </label>
 
               {error && (
-                <p style={{ color: "var(--pe-gold)", marginTop: "0.75rem", fontSize: "0.875rem" }} data-testid="partners-error">
-                  {error}
-                </p>
+                <p className="pe-form-error" data-testid="partners-error">{error}</p>
               )}
 
               <button
-                className="pe-btn-primary pe-btn-primary-gold"
+                className="pe-btn-primary pe-btn-primary-gold pe-btn-full"
                 type="submit"
                 disabled={submitting}
-                style={{ marginTop: "1.25rem", opacity: submitting ? 0.7 : 1 }}
+                style={{ opacity: submitting ? 0.7 : 1 }}
                 data-testid="partners-submit-button"
               >
                 {submitting ? "..." : copy.form.submitLabel}
@@ -182,6 +168,7 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
             </form>
           )}
         </div>
+
       </div>
     </section>
   );

@@ -85,30 +85,28 @@ export function DataLabSignalsSection({ copy, language = "es" }: DataLabSignalsS
         </div>
 
         {/* Whitelist CTA */}
-        <div className="pe-card pe-offset-card" style={{ maxWidth: "640px" }} data-testid="datalab-whitelist-card">
-          <p className="pe-eyebrow pe-kicker">{copy.whitelist.eyebrow}</p>
-          <h3 className="pe-section-title" style={{ marginTop: "0.75rem", fontSize: "clamp(1.4rem, 3vw, 2rem)" }}>
-            {copy.whitelist.title}
-          </h3>
-          <p className="pe-section-copy" style={{ marginTop: "1rem" }}>
-            {copy.whitelist.body}
-          </p>
+        <div className="pe-access-card pe-card" data-testid="datalab-whitelist-card">
+          <div className="pe-access-card__header">
+            <p className="pe-eyebrow pe-kicker" style={{ margin: 0 }}>{copy.whitelist.eyebrow}</p>
+            <h3 className="pe-section-title" style={{ marginTop: "0.75rem", fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}>
+              {copy.whitelist.title}
+            </h3>
+            <p className="pe-section-copy" style={{ marginTop: "1rem" }}>
+              {copy.whitelist.body}
+            </p>
+          </div>
           {success ? (
-            <div data-testid="datalab-whitelist-success">
-              <p className="pe-eyebrow pe-kicker" style={{ color: "var(--pe-gold)", margin: 0 }}>
-                {copy.whitelist.form.successTitle}
-              </p>
-              <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>
-                {copy.whitelist.form.successBody}
-              </p>
+            <div className="pe-access-card__success" data-testid="datalab-whitelist-success">
+              <p className="pe-eyebrow pe-kicker" style={{ margin: 0 }}>{copy.whitelist.form.successTitle}</p>
+              <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>{copy.whitelist.form.successBody}</p>
             </div>
           ) : (
-            <form className="pe-form" onSubmit={handleWhitelistSubmit} data-testid="datalab-whitelist-form" style={{ marginTop: "1.5rem" }}>
+            <form className="pe-form" onSubmit={handleWhitelistSubmit} data-testid="datalab-whitelist-form" style={{ marginTop: "1.75rem" }}>
               <div className="pe-form-grid">
                 <label className="pe-form-field">
                   <span className="pe-eyebrow">{copy.whitelist.form.name}</span>
                   <input
-                    className="pe-input"
+                    className="pe-input pe-input--interactive"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -119,7 +117,7 @@ export function DataLabSignalsSection({ copy, language = "es" }: DataLabSignalsS
                 <label className="pe-form-field">
                   <span className="pe-eyebrow">{copy.whitelist.form.email}</span>
                   <input
-                    className="pe-input"
+                    className="pe-input pe-input--interactive"
                     type="email"
                     required
                     value={email}
@@ -130,45 +128,41 @@ export function DataLabSignalsSection({ copy, language = "es" }: DataLabSignalsS
                 </label>
               </div>
 
-              <label className="pe-form-field" style={{ marginTop: "1rem" }}>
+              <label className="pe-form-field" style={{ marginTop: "1.25rem" }}>
                 <span className="pe-eyebrow">{copy.whitelist.form.intendedUse}</span>
                 <textarea
-                  className="pe-textarea"
+                  className="pe-textarea pe-input--interactive"
                   required
                   minLength={20}
                   value={intendedUse}
                   onChange={(e) => setIntendedUse(e.target.value)}
                   placeholder={copy.whitelist.form.placeholders.intendedUse}
                   data-testid="datalab-intended-use-input"
+                  style={{ minHeight: "130px" }}
                 />
               </label>
 
-              <label
-                className="pe-form-field pe-form-field--checkbox"
-                style={{ marginTop: "1rem", display: "flex", gap: "0.75rem", alignItems: "flex-start", cursor: "pointer" }}
-              >
+              <label className="pe-form-field pe-privacy-row" style={{ marginTop: "1.5rem" }}>
                 <input
                   type="checkbox"
                   required
                   checked={privacyAccepted}
                   onChange={(e) => setPrivacyAccepted(e.target.checked)}
                   data-testid="datalab-privacy-checkbox"
-                  style={{ marginTop: "0.15rem", flexShrink: 0 }}
+                  className="pe-checkbox"
                 />
                 <span className="pe-note">{copy.whitelist.form.privacyLabel}</span>
               </label>
 
               {error && (
-                <p style={{ color: "var(--pe-gold)", marginTop: "0.75rem", fontSize: "0.875rem" }} data-testid="datalab-error">
-                  {error}
-                </p>
+                <p className="pe-form-error" data-testid="datalab-error">{error}</p>
               )}
 
               <button
-                className="pe-btn-primary pe-btn-primary-gold"
+                className="pe-btn-primary pe-btn-primary-gold pe-btn-full"
                 type="submit"
                 disabled={submitting}
-                style={{ marginTop: "1.25rem", opacity: submitting ? 0.7 : 1 }}
+                style={{ opacity: submitting ? 0.7 : 1 }}
                 data-testid="datalab-whitelist-submit"
               >
                 {submitting ? "..." : copy.whitelist.form.submitLabel}
