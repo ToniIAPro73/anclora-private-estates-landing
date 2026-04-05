@@ -58,9 +58,9 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
               {menuOpen ? <CloseIcon /> : <HamburgerIcon />}
             </button>
 
-            {/* Center: logo with hover frame */}
+            {/* Center: logo */}
             <div className="pe-nav-logo">
-              <a href="#" className="pe-nav-logo__wrap" aria-label="Anclora Private Estates — Inicio">
+              <a href="#" className="pe-nav-logo__link" aria-label="Anclora Private Estates — Inicio">
                 <BrandLockup variant="full-exp" />
               </a>
             </div>
@@ -95,7 +95,7 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
         />
       )}
 
-      {/* Drawer panel — left side, 25vw, empty for now */}
+      {/* Drawer panel — left side, 25vw */}
       {menuOpen && (
         <aside
           className="pe-nav-drawer"
@@ -103,7 +103,20 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
           aria-modal="true"
           aria-label="Menú de navegación"
           data-testid="navbar-links"
-        />
+        >
+          <nav className="pe-nav-drawer__nav">
+            {copy.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="pe-nav-drawer__link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </aside>
       )}
     </>
   );
