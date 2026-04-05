@@ -10,25 +10,31 @@ type MallorcaFocusSectionProps = {
 export function MallorcaFocusSection({ copy }: MallorcaFocusSectionProps) {
   return (
     <section id="mallorca-focus" className="pe-section pe-section-territory">
-      <div className="pe-territory-band" aria-hidden="true">
-        <img className="pe-territory-band__image" src={MALLORCA_FOCUS_IMAGE} alt="Costa de Mallorca con aguas turquesa y embarcación en cala privada" />
-        <div className="pe-territory-band__photo-overlay" />
-        <div className="pe-territory-band__glow pe-territory-band__glow--gold" />
-        <div className="pe-territory-band__glow pe-territory-band__glow--teal" />
-        <div className="pe-territory-band__grid" />
-      </div>
-
       <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
-        <div className="pe-section-heading pe-section-heading--split">
-          <div>
+
+        {/* Two-column intro: text left, image right */}
+        <div className="pe-grid-feature pe-investor-intro">
+          <div className="pe-section-heading">
             <p className="pe-eyebrow pe-kicker">{copy.eyebrow}</p>
             <h2 className="pe-section-title">{copy.title}</h2>
           </div>
-          <p className="pe-section-copy pe-section-copy--narrow" style={{ margin: 0 }}>
-            {copy.intro}
-          </p>
+
+          <aside className="pe-investor-aside pe-investor-aside--image">
+            <img
+              className="pe-investor-aside__image"
+              src={MALLORCA_FOCUS_IMAGE}
+              alt="Costa de Mallorca con aguas turquesa y embarcación en cala privada"
+            />
+            <div className="pe-investor-aside__overlay" />
+            <div className="pe-investor-aside__copy">
+              <p className="pe-investor-aside__quote" style={{ fontStyle: "italic" }}>
+                {copy.intro}
+              </p>
+            </div>
+          </aside>
         </div>
 
+        {/* Cluster cards */}
         <div className="pe-stack" style={{ gap: "1.5rem" }}>
           {copy.clusters.map((cluster) => (
             <article
@@ -55,6 +61,7 @@ export function MallorcaFocusSection({ copy }: MallorcaFocusSectionProps) {
             </article>
           ))}
         </div>
+
       </div>
     </section>
   );

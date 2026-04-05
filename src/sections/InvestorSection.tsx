@@ -24,7 +24,6 @@ export function InvestorSection({ copy }: InvestorSectionProps) {
             <img className="pe-investor-aside__image" src={INVESTOR_IMAGE} alt="Terraza premium con piscina y vistas al mar en Mallorca" />
             <div className="pe-investor-aside__overlay" />
             <div className="pe-investor-aside__copy">
-              <span className="pe-eyebrow pe-kicker">Editorial note</span>
               <p className="pe-investor-aside__quote">{copy.asideQuote}</p>
             </div>
           </aside>
