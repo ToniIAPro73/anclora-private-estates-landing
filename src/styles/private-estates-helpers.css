@@ -60,15 +60,79 @@
 
 .pe-nav-shell {
   border-radius: 999px;
-  padding: 0.82rem 1rem;
+  padding: 0.75rem 1rem;
 }
 
 .pe-nav-inner {
   display: grid;
+  grid-template-columns: 1fr auto 1fr;
   gap: 1rem;
   align-items: center;
 }
 
+.pe-nav-inner--centered .pe-nav-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.pe-nav-inner--centered .pe-nav-actions {
+  justify-self: end;
+}
+
+/* Hamburger menu toggle */
+.pe-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 0;
+  color: var(--pe-text-soft);
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color var(--pe-duration-fast) var(--pe-ease), background var(--pe-duration-fast) var(--pe-ease);
+}
+
+.pe-menu-toggle:hover {
+  color: var(--pe-text);
+  background: color-mix(in srgb, var(--pe-surface-high) 60%, transparent);
+}
+
+.pe-menu-toggle__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* Expandable nav menu panel */
+.pe-nav-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pe-text-soft);
+}
+
+.pe-nav-menu__link {
+  color: var(--pe-text-soft);
+  text-decoration: none;
+  transition: color var(--pe-duration-fast) var(--pe-ease);
+}
+
+.pe-nav-menu__link:hover {
+  color: var(--pe-gold);
+}
+
+/* Keep old pe-nav-links for backward compat */
 .pe-nav-links {
   display: none;
   flex-wrap: wrap;
@@ -122,9 +186,14 @@
   color: var(--pe-gold);
 }
 
+/* Hide CTA label on small screens to keep navbar compact */
+.pe-nav-cta {
+  display: none;
+}
+
 .pe-nav-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.75rem;
   align-items: center;
 }
@@ -729,9 +798,9 @@
 }
 
 .pe-lang-btn.is-active {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.24), rgba(58, 160, 144, 0.18));
-  color: var(--pe-deep-text);
-  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.18), 0 8px 22px rgba(212, 175, 55, 0.12);
+  background: linear-gradient(135deg, #d4af37, #c4a030);
+  color: #1a1200;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35), 0 4px 14px rgba(212, 175, 55, 0.28);
 }
 
 .pe-lang-btn:hover {
@@ -993,15 +1062,13 @@
   font-size: 0.8rem;
 }
 
+@media (min-width: 640px) {
+  .pe-nav-cta {
+    display: inline-flex;
+  }
+}
+
 @media (min-width: 768px) {
-  .pe-nav-inner {
-    grid-template-columns: auto minmax(0, 1fr) auto;
-  }
-
-  .pe-nav-links {
-    display: flex;
-  }
-
   .pe-nav-actions {
     justify-self: end;
   }
