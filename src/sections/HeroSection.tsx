@@ -63,7 +63,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
 
           <div className="pe-photo-window__content">
             <div className="pe-stack" style={{ gap: "0.75rem", maxWidth: "18rem" }}>
-              <p className="pe-eyebrow" style={{ margin: 0, color: "rgba(247,244,238,0.86)" }}>
+              <p className="pe-eyebrow pe-kicker" style={{ margin: 0, color: "var(--pe-gold)" }}>
                 {copy.media.eyebrow}
               </p>
               <div className="pe-photo-window__headline">{copy.media.title}</div>
@@ -71,7 +71,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
 
             <div className="pe-photo-window__cards">
               <article className="pe-photo-window__card pe-photo-window__card--offset">
-                <p className="pe-eyebrow" style={{ margin: 0, color: "rgba(247,244,238,0.72)" }}>
+                <p className="pe-eyebrow pe-kicker" style={{ margin: 0, color: "var(--pe-gold)" }}>
                   {copy.media.methodEyebrow}
                 </p>
                 <p style={{ margin: 0, color: "var(--pe-deep-text)", lineHeight: 1.7 }}>{copy.media.method}</p>

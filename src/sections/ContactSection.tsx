@@ -21,8 +21,8 @@ export function ContactSection({ copy }: ContactSectionProps) {
           </div>
         </div>
 
-        <div className="pe-card pe-contact-card" data-testid="contact-card">
-          <p className="pe-eyebrow">{copy.detailsTitle}</p>
+        <div className="pe-card pe-contact-card pe-offset-card pe-card-hover-gold" data-testid="contact-card">
+          <p className="pe-eyebrow pe-kicker">{copy.detailsTitle}</p>
           <div style={{ display: "grid", gap: "1.15rem", marginTop: "1rem" }}>
             {copy.details.map((detail) => (
               <div key={detail.label} className="pe-contact-detail">
