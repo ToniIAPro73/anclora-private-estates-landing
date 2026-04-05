@@ -51,13 +51,25 @@
   box-shadow: var(--pe-nav-shadow);
 }
 
+/* ── Full-width navbar ── */
 .pe-navbar {
   position: sticky;
   top: 0;
   z-index: 30;
-  padding: 0.8rem 0 0;
 }
 
+/* Full-width nav bar — no pill, no container */
+.pe-nav-bar {
+  width: 100%;
+  padding: 0 1.75rem;
+  background: var(--pe-glass-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-bottom: 1px solid var(--pe-glass-border);
+  box-shadow: var(--pe-nav-shadow);
+}
+
+/* Keep pe-nav-shell for any remaining references */
 .pe-nav-shell {
   border-radius: 999px;
   padding: 0.75rem 1rem;
@@ -68,6 +80,7 @@
   grid-template-columns: 1fr auto 1fr;
   gap: 1rem;
   align-items: center;
+  height: 66px;
 }
 
 .pe-nav-inner--centered .pe-nav-logo {
@@ -79,27 +92,54 @@
   justify-self: end;
 }
 
-/* Hamburger menu toggle */
+/* ── Logo hover frame (matches Private Estates effect) ── */
+.pe-nav-logo__wrap {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition:
+    border-color var(--pe-duration-base) var(--pe-ease),
+    box-shadow var(--pe-duration-base) var(--pe-ease),
+    transform var(--pe-duration-base) var(--pe-ease);
+}
+
+.pe-nav-logo__wrap:hover {
+  border-color: rgba(212, 175, 55, 0.32);
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 55, 0.08),
+    0 6px 28px rgba(212, 175, 55, 0.16),
+    inset 0 0 18px rgba(212, 175, 55, 0.05);
+  transform: scale(1.05);
+}
+
+/* ── Hamburger toggle — icon only, no background on press ── */
 .pe-menu-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
   background: transparent;
   border: 0;
+  border-radius: 50%;
   color: var(--pe-text-soft);
   cursor: pointer;
-  padding: 0.5rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: color var(--pe-duration-fast) var(--pe-ease), background var(--pe-duration-fast) var(--pe-ease);
+  transition: color var(--pe-duration-fast) var(--pe-ease), transform var(--pe-duration-fast) var(--pe-ease);
 }
 
 .pe-menu-toggle:hover {
   color: var(--pe-text);
-  background: color-mix(in srgb, var(--pe-surface-high) 60%, transparent);
+  transform: scale(1.12);
+}
+
+/* Explicitly remove any active/focus background */
+.pe-menu-toggle:active,
+.pe-menu-toggle:focus-visible {
+  background: transparent;
+  outline: none;
 }
 
 .pe-menu-toggle__icon {
@@ -107,7 +147,52 @@
   line-height: 1;
 }
 
-/* Expandable nav menu panel */
+/* ── Backdrop — blurs the hero/page content behind drawer ── */
+.pe-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 28;
+  background: rgba(5, 15, 12, 0.52);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+  animation: pe-fade-in var(--pe-duration-base) var(--pe-ease) both;
+}
+
+/* ── Drawer panel — left side, 25vw ── */
+.pe-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 25vw;
+  min-width: 280px;
+  max-width: 400px;
+  z-index: 29;
+  background: color-mix(in srgb, var(--pe-deep-bg) 96%, rgba(212, 175, 55, 0.04));
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-right: 1px solid rgba(212, 175, 55, 0.1);
+  animation: pe-slide-in-left var(--pe-duration-base) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pe-slide-in-left {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes pe-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Blur main content when menu open */
+.pe-menu-open main {
+  filter: blur(4px);
+  transition: filter var(--pe-duration-base) var(--pe-ease);
+}
+
+/* ── Legacy dropdown nav menu (kept for compat) ── */
 .pe-nav-menu {
   display: flex;
   flex-wrap: wrap;
@@ -186,7 +271,7 @@
   color: var(--pe-gold);
 }
 
-/* Hide CTA label on small screens to keep navbar compact */
+/* Hide CTA on small screens */
 .pe-nav-cta {
   display: none;
 }
@@ -526,7 +611,7 @@
   background: linear-gradient(180deg, color-mix(in srgb, var(--pe-deep-surface) 92%, transparent), color-mix(in srgb, var(--pe-deep-bg) 96%, transparent));
   box-shadow: var(--pe-shadow-gold-hover);
   border-color: rgba(212, 175, 55, 0.16);
-  transform: translateY(-6px);
+  transform: scale(1.02);
 }
 
 .pe-microzone-card__meta {
@@ -588,12 +673,12 @@
 }
 
 .pe-offset-card {
-  transform: translateY(0);
+  transform: scale(1);
   transition: transform var(--pe-duration-base) var(--pe-ease), background var(--pe-duration-base) var(--pe-ease), box-shadow var(--pe-duration-base) var(--pe-ease), border-color var(--pe-duration-base) var(--pe-ease);
 }
 
 .pe-offset-card:hover {
-  transform: translateY(-6px);
+  transform: scale(1.02);
 }
 
 .pe-card-hover-gold {
@@ -604,7 +689,7 @@
 .pe-card-hover-gold:hover {
   box-shadow: var(--pe-shadow-gold-hover);
   border-color: var(--pe-line-mid);
-  transform: translateY(-4px);
+  transform: scale(1.02);
 }
 
 .pe-pillar-card,
@@ -720,7 +805,7 @@
 .pe-access-card:hover {
   box-shadow: var(--pe-shadow-gold-hover), 0 20px 60px rgba(0, 0, 0, 0.28);
   border-color: rgba(212, 175, 55, 0.26);
-  transform: translateY(-4px);
+  transform: scale(1.015);
 }
 
 .pe-access-card__header {
@@ -863,12 +948,12 @@
 
 .pe-btn-primary:hover,
 .pe-btn-secondary:hover {
-  transform: translateY(-1px);
+  transform: scale(1.03);
 }
 
 .pe-btn-primary-gold:hover {
   box-shadow: var(--pe-shadow-gold-hover);
-  transform: translateY(-2px);
+  transform: scale(1.04);
 }
 
 .pe-lang-switcher {
@@ -906,7 +991,7 @@
 }
 
 .pe-lang-btn:hover {
-  transform: translateY(-1px);
+  transform: scale(1.06);
   color: var(--pe-text);
 }
 

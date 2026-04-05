@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrandLockup } from "@/components/brand/BrandLockup";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import type { NavbarCopy, LanguageCode } from "@/content/site-copy";
@@ -9,63 +9,102 @@ type PENavbarProps = {
   onLanguageChange: (language: LanguageCode) => void;
 };
 
+function HamburgerIcon() {
+  return (
+    <svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true" fill="none">
+      <rect width="30" height="2.5" rx="1.25" fill="currentColor" />
+      <rect y="8.75" width="30" height="2.5" rx="1.25" fill="currentColor" />
+      <rect y="17.5" width="30" height="2.5" rx="1.25" fill="currentColor" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" fill="none">
+      <line x1="2" y1="2" x2="20" y2="20" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="20" y1="2" x2="2" y2="20" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Blur page content when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("pe-menu-open");
+    } else {
+      document.body.classList.remove("pe-menu-open");
+    }
+    return () => document.body.classList.remove("pe-menu-open");
+  }, [menuOpen]);
+
   return (
-    <header className="pe-navbar" data-testid="site-navbar">
-      <nav aria-label={copy.navAriaLabel} className="pe-container pe-glass pe-nav-shell">
-        <div className="pe-nav-inner pe-nav-inner--centered">
-          {/* Left: hamburger menu toggle */}
-          <button
-            className="pe-menu-toggle"
-            aria-expanded={menuOpen}
-            aria-label="Abrir menú"
-            onClick={() => setMenuOpen((v) => !v)}
-            data-testid="navbar-menu-toggle"
-          >
-            <span className="pe-menu-toggle__icon" aria-hidden="true">
-              {menuOpen ? "✕" : "≡"}
-            </span>
-            <span className="pe-menu-toggle__label">MENU</span>
-          </button>
+    <>
+      <header className="pe-navbar" data-testid="site-navbar">
+        <nav aria-label={copy.navAriaLabel} className="pe-nav-bar">
+          <div className="pe-nav-inner pe-nav-inner--centered">
 
-          {/* Center: logo */}
-          <div className="pe-nav-logo">
-            <BrandLockup variant="full-exp" />
-          </div>
-
-          {/* Right: language switcher + CTA */}
-          <div className="pe-nav-actions">
-            <LanguageSwitcher copy={copy.languageSwitcher} language={language} onLanguageChange={onLanguageChange} />
-            <a
-              className="pe-btn-primary pe-btn-primary-gold pe-nav-cta"
-              href="#valoracion"
-              style={{ minHeight: "46px" }}
-              data-testid="navbar-primary-cta"
+            {/* Left: hamburger icon only */}
+            <button
+              className="pe-menu-toggle"
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+              onClick={() => setMenuOpen((v) => !v)}
+              data-testid="navbar-menu-toggle"
             >
-              {copy.ctaLabel}
-            </a>
-          </div>
-        </div>
+              {menuOpen ? <CloseIcon /> : <HamburgerIcon />}
+            </button>
 
-        {/* Expandable nav menu */}
-        {menuOpen && (
-          <div className="pe-nav-menu" data-testid="navbar-links" role="menu">
-            {copy.links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="pe-nav-link pe-nav-menu__link"
-                role="menuitem"
-                onClick={() => setMenuOpen(false)}
-              >
-                <span>{link.label}</span>
+            {/* Center: logo with hover frame */}
+            <div className="pe-nav-logo">
+              <a href="#" className="pe-nav-logo__wrap" aria-label="Anclora Private Estates — Inicio">
+                <BrandLockup variant="full-exp" />
               </a>
-            ))}
+            </div>
+
+            {/* Right: language switcher + CTA */}
+            <div className="pe-nav-actions">
+              <LanguageSwitcher
+                copy={copy.languageSwitcher}
+                language={language}
+                onLanguageChange={onLanguageChange}
+              />
+              <a
+                className="pe-btn-primary pe-btn-primary-gold pe-nav-cta"
+                href="#valoracion"
+                style={{ minHeight: "44px" }}
+                data-testid="navbar-primary-cta"
+              >
+                {copy.ctaLabel}
+              </a>
+            </div>
+
           </div>
-        )}
-      </nav>
-    </header>
+        </nav>
+      </header>
+
+      {/* Backdrop — blurs/dims page, click to close */}
+      {menuOpen && (
+        <div
+          className="pe-nav-backdrop"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Drawer panel — left side, 25vw, empty for now */}
+      {menuOpen && (
+        <aside
+          className="pe-nav-drawer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menú de navegación"
+          data-testid="navbar-links"
+        />
+      )}
+    </>
   );
 }
