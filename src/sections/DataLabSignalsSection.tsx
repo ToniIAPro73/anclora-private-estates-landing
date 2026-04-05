@@ -1,10 +1,55 @@
-import type { DataLabCopy } from "@/content/site-copy";
+import { useState } from "react";
+import type { DataLabCopy, LanguageCode } from "@/content/site-copy";
 
 type DataLabSignalsSectionProps = {
   copy: DataLabCopy;
+  language?: LanguageCode;
 };
 
-export function DataLabSignalsSection({ copy }: DataLabSignalsSectionProps) {
+export function DataLabSignalsSection({ copy, language = "es" }: DataLabSignalsSectionProps) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [intendedUse, setIntendedUse] = useState("");
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleWhitelistSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSubmitting(true);
+    try {
+      const nexusBase =
+        (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||
+        "https://nexus.anclora.group";
+      const res = await fetch(`${nexusBase}/api/public/data-lab-access-requests`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          full_name: name,
+          email,
+          profile_type: "investor",
+          requested_scope: "strategic_overview",
+          intended_use: intendedUse,
+          privacy_accepted: privacyAccepted,
+          submission_language: language,
+          submission_source: "private_estates_landing",
+        }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error((body as { detail?: string }).detail || "Error en el envío.");
+      }
+      setSuccess(true);
+      setName(""); setEmail(""); setIntendedUse(""); setPrivacyAccepted(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error desconocido.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <section id="data-lab" className="pe-section pe-section-soft">
       <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
@@ -37,6 +82,99 @@ export function DataLabSignalsSection({ copy }: DataLabSignalsSectionProps) {
               </article>
             ))}
           </div>
+        </div>
+
+        {/* Whitelist CTA */}
+        <div className="pe-card pe-offset-card" style={{ maxWidth: "640px" }} data-testid="datalab-whitelist-card">
+          <p className="pe-eyebrow pe-kicker">{copy.whitelist.eyebrow}</p>
+          <h3 className="pe-section-title" style={{ marginTop: "0.75rem", fontSize: "clamp(1.4rem, 3vw, 2rem)" }}>
+            {copy.whitelist.title}
+          </h3>
+          <p className="pe-section-copy" style={{ marginTop: "1rem" }}>
+            {copy.whitelist.body}
+          </p>
+          {success ? (
+            <div data-testid="datalab-whitelist-success">
+              <p className="pe-eyebrow pe-kicker" style={{ color: "var(--pe-gold)", margin: 0 }}>
+                {copy.whitelist.form.successTitle}
+              </p>
+              <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>
+                {copy.whitelist.form.successBody}
+              </p>
+            </div>
+          ) : (
+            <form className="pe-form" onSubmit={handleWhitelistSubmit} data-testid="datalab-whitelist-form" style={{ marginTop: "1.5rem" }}>
+              <div className="pe-form-grid">
+                <label className="pe-form-field">
+                  <span className="pe-eyebrow">{copy.whitelist.form.name}</span>
+                  <input
+                    className="pe-input"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder={copy.whitelist.form.placeholders.name}
+                    data-testid="datalab-name-input"
+                  />
+                </label>
+                <label className="pe-form-field">
+                  <span className="pe-eyebrow">{copy.whitelist.form.email}</span>
+                  <input
+                    className="pe-input"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={copy.whitelist.form.placeholders.email}
+                    data-testid="datalab-email-input"
+                  />
+                </label>
+              </div>
+
+              <label className="pe-form-field" style={{ marginTop: "1rem" }}>
+                <span className="pe-eyebrow">{copy.whitelist.form.intendedUse}</span>
+                <textarea
+                  className="pe-textarea"
+                  required
+                  minLength={20}
+                  value={intendedUse}
+                  onChange={(e) => setIntendedUse(e.target.value)}
+                  placeholder={copy.whitelist.form.placeholders.intendedUse}
+                  data-testid="datalab-intended-use-input"
+                />
+              </label>
+
+              <label
+                className="pe-form-field pe-form-field--checkbox"
+                style={{ marginTop: "1rem", display: "flex", gap: "0.75rem", alignItems: "flex-start", cursor: "pointer" }}
+              >
+                <input
+                  type="checkbox"
+                  required
+                  checked={privacyAccepted}
+                  onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                  data-testid="datalab-privacy-checkbox"
+                  style={{ marginTop: "0.15rem", flexShrink: 0 }}
+                />
+                <span className="pe-note">{copy.whitelist.form.privacyLabel}</span>
+              </label>
+
+              {error && (
+                <p style={{ color: "var(--pe-gold)", marginTop: "0.75rem", fontSize: "0.875rem" }} data-testid="datalab-error">
+                  {error}
+                </p>
+              )}
+
+              <button
+                className="pe-btn-primary pe-btn-primary-gold"
+                type="submit"
+                disabled={submitting}
+                style={{ marginTop: "1.25rem", opacity: submitting ? 0.7 : 1 }}
+                data-testid="datalab-whitelist-submit"
+              >
+                {submitting ? "..." : copy.whitelist.form.submitLabel}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </section>

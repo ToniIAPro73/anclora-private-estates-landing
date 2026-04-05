@@ -10,7 +10,9 @@ import { FinalCTASection } from "@/sections/FinalCTASection";
 import { HeroSection } from "@/sections/HeroSection";
 import { InvestorSection } from "@/sections/InvestorSection";
 import { MallorcaFocusSection } from "@/sections/MallorcaFocusSection";
+import { PartnersSynergiSection } from "@/sections/PartnersSynergiSection";
 import { SellerIntakeSection } from "@/sections/SellerIntakeSection";
+import { ValuationRequestSection } from "@/sections/ValuationRequestSection";
 
 const STORAGE_KEY = "ape:language";
 
@@ -37,7 +39,9 @@ export default function App() {
         <MallorcaFocusSection copy={copy.mallorcaFocus} />
         <InvestorSection copy={copy.investors} />
         <SellerIntakeSection copy={copy.sellerIntake} />
-        <DataLabSignalsSection copy={copy.dataLab} />
+        <ValuationRequestSection copy={copy.valuation} language={language} />
+        <PartnersSynergiSection copy={copy.partners} language={language} />
+        <DataLabSignalsSection copy={copy.dataLab} language={language} />
         <ContactSection copy={copy.contact} />
         <FinalCTASection copy={copy.finalCta} />
       </main>

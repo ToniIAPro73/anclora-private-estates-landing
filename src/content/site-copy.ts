@@ -100,12 +100,90 @@ export type DataLabSignalCopy = {
   body?: string;
 };
 
+export type ValuationFormCopy = {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  message: string;
+  placeholders: {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    message: string;
+  };
+  privacyLabel: string;
+  submitLabel: string;
+  successTitle: string;
+  successBody: string;
+  captchaError: string;
+};
+
+export type ValuationSectionCopy = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  checklistLabel: string;
+  checklist: string[];
+  form: ValuationFormCopy;
+};
+
+export type PartnersFormCopy = {
+  name: string;
+  email: string;
+  serviceCategory: string;
+  serviceSummary: string;
+  placeholders: {
+    name: string;
+    email: string;
+    serviceSummary: string;
+  };
+  selectPlaceholder: string;
+  serviceCategoryOptions: { value: string; label: string }[];
+  privacyLabel: string;
+  submitLabel: string;
+  successTitle: string;
+  successBody: string;
+};
+
+export type PartnersSectionCopy = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  features: string[];
+  form: PartnersFormCopy;
+};
+
+export type DataLabWhitelistFormCopy = {
+  name: string;
+  email: string;
+  intendedUse: string;
+  placeholders: {
+    name: string;
+    email: string;
+    intendedUse: string;
+  };
+  privacyLabel: string;
+  submitLabel: string;
+  successTitle: string;
+  successBody: string;
+};
+
+export type DataLabWhitelistCopy = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  form: DataLabWhitelistFormCopy;
+};
+
 export type DataLabCopy = {
   eyebrow: string;
   title: string;
   intro: string;
   lead: DataLabSignalCopy;
   signals: DataLabSignalCopy[];
+  whitelist: DataLabWhitelistCopy;
 };
 
 export type ContactDetailCopy = {
@@ -168,6 +246,8 @@ export type SiteCopy = {
   mallorcaFocus: MallorcaFocusCopy;
   investors: InvestorCopy;
   sellerIntake: SellerIntakeCopy;
+  valuation: ValuationSectionCopy;
+  partners: PartnersSectionCopy;
   dataLab: DataLabCopy;
   contact: ContactCopy;
   finalCta: FinalCtaCopy;
@@ -182,6 +262,8 @@ const siteCopyEs: SiteCopy = {
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Inversores", href: "#inversores" },
       { label: "Propietarios", href: "#propietarios" },
+      { label: "Valoración", href: "#valoracion" },
+      { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contacto", href: "#contacto" },
     ],
@@ -339,6 +421,69 @@ const siteCopyEs: SiteCopy = {
       submitLabel: "Solicitar evaluación confidencial",
     },
   },
+  valuation: {
+    eyebrow: "Solicitar valoración",
+    title: "¿Cuánto vale tu propiedad en Mallorca?",
+    body: "Si tienes un inmueble en Palma o el suroeste de Mallorca y quieres conocer su valor real de mercado, podemos hacer una valoración confidencial y sin compromiso.",
+    checklistLabel: "La valoración incluye",
+    checklist: [
+      "Análisis de microzona y competencia real",
+      "Lectura de timing de mercado",
+      "Valoración orientada al comprador adecuado",
+    ],
+    form: {
+      name: "Nombre",
+      email: "Email",
+      phone: "Teléfono",
+      address: "Dirección del inmueble",
+      message: "Mensaje (opcional)",
+      placeholders: {
+        name: "Tu nombre",
+        email: "nombre@dominio.com",
+        phone: "+34 ...",
+        address: "Calle, zona o referencia catastral",
+        message: "Cuéntanos cualquier detalle relevante.",
+      },
+      privacyLabel: "He leído y acepto la política de privacidad.",
+      submitLabel: "Solicitar valoración confidencial",
+      successTitle: "Solicitud recibida",
+      successBody: "Te responderemos en un plazo de dos días hábiles con una valoración privada.",
+      captchaError: "Por favor completa la verificación de seguridad.",
+    },
+  },
+  partners: {
+    eyebrow: "Synergi · Red de partners",
+    title: "Una red selectiva para colaboradores que entienden el mercado premium.",
+    body: "Anclora Synergi es el portal privado para partners ya validados: agentes independientes, profesionales del sector y colaboradores con criterio territorial. El acceso es curado, no masivo.",
+    features: [
+      "Acceso a oportunidades compartidas de forma selectiva",
+      "Colaboración con un enfoque de microzona y calidad de activo",
+      "Proceso de admisión curado y sin fricción comercial",
+    ],
+    form: {
+      name: "Nombre",
+      email: "Email",
+      serviceCategory: "Tipo de servicio",
+      serviceSummary: "Describe tu perfil y cómo trabajas",
+      placeholders: {
+        name: "Tu nombre o empresa",
+        email: "nombre@dominio.com",
+        serviceSummary: "Explica tu perfil profesional, especialidad y cómo podrías colaborar con Anclora (mín. 20 caracteres).",
+      },
+      selectPlaceholder: "Selecciona una categoría",
+      serviceCategoryOptions: [
+        { value: "real_estate", label: "Inmobiliario" },
+        { value: "professional", label: "Profesional / Legal / Financiero" },
+        { value: "luxury", label: "Lifestyle & Lujo" },
+        { value: "eco", label: "Sostenibilidad" },
+        { value: "other", label: "Otro" },
+      ],
+      privacyLabel: "He leído y acepto la política de privacidad.",
+      submitLabel: "Solicitar acceso a Synergi",
+      successTitle: "Solicitud recibida",
+      successBody: "Revisaremos tu perfil y te responderemos en un plazo de siete días.",
+    },
+  },
   dataLab: {
     eyebrow: "Anclora Data Lab",
     title: "Señales territoriales para leer el mercado premium con más calma y menos reacción.",
@@ -361,6 +506,25 @@ const siteCopyEs: SiteCopy = {
         title: "La preparación del activo condiciona la velocidad y la calidad de la operación.",
       },
     ],
+    whitelist: {
+      eyebrow: "Acceso selectivo",
+      title: "Únete a la lista de acceso anticipado.",
+      body: "Anclora Data Lab está en fase de acceso selectivo para inversores, family offices y perfiles institucionales. Si tu perfil encaja, te avisaremos cuando abramos el siguiente bloque de acceso.",
+      form: {
+        name: "Nombre",
+        email: "Email",
+        intendedUse: "¿Por qué te interesa el Data Lab?",
+        placeholders: {
+          name: "Tu nombre o empresa",
+          email: "nombre@dominio.com",
+          intendedUse: "Describe brevemente tu interés y perfil inversor (mín. 20 caracteres).",
+        },
+        privacyLabel: "He leído y acepto la política de privacidad.",
+        submitLabel: "Solicitar acceso anticipado",
+        successTitle: "En lista de espera",
+        successBody: "Te avisaremos cuando abramos el siguiente bloque de acceso para tu perfil.",
+      },
+    },
   },
   contact: {
     eyebrow: "Contacto",
@@ -406,7 +570,8 @@ const siteCopyEs: SiteCopy = {
         title: "Acceso selectivo",
         links: [
           { label: "Data Lab", href: "#data-lab" },
-          { label: "Partners", href: "#contacto" },
+          { label: "Partners", href: "#partners" },
+          { label: "Valoración", href: "#valoracion" },
         ],
       },
       {
@@ -431,6 +596,8 @@ const siteCopyEn: SiteCopy = {
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investors", href: "#inversores" },
       { label: "Owners", href: "#propietarios" },
+      { label: "Valuation", href: "#valoracion" },
+      { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contact", href: "#contacto" },
     ],
@@ -580,6 +747,73 @@ const siteCopyEn: SiteCopy = {
       submitLabel: "Request a confidential assessment",
     },
   },
+  valuation: {
+    ...siteCopyEs.valuation,
+    eyebrow: "Request a valuation",
+    title: "What is your Mallorca property worth?",
+    body: "If you own a property in Palma or Southwest Mallorca and want to know its real market value, we can provide a confidential, no-commitment valuation.",
+    checklistLabel: "The valuation includes",
+    checklist: [
+      "Micro-location and competitive analysis",
+      "Market timing review",
+      "Valuation aligned with the right buyer type",
+    ],
+    form: {
+      ...siteCopyEs.valuation.form,
+      name: "Name",
+      email: "Email",
+      phone: "Phone",
+      address: "Property address",
+      message: "Message (optional)",
+      placeholders: {
+        name: "Your name",
+        email: "name@domain.com",
+        phone: "+34 ...",
+        address: "Street, area or cadastral reference",
+        message: "Share any relevant details.",
+      },
+      privacyLabel: "I have read and accept the privacy policy.",
+      submitLabel: "Request a confidential valuation",
+      successTitle: "Request received",
+      successBody: "We will get back to you within two working days with a private valuation.",
+      captchaError: "Please complete the security verification.",
+    },
+  },
+  partners: {
+    ...siteCopyEs.partners,
+    eyebrow: "Synergi · Partner network",
+    title: "A selective network for collaborators who understand the premium market.",
+    body: "Anclora Synergi is the private portal for already-validated partners: independent agents, real estate professionals and collaborators with territorial judgment. Access is curated, not mass-market.",
+    features: [
+      "Access to selectively shared opportunities",
+      "Collaboration focused on micro-location and asset quality",
+      "Curated admission process free from commercial friction",
+    ],
+    form: {
+      ...siteCopyEs.partners.form,
+      name: "Name",
+      email: "Email",
+      serviceCategory: "Service type",
+      serviceSummary: "Describe your profile and how you work",
+      placeholders: {
+        name: "Your name or company",
+        email: "name@domain.com",
+        serviceSummary: "Describe your professional profile, specialty and how you could collaborate with Anclora (min. 20 characters).",
+      },
+      selectPlaceholder: "Select a category",
+      serviceCategoryOptions: [
+        { value: "real_estate", label: "Real estate" },
+        { value: "professional", label: "Professional / Legal / Finance" },
+        { value: "luxury", label: "Lifestyle & Luxury" },
+        { value: "eco", label: "Sustainability" },
+        { value: "other", label: "Other" },
+      ],
+      privacyLabel: "I have read and accept the privacy policy.",
+      submitLabel: "Request access to Synergi",
+      successTitle: "Request received",
+      successBody: "We will review your profile and get back to you within seven days.",
+    },
+  },
   dataLab: {
     ...siteCopyEs.dataLab,
     title: "Territorial signals for reading the premium market with more calm and less reaction.",
@@ -601,6 +835,25 @@ const siteCopyEn: SiteCopy = {
         title: "Asset preparation shapes both the speed and quality of the transaction.",
       },
     ],
+    whitelist: {
+      eyebrow: "Selective access",
+      title: "Join the early access list.",
+      body: "Anclora Data Lab is in selective access mode for investors, family offices and institutional profiles. If your profile fits, we will notify you when we open the next access block.",
+      form: {
+        name: "Name",
+        email: "Email",
+        intendedUse: "Why are you interested in the Data Lab?",
+        placeholders: {
+          name: "Your name or company",
+          email: "name@domain.com",
+          intendedUse: "Briefly describe your interest and investor profile (min. 20 characters).",
+        },
+        privacyLabel: "I have read and accept the privacy policy.",
+        submitLabel: "Request early access",
+        successTitle: "On the waiting list",
+        successBody: "We will notify you when we open the next access block for your profile.",
+      },
+    },
   },
   contact: {
     ...siteCopyEs.contact,
@@ -648,7 +901,8 @@ const siteCopyEn: SiteCopy = {
         title: "Selective access",
         links: [
           { label: "Data Lab", href: "#data-lab" },
-          { label: "Partners", href: "#contacto" },
+          { label: "Partners", href: "#partners" },
+          { label: "Valuation", href: "#valoracion" },
         ],
       },
       {
@@ -673,6 +927,8 @@ const siteCopyDe: SiteCopy = {
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investoren", href: "#inversores" },
       { label: "Eigentümer", href: "#propietarios" },
+      { label: "Bewertung", href: "#valoracion" },
+      { label: "Partner", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Kontakt", href: "#contacto" },
     ],
@@ -833,6 +1089,73 @@ const siteCopyDe: SiteCopy = {
       submitLabel: "Vertrauliche Bewertung anfordern",
     },
   },
+  valuation: {
+    ...siteCopyEs.valuation,
+    eyebrow: "Bewertung anfragen",
+    title: "Was ist Ihre Mallorca-Immobilie wert?",
+    body: "Wenn Sie eine Immobilie in Palma oder im Südwesten Mallorcas besitzen und ihren realen Marktwert kennen möchten, erstellen wir eine vertrauliche und unverbindliche Bewertung.",
+    checklistLabel: "Die Bewertung umfasst",
+    checklist: [
+      "Mikrolage und reale Wettbewerbsanalyse",
+      "Markt-Timing-Analyse",
+      "Bewertung ausgerichtet auf den richtigen Käufertyp",
+    ],
+    form: {
+      ...siteCopyEs.valuation.form,
+      name: "Name",
+      email: "E-Mail",
+      phone: "Telefon",
+      address: "Objektadresse",
+      message: "Nachricht (optional)",
+      placeholders: {
+        name: "Ihr Name",
+        email: "name@domain.de",
+        phone: "+49 ...",
+        address: "Straße, Lage oder Katasterreferenz",
+        message: "Teilen Sie relevante Details mit.",
+      },
+      privacyLabel: "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
+      submitLabel: "Vertrauliche Bewertung anfragen",
+      successTitle: "Anfrage erhalten",
+      successBody: "Wir melden uns innerhalb von zwei Werktagen mit einer privaten Bewertung.",
+      captchaError: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
+    },
+  },
+  partners: {
+    ...siteCopyEs.partners,
+    eyebrow: "Synergi · Partnernetzwerk",
+    title: "Ein selektives Netzwerk für Kooperationspartner, die den Premium-Markt verstehen.",
+    body: "Anclora Synergi ist das private Portal für bereits validierte Partner: unabhängige Makler, Fachleute aus der Branche und Kooperationspartner mit territorialer Urteilskraft. Der Zugang ist kuriert, nicht massenmarktorientiert.",
+    features: [
+      "Zugang zu selektiv geteilten Gelegenheiten",
+      "Zusammenarbeit mit Fokus auf Mikrolage und Asset-Qualität",
+      "Kurierter Aufnahmeprozess ohne kommerzielle Reibung",
+    ],
+    form: {
+      ...siteCopyEs.partners.form,
+      name: "Name",
+      email: "E-Mail",
+      serviceCategory: "Servicekategorie",
+      serviceSummary: "Beschreiben Sie Ihr Profil und Ihre Arbeitsweise",
+      placeholders: {
+        name: "Ihr Name oder Unternehmen",
+        email: "name@domain.de",
+        serviceSummary: "Beschreiben Sie Ihr Profil, Ihre Spezialisierung und wie Sie mit Anclora zusammenarbeiten könnten (min. 20 Zeichen).",
+      },
+      selectPlaceholder: "Kategorie auswählen",
+      serviceCategoryOptions: [
+        { value: "real_estate", label: "Immobilien" },
+        { value: "professional", label: "Fachleute / Recht / Finanzen" },
+        { value: "luxury", label: "Lifestyle & Luxus" },
+        { value: "eco", label: "Nachhaltigkeit" },
+        { value: "other", label: "Sonstiges" },
+      ],
+      privacyLabel: "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
+      submitLabel: "Zugang zu Synergi anfragen",
+      successTitle: "Anfrage erhalten",
+      successBody: "Wir prüfen Ihr Profil und melden uns innerhalb von sieben Tagen.",
+    },
+  },
   dataLab: {
     ...siteCopyEs.dataLab,
     title: "Territoriale Signale für eine ruhigere und weniger reaktive Lesart des Premium-Marktes.",
@@ -855,6 +1178,25 @@ const siteCopyDe: SiteCopy = {
         title: "Die Vorbereitung des Objekts prägt Geschwindigkeit und Qualität der Transaktion.",
       },
     ],
+    whitelist: {
+      eyebrow: "Selektiver Zugang",
+      title: "Treten Sie der Early-Access-Liste bei.",
+      body: "Anclora Data Lab befindet sich in der Phase des selektiven Zugangs für Investoren, Family Offices und institutionelle Profile. Wenn Ihr Profil passt, benachrichtigen wir Sie, wenn wir den nächsten Zugangsbock öffnen.",
+      form: {
+        name: "Name",
+        email: "E-Mail",
+        intendedUse: "Warum interessieren Sie sich für das Data Lab?",
+        placeholders: {
+          name: "Ihr Name oder Unternehmen",
+          email: "name@domain.de",
+          intendedUse: "Beschreiben Sie kurz Ihr Interesse und Ihr Investorenprofil (min. 20 Zeichen).",
+        },
+        privacyLabel: "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
+        submitLabel: "Frühzeitigen Zugang anfragen",
+        successTitle: "Auf der Warteliste",
+        successBody: "Wir benachrichtigen Sie, wenn wir den nächsten Zugangsbock für Ihr Profil öffnen.",
+      },
+    },
   },
   contact: {
     ...siteCopyEs.contact,
@@ -903,7 +1245,8 @@ const siteCopyDe: SiteCopy = {
         title: "Selektiver Zugang",
         links: [
           { label: "Data Lab", href: "#data-lab" },
-          { label: "Partner", href: "#contacto" },
+          { label: "Partner", href: "#partners" },
+          { label: "Bewertung", href: "#valoracion" },
         ],
       },
       {
@@ -928,6 +1271,8 @@ const siteCopyFr: SiteCopy = {
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investisseurs", href: "#inversores" },
       { label: "Propriétaires", href: "#propietarios" },
+      { label: "Évaluation", href: "#valoracion" },
+      { label: "Partenaires", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contact", href: "#contacto" },
     ],
@@ -1087,6 +1432,73 @@ const siteCopyFr: SiteCopy = {
       submitLabel: "Demander une évaluation confidentielle",
     },
   },
+  valuation: {
+    ...siteCopyEs.valuation,
+    eyebrow: "Demander une évaluation",
+    title: "Quelle est la valeur de votre bien à Majorque ?",
+    body: "Si vous possédez un bien à Palma ou dans le sud-ouest de Majorque et souhaitez connaître sa valeur réelle de marché, nous pouvons réaliser une évaluation confidentielle et sans engagement.",
+    checklistLabel: "L'évaluation comprend",
+    checklist: [
+      "Analyse de micro-zone et concurrence réelle",
+      "Lecture du timing de marché",
+      "Évaluation orientée vers le bon profil d'acquéreur",
+    ],
+    form: {
+      ...siteCopyEs.valuation.form,
+      name: "Nom",
+      email: "E-mail",
+      phone: "Téléphone",
+      address: "Adresse du bien",
+      message: "Message (optionnel)",
+      placeholders: {
+        name: "Votre nom",
+        email: "nom@domaine.fr",
+        phone: "+33 ...",
+        address: "Rue, zone ou référence cadastrale",
+        message: "Partagez tout détail pertinent.",
+      },
+      privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
+      submitLabel: "Demander une évaluation confidentielle",
+      successTitle: "Demande reçue",
+      successBody: "Nous vous répondrons dans un délai de deux jours ouvrables avec une évaluation privée.",
+      captchaError: "Veuillez compléter la vérification de sécurité.",
+    },
+  },
+  partners: {
+    ...siteCopyEs.partners,
+    eyebrow: "Synergi · Réseau de partenaires",
+    title: "Un réseau sélectif pour les collaborateurs qui comprennent le marché premium.",
+    body: "Anclora Synergi est le portail privé pour les partenaires déjà validés : agents indépendants, professionnels du secteur et collaborateurs avec un discernement territorial. L'accès est sélectionné, pas massif.",
+    features: [
+      "Accès à des opportunités partagées de façon sélective",
+      "Collaboration axée sur la micro-zone et la qualité des actifs",
+      "Processus d'admission sélectionné sans friction commerciale",
+    ],
+    form: {
+      ...siteCopyEs.partners.form,
+      name: "Nom",
+      email: "E-mail",
+      serviceCategory: "Type de service",
+      serviceSummary: "Décrivez votre profil et votre façon de travailler",
+      placeholders: {
+        name: "Votre nom ou entreprise",
+        email: "nom@domaine.fr",
+        serviceSummary: "Décrivez votre profil professionnel, votre spécialité et comment vous pourriez collaborer avec Anclora (min. 20 caractères).",
+      },
+      selectPlaceholder: "Sélectionner une catégorie",
+      serviceCategoryOptions: [
+        { value: "real_estate", label: "Immobilier" },
+        { value: "professional", label: "Professionnel / Juridique / Finance" },
+        { value: "luxury", label: "Lifestyle & Luxe" },
+        { value: "eco", label: "Développement durable" },
+        { value: "other", label: "Autre" },
+      ],
+      privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
+      submitLabel: "Demander l'accès à Synergi",
+      successTitle: "Demande reçue",
+      successBody: "Nous examinerons votre profil et vous répondrons dans un délai de sept jours.",
+    },
+  },
   dataLab: {
     ...siteCopyEs.dataLab,
     title: "Signaux territoriaux pour lire le marché premium avec plus de calme et moins de réaction.",
@@ -1109,6 +1521,25 @@ const siteCopyFr: SiteCopy = {
         title: "La préparation de l'actif conditionne la vitesse et la qualité de l'opération.",
       },
     ],
+    whitelist: {
+      eyebrow: "Accès sélectif",
+      title: "Rejoignez la liste d'accès anticipé.",
+      body: "Anclora Data Lab est en phase d'accès sélectif pour les investisseurs, family offices et profils institutionnels. Si votre profil correspond, nous vous informerons à l'ouverture du prochain bloc d'accès.",
+      form: {
+        name: "Nom",
+        email: "E-mail",
+        intendedUse: "Pourquoi vous intéressez-vous au Data Lab ?",
+        placeholders: {
+          name: "Votre nom ou entreprise",
+          email: "nom@domaine.fr",
+          intendedUse: "Décrivez brièvement votre intérêt et votre profil d'investisseur (min. 20 caractères).",
+        },
+        privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
+        submitLabel: "Demander un accès anticipé",
+        successTitle: "Sur la liste d'attente",
+        successBody: "Nous vous informerons à l'ouverture du prochain bloc d'accès pour votre profil.",
+      },
+    },
   },
   contact: {
     ...siteCopyEs.contact,
@@ -1157,7 +1588,8 @@ const siteCopyFr: SiteCopy = {
         title: "Accès sélectif",
         links: [
           { label: "Data Lab", href: "#data-lab" },
-          { label: "Partenaires", href: "#contacto" },
+          { label: "Partenaires", href: "#partners" },
+          { label: "Évaluation", href: "#valoracion" },
         ],
       },
       {
