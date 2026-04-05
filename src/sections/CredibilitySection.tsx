@@ -10,7 +10,7 @@ export function CredibilitySection({ copy }: CredibilitySectionProps) {
       <div className="pe-container pe-stack" style={{ gap: "2.4rem" }}>
         <div className="pe-section-heading pe-section-heading--split">
           <div>
-            <p className="pe-eyebrow">{copy.eyebrow}</p>
+            <p className="pe-eyebrow pe-kicker">{copy.eyebrow}</p>
             <h2 className="pe-section-title">{copy.title}</h2>
           </div>
           <p className="pe-section-copy pe-section-copy--narrow" style={{ margin: 0 }}>

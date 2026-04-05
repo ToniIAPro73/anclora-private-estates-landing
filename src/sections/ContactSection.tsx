@@ -10,7 +10,7 @@ export function ContactSection({ copy }: ContactSectionProps) {
     <section id="contacto" className="pe-section">
       <div className="pe-container pe-dual-panel pe-contact-shell">
         <div className="pe-contact-copy">
-          <p className="pe-eyebrow">{copy.eyebrow}</p>
+          <p className="pe-eyebrow pe-kicker">{copy.eyebrow}</p>
           <h2 className="pe-section-title" style={{ marginTop: "1rem" }}>
             {copy.title}
           </h2>

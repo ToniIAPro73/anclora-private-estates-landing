@@ -11,7 +11,7 @@ export function SellerIntakeSection({ copy }: SellerIntakeSectionProps) {
     <section id="propietarios" className="pe-section">
       <div className="pe-container pe-dual-panel pe-owner-shell">
         <div className="pe-owner-copy">
-          <p className="pe-eyebrow">{copy.eyebrow}</p>
+          <p className="pe-eyebrow pe-kicker">{copy.eyebrow}</p>
           <h2 className="pe-section-title" style={{ marginTop: "1rem" }}>
             {copy.title}
           </h2>

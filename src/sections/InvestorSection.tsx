@@ -13,7 +13,7 @@ export function InvestorSection({ copy }: InvestorSectionProps) {
       <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
         <div className="pe-grid-feature pe-investor-intro">
           <div className="pe-section-heading">
-            <p className="pe-eyebrow">{copy.eyebrow}</p>
+            <p className="pe-eyebrow pe-kicker">{copy.eyebrow}</p>
             <h2 className="pe-section-title">{copy.title}</h2>
             <p className="pe-section-copy" style={{ margin: 0, maxWidth: "36rem" }}>
               {copy.intro}
