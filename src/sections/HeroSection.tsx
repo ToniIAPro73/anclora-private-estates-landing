@@ -25,7 +25,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
         <h1
           className="pe-display pe-hero-el pe-hero-el--2"
           data-testid="hero-title"
-          style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", margin: 0, maxWidth: "22ch", lineHeight: 1.06 }}
+          style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", margin: 0, maxWidth: "44ch", lineHeight: 1.1 }}
         >
           {copy.title}
         </h1>
@@ -34,7 +34,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           className="pe-hero-el pe-hero-el--3"
           style={{
             margin: 0,
-            maxWidth: "36rem",
+            maxWidth: "42rem",
             color: "rgba(247, 244, 238, 0.82)",
             fontSize: "clamp(1rem, 1.6vw, 1.15rem)",
             lineHeight: 1.7,

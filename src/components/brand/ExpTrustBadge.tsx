@@ -25,9 +25,6 @@ export function ExpTrustBadge({
         maxWidth: mode === "inline" ? "34rem" : "100%",
       }}
     >
-      <span className="pe-eyebrow" style={{ color: "var(--pe-gold)", paddingTop: "0.15rem" }}>
-        eXp
-      </span>
       <span style={{ fontSize: "0.9rem", lineHeight: 1.55 }}>{text}</span>
     </div>
   );
