@@ -1,6 +1,6 @@
 import type { InvestorCopy } from "@/content/site-copy";
 
-const INVESTOR_IMAGE = "/brand/investor-mallorca.jpg";
+const INVESTOR_IMAGE = "/brand/investor-infinity-pool.jpg";
 
 type InvestorSectionProps = {
   copy: InvestorCopy;

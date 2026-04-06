@@ -1,6 +1,6 @@
 import type { FinalCtaCopy } from "@/content/site-copy";
 
-const FINAL_CTA_IMAGE = "/brand/contact-villa-night.jpg";
+const FINAL_CTA_IMAGE = "/brand/contact-villa-living.jpg";
 
 type FinalCTASectionProps = {
   copy: FinalCtaCopy;
