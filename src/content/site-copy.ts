@@ -282,7 +282,7 @@ const siteCopyEs: SiteCopy = {
     eyebrow: "Palma · Suroeste de Mallorca · Capital premium",
     title: "Una lectura más precisa para activos singulares en Palma y el suroeste de Mallorca.",
     description:
-      "Anclora Private Estates articula una puerta de entrada discreta para propietarios, compradores e inversores que valoran microzona, confidencialidad y una ejecución comercial afinada.",
+      "Acceso discreto para propietarios, compradores e inversores que valoran microzona, confidencialidad y ejecución comercial precisa.",
     chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
@@ -535,8 +535,8 @@ const siteCopyEs: SiteCopy = {
     trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
     detailsTitle: "Datos de contacto",
     details: [
-      { label: "Email", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
-      { label: "Teléfono", value: "+34 000 000 000", href: "tel:+34000000000" },
+      { label: "Email", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Teléfono", value: "+34 633 947 810", href: "tel:+34633947810" },
       { label: "Ubicación", value: "Palma de Mallorca · Islas Baleares" },
     ],
   },
@@ -617,7 +617,7 @@ const siteCopyEn: SiteCopy = {
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
     title: "A more precise reading for singular assets in Palma and Southwest Mallorca.",
     description:
-      "Anclora Private Estates creates a discreet gateway for owners, buyers and investors who value micro-location, confidentiality and refined commercial execution.",
+      "A discreet gateway for owners, buyers and investors who value micro-location, confidentiality and precise commercial execution.",
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
@@ -873,8 +873,8 @@ const siteCopyEn: SiteCopy = {
     trustBadgeText: "International backing and operational trust through eXp Group Spain.",
     detailsTitle: "Contact details",
     details: [
-      { label: "Email", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
-      { label: "Phone", value: "+34 000 000 000", href: "tel:+34000000000" },
+      { label: "Email", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Phone", value: "+34 633 947 810", href: "tel:+34633947810" },
       { label: "Location", value: "Palma de Mallorca · Balearic Islands" },
     ],
   },
@@ -956,7 +956,7 @@ const siteCopyDe: SiteCopy = {
     eyebrow: "Palma · Südwest-Mallorca · Premium-Kapital",
     title: "Eine präzisere Lesart für singuläre Assets in Palma und im Südwesten Mallorcas.",
     description:
-      "Anclora Private Estates schafft einen diskreten Zugang für Eigentümer, Käufer und Investoren, die Mikrolage, Vertraulichkeit und eine fein abgestimmte kommerzielle Umsetzung schätzen.",
+      "Diskreter Zugang für Eigentümer, Käufer und Investoren, die Mikrolage, Vertraulichkeit und präzise kommerzielle Umsetzung schätzen.",
     chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
@@ -1216,8 +1216,8 @@ const siteCopyDe: SiteCopy = {
     trustBadgeText: "Internationale Rückendeckung und operative Sicherheit durch eXp Group Spain.",
     detailsTitle: "Kontaktdaten",
     details: [
-      { label: "E-Mail", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
-      { label: "Telefon", value: "+34 000 000 000", href: "tel:+34000000000" },
+      { label: "E-Mail", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Telefon", value: "+34 633 947 810", href: "tel:+34633947810" },
       { label: "Standort", value: "Palma de Mallorca · Balearen" },
     ],
   },
@@ -1300,7 +1300,7 @@ const siteCopyFr: SiteCopy = {
     eyebrow: "Palma · Sud-Ouest de Majorque · Capital premium",
     title: "Une lecture plus précise pour les actifs singuliers à Palma et dans le sud-ouest de Majorque.",
     description:
-      "Anclora Private Estates crée une porte d'entrée discrète pour les propriétaires, acheteurs et investisseurs qui valorisent la micro-localisation, la confidentialité e une exécution commerciale plus fine.",
+      "Accès discret pour propriétaires, acheteurs et investisseurs qui valorisent la micro-zone, la confidentialité et la précision commerciale.",
     chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel et une relation plus sophistiquée avec l'actif.",
@@ -1559,8 +1559,8 @@ const siteCopyFr: SiteCopy = {
     trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
     detailsTitle: "Coordonnées",
     details: [
-      { label: "E-mail", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
-      { label: "Téléphone", value: "+34 000 000 000", href: "tel:+34000000000" },
+      { label: "E-mail", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Téléphone", value: "+34 633 947 810", href: "tel:+34633947810" },
       { label: "Localisation", value: "Palma de Majorque · Îles Baléares" },
     ],
   },

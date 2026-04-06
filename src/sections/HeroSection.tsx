@@ -25,7 +25,16 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
         <h1
           className="pe-display pe-hero-el pe-hero-el--2"
           data-testid="hero-title"
-          style={{ fontSize: "clamp(2rem, 3.8vw, 3.5rem)", margin: 0, maxWidth: "none", lineHeight: 1.1 }}
+          style={{
+            fontSize: "clamp(2rem, 3.8vw, 3.5rem)",
+            margin: 0,
+            maxWidth: "none",
+            lineHeight: 1.1,
+            background: "linear-gradient(100deg, #ffffff 25%, var(--pe-gold) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
         >
           {copy.title}
         </h1>

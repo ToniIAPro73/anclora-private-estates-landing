@@ -1294,6 +1294,12 @@
   overflow: hidden;
   box-shadow: var(--pe-shadow-gold);
   background: #102423;
+  transition: box-shadow var(--pe-duration-base) var(--pe-ease), transform var(--pe-duration-base) var(--pe-ease);
+}
+
+.pe-final-cta-visual:hover {
+  box-shadow: var(--pe-shadow-gold-hover), 0 20px 60px rgba(0, 0, 0, 0.28);
+  transform: scale(1.02);
 }
 
 .pe-final-cta-visual__image {
