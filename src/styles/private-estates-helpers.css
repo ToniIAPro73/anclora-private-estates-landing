@@ -28,8 +28,14 @@
 .pe-card,
 .pe-card-deep {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-radius: var(--pe-radius-lg);
+}
+
+/* Cards that truly need clipping (e.g. image cards) */
+.pe-microzone-card--editorial,
+.pe-card-clip {
+  overflow: hidden;
 }
 
 .pe-card {
@@ -952,6 +958,7 @@
   font-weight: 700;
   text-decoration: none;
   border: 0;
+  cursor: pointer;
   transition: transform var(--pe-duration-fast) var(--pe-ease), opacity var(--pe-duration-fast) var(--pe-ease), background var(--pe-duration-fast) var(--pe-ease), color var(--pe-duration-fast) var(--pe-ease), box-shadow var(--pe-duration-fast) var(--pe-ease);
 }
 
@@ -1117,6 +1124,7 @@
 .pe-contact-card,
 .pe-owner-form-card {
   border: 1px solid color-mix(in srgb, var(--pe-line-soft) 84%, transparent);
+  overflow: visible;
 }
 
 .pe-contact-detail__link {
