@@ -450,10 +450,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: hidden;
   text-align: center;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  padding: calc(var(--pe-navbar-h, 100px) + clamp(2rem, 3.5vh, 4rem)) clamp(1.5rem, 5vw, 4rem) 5rem;
 }
 
 .pe-hero-bg {
@@ -481,12 +481,12 @@
 .pe-hero-content {
   position: relative;
   z-index: 2;
-  max-width: 860px;
+  max-width: 1100px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1rem, 2.2vh, 1.6rem);
+  gap: clamp(0.75rem, 1.8vh, 1.4rem);
 }
 
 /* Staggered entrance — each child fades up from blur */
@@ -510,7 +510,38 @@
   to   { opacity: 1; filter: blur(0px); transform: translateY(0); }
 }
 
-/* Scroll hint arrow */
+/* Scroll hint — text + chevron (Private Estates style) */
+.pe-hero-down {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(247, 244, 238, 0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--pe-font-ui, var(--font-ui, sans-serif));
+  animation: pe-hero-el-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) 2.2s both,
+             pe-hero-down-bounce 2.4s ease-in-out 3.5s infinite;
+  transition: color var(--pe-duration-fast) var(--pe-ease);
+  padding: 0.5rem;
+}
+.pe-hero-down:hover { color: var(--pe-gold); }
+
+@keyframes pe-hero-down-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* Legacy scroll hint (keep for compatibility) */
 .pe-hero-scroll-hint {
   position: absolute;
   bottom: 2rem;
@@ -520,15 +551,10 @@
   color: rgba(247, 244, 238, 0.55);
   text-decoration: none;
   animation: pe-hero-el-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) 2.2s both,
-             pe-hero-scroll-bounce 2.4s ease-in-out 3.5s infinite;
+             pe-hero-down-bounce 2.4s ease-in-out 3.5s infinite;
   transition: color var(--pe-duration-fast) var(--pe-ease);
 }
 .pe-hero-scroll-hint:hover { color: var(--pe-gold); }
-
-@keyframes pe-hero-scroll-bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(6px); }
-}
 
 /* Legacy hero section (keep for compatibility) */
 .pe-hero-section {

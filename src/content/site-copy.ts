@@ -319,45 +319,45 @@ const siteCopyEs: SiteCopy = {
     clusters: [
       {
         id: "palma-hillside-core",
-        eyebrow: "Palma & Hillside Core",
+        eyebrow: "Palma y la colina residencial",
         title: "Capital, altura residencial y acceso institucional.",
         body:
           "Palma, Son Vida, Cala Major, San Agustín y Cas Català concentran una mezcla muy particular de capital local, demanda internacional y activos donde el relato urbano y la privacidad pesan tanto como la ubicación.",
         areas: ["Palma", "Son Vida", "Cala Major", "San Agustín", "Cas Català"],
-        audienceLabel: "Audience",
+        audienceLabel: "Perfil de comprador",
         audience:
           "Comprador patrimonial que prioriza capital, colegios, servicios y logística diaria.",
       },
       {
         id: "calvia-coastal-premium",
-        eyebrow: "Calvià Coastal Premium",
-        title: "Costa consolidada con lectura de lifestyle y liquidez.",
+        eyebrow: "Costa premium de Calvià",
+        title: "Costa consolidada con lifestyle y liquidez.",
         body:
           "Illetas, Bendinat, Portals, Costa d'en Blanes y Punta Negra funcionan como un sistema donde mar, marina, privacidad y servicios premium se convierten en señales clave de valor.",
         areas: ["Illetas", "Bendinat", "Portals", "Costa d'en Blanes", "Punta Negra"],
-        audienceLabel: "Audience",
+        audienceLabel: "Perfil de comprador",
         audience:
           "Comprador internacional y family office orientado a costa prime y continuidad relacional.",
       },
       {
         id: "southwest-lifestyle-capital-preservation",
-        eyebrow: "Southwest Lifestyle & Capital Preservation",
+        eyebrow: "Suroeste: lifestyle y patrimonio",
         title: "Entrada premium con lifestyle, rentabilidad y timing.",
         body:
           "Palmanova, Paguera y Costa de la Calma permiten leer un tramo más flexible del mercado premium, donde lifestyle, ticket de entrada y velocidad comercial necesitan criterio fino por microzona.",
         areas: ["Palmanova", "Paguera", "Costa de la Calma"],
-        audienceLabel: "Audience",
+        audienceLabel: "Perfil de comprador",
         audience:
           "Inversor híbrido que busca equilibrio entre uso propio, demanda y conservación patrimonial.",
       },
       {
         id: "heritage-serra-character",
-        eyebrow: "Heritage & Serra Character",
+        eyebrow: "Serra y herencia de interior",
         title: "Interior con carácter, paisaje y singularidad residencial.",
         body:
           "Puerto de Andratx, Andratx, Esporles y Valldemossa forman un clúster donde la lectura cambia: patrimonio, paisaje, privacidad y narrativa residencial pesan más que la mera proximidad a la costa.",
         areas: ["Puerto de Andratx", "Andratx", "Esporles", "Valldemossa"],
-        audienceLabel: "Audience",
+        audienceLabel: "Perfil de comprador",
         audience:
           "Comprador UHNW relacional que valora singularidad, silencio y activos con relato duradero.",
       },
@@ -377,7 +377,7 @@ const siteCopyEs: SiteCopy = {
           "Busca activos sólidos, protección de valor y criterio territorial para no depender de ruido comercial ni de escaparates genéricos.",
       },
       {
-        title: "International lifestyle investor",
+        title: "Inversor lifestyle internacional",
         body:
           "Prioriza microzona, privacidad, marina, colegios, conectividad y capacidad de ejecutar con confianza en un entorno premium transfronterizo.",
       },
@@ -533,7 +533,7 @@ const siteCopyEs: SiteCopy = {
       "Si estás valorando vender, invertir o explorar una oportunidad patrimonial en Palma o el suroeste de Mallorca, podemos estudiar tu caso con criterio, confidencialidad y enfoque premium.",
     responseNote: "Las conversaciones se gestionan de forma selectiva y con retorno personal.",
     trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
-    detailsTitle: "Contact details",
+    detailsTitle: "Datos de contacto",
     details: [
       { label: "Email", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
       { label: "Teléfono", value: "+34 000 000 000", href: "tel:+34000000000" },
@@ -541,7 +541,7 @@ const siteCopyEs: SiteCopy = {
     ],
   },
   finalCta: {
-    eyebrow: "Private conversation",
+    eyebrow: "Conversación privada",
     title: "El siguiente paso no es ver más ruido. Es abrir la conversación adecuada.",
     body:
       "Palma y el suroeste de Mallorca exigen criterio territorial, confidencialidad y una ejecución comercial más precisa. Si estás valorando vender, comprar o explorar una oportunidad patrimonial, podemos estudiar tu caso de forma privada.",
@@ -657,6 +657,8 @@ const siteCopyEn: SiteCopy = {
     clusters: [
       {
         ...siteCopyEs.mallorcaFocus.clusters[0],
+        eyebrow: "Palma & Hillside Residential",
+        audienceLabel: "Buyer profile",
         title: "Capital center, elevated living and institutional access.",
         body:
           "Palma, Son Vida, Cala Major, San Agustin and Cas Catala bring together a very specific mix of local capital, international demand and assets where the urban narrative and privacy matter as much as location.",
@@ -665,6 +667,8 @@ const siteCopyEn: SiteCopy = {
       },
       {
         ...siteCopyEs.mallorcaFocus.clusters[1],
+        eyebrow: "Calvià Premium Coast",
+        audienceLabel: "Buyer profile",
         title: "Established coastline with a lifestyle and liquidity lens.",
         body:
           "Illetas, Bendinat, Portals, Costa d'en Blanes and Punta Negra operate as a system where sea, marina, privacy and premium services become key value signals.",
@@ -672,6 +676,8 @@ const siteCopyEn: SiteCopy = {
       },
       {
         ...siteCopyEs.mallorcaFocus.clusters[2],
+        eyebrow: "Southwest: Lifestyle & Heritage",
+        audienceLabel: "Buyer profile",
         title: "Premium entry with lifestyle, yield and timing.",
         body:
           "Palmanova, Paguera and Costa de la Calma offer a more flexible premium-market band where lifestyle, entry ticket and commercial speed require a finely tuned micro-location lens.",
@@ -679,6 +685,8 @@ const siteCopyEn: SiteCopy = {
       },
       {
         ...siteCopyEs.mallorcaFocus.clusters[3],
+        eyebrow: "Serra & Interior Heritage",
+        audienceLabel: "Buyer profile",
         title: "Interior with character, landscape and residential singularity.",
         body:
           "Puerto de Andratx, Andratx, Esporles and Valldemossa form a cluster where the reading changes: heritage, landscape, privacy and residential storytelling matter more than proximity to the coast.",
