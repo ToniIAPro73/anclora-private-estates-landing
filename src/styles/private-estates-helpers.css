@@ -753,17 +753,18 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(7, 37, 47, 0.2) 0%, rgba(7, 37, 47, 0.4) 58%, rgba(7, 37, 47, 0.84) 100%),
+    linear-gradient(180deg, rgba(7, 37, 47, 0.84) 0%, rgba(7, 37, 47, 0.4) 42%, rgba(7, 37, 47, 0.2) 100%),
     radial-gradient(circle at 18% 18%, rgba(212, 175, 55, 0.12), transparent 24%),
     radial-gradient(circle at 82% 16%, rgba(58, 160, 144, 0.08), transparent 18%);
 }
 
 .pe-investor-aside__copy {
   position: absolute;
-  inset: auto 1.3rem 1.3rem 1.3rem;
+  inset: 1.3rem 1.3rem auto auto;
   z-index: 1;
   display: grid;
   gap: 0.65rem;
+  text-align: right;
 }
 
 .pe-investor-aside__quote {
