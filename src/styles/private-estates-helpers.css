@@ -452,8 +452,19 @@
   min-height: inherit;
   border-radius: var(--pe-radius-xl);
   overflow: hidden;
-  box-shadow: var(--pe-shadow-gold);
+  box-shadow: none;
   background: #102423;
+  transition: box-shadow var(--pe-duration-base) var(--pe-ease), transform var(--pe-duration-base) var(--pe-ease);
+}
+
+.pe-photo-window:hover {
+  box-shadow: var(--pe-shadow-gold-hover), 0 20px 60px rgba(0, 0, 0, 0.28);
+  transform: scale(1.02);
+}
+
+/* Smaller hero photo variant */
+.pe-photo-window--hero-sm {
+  min-height: clamp(18rem, 32vw, 26rem);
 }
 
 .pe-photo-window__image {
@@ -517,10 +528,10 @@
 }
 
 .pe-photo-window__card {
-  width: min(100%, 17rem);
+  width: 100%;
   padding: 0.9rem 0.95rem;
   border-radius: 1.2rem;
-  background: color-mix(in srgb, var(--pe-deep-surface) 62%, transparent);
+  background: color-mix(in srgb, var(--pe-deep-surface) 82%, transparent);
   border: 1px solid rgba(212, 175, 55, 0.08);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(14px);
@@ -728,7 +739,7 @@
   padding: 1.4rem;
   align-self: end;
   border-radius: var(--pe-radius-lg);
-  box-shadow: var(--pe-shadow-soft);
+  box-shadow: none;
 }
 
 .pe-investor-aside--image {
@@ -737,7 +748,14 @@
   overflow: hidden;
   padding: 0;
   background: #102423;
-  box-shadow: var(--pe-shadow-gold);
+  box-shadow: none;
+  transition: box-shadow var(--pe-duration-base) var(--pe-ease), transform var(--pe-duration-base) var(--pe-ease);
+}
+
+.pe-investor-aside--image:hover {
+  box-shadow: var(--pe-shadow-gold-hover), 0 20px 60px rgba(0, 0, 0, 0.28);
+  transform: scale(1.02);
+}
 }
 
 .pe-investor-aside__image {
@@ -1322,7 +1340,7 @@
   }
 
   .pe-hero-visual {
-    transform: translateY(2rem);
+    transform: none;
   }
 
   .pe-investor-intro {

@@ -267,7 +267,7 @@ const siteCopyEs: SiteCopy = {
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contacto", href: "#contacto" },
     ],
-    ctaLabel: "Solicitar evaluación confidencial",
+    ctaLabel: "Solicitar valoración",
     languageSwitcher: {
       groupLabel: "Selector de idioma",
       options: [
@@ -601,7 +601,7 @@ const siteCopyEn: SiteCopy = {
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contact", href: "#contacto" },
     ],
-    ctaLabel: "Request a confidential assessment",
+    ctaLabel: "Request a valuation",
     languageSwitcher: {
       groupLabel: "Language selector",
       options: [
@@ -932,7 +932,7 @@ const siteCopyDe: SiteCopy = {
       { label: "Data Lab", href: "#data-lab" },
       { label: "Kontakt", href: "#contacto" },
     ],
-    ctaLabel: "Vertrauliche Bewertung anfordern",
+    ctaLabel: "Bewertung anfragen",
     languageSwitcher: {
       groupLabel: "Sprachauswahl",
       options: [
@@ -1276,7 +1276,7 @@ const siteCopyFr: SiteCopy = {
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contact", href: "#contacto" },
     ],
-    ctaLabel: "Demander une évaluation confidentielle",
+    ctaLabel: "Demander une évaluation",
     languageSwitcher: {
       groupLabel: "Sélecteur de langue",
       options: [
