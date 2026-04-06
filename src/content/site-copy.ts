@@ -591,22 +591,16 @@ const siteCopyEs: SiteCopy = {
         title: "Contacto",
         links: [
           { label: "Abrir conversación privada", href: "#contacto" },
-          { label: "Solicitar evaluación", href: "#propietarios" },
-        ],
-      },
-      {
-        title: "Mallorca",
-        links: [
-          { label: "Palma & Son Vida", href: "#mallorca-focus" },
-          { label: "Portals & Bendinat", href: "#mallorca-focus" },
         ],
       },
       {
         title: "Acceso selectivo",
         links: [
-          { label: "Data Lab", href: "#data-lab" },
+          { label: "Mallorca", href: "#mallorca-focus" },
+          { label: "Inversores", href: "#inversores" },
+          { label: "Propietarios", href: "#propietarios" },
           { label: "Partners", href: "#partners" },
-          { label: "Valoración", href: "#valoracion" },
+          { label: "Data Lab", href: "#data-lab" },
         ],
       },
       {
@@ -960,22 +954,16 @@ const siteCopyEn: SiteCopy = {
         title: "Contact",
         links: [
           { label: "Open private conversation", href: "#contacto" },
-          { label: "Request assessment", href: "#propietarios" },
-        ],
-      },
-      {
-        title: "Mallorca",
-        links: [
-          { label: "Palma and Son Vida", href: "#mallorca-focus" },
-          { label: "Portals and Bendinat", href: "#mallorca-focus" },
         ],
       },
       {
         title: "Selective access",
         links: [
-          { label: "Data Lab", href: "#data-lab" },
+          { label: "Mallorca", href: "#mallorca-focus" },
+          { label: "Investors", href: "#inversores" },
+          { label: "Owners", href: "#propietarios" },
           { label: "Partners", href: "#partners" },
-          { label: "Valuation", href: "#valoracion" },
+          { label: "Data Lab", href: "#data-lab" },
         ],
       },
       {
@@ -1334,22 +1322,16 @@ const siteCopyDe: SiteCopy = {
         title: "Kontakt",
         links: [
           { label: "Privates Gespräch öffnen", href: "#contacto" },
-          { label: "Bewertung anfordern", href: "#propietarios" },
-        ],
-      },
-      {
-        title: "Mallorca",
-        links: [
-          { label: "Palma und Son Vida", href: "#mallorca-focus" },
-          { label: "Portals und Bendinat", href: "#mallorca-focus" },
         ],
       },
       {
         title: "Selektiver Zugang",
         links: [
-          { label: "Data Lab", href: "#data-lab" },
+          { label: "Mallorca", href: "#mallorca-focus" },
+          { label: "Investoren", href: "#inversores" },
+          { label: "Eigentümer", href: "#propietarios" },
           { label: "Partner", href: "#partners" },
-          { label: "Bewertung", href: "#valoracion" },
+          { label: "Data Lab", href: "#data-lab" },
         ],
       },
       {
@@ -1707,22 +1689,16 @@ const siteCopyFr: SiteCopy = {
         title: "Contact",
         links: [
           { label: "Ouvrir la conversation privée", href: "#contacto" },
-          { label: "Demander une évaluation", href: "#propietarios" },
-        ],
-      },
-      {
-        title: "Majorque",
-        links: [
-          { label: "Palma et Son Vida", href: "#mallorca-focus" },
-          { label: "Portals et Bendinat", href: "#mallorca-focus" },
         ],
       },
       {
         title: "Accès sélectif",
         links: [
-          { label: "Data Lab", href: "#data-lab" },
+          { label: "Majorque", href: "#mallorca-focus" },
+          { label: "Investisseurs", href: "#inversores" },
+          { label: "Propriétaires", href: "#propietarios" },
           { label: "Partenaires", href: "#partners" },
-          { label: "Évaluation", href: "#valoracion" },
+          { label: "Data Lab", href: "#data-lab" },
         ],
       },
       {

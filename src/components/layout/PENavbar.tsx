@@ -74,7 +74,7 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
               />
               <a
                 className="pe-btn-primary pe-btn-primary-gold pe-nav-cta"
-                href="#valoracion"
+                href="#propietarios"
                 style={{ minHeight: "44px" }}
                 data-testid="navbar-primary-cta"
               >
