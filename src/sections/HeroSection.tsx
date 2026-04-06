@@ -1,8 +1,6 @@
 import { ExpTrustBadge } from "@/components/brand/ExpTrustBadge";
 import type { HeroCopy } from "@/content/site-copy";
 
-const HERO_IMAGE = "/brand/hero-villa-mallorca.jpg";
-
 type HeroSectionProps = {
   copy: HeroCopy;
   trustBadgeText: string;
@@ -10,119 +8,78 @@ type HeroSectionProps = {
 
 export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
   return (
-    <section className="pe-hero-section pe-brand-panel">
-      <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
+    <section className="pe-hero-fullscreen pe-brand-panel">
+      {/* Background image — animates in from blurred/scaled */}
+      <div className="pe-hero-bg" aria-hidden="true" />
 
-        {/* Centered title block */}
-        <div style={{ textAlign: "center" }}>
-          <p className="pe-eyebrow pe-kicker" style={{ margin: "0 0 0.6rem" }}>
-            {copy.eyebrow}
-          </p>
-          <h1
-            className="pe-display"
-            data-testid="hero-title"
-            style={{
-              fontSize: "clamp(2.4rem, 6vw, 4.4rem)",
-              margin: "0 auto",
-              maxWidth: "32ch",
-              lineHeight: 1.08,
-            }}
-          >
-            {copy.title}
-          </h1>
+      {/* Gradient overlay */}
+      <div className="pe-hero-overlay" aria-hidden="true" />
+
+      {/* Centered content stack — staggered entrance */}
+      <div className="pe-hero-content">
+
+        <p className="pe-eyebrow pe-kicker pe-hero-el pe-hero-el--1" style={{ margin: 0 }}>
+          {copy.eyebrow}
+        </p>
+
+        <h1
+          className="pe-display pe-hero-el pe-hero-el--2"
+          data-testid="hero-title"
+          style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", margin: 0, maxWidth: "22ch", lineHeight: 1.06 }}
+        >
+          {copy.title}
+        </h1>
+
+        <p
+          className="pe-hero-el pe-hero-el--3"
+          style={{
+            margin: 0,
+            maxWidth: "36rem",
+            color: "rgba(247, 244, 238, 0.82)",
+            fontSize: "clamp(1rem, 1.6vw, 1.15rem)",
+            lineHeight: 1.7,
+          }}
+        >
+          {copy.description}
+        </p>
+
+        <div className="pe-chip-row pe-hero-el pe-hero-el--4" style={{ justifyContent: "center" }}>
+          {copy.chips.map((chip) => (
+            <span key={chip} className="pe-chip">{chip}</span>
+          ))}
         </div>
 
-        {/* Two-column body: copy left, photo+cards right */}
-        <div className="pe-hero-grid pe-hero-shell">
+        <div className="pe-cta-row pe-hero-el pe-hero-el--5" style={{ justifyContent: "center" }}>
+          <a
+            className="pe-btn-primary pe-btn-primary-gold"
+            href="#propietarios"
+            data-testid="hero-primary-cta"
+            style={{ minHeight: "52px" }}
+          >
+            {copy.primaryCta}
+          </a>
+          <a
+            className="pe-btn-secondary"
+            href="#mallorca-focus"
+            data-testid="hero-secondary-cta"
+            style={{ minHeight: "52px" }}
+          >
+            {copy.secondaryCta}
+          </a>
+        </div>
 
-          {/* Left: description + chips + note + CTAs + badge */}
-          <div className="pe-stack pe-hero-copy" style={{ gap: "1.5rem" }}>
-            <div className="pe-pull-quote">
-              <p className="pe-section-copy" style={{ margin: 0, fontSize: "clamp(1.02rem, 1.8vw, 1.18rem)", maxWidth: "29rem" }}>
-                {copy.description}
-              </p>
-              <div className="pe-stack" style={{ gap: "0.9rem", paddingTop: "0.2rem" }}>
-                <div className="pe-chip-row">
-                  {copy.chips.map((chip) => (
-                    <span key={chip} className="pe-chip">{chip}</span>
-                  ))}
-                </div>
-                <p className="pe-note" style={{ margin: 0, maxWidth: "28rem", color: "var(--pe-text-soft)" }}>{copy.note}</p>
-              </div>
-            </div>
-
-            <div className="pe-cta-row">
-              <a className="pe-btn-primary pe-btn-primary-gold" href="#propietarios" data-testid="hero-primary-cta">
-                {copy.primaryCta}
-              </a>
-              <a className="pe-btn-secondary" href="#mallorca-focus" data-testid="hero-secondary-cta">
-                {copy.secondaryCta}
-              </a>
-            </div>
-
-            <ExpTrustBadge text={trustBadgeText} />
-          </div>
-
-          {/* Right: smaller photo + cards below */}
-          <div className="pe-stack" style={{ gap: "0.85rem" }}>
-
-            {/* Photo — no initial shadow, hover = scale + shadow */}
-            <div
-              className="pe-photo-window pe-photo-window--hero-sm"
-              data-testid="hero-editorial-visual"
-              style={{ minHeight: "clamp(18rem, 32vw, 26rem)" }}
-            >
-              <img
-                className="pe-photo-window__image pe-photo-window__image--hero"
-                src={HERO_IMAGE}
-                alt="Villa contemporánea en Mallorca con piscina e vistas al mar"
-              />
-              <div className="pe-photo-window__overlay pe-photo-window__overlay--hero" />
-              <div className="pe-photo-window__ambient" aria-hidden="true" />
-
-              {/* Quote top-left, italic, slightly larger */}
-              <div style={{
-                position: "absolute",
-                inset: "1.3rem auto auto 1.4rem",
-                zIndex: 1,
-                maxWidth: "22rem",
-              }}>
-                <p style={{
-                  margin: 0,
-                  color: "var(--pe-deep-text)",
-                  fontFamily: "var(--pe-font-accent)",
-                  fontStyle: "italic",
-                  fontSize: "clamp(1.12rem, 2.2vw, 1.32rem)",
-                  lineHeight: 1.75,
-                  textShadow: "0 10px 24px rgba(0,0,0,0.22)",
-                }}>
-                  {copy.media.title}
-                </p>
-              </div>
-            </div>
-
-            {/* Cards below the photo, side by side */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
-              <article className="pe-photo-window__card">
-                <p className="pe-eyebrow pe-kicker" style={{ margin: 0, color: "var(--pe-gold)" }}>
-                  {copy.media.methodEyebrow}
-                </p>
-                <p style={{ margin: 0, color: "var(--pe-deep-text)", lineHeight: 1.7 }}>
-                  {copy.media.method}
-                </p>
-              </article>
-              <article className="pe-photo-window__card pe-photo-window__card--stat">
-                <span className="pe-photo-window__stat">{copy.media.statValue}</span>
-                <p style={{ margin: 0, color: "rgba(247,244,238,0.76)", lineHeight: 1.7 }}>
-                  {copy.media.statCopy}
-                </p>
-              </article>
-            </div>
-
-          </div>
+        <div className="pe-hero-el pe-hero-el--6">
+          <ExpTrustBadge text={trustBadgeText} />
         </div>
 
       </div>
+
+      {/* Scroll indicator */}
+      <a href="#credibilidad" className="pe-hero-scroll-hint" aria-label="Continuar" data-testid="hero-scroll-hint">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </a>
     </section>
   );
 }
