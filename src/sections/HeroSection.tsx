@@ -43,7 +43,8 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           {copy.description}
         </p>
 
-        <div className="pe-cta-row pe-hero-el pe-hero-el--5" style={{ justifyContent: "center", marginTop: "0.5rem" }}>
+        {/* CTAs pushed to bottom via marginTop: auto */}
+        <div className="pe-cta-row pe-hero-el pe-hero-el--5" style={{ justifyContent: "center", marginTop: "auto" }}>
           <a
             className="pe-btn-primary pe-btn-primary-gold"
             href="#propietarios"
