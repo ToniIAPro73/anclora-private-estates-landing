@@ -53,7 +53,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         <textarea className="pe-textarea" name="message" placeholder={copy.placeholders.message} data-testid="seller-message-input" />
       </label>
 
-      <button className="pe-btn-primary pe-btn-primary-gold" type="submit" data-testid="seller-submit-button">
+      <button className="pe-btn-primary pe-btn-primary-gold pe-btn-full" type="submit" data-testid="seller-submit-button">
         {copy.submitLabel}
       </button>
     </form>

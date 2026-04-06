@@ -6,11 +6,11 @@ type CredibilitySectionProps = {
 
 export function CredibilitySection({ copy }: CredibilitySectionProps) {
   return (
-    <section className="pe-section pe-section-soft">
-      <div className="pe-container pe-stack" style={{ gap: "2.4rem" }}>
+    <section id="credibilidad" className="pe-section pe-section-soft">
+      <div className="pe-container pe-stack" style={{ gap: "3.5rem" }}>
         <div style={{ textAlign: "center" }}>
-          <p className="pe-eyebrow pe-kicker" style={{ margin: "0 0 0.6rem" }}>{copy.eyebrow}</p>
-          <h2 className="pe-section-title" style={{ margin: "0 auto" }}>{copy.title}</h2>
+          <p className="pe-eyebrow pe-kicker" style={{ margin: "0 0 0.8rem" }}>{copy.eyebrow}</p>
+          <h2 className="pe-section-title" style={{ margin: "0 auto", maxWidth: "16ch" }}>{copy.title}</h2>
         </div>
 
         <div className="pe-grid-3">

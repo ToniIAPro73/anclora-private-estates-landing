@@ -1,8 +1,7 @@
 import { ExpTrustBadge } from "@/components/brand/ExpTrustBadge";
 import type { HeroCopy } from "@/content/site-copy";
 
-const HERO_IMAGE =
-  "https://customer-assets.emergentagent.com/job_luxury-landing-hub/artifacts/x5r4drpo_Hero_v2.png";
+const HERO_IMAGE = "/brand/hero-villa-mallorca.jpg";
 
 type HeroSectionProps = {
   copy: HeroCopy;
@@ -23,9 +22,9 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
             className="pe-display"
             data-testid="hero-title"
             style={{
-              fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
+              fontSize: "clamp(2.4rem, 6vw, 4.4rem)",
               margin: "0 auto",
-              maxWidth: "20ch",
+              maxWidth: "32ch",
               lineHeight: 1.08,
             }}
           >
@@ -48,7 +47,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
                     <span key={chip} className="pe-chip">{chip}</span>
                   ))}
                 </div>
-                <p className="pe-note" style={{ margin: 0, maxWidth: "28rem" }}>{copy.note}</p>
+                <p className="pe-note" style={{ margin: 0, maxWidth: "28rem", color: "var(--pe-text-soft)" }}>{copy.note}</p>
               </div>
             </div>
 

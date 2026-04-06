@@ -259,10 +259,10 @@ const siteCopyEs: SiteCopy = {
   navbar: {
     navAriaLabel: "Principal",
     links: [
+      { label: "Credibilidad", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Inversores", href: "#inversores" },
       { label: "Propietarios", href: "#propietarios" },
-      { label: "Valoración", href: "#valoracion" },
       { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contacto", href: "#contacto" },
@@ -593,10 +593,10 @@ const siteCopyEn: SiteCopy = {
     ...siteCopyEs.navbar,
     navAriaLabel: "Main",
     links: [
+      { label: "Credibility", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investors", href: "#inversores" },
       { label: "Owners", href: "#propietarios" },
-      { label: "Valuation", href: "#valoracion" },
       { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contact", href: "#contacto" },
@@ -924,10 +924,10 @@ const siteCopyDe: SiteCopy = {
     ...siteCopyEs.navbar,
     navAriaLabel: "Hauptnavigation",
     links: [
+      { label: "Glaubwürdigkeit", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investoren", href: "#inversores" },
       { label: "Eigentümer", href: "#propietarios" },
-      { label: "Bewertung", href: "#valoracion" },
       { label: "Partner", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Kontakt", href: "#contacto" },
@@ -1268,10 +1268,10 @@ const siteCopyFr: SiteCopy = {
     ...siteCopyEs.navbar,
     navAriaLabel: "Navigation principale",
     links: [
+      { label: "Crédibilité", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investisseurs", href: "#inversores" },
       { label: "Propriétaires", href: "#propietarios" },
-      { label: "Évaluation", href: "#valoracion" },
       { label: "Partenaires", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contact", href: "#contacto" },
