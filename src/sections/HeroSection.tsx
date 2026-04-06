@@ -18,14 +18,14 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
       {/* Centered content stack — staggered entrance */}
       <div className="pe-hero-content">
 
-        <p className="pe-eyebrow pe-kicker pe-hero-el pe-hero-el--1" style={{ margin: 0 }}>
+        <p className="pe-eyebrow pe-kicker pe-hero-el pe-hero-el--1" style={{ margin: 0, color: "var(--pe-gold)", opacity: 1, letterSpacing: "0.18em" }}>
           {copy.eyebrow}
         </p>
 
         <h1
           className="pe-display pe-hero-el pe-hero-el--2"
           data-testid="hero-title"
-          style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", margin: 0, maxWidth: "1000px", width: "100%", lineHeight: 1.1 }}
+          style={{ fontSize: "clamp(2rem, 3.8vw, 3.5rem)", margin: 0, maxWidth: "none", lineHeight: 1.1 }}
         >
           {copy.title}
         </h1>
@@ -34,9 +34,9 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           className="pe-hero-el pe-hero-el--3"
           style={{
             margin: 0,
-            maxWidth: "42rem",
-            color: "rgba(255, 255, 255, 0.95)",
-            fontSize: "clamp(1rem, 1.6vw, 1.15rem)",
+            maxWidth: "40rem",
+            color: "rgba(247, 244, 238, 0.95)",
+            fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)",
             lineHeight: 1.7,
           }}
         >
@@ -68,12 +68,18 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
 
       </div>
 
-      {/* Scroll indicator */}
-      <a href="#credibilidad" className="pe-hero-scroll-hint" aria-label="Continuar" data-testid="hero-scroll-hint">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Scroll indicator — Private Estates style */}
+      <button
+        className="pe-hero-down"
+        data-testid="hero-scroll-hint"
+        onClick={() => document.querySelector('#credibilidad')?.scrollIntoView({ behavior: 'smooth' })}
+        aria-label="Continuar"
+      >
+        <span>Descubrir</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="m6 9 6 6 6-6" />
         </svg>
-      </a>
+      </button>
     </section>
   );
 }
