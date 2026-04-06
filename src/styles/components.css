@@ -9,17 +9,32 @@
   align-items: center;
   gap: 40px;
   z-index: 900;
-  padding-right: 30px;
+  background: rgba(7, 37, 47, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 40px 15px;
+  border-radius: 30px 0 0 30px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-right: none;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s var(--pe-ease);
+}
+
+.social-sidebar:hover {
+  background: rgba(7, 37, 47, 0.6);
+  border-color: rgba(212, 175, 55, 0.3);
+  padding-right: 18px;
 }
 
 .social-label {
   position: relative;
   writing-mode: vertical-rl;
   color: var(--pe-gold);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 5px;
   text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .social-label::after {
@@ -31,6 +46,7 @@
   height: 40px;
   transform: translateX(-50%);
   background: var(--pe-gold);
+  opacity: 0.6;
 }
 
 .social-icons {
@@ -40,13 +56,19 @@
 }
 
 .social-icons a {
-  color: var(--pe-text-soft);
-  transition: var(--pe-duration-fast) var(--pe-ease);
+  color: var(--pe-gold);
+  opacity: 0.85;
+  transition: all 0.5s var(--pe-ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-icons a:hover {
-  color: var(--pe-gold);
-  transform: scale(1.2);
+  color: #FBF5B7;
+  opacity: 1;
+  transform: scale(1.25);
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
 }
 
 /* Floating Controls */

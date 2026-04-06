@@ -22,9 +22,9 @@ export function SocialSidebar({ copy }: SocialSidebarProps) {
             key={social.label}
             href={social.href} 
             aria-label={social.label}
-            className="text-[rgba(245,245,240,0.7)] hover:text-[#D4AF37] hover:scale-[1.2] transition-all duration-500"
+            className="text-[#D4AF37] hover:text-[#FBF5B7] hover:scale-[1.25] transition-all duration-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]"
           >
-            <social.icon className="w-[18px] h-[18px]" />
+            <social.icon className="w-[20px] h-[20px]" />
           </a>
         ))}
       </div>
