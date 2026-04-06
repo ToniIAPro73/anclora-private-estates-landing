@@ -12,6 +12,19 @@ export function ExpTrustBadge({
       ? "color-mix(in srgb, var(--pe-surface-high) 50%, transparent)"
       : "color-mix(in srgb, var(--pe-surface-high) 78%, transparent)";
 
+  const renderText = (str: string) => {
+    const parts = str.split(/(eXp Group Spain)/g);
+    return parts.map((part, i) =>
+      part === "eXp Group Spain" ? (
+        <span key={i} style={{ color: "var(--pe-gold)", fontWeight: 600 }}>
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   return (
     <div
       style={{
@@ -21,14 +34,11 @@ export function ExpTrustBadge({
         borderRadius: "999px",
         padding: mode === "inline" ? "0.65rem 0.9rem" : "0.85rem 1rem",
         background,
-        color: "var(--pe-text-soft)",
+        color: "var(--pe-text)",
         maxWidth: mode === "inline" ? "34rem" : "100%",
       }}
     >
-      <span className="pe-eyebrow" style={{ color: "var(--pe-gold)", paddingTop: "0.15rem" }}>
-        eXp
-      </span>
-      <span style={{ fontSize: "0.9rem", lineHeight: 1.55 }}>{text}</span>
+      <span style={{ fontSize: "0.9rem", lineHeight: 1.55 }}>{renderText(text)}</span>
     </div>
   );
 }

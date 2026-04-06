@@ -43,13 +43,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           {copy.description}
         </p>
 
-        <div className="pe-chip-row pe-hero-el pe-hero-el--4" style={{ justifyContent: "center" }}>
-          {copy.chips.map((chip) => (
-            <span key={chip} className="pe-chip">{chip}</span>
-          ))}
-        </div>
-
-        <div className="pe-cta-row pe-hero-el pe-hero-el--5" style={{ justifyContent: "center" }}>
+        <div className="pe-cta-row pe-hero-el pe-hero-el--5" style={{ justifyContent: "center", marginTop: "0.5rem" }}>
           <a
             className="pe-btn-primary pe-btn-primary-gold"
             href="#propietarios"

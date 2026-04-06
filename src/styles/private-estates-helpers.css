@@ -460,9 +460,9 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('/brand/hero-villa-mallorca.jpg');
+  background-image: url('/brand/hero-villa-dia.png');
   background-size: cover;
-  background-position: center 40%;
+  background-position: center;
   animation: pe-hero-bg-in 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -472,9 +472,9 @@
   z-index: 1;
   background: linear-gradient(
     to bottom,
-    rgba(5, 7, 10, 0.38) 0%,
-    rgba(5, 7, 10, 0.18) 38%,
-    rgba(5, 7, 10, 0.62) 100%
+    rgba(5, 7, 10, 0.4) 0%,
+    rgba(5, 7, 10, 0.2) 50%,
+    rgba(5, 7, 10, 0.6) 100%
   );
 }
 
@@ -513,7 +513,7 @@
 /* Scroll hint — text + chevron (Private Estates style) */
 .pe-hero-down {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;

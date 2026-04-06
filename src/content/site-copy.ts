@@ -283,7 +283,7 @@ const siteCopyEs: SiteCopy = {
     title: "Una lectura más precisa para activos singulares en Palma y el suroeste de Mallorca.",
     description:
       "Anclora Private Estates articula una puerta de entrada discreta para propietarios, compradores e inversores que valoran microzona, confidencialidad y una ejecución comercial afinada.",
-    chips: ["Lectura territorial", "Confidencialidad", "Capital internacional"],
+    chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
     primaryCta: "Abrir evaluación privada",
@@ -442,7 +442,7 @@ const siteCopyEs: SiteCopy = {
         email: "nombre@dominio.com",
         phone: "+34 ...",
         address: "Calle, zona o referencia catastral",
-        message: "Cuéntanos cualquier detalle relevante.",
+        message: "Cuéntanos cualquier detail relevante.",
       },
       privacyLabel: "He leído y acepto la política de privacidad.",
       submitLabel: "Solicitar valoración confidencial",
@@ -618,7 +618,7 @@ const siteCopyEn: SiteCopy = {
     title: "A more precise reading for singular assets in Palma and Southwest Mallorca.",
     description:
       "Anclora Private Estates creates a discreet gateway for owners, buyers and investors who value micro-location, confidentiality and refined commercial execution.",
-    chips: ["Territorial insight", "Confidentiality", "International capital"],
+    chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
     primaryCta: "Open private assessment",
@@ -957,7 +957,7 @@ const siteCopyDe: SiteCopy = {
     title: "Eine präzisere Lesart für singuläre Assets in Palma und im Südwesten Mallorcas.",
     description:
       "Anclora Private Estates schafft einen diskreten Zugang für Eigentümer, Käufer und Investoren, die Mikrolage, Vertraulichkeit und eine fein abgestimmte kommerzielle Umsetzung schätzen.",
-    chips: ["Territoriale Analyse", "Vertraulichkeit", "Internationales Kapital"],
+    chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
     primaryCta: "Private Bewertung öffnen",
@@ -998,7 +998,7 @@ const siteCopyDe: SiteCopy = {
         eyebrow: "Palma und Hanglagen-Kern",
         title: "Städtisches Zentrum, erhöhte Wohnlagen und institutioneller Zugang.",
         body:
-          "Palma, Son Vida, Cala Major, San Agustin und Cas Catala vereinen eine sehr spezifische Mischung aus lokalem Kapital, internationaler Nachfrage und Objekten, bei denen urbane Erzählung und Privatsphäre ebenso wichtig sind wie die Lage.",
+          "Palma, Son Vida, Cala Major, San Agustin and Cas Catala vereinen eine sehr spezifische Mischung aus lokalem Kapital, internationaler Nachfrage und Objekten, bei denen urbane Erzählung und Privatsphäre ebenso wichtig sind wie die Lage.",
         areas: ["Palma", "Son Vida", "Cala Major", "San Agustin", "Cas Catala"],
         audienceLabel: "Zielgruppe",
         audience:
@@ -1041,7 +1041,7 @@ const siteCopyDe: SiteCopy = {
     eyebrow: "Investoren",
     title: "Nationales und internationales Kapital, das weniger Schaufenster und mehr Kontextverständnis braucht.",
     intro:
-      "Der Premium-Investor sucht nicht einfach Bestand, sondern eine verlässliche Interpretation von Zugang, Timing, Werterhalt und Beziehungskontinuität.",
+      "Der Premium-Investor sucht nicht einfach Bestand, sondern eine verlässliche Interpretation von Zugang, Timing, Werterhalt and Beziehungskontinuität.",
     asideQuote:
       "Der Vorteil liegt nicht darin, mehr Bestand zu zeigen, sondern präziser zu verstehen, welcher Käufertyp und welches Tempo jedes Asset verlangt.",
     profiles: [
@@ -1300,8 +1300,8 @@ const siteCopyFr: SiteCopy = {
     eyebrow: "Palma · Sud-Ouest de Majorque · Capital premium",
     title: "Une lecture plus précise pour les actifs singuliers à Palma et dans le sud-ouest de Majorque.",
     description:
-      "Anclora Private Estates crée une porte d'entrée discrète pour les propriétaires, acheteurs et investisseurs qui valorisent la micro-localisation, la confidentialité et une exécution commerciale plus fine.",
-    chips: ["Intelligence territoriale", "Confidentialité", "Capital international"],
+      "Anclora Private Estates crée une porte d'entrée discrète pour les propriétaires, acheteurs et investisseurs qui valorisent la micro-localisation, la confidentialité e une exécution commerciale plus fine.",
+    chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel et une relation plus sophistiquée avec l'actif.",
     primaryCta: "Ouvrir l'évaluation privée",
@@ -1410,7 +1410,7 @@ const siteCopyFr: SiteCopy = {
     eyebrow: "Propriétaires",
     title: "Sélection pour les actifs qui ont besoin de plus qu'une exposition de masse.",
     body:
-      "Si vous envisagez une vente à Palma ou dans le sud-ouest de Majorque, nous pouvons étudier votre actif sous l'angle de la micro-zone, de la narration commerciale et du bon timing, avec une approche premium et confidentielle.",
+      "Si vous envisagez une vente à Palma ou dans le sud-ouest de Majorque, nous pouvons étudier votre actif sous l'angle de la micro-zone, de la narration commerciale et du bon timing, with une approche premium et confidentielle.",
     checklistLabel: "L'évaluation privée considère",
     checklist: ["Micro-zone et concurrence réelle", "Narration de positionnement", "Timing commercial et accès"],
     trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
@@ -1511,7 +1511,7 @@ const siteCopyFr: SiteCopy = {
     ...siteCopyEs.dataLab,
     title: "Signaux territoriaux pour lire le marché premium avec plus de calme et moins de réaction.",
     intro:
-      "Nous ne présentons pas de dashboards. Nous présentons des indices qui aident à cadrer la qualité de l'actif, la pression de la demande et la sensibilité de l'acheteur premium.",
+      "Nous ne présentons pas de dashboards. Nous présentons des indices qui aident à cadrer la qualité de l'actif, la pression de la narration et la sensibilité de l'acheteur premium.",
     lead: {
       eyebrow: "Signal 01",
       title:
