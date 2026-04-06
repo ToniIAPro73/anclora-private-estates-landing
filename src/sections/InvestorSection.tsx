@@ -1,7 +1,6 @@
 import type { InvestorCopy } from "@/content/site-copy";
 
-const INVESTOR_IMAGE =
-  "https://customer-assets.emergentagent.com/job_luxury-landing-hub/artifacts/0dk4cme3_Investor_v2.png";
+const INVESTOR_IMAGE = "/brand/investor-mallorca.jpg";
 
 type InvestorSectionProps = {
   copy: InvestorCopy;

@@ -325,6 +325,14 @@
   position: relative;
 }
 
+/* Data Lab section — hero background from anclora_data_lab.html */
+.pe-section-datalab-bg {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 10, 0.72) 0%, rgba(5, 7, 10, 0.88) 100%),
+    url('https://cdn.jsdelivr.net/gh/ToniIAPro73/Anclora-Agents-Skills@main/assets_anclora/Hero_Background_private_estates_data_lab.png') center/cover no-repeat;
+}
+
 .pe-section-heading {
   display: grid;
   gap: 1.15rem;
@@ -761,7 +769,6 @@
 .pe-investor-aside--image:hover {
   box-shadow: var(--pe-shadow-gold-hover), 0 20px 60px rgba(0, 0, 0, 0.28);
   transform: scale(1.02);
-}
 }
 
 .pe-investor-aside__image {
