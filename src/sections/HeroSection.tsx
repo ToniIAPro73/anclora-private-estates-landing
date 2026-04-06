@@ -25,7 +25,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
         <h1
           className="pe-display pe-hero-el pe-hero-el--2"
           data-testid="hero-title"
-          style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", margin: 0, maxWidth: "44ch", lineHeight: 1.1 }}
+          style={{ fontSize: "clamp(2.6rem, 6vw, 5rem)", margin: 0, maxWidth: "1000px", width: "100%", lineHeight: 1.1 }}
         >
           {copy.title}
         </h1>
@@ -35,7 +35,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           style={{
             margin: 0,
             maxWidth: "42rem",
-            color: "rgba(247, 244, 238, 0.82)",
+            color: "rgba(255, 255, 255, 0.95)",
             fontSize: "clamp(1rem, 1.6vw, 1.15rem)",
             lineHeight: 1.7,
           }}
@@ -43,13 +43,7 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           {copy.description}
         </p>
 
-        <div className="pe-chip-row pe-hero-el pe-hero-el--4" style={{ justifyContent: "center" }}>
-          {copy.chips.map((chip) => (
-            <span key={chip} className="pe-chip">{chip}</span>
-          ))}
-        </div>
-
-        <div className="pe-cta-row pe-hero-el pe-hero-el--5" style={{ justifyContent: "center" }}>
+        <div className="pe-cta-row pe-hero-el pe-hero-el--5" style={{ justifyContent: "center", marginTop: "0.5rem" }}>
           <a
             className="pe-btn-primary pe-btn-primary-gold"
             href="#propietarios"

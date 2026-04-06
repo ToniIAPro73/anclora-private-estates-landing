@@ -1293,7 +1293,7 @@ const siteCopyFr: SiteCopy = {
     title: "Une lecture plus précise pour les actifs singuliers à Palma et dans le sud-ouest de Majorque.",
     description:
       "Anclora Private Estates crée une porte d'entrée discrète pour les propriétaires, acheteurs et investisseurs qui valorisent la micro-localisation, la confidentialité et une exécution commerciale plus fine.",
-    chips: ["Intelligence territoriale", "Confidentialité", "Capital international"],
+    chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel et une relation plus sophistiquée avec l'actif.",
     primaryCta: "Ouvrir l'évaluation privée",
@@ -1611,3 +1611,5 @@ export const siteCopyByLanguage = {
   de: siteCopyDe,
   fr: siteCopyFr,
 } satisfies Record<LanguageCode, SiteCopy>;
+>;
+;
