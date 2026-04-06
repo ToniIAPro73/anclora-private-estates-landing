@@ -535,8 +535,8 @@ const siteCopyEs: SiteCopy = {
     trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
     detailsTitle: "Datos de contacto",
     details: [
-      { label: "Email", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
-      { label: "Teléfono", value: "+34 000 000 000", href: "tel:+34000000000" },
+      { label: "Email", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Teléfono", value: "+34 633 947 810", href: "tel:+34633947810" },
       { label: "Ubicación", value: "Palma de Mallorca · Islas Baleares" },
     ],
   },
@@ -873,8 +873,8 @@ const siteCopyEn: SiteCopy = {
     trustBadgeText: "International backing and operational trust through eXp Group Spain.",
     detailsTitle: "Contact details",
     details: [
-      { label: "Email", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
-      { label: "Phone", value: "+34 000 000 000", href: "tel:+34000000000" },
+      { label: "Email", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Phone", value: "+34 633 947 810", href: "tel:+34633947810" },
       { label: "Location", value: "Palma de Mallorca · Balearic Islands" },
     ],
   },
@@ -1216,8 +1216,8 @@ const siteCopyDe: SiteCopy = {
     trustBadgeText: "Internationale Rückendeckung und operative Sicherheit durch eXp Group Spain.",
     detailsTitle: "Kontaktdaten",
     details: [
-      { label: "E-Mail", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
-      { label: "Telefon", value: "+34 000 000 000", href: "tel:+34000000000" },
+      { label: "E-Mail", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Telefon", value: "+34 633 947 810", href: "tel:+34633947810" },
       { label: "Standort", value: "Palma de Mallorca · Balearen" },
     ],
   },
@@ -1559,8 +1559,8 @@ const siteCopyFr: SiteCopy = {
     trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
     detailsTitle: "Coordonnées",
     details: [
-      { label: "E-mail", value: "contacto@anclora.com", href: "mailto:contacto@anclora.com" },
-      { label: "Téléphone", value: "+34 000 000 000", href: "tel:+34000000000" },
+      { label: "E-mail", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Téléphone", value: "+34 633 947 810", href: "tel:+34633947810" },
       { label: "Localisation", value: "Palma de Majorque · Îles Baléares" },
     ],
   },
