@@ -442,6 +442,95 @@
   background: radial-gradient(circle, var(--pe-hero-orb-2), transparent 70%);
 }
 
+/* ── Full-viewport hero (new) ── */
+.pe-hero-fullscreen {
+  position: relative;
+  height: 100dvh;
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+.pe-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/brand/hero-villa-mallorca.jpg');
+  background-size: cover;
+  background-position: center 40%;
+  animation: pe-hero-bg-in 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.pe-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 7, 10, 0.38) 0%,
+    rgba(5, 7, 10, 0.18) 38%,
+    rgba(5, 7, 10, 0.62) 100%
+  );
+}
+
+.pe-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2.2vh, 1.6rem);
+}
+
+/* Staggered entrance — each child fades up from blur */
+.pe-hero-el {
+  animation: pe-hero-el-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.pe-hero-el--1 { animation-delay: 0.4s; }
+.pe-hero-el--2 { animation-delay: 0.85s; }
+.pe-hero-el--3 { animation-delay: 1.2s; }
+.pe-hero-el--4 { animation-delay: 1.5s; }
+.pe-hero-el--5 { animation-delay: 1.75s; }
+.pe-hero-el--6 { animation-delay: 2.0s; }
+
+@keyframes pe-hero-bg-in {
+  from { transform: scale(1.1); filter: blur(12px) brightness(0.5); }
+  to   { transform: scale(1.02); filter: blur(0px) brightness(1); }
+}
+
+@keyframes pe-hero-el-in {
+  from { opacity: 0; filter: blur(8px); transform: translateY(18px); }
+  to   { opacity: 1; filter: blur(0px); transform: translateY(0); }
+}
+
+/* Scroll hint arrow */
+.pe-hero-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(247, 244, 238, 0.55);
+  text-decoration: none;
+  animation: pe-hero-el-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) 2.2s both,
+             pe-hero-scroll-bounce 2.4s ease-in-out 3.5s infinite;
+  transition: color var(--pe-duration-fast) var(--pe-ease);
+}
+.pe-hero-scroll-hint:hover { color: var(--pe-gold); }
+
+@keyframes pe-hero-scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* Legacy hero section (keep for compatibility) */
 .pe-hero-section {
   padding-top: clamp(3rem, 8vw, 6rem);
   padding-bottom: clamp(4rem, 9vw, 7rem);
@@ -1132,10 +1221,12 @@
 .pe-owner-form-card {
   border: 1px solid color-mix(in srgb, var(--pe-line-soft) 84%, transparent);
   overflow: visible;
+  box-shadow: none;
   transition: box-shadow var(--pe-duration-base) var(--pe-ease), border-color var(--pe-duration-base) var(--pe-ease), transform var(--pe-duration-base) var(--pe-ease);
 }
 
-.pe-owner-form-card:hover {
+.pe-owner-form-card:hover,
+.pe-contact-card:hover {
   box-shadow: var(--pe-shadow-gold-hover), 0 20px 60px rgba(0, 0, 0, 0.28);
   border-color: rgba(212, 175, 55, 0.26);
   transform: scale(1.015);
