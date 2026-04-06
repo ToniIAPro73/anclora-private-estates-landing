@@ -65,6 +65,15 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
               </a>
             </div>
 
+            {/* Desktop Links */}
+            <div className="pe-nav-links" style={{ display: "flex", gap: "2rem" }}>
+              {copy.links.map((link) => (
+                <a key={link.href} href={link.href} className="pe-nav-link">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
             {/* Right: language switcher + CTA */}
             <div className="pe-nav-actions">
               <LanguageSwitcher

@@ -12,6 +12,9 @@ import { InvestorSection } from "@/sections/InvestorSection";
 import { MallorcaFocusSection } from "@/sections/MallorcaFocusSection";
 import { PartnersSynergiSection } from "@/sections/PartnersSynergiSection";
 import { SellerIntakeSection } from "@/sections/SellerIntakeSection";
+import { SocialSidebar } from "@/components/layout/SocialSidebar";
+import { FloatingControls } from "@/components/layout/FloatingControls";
+import { CookieBanner } from "@/components/layout/CookieBanner";
 
 const STORAGE_KEY = "ape:language";
 
@@ -20,6 +23,7 @@ export default function App() {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     return stored === "en" || stored === "de" || stored === "fr" ? stored : "es";
   });
+  const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
   const copy = siteCopyByLanguage[language];
 
   useEffect(() => {
@@ -45,6 +49,19 @@ export default function App() {
       </main>
 
       <PEFooter copy={copy.footer} trustBadgeText={copy.trustBadgeText} />
+
+      {/* Global Components */}
+      <SocialSidebar copy={copy.social} />
+      <FloatingControls 
+        onOpenCookieModal={() => setIsCookieModalOpen(true)}
+        scrollCopy={copy.scroll}
+        contactLabel={copy.contactFloatingLabel}
+      />
+      <CookieBanner 
+        isOpen={isCookieModalOpen} 
+        onClose={() => setIsCookieModalOpen(false)} 
+        copy={copy.cookies}
+      />
     </>
   );
 }

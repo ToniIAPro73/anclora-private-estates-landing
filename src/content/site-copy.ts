@@ -239,6 +239,38 @@ export type NavbarCopy = {
   languageSwitcher: LanguageSwitcherCopy;
 };
 
+export type CookieCopy = {
+  title: string;
+  description: string;
+  acceptAll: string;
+  settings: string;
+  settingsTitle: string;
+  necessary: {
+    title: string;
+    description: string;
+  };
+  analytics: {
+    title: string;
+    description: string;
+  };
+  marketing: {
+    title: string;
+    description: string;
+  };
+  savePreferences: string;
+  back: string;
+  rejectAll: string;
+};
+
+export type ScrollCopy = {
+  up: string;
+  down: string;
+};
+
+export type SocialCopy = {
+  followUs: string;
+};
+
 export type SiteCopy = {
   navbar: NavbarCopy;
   hero: HeroCopy;
@@ -252,18 +284,20 @@ export type SiteCopy = {
   contact: ContactCopy;
   finalCta: FinalCtaCopy;
   footer: FooterCopy;
+  cookies: CookieCopy;
+  scroll: ScrollCopy;
+  social: SocialCopy;
   trustBadgeText: string;
+  contactFloatingLabel: string;
 };
 
 const siteCopyEs: SiteCopy = {
   navbar: {
     navAriaLabel: "Principal",
     links: [
-      { label: "Credibilidad", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Inversores", href: "#inversores" },
       { label: "Propietarios", href: "#propietarios" },
-      { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contacto", href: "#contacto" },
     ],
@@ -584,7 +618,37 @@ const siteCopyEs: SiteCopy = {
     ],
     copyright: "© 2026 Anclora Private Estates. Todos los derechos reservados.",
   },
+  cookies: {
+    title: "Preferencias de cookies",
+    description: "Este sitio utiliza cookies para ofrecerle una mejor experiencia de usuario. Puede gestionar sus preferencias en cualquier momento.",
+    acceptAll: "Aceptar todas",
+    settings: "Configuración",
+    settingsTitle: "Gestionar cookies",
+    necessary: {
+      title: "Cookies necesarias",
+      description: "Estas cookies son esenciales para el funcionamiento del sitio y no se pueden desactivar.",
+    },
+    analytics: {
+      title: "Cookies de análisis",
+      description: "Nos ayudan a comprender cómo interactúan los visitantes con el sitio.",
+    },
+    marketing: {
+      title: "Cookies de marketing",
+      description: "Se utilizan para mostrar anuncios relevantes para los visitantes.",
+    },
+    savePreferences: "Guardar preferencias",
+    back: "Volver",
+    rejectAll: "Rechazar opcionales",
+  },
+  scroll: {
+    up: "Subir",
+    down: "Bajar",
+  },
+  social: {
+    followUs: "SÍGUENOS",
+  },
   trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
+  contactFloatingLabel: "CONTACTAR",
 };
 
 const siteCopyEn: SiteCopy = {
@@ -923,7 +987,37 @@ const siteCopyEn: SiteCopy = {
     ],
     copyright: "© 2026 Anclora Private Estates. All rights reserved.",
   },
+  cookies: {
+    title: "Cookie Preferences",
+    description: "This site uses cookies to provide you with a better user experience. You can manage your preferences at any time.",
+    acceptAll: "Accept All",
+    settings: "Settings",
+    settingsTitle: "Manage Cookies",
+    necessary: {
+      title: "Necessary Cookies",
+      description: "These cookies are essential for the site to function and cannot be deactivated.",
+    },
+    analytics: {
+      title: "Analytics Cookies",
+      description: "They help us understand how visitors interact with the site.",
+    },
+    marketing: {
+      title: "Marketing Cookies",
+      description: "Used to display relevant ads to visitors.",
+    },
+    savePreferences: "Save Preferences",
+    back: "Back",
+    rejectAll: "Reject Optional",
+  },
+  scroll: {
+    up: "Up",
+    down: "Down",
+  },
+  social: {
+    followUs: "FOLLOW US",
+  },
   trustBadgeText: "International backing and operational trust through eXp Group Spain.",
+  contactFloatingLabel: "CONTACT US",
 };
 
 const siteCopyDe: SiteCopy = {
@@ -1029,7 +1123,7 @@ const siteCopyDe: SiteCopy = {
         eyebrow: "Erbe und Serra-Charakter",
         title: "Innenland mit Charakter, Landschaft und Wohnsingularität.",
         body:
-          "Puerto de Andratx, Andratx, Esporles und Valldemossa bilden einen Cluster, in dem sich die Lesart ändert: Erbe, Landschaft, Privatsphäre und Wohnnarrativ wiegen mehr als die reine Nähe zur Küste.",
+          "Puerto de Andratx, Andratx, Esporles und Valldemossa bilden einen cluster, in dem sich die Lesart ändert: Erbe, Landschaft, Privatsphäre und Wohnnarrativ wiegen mehr als die reine Nähe zur Küste.",
         audienceLabel: "Zielgruppe",
         audience:
           "Beziehungsorientierter UHNW-Käufer, der Singularität, Ruhe und Objekte mit dauerhafter Geschichte schätzt.",
@@ -1041,7 +1135,7 @@ const siteCopyDe: SiteCopy = {
     eyebrow: "Investoren",
     title: "Nationales und internationales Kapital, das weniger Schaufenster und mehr Kontextverständnis braucht.",
     intro:
-      "Der Premium-Investor sucht nicht einfach Bestand, sondern eine verlässliche Interpretation von Zugang, Timing, Werterhalt and Beziehungskontinuität.",
+      "Der Premium-Investor sucht nicht einfach Bestand, sondern eine verlässliche Interpretation von Zugang, Timing, Werterhalt und Beziehungskontinuität.",
     asideQuote:
       "Der Vorteil liegt nicht darin, mehr Bestand zu zeigen, sondern präziser zu verstehen, welcher Käufertyp und welches Tempo jedes Asset verlangt.",
     profiles: [
@@ -1267,7 +1361,37 @@ const siteCopyDe: SiteCopy = {
     ],
     copyright: "© 2026 Anclora Private Estates. Alle Rechte vorbehalten.",
   },
+  cookies: {
+    title: "Cookie-Einstellungen",
+    description: "Diese Website verwendet Cookies, um Ihnen ein besseres Nutzererlebnis zu bieten. Sie können Ihre Einstellungen jederzeit verwalten.",
+    acceptAll: "Alle akzeptieren",
+    settings: "Einstellungen",
+    settingsTitle: "Cookies verwalten",
+    necessary: {
+      title: "Notwendige Cookies",
+      description: "Diese Cookies sind für das Funktionieren der Website unerlässlich und können nicht deaktiviert werden.",
+    },
+    analytics: {
+      title: "Analyse-Cookies",
+      description: "Sie helfen uns zu verstehen, wie Besucher mit der Website interagieren.",
+    },
+    marketing: {
+      title: "Marketing-Cookies",
+      description: "Wird verwendet, um Besuchern relevante Anzeigen anzuzeigen.",
+    },
+    savePreferences: "Einstellungen speichern",
+    back: "Zurück",
+    rejectAll: "Optionale ablehnen",
+  },
+  scroll: {
+    up: "Hoch",
+    down: "Runter",
+  },
+  social: {
+    followUs: "FOLGEN SIE UNS",
+  },
   trustBadgeText: "Internationale Rückendeckung und operative Sicherheit durch eXp Group Spain.",
+  contactFloatingLabel: "KONTAKT",
 };
 
 const siteCopyFr: SiteCopy = {
@@ -1315,12 +1439,12 @@ const siteCopyFr: SiteCopy = {
         "La transaction commence avant le portail : préparation, narration, accès et timing alignés avec le bon type d'acquéreur.",
       statValue: "01",
       statCopy:
-        "Chaque décision visible sur la landing traduit le même principe : moins de bruit, plus de contrôle et un meilleur contexte pour les actifs premium.",
+        "Chaque décision visible on the landing traduit le même principe : moins de bruit, plus de contrôle et un meilleur contexte pour les actifs premium.",
     },
   },
   credibility: {
     ...siteCopyEs.credibility,
-    eyebrow: "Crédibilité",
+    eyebrow: "Crédibilidad",
     title: "Une proposition premium qui n'a pas besoin de simuler l'échelle pour inspirer confiance.",
     intro:
       "L'autorité ne s'exprime pas ici par des promesses plus bruyantes, mais par la structure, l'appui et une lecture plus mature du marché.",
@@ -1362,7 +1486,7 @@ const siteCopyFr: SiteCopy = {
         eyebrow: "Lifestyle sud-ouest et préservation du capital",
         title: "Entrée premium avec lifestyle, rendement et timing.",
         body:
-          "Palmanova, Paguera et Costa de la Calma permettent de lire un segment plus flexible du marché premium, où lifestyle, ticket d'entrée et vitesse commerciale nécessitent un regard fin par micro-zone.",
+          "Palmanova, Paguera and Costa de la Calma permettent de lire un segment plus flexible du marché premium, où lifestyle, ticket d'entrée et vitesse commerciale nécessitent un regard fin par micro-zone.",
         audienceLabel: "Profil",
         audience:
           "Investisseur hybride cherchant un équilibre entre usage personnel, demande et conservation patrimoniale.",
@@ -1370,7 +1494,7 @@ const siteCopyFr: SiteCopy = {
       {
         ...siteCopyEs.mallorcaFocus.clusters[3],
         eyebrow: "Patrimoine et caractère de la Serra",
-        title: "Intérieur avec caractère, paysage et singularité résidentielle.",
+        title: "Intérieur with caractère, paysage et singularité résidentielle.",
         body:
           "Puerto de Andratx, Andratx, Esporles et Valldemossa forment un cluster où la lecture change : patrimoine, paysage, confidentialité et récit résidentiel pèsent davantage que la simple proximité de la côte.",
         audienceLabel: "Profil",
@@ -1396,7 +1520,7 @@ const siteCopyFr: SiteCopy = {
       {
         title: "Investisseur lifestyle international",
         body:
-          "Priorise la micro-zone, la confidentialité, la marina, les écoles, la connectivité et la capacité d'exécuter avec confiance dans un environnement premium transfrontalier.",
+          "Priorise la micro-zone, la confidentialité, la marina, les écoles, la connectividad et la capacité d'exécuter avec confiance dans un environnement premium transfrontalier.",
       },
       {
         title: "Acheteur UHNW relationnel",
@@ -1475,7 +1599,7 @@ const siteCopyFr: SiteCopy = {
   partners: {
     ...siteCopyEs.partners,
     eyebrow: "Synergi · Réseau de partenaires",
-    title: "Un réseau sélectif pour les collaborateurs qui comprennent le marché premium.",
+    title: "Un réseau sélectif pour les collaborateurs qui comprennent le mercado premium.",
     body: "Anclora Synergi est le portail privé pour les partenaires déjà validés : agents indépendants, professionnels du secteur et collaborateurs avec un discernement territorial. L'accès est sélectionné, pas massif.",
     features: [
       "Accès à des opportunités partagées de façon sélective",
@@ -1509,7 +1633,7 @@ const siteCopyFr: SiteCopy = {
   },
   dataLab: {
     ...siteCopyEs.dataLab,
-    title: "Signaux territoriaux pour lire le marché premium avec plus de calme et moins de réaction.",
+    title: "Signaux territoriaux pour lire le mercado premium with plus de calme et moins de réaction.",
     intro:
       "Nous ne présentons pas de dashboards. Nous présentons des indices qui aident à cadrer la qualité de l'actif, la pression de la narration et la sensibilité de l'acheteur premium.",
     lead: {

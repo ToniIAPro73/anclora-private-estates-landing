@@ -9,7 +9,7 @@ type PEFooterProps = {
 
 export function PEFooter({ copy, trustBadgeText }: PEFooterProps) {
   return (
-    <footer className="pe-section pe-footer-shell">
+    <footer id="footer" className="pe-section pe-footer-shell">
       <div className="pe-container pe-footer-inner">
         <div className="pe-footer-brand">
           <BrandLockup />
