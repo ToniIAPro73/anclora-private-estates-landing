@@ -1125,6 +1125,13 @@
 .pe-owner-form-card {
   border: 1px solid color-mix(in srgb, var(--pe-line-soft) 84%, transparent);
   overflow: visible;
+  transition: box-shadow var(--pe-duration-base) var(--pe-ease), border-color var(--pe-duration-base) var(--pe-ease), transform var(--pe-duration-base) var(--pe-ease);
+}
+
+.pe-owner-form-card:hover {
+  box-shadow: var(--pe-shadow-gold-hover), 0 20px 60px rgba(0, 0, 0, 0.28);
+  border-color: rgba(212, 175, 55, 0.26);
+  transform: scale(1.015);
 }
 
 .pe-contact-detail__link {
