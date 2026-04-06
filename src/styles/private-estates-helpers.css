@@ -445,15 +445,16 @@
 /* ── Full-viewport hero (new) ── */
 .pe-hero-fullscreen {
   position: relative;
-  height: 100dvh;
-  min-height: 620px;
+  /* Hero fills the viewport BELOW the sticky navbar */
+  height: calc(100dvh - var(--pe-navbar-h, 100px));
+  min-height: 520px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
   text-align: center;
-  padding: calc(var(--pe-navbar-h, 100px) + clamp(2rem, 3.5vh, 4rem)) clamp(1.5rem, 5vw, 4rem) 5rem;
+  padding: clamp(2rem, 4vh, 5rem) clamp(1.5rem, 5vw, 4rem) 5rem;
 }
 
 .pe-hero-bg {
