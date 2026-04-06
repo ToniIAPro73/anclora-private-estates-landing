@@ -298,6 +298,7 @@ const siteCopyEs: SiteCopy = {
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Inversores", href: "#inversores" },
       { label: "Propietarios", href: "#propietarios" },
+      { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contacto", href: "#contacto" },
     ],

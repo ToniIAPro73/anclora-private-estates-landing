@@ -126,19 +126,19 @@ export function CookieBanner({ isOpen: externalIsOpen, onClose, copy }: CookieBa
         </div>
       ) : (
         // Settings View
-        <div className="cookie-modal" style={{ maxWidth: '600px' }}>
+        <div className="cookie-modal" style={{ maxWidth: '700px' }}>
           <div className="cookie-header">
             <h3>{copy.settingsTitle}</h3>
           </div>
           
-          <div className="space-y-4 mb-6">
+          <div className="space-y-3 mb-6">
             {/* Necessary Cookies */}
-            <div className="flex items-start justify-between p-4 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
-              <div className="flex-1 text-left">
-                <h4 className="font-semibold text-sm mb-1 text-[var(--pe-text)]">
+            <div className="flex items-center justify-between p-3 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
+              <div className="flex-1 text-left flex items-center gap-4">
+                <h4 className="font-semibold text-sm text-[var(--pe-text)] whitespace-nowrap">
                   {copy.necessary.title}
                 </h4>
-                <p className="text-xs text-[var(--pe-text-soft)]">
+                <p className="text-xs text-[var(--pe-text-soft)] line-clamp-1">
                   {copy.necessary.description}
                 </p>
               </div>
@@ -153,12 +153,12 @@ export function CookieBanner({ isOpen: externalIsOpen, onClose, copy }: CookieBa
             </div>
 
             {/* Analytics Cookies */}
-            <div className="flex items-start justify-between p-4 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
-              <div className="flex-1 text-left">
-                <h4 className="font-semibold text-sm mb-1 text-[var(--pe-text)]">
+            <div className="flex items-center justify-between p-3 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
+              <div className="flex-1 text-left flex items-center gap-4">
+                <h4 className="font-semibold text-sm text-[var(--pe-text)] whitespace-nowrap">
                   {copy.analytics.title}
                 </h4>
-                <p className="text-xs text-[var(--pe-text-soft)]">
+                <p className="text-xs text-[var(--pe-text-soft)] line-clamp-1">
                   {copy.analytics.description}
                 </p>
               </div>
@@ -173,12 +173,12 @@ export function CookieBanner({ isOpen: externalIsOpen, onClose, copy }: CookieBa
             </div>
 
             {/* Marketing Cookies */}
-            <div className="flex items-start justify-between p-4 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
-              <div className="flex-1 text-left">
-                <h4 className="font-semibold text-sm mb-1 text-[var(--pe-text)]">
+            <div className="flex items-center justify-between p-3 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
+              <div className="flex-1 text-left flex items-center gap-4">
+                <h4 className="font-semibold text-sm text-[var(--pe-text)] whitespace-nowrap">
                   {copy.marketing.title}
                 </h4>
-                <p className="text-xs text-[var(--pe-text-soft)]">
+                <p className="text-xs text-[var(--pe-text-soft)] line-clamp-1">
                   {copy.marketing.description}
                 </p>
               </div>
