@@ -315,13 +315,13 @@ const siteCopyEs: SiteCopy = {
   },
   hero: {
     eyebrow: "Palma · Suroeste de Mallorca · Capital premium",
-    title: "Una lectura más precisa para activos singulares en Palma y el suroeste de Mallorca.",
+    title: "Acceso exclusivo a compradores de alto poder adquisitivo.",
     description:
-      "Acceso discreto para propietarios, compradores e inversores que valoran microzona, confidencialidad y ejecución comercial precisa.",
+      "Vende tu finca en el suroeste de Mallorca sin exponer tu propiedad.\nSolo cobramos si vendemos.",
     chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
-    primaryCta: "Abrir evaluación privada",
+    primaryCta: "Solicitar acceso confidencial",
     secondaryCta: "Explorar foco territorial",
     media: {
       eyebrow: "Private Preview",
@@ -674,13 +674,13 @@ const siteCopyEn: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
-    title: "A more precise reading for singular assets in Palma and Southwest Mallorca.",
+    title: "Exclusive access to high-net-worth buyers.",
     description:
-      "A discreet gateway for owners, buyers and investors who value micro-location, confidentiality and precise commercial execution.",
+      "Discreet sales in Andratx, Calvià, Son Vida and Portals.\nNo portals. Only qualified buyers.",
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
-    primaryCta: "Open private assessment",
+    primaryCta: "Request confidential access",
     secondaryCta: "Explore the territorial focus",
     media: {
       eyebrow: "Private preview",
@@ -1037,13 +1037,13 @@ const siteCopyDe: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Südwest-Mallorca · Premium-Kapital",
-    title: "Eine präzisere Lesart für singuläre Assets in Palma und im Südwesten Mallorcas.",
+    title: "Exklusiver Zugang zu vermögenden Käufern.",
     description:
-      "Diskreter Zugang für Eigentümer, Käufer und Investoren, die Mikrolage, Vertraulichkeit und präzise kommerzielle Umsetzung schätzen.",
+      "Diskreter Verkauf in Andratx, Calvià, Son Vida und Portals.\nKeine Portale. Nur qualifizierte Käufer.",
     chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
-    primaryCta: "Private Bewertung öffnen",
+    primaryCta: "Vertraulichen Zugang anfragen",
     secondaryCta: "Territoriale Ausrichtung erkunden",
     media: {
       eyebrow: "Private Vorschau",
@@ -1405,13 +1405,13 @@ const siteCopyFr: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Sud-Ouest de Majorque · Capital premium",
-    title: "Une lecture plus précise pour les actifs singuliers à Palma et dans le sud-ouest de Majorque.",
+    title: "Accès exclusif à des acheteurs à haut pouvoir d'achat.",
     description:
-      "Accès discret pour propriétaires, acheteurs et investisseurs qui valorisent la micro-zone, la confidentialité et la précision commerciale.",
+      "Vente discrète à Andratx, Calvià, Son Vida et Portals.\nSans portails. Seulement des acheteurs qualifiés.",
     chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel et une relation plus sophistiquée avec l'actif.",
-    primaryCta: "Ouvrir l'évaluation privée",
+    primaryCta: "Demander un accès confidentiel",
     secondaryCta: "Explorer le territoire",
     media: {
       eyebrow: "Aperçu privé",
