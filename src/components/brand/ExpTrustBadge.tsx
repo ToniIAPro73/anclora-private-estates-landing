@@ -9,8 +9,8 @@ export function ExpTrustBadge({
 }: ExpTrustBadgeProps) {
   const background =
     mode === "footer"
-      ? "color-mix(in srgb, var(--pe-surface-high) 50%, transparent)"
-      : "color-mix(in srgb, var(--pe-surface-high) 78%, transparent)";
+      ? "color-mix(in srgb, var(--pe-surface-high) 68%, transparent)"
+      : "color-mix(in srgb, var(--pe-surface-high) 90%, transparent)";
 
   const renderText = (str: string) => {
     const parts = str.split(/(eXp Group Spain)/g);
@@ -36,6 +36,8 @@ export function ExpTrustBadge({
         background,
         color: "var(--pe-text)",
         maxWidth: mode === "inline" ? "34rem" : "100%",
+        border: "1px solid color-mix(in srgb, var(--pe-brand) 24%, rgba(255, 255, 255, 0.14))",
+        boxShadow: "0 14px 34px rgba(0, 0, 0, 0.18)",
       }}
     >
       <span style={{ fontSize: "0.9rem", lineHeight: 1.55 }}>{renderText(text)}</span>

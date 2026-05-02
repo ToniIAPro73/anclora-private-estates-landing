@@ -1091,8 +1091,10 @@
 }
 
 .pe-btn-secondary {
-  background: color-mix(in srgb, var(--pe-surface-high) 82%, transparent);
+  background: color-mix(in srgb, var(--pe-surface-high) 94%, transparent);
   color: var(--pe-text);
+  border: 1px solid color-mix(in srgb, var(--pe-brand) 26%, rgba(255, 255, 255, 0.12));
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
 }
 
 .pe-btn-primary-gold {

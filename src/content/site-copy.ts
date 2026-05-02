@@ -315,10 +315,9 @@ const siteCopyEs: SiteCopy = {
   },
   hero: {
     eyebrow: "Palma · Suroeste de Mallorca · Capital premium",
-    title:
-      "Acceso exclusivo a compradores HNWI para propietarios que quieren vender en el suroeste de Mallorca sin exponer su propiedad.",
+    title: "Acceso exclusivo a compradores de alto poder adquisitivo.",
     description:
-      "No publicamos tu finca en Idealista ni Statefox.\nConectamos directamente con compradores de alto poder adquisitivo que ya buscan en Andratx, Calvià, Son Vida y Portals.\nSolo cobramos si vendemos.",
+      "Vende tu finca en el suroeste de Mallorca sin exponer tu propiedad.\nSolo cobramos si vendemos.",
     chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
@@ -675,10 +674,9 @@ const siteCopyEn: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
-    title:
-      "Exclusive access to HNWI buyers for owners who want to sell in Southwest Mallorca without exposing their property.",
+    title: "Exclusive access to high-net-worth buyers.",
     description:
-      "We do not publish your estate on Idealista or Statefox.\nWe connect directly with high-net-worth buyers already searching in Andratx, Calvià, Son Vida and Portals.\nWe only charge if we sell.",
+      "Discreet sales in Andratx, Calvià, Son Vida and Portals.\nNo portals. Only qualified buyers.",
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
@@ -1039,10 +1037,9 @@ const siteCopyDe: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Südwest-Mallorca · Premium-Kapital",
-    title:
-      "Exklusiver Zugang zu HNWI-Käufern für Eigentümer, die im Südwesten Mallorcas verkaufen möchten, ohne ihre Immobilie öffentlich zu machen.",
+    title: "Exklusiver Zugang zu vermögenden Käufern.",
     description:
-      "Wir veröffentlichen Ihre Finca nicht auf Idealista oder Statefox.\nWir verbinden Sie direkt mit vermögenden Käufern, die bereits in Andratx, Calvià, Son Vida und Portals suchen.\nWir berechnen nur im Erfolgsfall.",
+      "Diskreter Verkauf in Andratx, Calvià, Son Vida und Portals.\nKeine Portale. Nur qualifizierte Käufer.",
     chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
@@ -1408,10 +1405,9 @@ const siteCopyFr: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Sud-Ouest de Majorque · Capital premium",
-    title:
-      "Accès exclusif à des acheteurs HNWI pour les propriétaires qui veulent vendre dans le sud-ouest de Majorque sans exposer leur propriété.",
+    title: "Accès exclusif à des acheteurs à haut pouvoir d'achat.",
     description:
-      "Nous ne publions pas votre propriété sur Idealista ni Statefox.\nNous vous connectons directement à des acheteurs à haut pouvoir d'achat déjà actifs à Andratx, Calvià, Son Vida et Portals.\nNous ne facturons que si nous vendons.",
+      "Vente discrète à Andratx, Calvià, Son Vida et Portals.\nSans portails. Seulement des acheteurs qualifiés.",
     chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel et une relation plus sophistiquée avec l'actif.",

@@ -28,10 +28,10 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           className="pe-display pe-hero-el pe-hero-el--2"
           data-testid="hero-title"
           style={{
-            fontSize: "clamp(2.75rem, 5vw, 4.5rem)",
+            fontSize: "clamp(2.35rem, 4.2vw, 3.9rem)",
             margin: 0,
-            maxWidth: "60rem",
-            lineHeight: 1.1,
+            maxWidth: "42rem",
+            lineHeight: 1.04,
             background: "linear-gradient(100deg, #ffffff 25%, var(--pe-gold) 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -45,10 +45,10 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           className="pe-hero-el pe-hero-el--3"
           style={{
             margin: 0,
-            maxWidth: "48rem",
+            maxWidth: "44rem",
             color: "rgba(247, 244, 238, 0.95)",
-            fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)",
-            lineHeight: 1.8,
+            fontSize: "clamp(1rem, 1.45vw, 1.12rem)",
+            lineHeight: 1.65,
           }}
         >
           {descriptionLines.map((line, index) => (
