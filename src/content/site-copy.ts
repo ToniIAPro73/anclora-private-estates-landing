@@ -315,13 +315,14 @@ const siteCopyEs: SiteCopy = {
   },
   hero: {
     eyebrow: "Palma · Suroeste de Mallorca · Capital premium",
-    title: "Una lectura más precisa para activos singulares en Palma y el suroeste de Mallorca.",
+    title:
+      "Acceso exclusivo a compradores HNWI para propietarios que quieren vender en el suroeste de Mallorca sin exponer su propiedad.",
     description:
-      "Acceso discreto para propietarios, compradores e inversores que valoran microzona, confidencialidad y ejecución comercial precisa.",
+      "No publicamos tu finca en Idealista ni Statefox.\nConectamos directamente con compradores de alto poder adquisitivo que ya buscan en Andratx, Calvià, Son Vida y Portals.\nSolo cobramos si vendemos.",
     chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
-    primaryCta: "Abrir evaluación privada",
+    primaryCta: "Solicitar acceso confidencial",
     secondaryCta: "Explorar foco territorial",
     media: {
       eyebrow: "Private Preview",
@@ -674,13 +675,14 @@ const siteCopyEn: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
-    title: "A more precise reading for singular assets in Palma and Southwest Mallorca.",
+    title:
+      "Exclusive access to HNWI buyers for owners who want to sell in Southwest Mallorca without exposing their property.",
     description:
-      "A discreet gateway for owners, buyers and investors who value micro-location, confidentiality and precise commercial execution.",
+      "We do not publish your estate on Idealista or Statefox.\nWe connect directly with high-net-worth buyers already searching in Andratx, Calvià, Son Vida and Portals.\nWe only charge if we sell.",
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
-    primaryCta: "Open private assessment",
+    primaryCta: "Request confidential access",
     secondaryCta: "Explore the territorial focus",
     media: {
       eyebrow: "Private preview",
@@ -1037,13 +1039,14 @@ const siteCopyDe: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Südwest-Mallorca · Premium-Kapital",
-    title: "Eine präzisere Lesart für singuläre Assets in Palma und im Südwesten Mallorcas.",
+    title:
+      "Exklusiver Zugang zu HNWI-Käufern für Eigentümer, die im Südwesten Mallorcas verkaufen möchten, ohne ihre Immobilie öffentlich zu machen.",
     description:
-      "Diskreter Zugang für Eigentümer, Käufer und Investoren, die Mikrolage, Vertraulichkeit und präzise kommerzielle Umsetzung schätzen.",
+      "Wir veröffentlichen Ihre Finca nicht auf Idealista oder Statefox.\nWir verbinden Sie direkt mit vermögenden Käufern, die bereits in Andratx, Calvià, Son Vida und Portals suchen.\nWir berechnen nur im Erfolgsfall.",
     chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
-    primaryCta: "Private Bewertung öffnen",
+    primaryCta: "Vertraulichen Zugang anfragen",
     secondaryCta: "Territoriale Ausrichtung erkunden",
     media: {
       eyebrow: "Private Vorschau",
@@ -1405,13 +1408,14 @@ const siteCopyFr: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Sud-Ouest de Majorque · Capital premium",
-    title: "Une lecture plus précise pour les actifs singuliers à Palma et dans le sud-ouest de Majorque.",
+    title:
+      "Accès exclusif à des acheteurs HNWI pour les propriétaires qui veulent vendre dans le sud-ouest de Majorque sans exposer leur propriété.",
     description:
-      "Accès discret pour propriétaires, acheteurs et investisseurs qui valorisent la micro-zone, la confidentialité et la précision commerciale.",
+      "Nous ne publions pas votre propriété sur Idealista ni Statefox.\nNous vous connectons directement à des acheteurs à haut pouvoir d'achat déjà actifs à Andratx, Calvià, Son Vida et Portals.\nNous ne facturons que si nous vendons.",
     chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel et une relation plus sophistiquée avec l'actif.",
-    primaryCta: "Ouvrir l'évaluation privée",
+    primaryCta: "Demander un accès confidentiel",
     secondaryCta: "Explorer le territoire",
     media: {
       eyebrow: "Aperçu privé",

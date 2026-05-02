@@ -7,6 +7,8 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
+  const descriptionLines = copy.description.split("\n");
+
   return (
     <section className="pe-hero-fullscreen pe-brand-panel">
       {/* Background image — animates in from blurred/scaled */}
@@ -26,9 +28,9 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           className="pe-display pe-hero-el pe-hero-el--2"
           data-testid="hero-title"
           style={{
-            fontSize: "clamp(2rem, 3.8vw, 3.5rem)",
+            fontSize: "clamp(2.75rem, 5vw, 4.5rem)",
             margin: 0,
-            maxWidth: "none",
+            maxWidth: "60rem",
             lineHeight: 1.1,
             background: "linear-gradient(100deg, #ffffff 25%, var(--pe-gold) 100%)",
             WebkitBackgroundClip: "text",
@@ -43,25 +45,31 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
           className="pe-hero-el pe-hero-el--3"
           style={{
             margin: 0,
-            maxWidth: "40rem",
+            maxWidth: "48rem",
             color: "rgba(247, 244, 238, 0.95)",
-            fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)",
-            lineHeight: 1.7,
+            fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)",
+            lineHeight: 1.8,
           }}
         >
-          {copy.description}
+          {descriptionLines.map((line, index) => (
+            <span key={`${line}-${index}`}>
+              {line}
+              {index < descriptionLines.length - 1 ? <br /> : null}
+            </span>
+          ))}
         </p>
 
         {/* CTAs pushed to bottom via marginTop: auto */}
         <div className="pe-cta-row pe-hero-el pe-hero-el--5" style={{ justifyContent: "center", marginTop: "auto" }}>
-          <a
+          <button
             className="pe-btn-primary pe-btn-primary-gold"
-            href="#propietarios"
             data-testid="hero-primary-cta"
-            style={{ minHeight: "52px" }}
+            type="button"
+            onClick={() => document.getElementById("seller-intake")?.scrollIntoView({ behavior: "smooth" })}
+            style={{ minHeight: "56px", paddingInline: "2rem" }}
           >
             {copy.primaryCta}
-          </a>
+          </button>
           <a
             className="pe-btn-secondary"
             href="#mallorca-focus"

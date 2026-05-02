@@ -9,6 +9,7 @@ type SellerIntakeSectionProps = {
 export function SellerIntakeSection({ copy }: SellerIntakeSectionProps) {
   return (
     <section id="propietarios" className="pe-section">
+      <div id="seller-intake" aria-hidden="true" />
       <div className="pe-container pe-dual-panel pe-owner-shell">
         <div className="pe-owner-copy">
           <p className="pe-eyebrow pe-kicker">{copy.eyebrow}</p>
