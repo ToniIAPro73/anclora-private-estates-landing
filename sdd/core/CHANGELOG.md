@@ -8,6 +8,8 @@ Registro de cambios documentales, técnicos y de producto asociados a features S
 
 ### Added
 
+- Feature `ANCLORA-LUC-002 — Landing SDD Contracts Baseline` en estado `Specification`.
+- Estructura SDD, prompts, rule y skill para definir el baseline contractual Ultra Premium de la landing.
 - Feature `ANCLORA-LUC-001 — Landing UI Contracts Alignment` en estado `Specification`.
 - Documentación SDD, prompts, rule y skill para auditar contratos UI legacy frente a Bóveda Anclora y `anclora-design-system`.
 - Estructura SDD base:
