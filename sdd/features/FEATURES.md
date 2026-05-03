@@ -65,7 +65,15 @@ Documentación:
 
 - Slug: `connect-landing-to-nexus-intake`
 - Version: `1.0`
-- Status: `Planned`
+- Status: `Done`
 - Priority: `Critical`
 
 Objetivo: conectar formularios de la landing con el webhook público de n8n Unified Lead Intake y Anclora Nexus.
+
+Resultado: `SellerIntakeForm` conectado a Nexus mediante payload normalizado y endpoint configurable. Validada con tests específicos y build OK. Deuda técnica en `App.test.tsx` aceptada mediante resolución humana.
+
+Documentación:
+
+- `sdd/features/connect-landing-to-nexus-intake/`
+- `src/lib/lead-intake.ts`
+- `.agent/prompts/features/connect-landing-to-nexus-intake/`
