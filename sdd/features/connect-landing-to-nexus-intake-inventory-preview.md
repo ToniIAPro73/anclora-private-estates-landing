@@ -1,0 +1,189 @@
+# Inventory Preview — connect-landing-to-nexus-intake
+
+## Candidate files
+- `src/app/App.test.tsx`
+- `src/app/App.tsx`
+- `src/components/forms/.gitkeep`
+- `src/components/forms/SellerIntakeForm.tsx`
+- `src/components/forms/ValuationRequestForm.tsx`
+- `src/components/layout/FloatingControls.tsx`
+- `src/content/site-copy.ts`
+- `src/sections/ContactSection.tsx`
+- `src/sections/DataLabSignalsSection.tsx`
+- `src/sections/FinalCTASection.tsx`
+- `src/sections/HeroSection.tsx`
+- `src/sections/InvestorSection.tsx`
+- `src/sections/MallorcaFocusSection.tsx`
+- `src/sections/PartnersSynergiSection.tsx`
+- `src/sections/SellerIntakeSection.tsx`
+- `src/sections/ValuationRequestSection.tsx`
+- `src/styles/components.css`
+- `src/styles/private-estates-helpers.css`
+
+## Keyword matches
+- `src/sections/FinalCTASection.tsx:3: const FINAL_CTA_IMAGE = "/brand/contact-villa-living.jpg";`
+- `src/sections/FinalCTASection.tsx:31: <a className="pe-btn-secondary pe-btn-secondary-ghost" href="#contacto" data-testid="final-cta-secondary">`
+- `src/sections/HeroSection.tsx:68: onClick={() => document.getElementById("seller-intake")?.scrollIntoView({ behavior: "smooth" })}`
+- `src/sections/InvestorSection.tsx:1: import type { InvestorCopy } from "@/content/site-copy";`
+- `src/sections/InvestorSection.tsx:3: const INVESTOR_IMAGE = "/brand/investor-infinity-pool.jpg";`
+- `src/sections/InvestorSection.tsx:5: type InvestorSectionProps = {`
+- `src/sections/InvestorSection.tsx:6: copy: InvestorCopy;`
+- `src/sections/InvestorSection.tsx:9: export function InvestorSection({ copy }: InvestorSectionProps) {`
+- `src/sections/InvestorSection.tsx:13: <div className="pe-grid-feature pe-investor-intro">`
+- `src/sections/InvestorSection.tsx:22: <aside className="pe-investor-aside pe-investor-aside--image">`
+- `src/sections/InvestorSection.tsx:23: <img className="pe-investor-aside__image" src={INVESTOR_IMAGE} alt="Terraza premium con piscina y vistas al mar en Mallorca" />`
+- `src/sections/InvestorSection.tsx:24: <div className="pe-investor-aside__overlay" />`
+- `src/sections/InvestorSection.tsx:25: <div className="pe-investor-aside__copy">`
+- `src/sections/InvestorSection.tsx:26: <p className="pe-investor-aside__quote">{copy.asideQuote}</p>`
+- `src/sections/InvestorSection.tsx:33: <article key={profile.title} className="pe-card pe-offset-card pe-card-hover-gold pe-investor-card" data-testid={`investor-card-${index + 1}`}>`
+- `src/sections/InvestorSection.tsx:34: <span className="pe-investor-card__index">{String(index + 1).padStart(2, "0")}</span>`
+- `src/sections/InvestorSection.tsx:35: <h3 className="pe-card-gold-title pe-investor-card__title">{profile.title}</h3>`
+- `src/sections/SellerIntakeSection.tsx:2: import { SellerIntakeForm } from "@/components/forms/SellerIntakeForm";`
+- `src/sections/SellerIntakeSection.tsx:3: import type { SellerIntakeCopy } from "@/content/site-copy";`
+- `src/sections/SellerIntakeSection.tsx:5: type SellerIntakeSectionProps = {`
+- `src/sections/SellerIntakeSection.tsx:6: copy: SellerIntakeCopy;`
+- `src/sections/SellerIntakeSection.tsx:9: export function SellerIntakeSection({ copy }: SellerIntakeSectionProps) {`
+- `src/sections/SellerIntakeSection.tsx:12: <div id="seller-intake" aria-hidden="true" />`
+- `src/sections/SellerIntakeSection.tsx:37: <div className="pe-card pe-owner-form-card" data-testid="seller-form-card">`
+- `src/sections/SellerIntakeSection.tsx:38: <SellerIntakeForm copy={copy.form} />`
+- `src/sections/DataLabSignalsSection.tsx:14: const [submitting, setSubmitting] = useState(false);`
+- `src/sections/DataLabSignalsSection.tsx:18: const handleWhitelistSubmit = async (e: React.FormEvent) => {`
+- `src/sections/DataLabSignalsSection.tsx:21: setSubmitting(true);`
+- `src/sections/DataLabSignalsSection.tsx:23: const nexusBase =`
+- `src/sections/DataLabSignalsSection.tsx:24: (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||`
+- `src/sections/DataLabSignalsSection.tsx:25: "https://nexus.anclora.group";`
+- `src/sections/DataLabSignalsSection.tsx:26: const res = await fetch(`${nexusBase}/api/public/data-lab-access-requests`, {`
+- `src/sections/DataLabSignalsSection.tsx:32: profile_type: "investor",`
+- `src/sections/DataLabSignalsSection.tsx:49: setSubmitting(false);`
+- `src/sections/DataLabSignalsSection.tsx:65: <article className="pe-card pe-offset-card pe-card-hover-gold pe-datalab-lead pe-datalab-card--interactive" data-testid="datalab-lead-card">`
+- `src/sections/DataLabSignalsSection.tsx:66: <div className="pe-datalab-lead__ornament" aria-hidden="true" />`
+- `src/sections/DataLabSignalsSection.tsx:67: <p className="pe-eyebrow pe-datalab-card__eyebrow">{copy.lead.eyebrow}</p>`
+- `src/sections/DataLabSignalsSection.tsx:68: <h3 className="pe-datalab-lead__title">{copy.lead.title}</h3>`
+- `src/sections/DataLabSignalsSection.tsx:69: {copy.lead.body ? <p className="pe-datalab-lead__body">{copy.lead.body}</p> : null}`
+- `src/sections/DataLabSignalsSection.tsx:98: <p className="pe-eyebrow pe-kicker" style={{ margin: 0 }}>{copy.whitelist.form.successTitle}</p>`
+- `src/sections/DataLabSignalsSection.tsx:99: <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>{copy.whitelist.form.successBody}</p>`
+- `src/sections/DataLabSignalsSection.tsx:102: <form className="pe-form" onSubmit={handleWhitelistSubmit} data-testid="datalab-whitelist-form" style={{ marginTop: "1.75rem" }}>`
+- `src/sections/DataLabSignalsSection.tsx:103: <div className="pe-form-grid">`
+- `src/sections/DataLabSignalsSection.tsx:104: <label className="pe-form-field">`
+- `src/sections/DataLabSignalsSection.tsx:105: <span className="pe-eyebrow">{copy.whitelist.form.name}</span>`
+- `src/sections/DataLabSignalsSection.tsx:111: placeholder={copy.whitelist.form.placeholders.name}`
+- `src/sections/DataLabSignalsSection.tsx:115: <label className="pe-form-field">`
+- `src/sections/DataLabSignalsSection.tsx:116: <span className="pe-eyebrow">{copy.whitelist.form.email}</span>`
+- `src/sections/DataLabSignalsSection.tsx:123: placeholder={copy.whitelist.form.placeholders.email}`
+- `src/sections/DataLabSignalsSection.tsx:129: <label className="pe-form-field" style={{ marginTop: "1.25rem" }}>`
+- `src/sections/DataLabSignalsSection.tsx:130: <span className="pe-eyebrow">{copy.whitelist.form.intendedUse}</span>`
+- `src/sections/DataLabSignalsSection.tsx:137: placeholder={copy.whitelist.form.placeholders.intendedUse}`
+- `src/sections/DataLabSignalsSection.tsx:143: <label className="pe-form-field pe-privacy-row" style={{ marginTop: "1.5rem" }}>`
+- `src/sections/DataLabSignalsSection.tsx:152: <span className="pe-note">{copy.whitelist.form.privacyLabel}</span>`
+- `src/sections/DataLabSignalsSection.tsx:156: <p className="pe-form-error" data-testid="datalab-error">{error}</p>`
+- `src/sections/DataLabSignalsSection.tsx:161: type="submit"`
+- `src/sections/DataLabSignalsSection.tsx:162: disabled={submitting}`
+- `src/sections/DataLabSignalsSection.tsx:163: style={{ opacity: submitting ? 0.7 : 1 }}`
+- `src/sections/DataLabSignalsSection.tsx:164: data-testid="datalab-whitelist-submit"`
+- `src/sections/DataLabSignalsSection.tsx:166: {submitting ? "..." : copy.whitelist.form.submitLabel}`
+- `src/sections/DataLabSignalsSection.tsx:168: </form>`
+- `src/sections/PartnersSynergiSection.tsx:2: import type { PartnersSectionCopy } from "@/content/site-copy";`
+- `src/sections/PartnersSynergiSection.tsx:5: type PartnersSynergiSectionProps = {`
+- `src/sections/PartnersSynergiSection.tsx:6: copy: PartnersSectionCopy;`
+- `src/sections/PartnersSynergiSection.tsx:10: export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynergiSectionProps) {`
+- `src/sections/PartnersSynergiSection.tsx:16: const [submitting, setSubmitting] = useState(false);`
+- `src/sections/PartnersSynergiSection.tsx:20: const handleSubmit = async (e: React.FormEvent) => {`
+- `src/sections/PartnersSynergiSection.tsx:23: setSubmitting(true);`
+- `src/sections/PartnersSynergiSection.tsx:25: const nexusBase =`
+- `src/sections/PartnersSynergiSection.tsx:26: (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||`
+- `src/sections/PartnersSynergiSection.tsx:27: "https://nexus.anclora.group";`
+- `src/sections/PartnersSynergiSection.tsx:28: const res = await fetch(`${nexusBase}/api/public/partner-admissions`, {`
+- `src/sections/PartnersSynergiSection.tsx:51: setSubmitting(false);`
+- `src/sections/PartnersSynergiSection.tsx:56: <section id="partners" className="pe-section">`
+- `src/sections/PartnersSynergiSection.tsx:78: {/* Centered form card */}`
+- `src/sections/PartnersSynergiSection.tsx:79: <div className="pe-access-card pe-card" data-testid="partners-form-card">`
+- `src/sections/PartnersSynergiSection.tsx:81: <div className="pe-access-card__success" data-testid="partners-success">`
+- `src/sections/PartnersSynergiSection.tsx:82: <p className="pe-eyebrow pe-kicker" style={{ margin: 0 }}>{copy.form.successTitle}</p>`
+- `src/sections/PartnersSynergiSection.tsx:83: <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>{copy.form.successBody}</p>`
+- `src/sections/PartnersSynergiSection.tsx:86: <form className="pe-form" onSubmit={handleSubmit} data-testid="partners-admission-form">`
+- `src/sections/PartnersSynergiSection.tsx:87: <div className="pe-form-grid">`
+- `src/sections/PartnersSynergiSection.tsx:88: <label className="pe-form-field">`
+- `src/sections/PartnersSynergiSection.tsx:89: <span className="pe-eyebrow">{copy.form.name}</span>`
+- `src/sections/PartnersSynergiSection.tsx:95: placeholder={copy.form.placeholders.name}`
+- `src/sections/PartnersSynergiSection.tsx:96: data-testid="partners-name-input"`
+- `src/sections/PartnersSynergiSection.tsx:99: <label className="pe-form-field">`
+- `src/sections/PartnersSynergiSection.tsx:100: <span className="pe-eyebrow">{copy.form.email}</span>`
+- `src/sections/PartnersSynergiSection.tsx:107: placeholder={copy.form.placeholders.email}`
+- `src/sections/PartnersSynergiSection.tsx:108: data-testid="partners-email-input"`
+- `src/sections/PartnersSynergiSection.tsx:113: <label className="pe-form-field" style={{ marginTop: "1.25rem" }}>`
+- `src/sections/PartnersSynergiSection.tsx:114: <span className="pe-eyebrow">{copy.form.serviceCategory}</span>`
+- `src/sections/PartnersSynergiSection.tsx:120: data-testid="partners-category-select"`
+- `src/sections/PartnersSynergiSection.tsx:122: <option value="" disabled>{copy.form.selectPlaceholder}</option>`
+- `src/sections/PartnersSynergiSection.tsx:123: {copy.form.serviceCategoryOptions.map((opt) => (`
+- `src/sections/PartnersSynergiSection.tsx:129: <label className="pe-form-field" style={{ marginTop: "1.25rem" }}>`
+- `src/sections/PartnersSynergiSection.tsx:130: <span className="pe-eyebrow">{copy.form.serviceSummary}</span>`
+- `src/sections/PartnersSynergiSection.tsx:137: placeholder={copy.form.placeholders.serviceSummary}`
+- `src/sections/PartnersSynergiSection.tsx:138: data-testid="partners-summary-textarea"`
+- `src/sections/PartnersSynergiSection.tsx:143: <label className="pe-form-field pe-privacy-row" style={{ marginTop: "1.5rem" }}>`
+- `src/sections/PartnersSynergiSection.tsx:149: data-testid="partners-privacy-checkbox"`
+- `src/sections/PartnersSynergiSection.tsx:152: <span className="pe-note">{copy.form.privacyLabel}</span>`
+- `src/sections/PartnersSynergiSection.tsx:156: <p className="pe-form-error" data-testid="partners-error">{error}</p>`
+- `src/sections/PartnersSynergiSection.tsx:161: type="submit"`
+- `src/sections/PartnersSynergiSection.tsx:162: disabled={submitting}`
+- `src/sections/PartnersSynergiSection.tsx:163: style={{ opacity: submitting ? 0.7 : 1 }}`
+- `src/sections/PartnersSynergiSection.tsx:164: data-testid="partners-submit-button"`
+- `src/sections/PartnersSynergiSection.tsx:166: {submitting ? "..." : copy.form.submitLabel}`
+- `src/sections/PartnersSynergiSection.tsx:168: </form>`
+- `src/sections/MallorcaFocusSection.tsx:16: <div className="pe-grid-feature pe-investor-intro">`
+- `src/sections/MallorcaFocusSection.tsx:22: <aside className="pe-investor-aside pe-investor-aside--image">`
+- `src/sections/MallorcaFocusSection.tsx:24: className="pe-investor-aside__image"`
+- `src/sections/MallorcaFocusSection.tsx:28: <div className="pe-investor-aside__overlay" />`
+- `src/sections/MallorcaFocusSection.tsx:29: <div className="pe-investor-aside__copy">`
+- `src/sections/MallorcaFocusSection.tsx:30: <p className="pe-investor-aside__quote" style={{ fontStyle: "italic" }}>`
+- `src/sections/ContactSection.tsx:2: import type { ContactCopy } from "@/content/site-copy";`
+- `src/sections/ContactSection.tsx:4: type ContactSectionProps = {`
+- `src/sections/ContactSection.tsx:5: copy: ContactCopy;`
+- `src/sections/ContactSection.tsx:8: export function ContactSection({ copy }: ContactSectionProps) {`
+- `src/sections/ContactSection.tsx:10: <section id="contacto" className="pe-section">`
+- `src/sections/ContactSection.tsx:11: <div className="pe-container pe-dual-panel pe-contact-shell">`
+
+## Env matches
+- `src/sections/HeroSection.tsx:68: onClick={() => document.getElementById("seller-intake")?.scrollIntoView({ behavior: "smooth" })}`
+- `src/sections/SellerIntakeSection.tsx:2: import { SellerIntakeForm } from "@/components/forms/SellerIntakeForm";`
+- `src/sections/SellerIntakeSection.tsx:3: import type { SellerIntakeCopy } from "@/content/site-copy";`
+- `src/sections/SellerIntakeSection.tsx:5: type SellerIntakeSectionProps = {`
+- `src/sections/SellerIntakeSection.tsx:6: copy: SellerIntakeCopy;`
+- `src/sections/SellerIntakeSection.tsx:9: export function SellerIntakeSection({ copy }: SellerIntakeSectionProps) {`
+- `src/sections/SellerIntakeSection.tsx:12: <div id="seller-intake" aria-hidden="true" />`
+- `src/sections/SellerIntakeSection.tsx:38: <SellerIntakeForm copy={copy.form} />`
+- `src/sections/DataLabSignalsSection.tsx:23: const nexusBase =`
+- `src/sections/DataLabSignalsSection.tsx:24: (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||`
+- `src/sections/DataLabSignalsSection.tsx:25: "https://nexus.anclora.group";`
+- `src/sections/DataLabSignalsSection.tsx:26: const res = await fetch(`${nexusBase}/api/public/data-lab-access-requests`, {`
+- `src/sections/PartnersSynergiSection.tsx:25: const nexusBase =`
+- `src/sections/PartnersSynergiSection.tsx:26: (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||`
+- `src/sections/PartnersSynergiSection.tsx:27: "https://nexus.anclora.group";`
+- `src/sections/PartnersSynergiSection.tsx:28: const res = await fetch(`${nexusBase}/api/public/partner-admissions`, {`
+- `src/content/site-copy.ts:87: export type SellerIntakeCopy = {`
+- `src/content/site-copy.ts:280: sellerIntake: SellerIntakeCopy;`
+- `src/content/site-copy.ts:426: sellerIntake: {`
+- `src/content/site-copy.ts:782: sellerIntake: {`
+- `src/content/site-copy.ts:783: ...siteCopyEs.sellerIntake,`
+- `src/content/site-copy.ts:792: ...siteCopyEs.sellerIntake.form,`
+- `src/content/site-copy.ts:1148: sellerIntake: {`
+- `src/content/site-copy.ts:1149: ...siteCopyEs.sellerIntake,`
+- `src/content/site-copy.ts:1158: ...siteCopyEs.sellerIntake.form,`
+- `src/content/site-copy.ts:1515: sellerIntake: {`
+- `src/content/site-copy.ts:1516: ...siteCopyEs.sellerIntake,`
+- `src/content/site-copy.ts:1525: ...siteCopyEs.sellerIntake.form,`
+- `src/components/forms/SellerIntakeForm.tsx:3: type SellerIntakeFormProps = {`
+- `src/components/forms/SellerIntakeForm.tsx:7: export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {`
+- `src/components/forms/SellerIntakeForm.tsx:9: <form className="pe-form" data-testid="seller-intake-form">`
+- `src/components/forms/ValuationRequestForm.tsx:37: const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined;`
+- `src/components/forms/ValuationRequestForm.tsx:78: const nexusBase =`
+- `src/components/forms/ValuationRequestForm.tsx:79: (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||`
+- `src/components/forms/ValuationRequestForm.tsx:80: "https://nexus.anclora.group";`
+- `src/components/forms/ValuationRequestForm.tsx:81: const res = await fetch(`${nexusBase}/api/public/valuation-requests`, {`
+- `src/app/App.test.tsx:43: expect(siteCopyByLanguage.de.sellerIntake.form.submitLabel).toBeTruthy();`
+- `src/app/App.tsx:14: import { SellerIntakeSection } from "@/sections/SellerIntakeSection";`
+- `src/app/App.tsx:44: <SellerIntakeSection copy={copy.sellerIntake} />`
+
+## Counts
+- candidate_files: 18
+- keyword_matches: 525
+- env_matches: 39
