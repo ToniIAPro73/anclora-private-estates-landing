@@ -6,6 +6,23 @@ Registro centralizado de features del repo `anclora-private-estates-landing`.
 
 ## Done
 
+### ANCLORA-LUC-002 — Landing SDD Contracts Baseline
+
+- Slug: `landing-sdd-contracts-baseline`
+- Version: `1.0`
+- Status: `Done`
+- Priority: `High`
+
+Objetivo: definir el baseline mínimo de contratos SDD aplicables a la landing Ultra Premium de Anclora Private Estates, usando Bóveda Anclora y `anclora-design-system` como fuentes.
+
+Resultado: baseline contractual aceptado con 10 documentos en `sdd/contracts/`, `MODAL_CONTRACT.md` diferido y gate final en estado OK.
+
+Documentación:
+
+- `sdd/features/landing-sdd-contracts-baseline/`
+- `sdd/contracts/`
+- `.agent/prompts/features/landing-sdd-contracts-baseline/`
+
 ### ANCLORA-LUC-001 — Landing UI Contracts Alignment
 
 - Slug: `landing-ui-contracts-alignment`
@@ -41,17 +58,6 @@ Documentación:
 ---
 
 ## In Progress
-
-### ANCLORA-LUC-002 — Landing SDD Contracts Baseline
-
-- Slug: `landing-sdd-contracts-baseline`
-- Version: `1.0`
-- Status: `Specification`
-- Priority: `High`
-
-Objetivo: definir el baseline mínimo de contratos SDD aplicables a la landing Ultra Premium de Anclora Private Estates, usando Bóveda Anclora y `anclora-design-system` como fuentes.
-
----
 
 ## Planned
 
