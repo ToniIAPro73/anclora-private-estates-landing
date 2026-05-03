@@ -11,7 +11,8 @@ describe("App landing home", () => {
     document.documentElement.dataset.theme = "";
   });
 
-  test("renders the ultra premium home shell with primary navigation and critical sections", () => {
+  test("renders the ultra premium home shell with primary navigation and critical sections", async () => {
+    const user = userEvent.setup();
     render(<App />);
 
     expect(
@@ -22,8 +23,13 @@ describe("App landing home", () => {
     ).toBeInTheDocument();
 
     const navigation = screen.getByRole("navigation", { name: siteCopyByLanguage.es.navbar.navAriaLabel });
+    expect(navigation).toBeInTheDocument();
+
+    await user.click(screen.getByTestId("navbar-menu-toggle"));
+
+    const navbarLinks = screen.getByTestId("navbar-links");
     for (const link of siteCopyByLanguage.es.navbar.links) {
-      expect(within(navigation).getByRole("link", { name: link.label })).toBeInTheDocument();
+      expect(within(navbarLinks).getByRole("link", { name: link.label })).toBeInTheDocument();
     }
 
     expect(screen.getByRole("link", { name: siteCopyByLanguage.es.navbar.ctaLabel })).toBeInTheDocument();
@@ -38,8 +44,8 @@ describe("App landing home", () => {
     expect(siteCopyByLanguage.es.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.en.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.de.hero.title).toBeTruthy();
-    expect(siteCopyByLanguage.es.navbar.links).toHaveLength(5);
-    expect(siteCopyByLanguage.en.footer.columns).toHaveLength(4);
+    expect(siteCopyByLanguage.es.navbar.links).toHaveLength(6);
+    expect(siteCopyByLanguage.en.footer.columns).toHaveLength(3);
     expect(siteCopyByLanguage.de.sellerIntake.form.submitLabel).toBeTruthy();
   });
 
@@ -70,7 +76,7 @@ describe("App landing home", () => {
     const germanButton = screen.getByRole("button", { name: /idioma alemán|deutsch/i });
 
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.es.hero.title })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: siteCopyByLanguage.es.hero.primaryCta })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: siteCopyByLanguage.es.navbar.ctaLabel })).toBeInTheDocument();
     expect(spanishButton).toHaveAttribute("aria-pressed", "true");
     expect(document.documentElement.lang).toBe("es");
     expect(window.localStorage.getItem("ape:language")).toBe("es");
@@ -81,7 +87,7 @@ describe("App landing home", () => {
     expect(document.documentElement.lang).toBe("en");
     expect(window.localStorage.getItem("ape:language")).toBe("en");
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.en.hero.title })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: siteCopyByLanguage.en.hero.primaryCta })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: siteCopyByLanguage.en.navbar.ctaLabel })).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: siteCopyByLanguage.en.navbar.navAriaLabel })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: siteCopyByLanguage.en.contact.title })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { level: 1, name: siteCopyByLanguage.es.hero.title })).not.toBeInTheDocument();
@@ -92,7 +98,7 @@ describe("App landing home", () => {
     expect(document.documentElement.lang).toBe("de");
     expect(window.localStorage.getItem("ape:language")).toBe("de");
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.de.hero.title })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: siteCopyByLanguage.de.hero.primaryCta })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: siteCopyByLanguage.de.navbar.ctaLabel })).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: siteCopyByLanguage.de.navbar.navAriaLabel })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: siteCopyByLanguage.de.contact.title })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { level: 1, name: siteCopyByLanguage.en.hero.title })).not.toBeInTheDocument();
