@@ -8,19 +8,12 @@ Registro de cambios documentales, técnicos y de producto asociados a features S
 
 ### Added
 
-- Feature `ANCLORA-LUC-002 — Landing SDD Contracts Baseline` en estado `Specification`.
-- Estructura SDD, prompts, rule y skill para definir el baseline contractual Ultra Premium de la landing.
-- Feature `ANCLORA-LUC-001 — Landing UI Contracts Alignment` en estado `Specification`.
-- Documentación SDD, prompts, rule y skill para auditar contratos UI legacy frente a Bóveda Anclora y `anclora-design-system`.
-- Resolución humana oficial y reportes de ejecución para cerrar `ANCLORA-LUC-001`.
-- Resolución humana oficial y reportes de ejecución para cerrar `ANCLORA-LUC-002`.
-- Estructura SDD base:
-  - `sdd/_templates`
-  - `sdd/core`
-  - `sdd/contracts`
-  - `sdd/features`
-- Registro centralizado de features en `sdd/features/FEATURES.md`.
-- Ruta canónica de prompts de agentes en `.agent/prompts/features/`.
+- Feature `ANCLORA-LNI-001 — Landing Nexus Intake Connection` en estado `Done`.
+- Conexión de `SellerIntakeForm` con el webhook público de n8n Unified Lead Intake / Anclora Nexus.
+- Cliente de integración en `src/lib/lead-intake.ts` con payload normalizado y resolución de endpoint dinámica.
+- Tests específicos para `SellerIntakeForm` verificando envíos exitosos y gestión de errores del backend.
+- Documentación de variables de entorno en `.env.example`.
+- Reportes de ejecución (01-08) incluyendo resolución humana oficial para deuda técnica.
 
 ### Changed
 
