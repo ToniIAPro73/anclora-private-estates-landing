@@ -12,6 +12,7 @@ Registro de cambios documentales, técnicos y de producto asociados a features S
 - Estructura SDD, prompts, rule y skill para definir el baseline contractual Ultra Premium de la landing.
 - Feature `ANCLORA-LUC-001 — Landing UI Contracts Alignment` en estado `Specification`.
 - Documentación SDD, prompts, rule y skill para auditar contratos UI legacy frente a Bóveda Anclora y `anclora-design-system`.
+- Resolución humana oficial y reportes de ejecución para cerrar `ANCLORA-LUC-001`.
 - Estructura SDD base:
   - `sdd/_templates`
   - `sdd/core`
@@ -24,6 +25,8 @@ Registro de cambios documentales, técnicos y de producto asociados a features S
 
 - Normalizada la documentación SDD de `landing-hero-optimization` bajo convención `feature-<slug>-*.md`.
 - Migrados los prompts de `landing-hero-optimization` desde `.antigravity/prompts/features/` a `.agent/prompts/features/`.
+- `ANCLORA-LUC-001 — Landing UI Contracts Alignment` pasa de `Specification` a `Done`.
+- Actualizado el inventario contractual de `landing-ui-contracts-alignment` para reflejar contratos canónicos activos en `sdd/contracts/` y la excepción aceptada `es/en/de` de la landing pública.
 
 ### Removed
 
