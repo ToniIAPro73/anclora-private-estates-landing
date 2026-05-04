@@ -1,4 +1,4 @@
-export type LanguageCode = "es" | "en" | "de" | "fr";
+export type LanguageCode = "es" | "en" | "de";
 
 export type NavLinkCopy = {
   label: string;
@@ -324,7 +324,6 @@ const siteCopyEs: SiteCopy = {
         { code: "es", label: "ES", ariaLabel: "Idioma español" },
         { code: "en", label: "EN", ariaLabel: "Idioma inglés" },
         { code: "de", label: "DE", ariaLabel: "Idioma alemán" },
-        { code: "fr", label: "FR", ariaLabel: "Idioma francés" },
       ],
     },
   },
@@ -702,7 +701,6 @@ const siteCopyEn: SiteCopy = {
         { code: "es", label: "ES", ariaLabel: "Spanish language" },
         { code: "en", label: "EN", ariaLabel: "English language" },
         { code: "de", label: "DE", ariaLabel: "German language" },
-        { code: "fr", label: "FR", ariaLabel: "French language" },
       ],
     },
   },
@@ -1084,7 +1082,6 @@ const siteCopyDe: SiteCopy = {
         { code: "es", label: "ES", ariaLabel: "Spanische Sprache" },
         { code: "en", label: "EN", ariaLabel: "Englische Sprache" },
         { code: "de", label: "DE", ariaLabel: "Deutsche Sprache" },
-        { code: "fr", label: "FR", ariaLabel: "Französische Sprache" },
       ],
     },
   },
@@ -1471,7 +1468,6 @@ const siteCopyFr: SiteCopy = {
         { code: "es", label: "ES", ariaLabel: "Langue espagnole" },
         { code: "en", label: "EN", ariaLabel: "Langue anglaise" },
         { code: "de", label: "DE", ariaLabel: "Langue allemande" },
-        { code: "fr", label: "FR", ariaLabel: "Langue française" },
       ],
     },
   },
@@ -1810,7 +1806,6 @@ export const siteCopyByLanguage = {
   es: siteCopyEs,
   en: siteCopyEn,
   de: siteCopyDe,
-  fr: siteCopyFr,
 } satisfies Record<LanguageCode, SiteCopy>;
 
 

@@ -7,8 +7,9 @@
 - [x] Agent C frontend implementation completed.
 - [x] Agent D captcha integration completed.
 - [x] Human review correction (Agent C/D refactor) completed.
+- [x] Production hotfix (Captcha robustness + Locale cleanup) completed.
 - [x] Agent E QA completed.
-- [x] Tests pass (10 tests passed).
+- [x] Tests pass (9 tests passed after production hotfix).
 - [x] Build passes.
 - [x] Manual local E2E completed.
 - [x] No secrets committed.

@@ -15,7 +15,7 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   
-  const { captchaToken, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
+  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
     import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined
   );
 
@@ -27,7 +27,7 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
     e.preventDefault();
     setError(null);
 
-    if (siteKey && !captchaToken) {
+    if (captchaStatus === "ready" && !captchaToken) {
       setError(copy.captchaError);
       return;
     }
@@ -147,7 +147,7 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
       </label>
 
       {siteKey && (
-        <div ref={captchaContainerRef} style={{ margin: "1.25rem 0 0" }} data-testid="valuation-captcha" />
+        <div ref={captchaContainerRef} style={{ margin: "1.25rem 0 0", minHeight: captchaStatus === "ready" ? "78px" : "0" }} data-testid="valuation-captcha" />
       )}
 
       <label className="pe-form-field pe-form-field--checkbox" style={{ marginTop: "1rem", display: "flex", gap: "0.75rem", alignItems: "flex-start", cursor: "pointer" }}>

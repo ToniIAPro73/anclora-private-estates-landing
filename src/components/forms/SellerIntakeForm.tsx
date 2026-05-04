@@ -41,19 +41,12 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     genericError: "Wir konnten Ihre Anfrage nicht senden. Bitte versuchen Sie es in einigen Minuten erneut.",
     captchaError: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
   },
-  fr: {
-    privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
-    successTitle: "Demande reçue",
-    successBody: "Nous examinerons votre actif et vous répondrons sous deux jours ouvrables.",
-    genericError: "Nous n'avons pas pu envoyer votre demande. Veuillez réessayer dans quelques minutes.",
-    captchaError: "Veuillez compléter la vérification de sécurité.",
-  },
 };
 
 function resolveCurrentLanguage(): LanguageCode {
   if (typeof document === "undefined") return "es";
-  const documentLanguage = document.documentElement.lang;
-  if (documentLanguage === "en" || documentLanguage === "de" || documentLanguage === "fr") {
+  const documentLanguage = document.documentElement.lang as LanguageCode;
+  if (documentLanguage === "en" || documentLanguage === "de") {
     return documentLanguage;
   }
 
@@ -72,7 +65,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   
   // Captcha
-  const { captchaToken, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
+  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
     import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined
   );
 
@@ -107,7 +100,9 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
     event.preventDefault();
     setError(null);
 
-    if (siteKey && !captchaToken) {
+    // Only block if captcha is definitely ready but token is missing.
+    // If it's disabled, loading or failed, we proceed (graceful degradation).
+    if (captchaStatus === "ready" && !captchaToken) {
       setError(messages.captchaError);
       return;
     }
@@ -419,7 +414,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       {siteKey && (
         <div 
           ref={captchaContainerRef} 
-          style={{ margin: "1.5rem 0" }} 
+          style={{ margin: "1.5rem 0", minHeight: captchaStatus === "ready" ? "78px" : "0" }} 
           data-testid="seller-captcha" 
         />
       )}
