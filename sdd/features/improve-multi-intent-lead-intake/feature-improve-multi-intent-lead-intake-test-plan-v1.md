@@ -1,58 +1,49 @@
 # Test Plan v1 — Multi-Intent Lead Intake & Captcha
 
-## Unit / Component Tests
+## Unit / Component Tests (`LeadIntakeForm.tsx`)
 
-Update or add tests for:
+- **Rendering**:
+  - `LeadIntakeForm` renders the `lead_intent` selector as the first field.
+  - Selecting an intent dynamically shows/hides the correct qualification fields.
+  - reCAPTCHA widget renders ONLY if `VITE_RECAPTCHA_SITE_KEY` is present.
+- **Validation**:
+  - Form cannot submit if `lead_intent` is not selected.
+  - Form cannot submit if captcha site key exists but no token is generated.
+  - Validation errors are multilingual and accessible.
+- **Intents**:
+  - **Seller**: Renders zone, type, commercialization.
+  - **Valuation**: Renders address, type.
+  - **Buyer**: Renders zone, budget, timing.
+  - **Investor**: Renders ticket, goal.
+  - **Partner**: Renders category, proposal.
 
-- `SellerIntakeForm` renders lead intent selector.
-- Common fields validate correctly.
-- Intent-specific fields appear for each intent.
-- Existing seller flow still submits normalized payload.
-- Buyer flow submits expected fields.
-- Investor flow submits expected fields.
-- Partner flow submits expected fields.
-- Captcha error appears when site key exists and no token is available.
-- Form can submit when captcha is disabled in local/test mode.
+## Integration Tests (`lead-intake.ts`)
 
-## Integration Tests
+- **Payload Generation**:
+  - `buildLeadIntakePayload` correctly flattens intent-specific fields.
+  - `buildSellerLeadIntakePayload` (wrapper) still returns `lead_type: "seller_intake"` for backward compatibility with n8n LNI-001.
+  - Captcha token and provider are correctly included in the payload when present.
+- **Submission**:
+  - `submitLeadIntake` sends a POST request with the expected flat JSON structure.
 
-Validate:
+## Integration Tests (Vitest / MSW)
 
-- Intake submitter receives extended payload.
-- Existing `lead-intake.ts` fallback behavior remains safe.
-- `.env.example` documents public variables only.
+- Intercept `/api/public/lead-intake` and verify:
+  - Payload contains `captcha_token` when site key is mocked.
+  - Payload contains `buy_*` fields when `lead_type` is `"buy"`.
 
-## Manual E2E
+## Manual E2E Validation
 
-Local test:
+Using a local n8n instance or a test webhook:
 
-```text
-Landing -> form submit -> n8n webhook -> Normalize & Score -> Nexus API -> response OK
-```
+1. **Legacy Seller Path**: Verify it still works without changes to n8n.
+2. **New Buyer Path**: Verify `target_zone`, `budget_range`, etc., reach the webhook.
+3. **Captcha Flow**: 
+   - Verify form is blocked without checking captcha.
+   - Verify payload includes `g-recaptcha-response` (aliased to `captcha_token`).
+4. **Error Handling**: Verify 400 from n8n (captcha fail) shows the correct error message on the landing.
 
-Scenarios:
+## Build & CI
 
-1. Seller hot lead.
-2. Valuation-only owner.
-3. Buyer lead.
-4. Investor lead.
-5. Partner lead.
-6. Captcha missing or invalid.
-7. Backend or n8n failure.
-
-## Build
-
-Required before merge:
-
-```bash
-npm test
-npm run build
-```
-
-## Acceptance Criteria
-
-- Existing seller intake does not regress.
-- Multi-intent data reaches n8n.
-- Nexus ingestion remains successful.
-- Captcha is visible when configured.
-- Captcha validation strategy is documented and implemented or explicitly gated.
+- `npm test` -> Must cover new intent branches.
+- `npm run build` -> No regressions in bundle or types.
