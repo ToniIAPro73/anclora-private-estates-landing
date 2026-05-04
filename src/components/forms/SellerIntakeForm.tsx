@@ -139,6 +139,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         privacyAccepted,
         qualifiers,
         captchaToken: captchaToken ?? undefined,
+        orgId: import.meta.env.VITE_NEXUS_ORG_ID as string | undefined,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
       });
 

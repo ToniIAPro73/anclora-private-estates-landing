@@ -1,62 +1,51 @@
 # Execution Report 08 - Nexus 422 Payload Hotfix
 
 ## Root Cause Detected
-1.  **Payload Mismatch**: The unified `lead-intake.ts` library was missing fields required by the newer Anclora Nexus ingestion contract (e.g., `full_name`, `privacy_accepted`, `submission_language`).
-2.  **Unfriendly Error Rendering**: Frontend forms were rendering complex backend validation error objects directly, resulting in `[object Object]` displays instead of human-readable messages.
+Anclora Nexus now requires strict schema validation for lead ingestion. Previous payloads were missing:
+*   `org_id`: Mandatory tenant identification.
+*   `external_id`: Unique client-side identifier.
+*   `source_system` / `source_channel`: Origin metadata.
+
+Additionally, frontend forms were rendering structured Pydantic/FastAPI error objects with a "body." prefix and potentially as `[object Object]` if not strings.
 
 ## Fixes Implemented
-1.  **Payload Alignment (`src/lib/lead-intake.ts`)**:
-    *   Updated `LeadIntakePayload` to include Nexus-standard aliases: `full_name`, `submission_source`, `submission_language`, and `privacy_accepted`.
-    *   Maintained legacy fields (`name`, `source`, `language`) for backward compatibility with older n8n workflows.
-    *   Updated `buildLeadIntakePayload` to automatically populate both legacy and new fields.
-2.  **Hardened Error Parsing (`src/lib/lead-intake.ts`)**:
-    *   Implemented `formatBackendError` to safely parse FastAPI-style validation errors (arrays in `detail` field).
-    *   Converts structured error locations and messages into a flat, readable string (e.g., "body.email: invalid email format").
-3.  **Global Form Improvements**:
-    *   Updated `SellerIntakeForm.tsx` to pass the `privacy_accepted` state to the payload builder.
-    *   Applied improved error parsing logic to `ValuationRequestForm.tsx`, `DataLabSignalsSection.tsx`, and `PartnersSynergiSection.tsx` to eliminate `[object Object]` rendering site-wide.
+1.  **Mandatory Ingestion Fields**:
+    *   Added `org_id` (sourced from `VITE_NEXUS_ORG_ID`).
+    *   Added `external_id` (auto-generated as `anclora_private_estates_landing_TIMESTAMP_RANDOM`).
+    *   Added `source_system` ("anclora_private_estates_landing") and `source_channel` ("web").
+2.  **Configuration Safety**:
+    *   Implemented a pre-POST check for `org_id`. If `VITE_NEXUS_ORG_ID` is missing, the submission is blocked with a clear "Configuration Error" message instead of a generic backend 422.
+3.  **Refined Error Formatting**:
+    *   Improved `formatBackendError` to strip the `body.` prefix from validation locations.
+    *   Example: `["body", "email"]` now renders as `email: Field required` instead of `body.email: Field required`.
+4.  **Global Alignment**:
+    *   Updated `SellerIntakeForm`, `ValuationRequestForm`, `DataLabSignalsSection`, and `PartnersSynergiSection` to include the mandatory Nexus fields.
 
 ## Outgoing Payload Comparison (Seller Intent)
 
-### Before
+### After alignment with Nexus
 ```json
 {
-  "source": "private_estates_landing",
-  "lead_type": "seller_intake",
-  "language": "es",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "phone": "123456789",
-  "zone": "Son Vida",
-  "page_url": "...",
-  "submitted_at": "..."
-}
-```
-
-### After (Aligned with Nexus)
-```json
-{
+  "org_id": "YOUR_ORG_ID",
+  "source_system": "anclora_private_estates_landing",
+  "source_channel": "web",
+  "external_id": "anclora_private_estates_landing_1714856400000_123",
   "source": "private_estates_landing",
   "submission_source": "private_estates_landing",
   "lead_type": "seller_intake",
-  "language": "es",
-  "submission_language": "es",
-  "name": "John Doe",
   "full_name": "John Doe",
   "email": "john@example.com",
-  "phone": "123456789",
   "privacy_accepted": true,
   "zone": "Son Vida",
-  "page_url": "...",
-  "submitted_at": "..."
+  ...
 }
 ```
 
 ## Technical Results
-*   **npm test**: **PASS** (8 tests passed). Added specific coverage for structured 422 errors and Nexus payload validation.
+*   **npm test**: **PASS** (8 tests passed).
 *   **npm run build**: **SUCCESS**.
 
 ## Final Decision
 **OK**
 
-The lead intake flow is now fully compatible with the Anclora Nexus ingestion contract, and validation errors are presented clearly to the user.
+The landing payload is now fully aligned with the Anclora Nexus mandatory ingestion contract.

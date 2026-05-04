@@ -14,6 +14,12 @@ export type LeadIntent = "sell" | "valuation" | "buy" | "invest";
  * Designed to be flat for n8n/Nexus compatibility.
  */
 export type LeadIntakePayload = {
+  // Nexus Mandatory Ingestion Fields
+  org_id: string;
+  external_id: string;
+  source_system: string;
+  source_channel: string;
+
   // Common Fields
   source: "private_estates_landing";
   submission_source?: "private_estates_landing"; // Alias for Nexus
@@ -93,7 +99,11 @@ function formatBackendError(errorBody: any): string {
   if (Array.isArray(errorBody.detail) && errorBody.detail.length > 0) {
     return errorBody.detail
       .map((err: any) => {
-        const path = Array.isArray(err.loc) ? err.loc.join(".") : "field";
+        let path = Array.isArray(err.loc) ? err.loc.join(".") : "field";
+        // Strip "body." prefix for cleaner user display
+        if (path.startsWith("body.")) {
+          path = path.replace("body.", "");
+        }
         return `${path}: ${err.msg}`;
       })
       .join(", ");
@@ -131,11 +141,22 @@ export function buildLeadIntakePayload(input: {
   submittedAt?: string;
   captchaToken?: string;
   qualifiers?: Record<string, string | undefined>;
+  orgId?: string;
+  externalId?: string;
 }): LeadIntakePayload {
+  const source_system = "anclora_private_estates_landing";
+  
   // Map "sell" intent to legacy "seller_intake" wire value for LNI-001 compatibility
   const wireLeadType = input.intent === "sell" ? "seller_intake" : input.intent;
 
   const payload: LeadIntakePayload = {
+    // Nexus Ingestion Alignment
+    org_id: input.orgId || "", // Form should validate this before calling
+    source_system,
+    source_channel: "web",
+    external_id: input.externalId || `${source_system}_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+
+    // Legacy and Common Fields
     source: "private_estates_landing",
     submission_source: "private_estates_landing",
     
@@ -188,6 +209,7 @@ export function buildSellerLeadIntakePayload(input: {
   message: string;
   pageUrl?: string;
   submittedAt?: string;
+  orgId?: string;
 }): SellerLeadIntakePayload {
   return buildLeadIntakePayload({
     intent: "sell",
@@ -199,6 +221,7 @@ export function buildSellerLeadIntakePayload(input: {
     privacyAccepted: true, // Legacy always assumes accepted if they reached this point
     pageUrl: input.pageUrl,
     submittedAt: input.submittedAt,
+    orgId: input.orgId,
     qualifiers: {
       zone: input.zone,
       property_type: input.propertyType,
@@ -231,6 +254,11 @@ export async function submitLeadIntake({
   webhookUrl,
   nexusBaseUrl,
 }: SubmitLeadIntakeOptions) {
+  // Validate org_id before POST
+  if (!payload.org_id) {
+    throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
+  }
+
   const endpoint = resolveLeadIntakeEndpoint({ webhookUrl, nexusBaseUrl });
   const response = await fetch(endpoint, {
     method: "POST",

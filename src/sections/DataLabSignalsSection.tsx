@@ -23,10 +23,21 @@ export function DataLabSignalsSection({ copy, language = "es" }: DataLabSignalsS
       const nexusBase =
         (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||
         "https://nexus.anclora.group";
+      const orgId = import.meta.env.VITE_NEXUS_ORG_ID as string | undefined;
+      
+      if (!orgId) {
+        throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
+      }
+
+      const source_system = "anclora_private_estates_landing";
       const res = await fetch(`${nexusBase}/api/public/data-lab-access-requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          org_id: orgId,
+          source_system,
+          source_channel: "web",
+          external_id: `${source_system}_dl_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
           full_name: name,
           email,
           profile_type: "investor",

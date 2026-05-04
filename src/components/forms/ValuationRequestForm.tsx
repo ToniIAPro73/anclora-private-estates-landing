@@ -37,10 +37,21 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
       const nexusBase =
         (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||
         "https://nexus.anclora.group";
+      const orgId = import.meta.env.VITE_NEXUS_ORG_ID as string | undefined;
+      
+      if (!orgId) {
+        throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
+      }
+
+      const source_system = "anclora_private_estates_landing";
       const res = await fetch(`${nexusBase}/api/public/valuation-requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          org_id: orgId,
+          source_system,
+          source_channel: "web",
+          external_id: `${source_system}_val_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
           full_name: name,
           email,
           phone: phone || undefined,
@@ -49,6 +60,7 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
           captcha_provider: siteKey ? "recaptcha" : undefined,
           captcha_token: captchaToken || undefined,
           submission_language: language,
+          submission_source: "private_estates_landing",
         }),
       });
 

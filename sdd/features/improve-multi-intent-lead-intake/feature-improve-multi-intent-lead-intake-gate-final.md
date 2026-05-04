@@ -9,6 +9,7 @@
 - [x] Human review correction (Agent C/D refactor) completed.
 - [x] Production hotfix (Captcha robustness + Locale cleanup) completed.
 - [x] Nexus 422 Payload Hotfix (Contract alignment + Error handling) completed.
+- [x] Mandatory Nexus Ingestion alignment (org_id, external_id, source metadata) completed.
 - [x] Agent E QA completed.
 - [x] Tests pass (8 tests passed).
 - [x] Build passes.
