@@ -81,6 +81,7 @@ describe("SellerIntakeForm", () => {
     expect(payload.submission_source).toBe("private_estates_landing");
     expect(payload.submission_language).toBe("es");
     expect(payload.privacy_accepted).toBe(true);
+    expect(payload.gdpr_consent).toBe(true);
   });
 
   test("fails visibly when VITE_NEXUS_ORG_ID is missing", async () => {

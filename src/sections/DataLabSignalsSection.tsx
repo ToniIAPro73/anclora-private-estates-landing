@@ -47,6 +47,7 @@ export function DataLabSignalsSection({ copy, language = "es" }: DataLabSignalsS
           requested_scope: "strategic_overview",
           intended_use: intendedUse,
           privacy_accepted: privacyAccepted,
+          gdpr_consent: privacyAccepted,
           submission_language: language,
           submission_source: "private_estates_landing",
         }),

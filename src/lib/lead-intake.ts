@@ -36,7 +36,8 @@ export type LeadIntakePayload = {
   phone?: string;
   message?: string;
   
-  privacy_accepted?: boolean; // For Nexus ingestion
+  privacy_accepted?: boolean; // For legacy n8n ingestion
+  gdpr_consent: boolean;      // MANDATORY for Nexus web lead ingestion
   
   page_url: string;
   submitted_at: string;
@@ -173,6 +174,7 @@ export function buildLeadIntakePayload(input: {
     message: trimOptional(input.message),
     
     privacy_accepted: input.privacyAccepted,
+    gdpr_consent: !!input.privacyAccepted, // Align with Nexus mandatory field
     
     page_url: input.pageUrl || (typeof window !== "undefined" ? window.location.href : ""),
     submitted_at: input.submittedAt || new Date().toISOString(),

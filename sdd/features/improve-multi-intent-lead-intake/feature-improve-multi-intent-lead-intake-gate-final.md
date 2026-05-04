@@ -11,6 +11,7 @@
 - [x] Nexus 422 Payload Hotfix (Contract alignment + Error handling) completed.
 - [x] Mandatory Nexus Ingestion alignment (org_id, external_id, source metadata) completed.
 - [x] Nexus Ingestion Enum corrections (source_system, source_channel) completed.
+- [x] Nexus Ingestion GDPR consent (gdpr_consent) completed.
 - [x] Agent E QA completed.
 - [x] Tests pass (8 tests passed).
 - [x] Build passes.

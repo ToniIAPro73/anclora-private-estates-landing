@@ -12,6 +12,7 @@ Additionally, frontend forms were rendering structured Pydantic/FastAPI error ob
 1.  **Mandatory Ingestion Fields**:
     *   Added `org_id` (sourced from `VITE_NEXUS_ORG_ID`).
     *   Added `external_id` (auto-generated with `private_estates_landing_` prefix).
+    *   Added `gdpr_consent: true` (mandatory for Nexus web lead ingestion).
     *   Aligned `source_system` and `source_channel` with Nexus strict enums:
         *   `source_system`: `"cta_web"`
         *   `source_channel`: `"website"`
@@ -38,6 +39,7 @@ Additionally, frontend forms were rendering structured Pydantic/FastAPI error ob
   "full_name": "John Doe",
   "email": "john@example.com",
   "privacy_accepted": true,
+  "gdpr_consent": true,
   "zone": "Son Vida",
   ...
 }

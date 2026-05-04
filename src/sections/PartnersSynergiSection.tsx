@@ -48,6 +48,7 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
           service_category: serviceCategory,
           service_summary: serviceSummary,
           privacy_accepted: privacyAccepted,
+          gdpr_consent: privacyAccepted,
           submission_language: language,
           submission_source: "private_estates_landing",
         }),

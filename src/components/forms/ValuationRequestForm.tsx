@@ -64,6 +64,8 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
           captcha_token: captchaToken || undefined,
           submission_language: language,
           submission_source: "private_estates_landing",
+          privacy_accepted: privacyAccepted,
+          gdpr_consent: privacyAccepted,
         }),
       });
 
