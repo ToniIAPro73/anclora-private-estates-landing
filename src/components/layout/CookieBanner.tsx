@@ -126,92 +126,82 @@ export function CookieBanner({ isOpen: externalIsOpen, onClose, copy }: CookieBa
         </div>
       ) : (
         // Settings View
-        <div className="cookie-modal" style={{ maxWidth: '700px' }}>
+        <div className="cookie-modal cookie-modal--settings">
           <div className="cookie-header">
             <h3>{copy.settingsTitle}</h3>
           </div>
           
-          <div className="space-y-3 mb-6">
-            {/* Necessary Cookies */}
-            <div className="flex items-center justify-between p-3 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
-              <div className="flex-1 text-left flex items-center gap-4">
-                <h4 className="font-semibold text-sm text-[var(--pe-text)] whitespace-nowrap">
-                  {copy.necessary.title}
-                </h4>
-                <p className="text-xs text-[var(--pe-text-soft)] line-clamp-1">
-                  {copy.necessary.description}
-                </p>
+          <div className="cookie-settings-body">
+            <div className="cookie-settings-list">
+              {/* Necessary Cookies */}
+              <div className="cookie-settings-item">
+                <div className="cookie-settings-info">
+                  <h4 className="cookie-settings-title">{copy.necessary.title}</h4>
+                  <p className="cookie-settings-description">{copy.necessary.description}</p>
+                </div>
+                <div className="cookie-settings-action">
+                  <input 
+                    type="checkbox" 
+                    checked={true} 
+                    disabled
+                    className="pe-checkbox pe-checkbox--disabled"
+                  />
+                </div>
               </div>
-              <div className="ml-4">
-                <input 
-                  type="checkbox" 
-                  checked={true} 
-                  disabled
-                  className="w-5 h-5 accent-[var(--pe-gold)] cursor-not-allowed"
-                />
-              </div>
-            </div>
 
-            {/* Analytics Cookies */}
-            <div className="flex items-center justify-between p-3 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
-              <div className="flex-1 text-left flex items-center gap-4">
-                <h4 className="font-semibold text-sm text-[var(--pe-text)] whitespace-nowrap">
-                  {copy.analytics.title}
-                </h4>
-                <p className="text-xs text-[var(--pe-text-soft)] line-clamp-1">
-                  {copy.analytics.description}
-                </p>
+              {/* Analytics Cookies */}
+              <div className="cookie-settings-item">
+                <div className="cookie-settings-info">
+                  <h4 className="cookie-settings-title">{copy.analytics.title}</h4>
+                  <p className="cookie-settings-description">{copy.analytics.description}</p>
+                </div>
+                <div className="cookie-settings-action">
+                  <input 
+                    type="checkbox" 
+                    checked={preferences.analytics}
+                    onChange={(e) => setPreferences({...preferences, analytics: e.target.checked})}
+                    className="pe-checkbox"
+                  />
+                </div>
               </div>
-              <div className="ml-4">
-                <input 
-                  type="checkbox" 
-                  checked={preferences.analytics}
-                  onChange={(e) => setPreferences({...preferences, analytics: e.target.checked})}
-                  className="w-5 h-5 accent-[var(--pe-gold)] cursor-pointer"
-                />
-              </div>
-            </div>
 
-            {/* Marketing Cookies */}
-            <div className="flex items-center justify-between p-3 bg-[rgba(255,255,255,0.03)] rounded-lg border border-[rgba(255,255,255,0.08)]">
-              <div className="flex-1 text-left flex items-center gap-4">
-                <h4 className="font-semibold text-sm text-[var(--pe-text)] whitespace-nowrap">
-                  {copy.marketing.title}
-                </h4>
-                <p className="text-xs text-[var(--pe-text-soft)] line-clamp-1">
-                  {copy.marketing.description}
-                </p>
-              </div>
-              <div className="ml-4">
-                <input 
-                  type="checkbox" 
-                  checked={preferences.marketing}
-                  onChange={(e) => setPreferences({...preferences, marketing: e.target.checked})}
-                  className="w-5 h-5 accent-[var(--pe-gold)] cursor-pointer"
-                />
+              {/* Marketing Cookies */}
+              <div className="cookie-settings-item">
+                <div className="cookie-settings-info">
+                  <h4 className="cookie-settings-title">{copy.marketing.title}</h4>
+                  <p className="cookie-settings-description">{copy.marketing.description}</p>
+                </div>
+                <div className="cookie-settings-action">
+                  <input 
+                    type="checkbox" 
+                    checked={preferences.marketing}
+                    onChange={(e) => setPreferences({...preferences, marketing: e.target.checked})}
+                    className="pe-checkbox"
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="cookie-actions-grid">
-            <button 
-              className="btn-cookie-premium btn-cookie-accept"
-              onClick={acceptSelected}
-            >
-              {copy.savePreferences}
-            </button>
-            <button 
-              className="btn-cookie-premium btn-cookie-settings"
-              onClick={() => setShowSettings(false)}
-            >
-              {copy.back}
-            </button>
-          </div>
-          
-          <div className="mt-4 text-center">
+          <div className="cookie-actions-stack">
+            <div className="cookie-actions-grid">
+              <button 
+                className="btn-cookie-premium btn-cookie-accept"
+                onClick={acceptSelected}
+              >
+                {copy.savePreferences}
+              </button>
+              <button 
+                className="btn-cookie-premium btn-cookie-settings"
+                onClick={() => setShowSettings(false)}
+              >
+                {copy.back}
+              </button>
+            </div>
+            
             <button 
               onClick={rejectAll}
-              className="text-xs text-[rgba(245,245,240,0.5)] hover:text-[var(--pe-gold)] transition-colors"
+              className="btn-cookie-reject-optional"
             >
               {copy.rejectAll}
             </button>

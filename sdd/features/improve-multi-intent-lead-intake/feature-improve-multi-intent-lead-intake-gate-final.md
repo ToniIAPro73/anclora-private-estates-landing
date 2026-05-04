@@ -14,8 +14,10 @@
 - [x] Nexus Ingestion GDPR consent (gdpr_consent) completed.
 - [x] Client section refinement & Buyer intake mapping completed.
 - [x] Cloudflare Turnstile migration (reCAPTCHA replacement) completed.
+- [x] Anchor scroll offset correction completed.
+- [x] Cookie modal UI refinement completed.
 - [x] Agent E QA completed.
-- [x] Tests pass (13 tests passed).
+- [x] Tests pass (15 tests passed).
 - [x] Build passes.
 - [x] Manual local E2E completed.
 - [x] No secrets committed.

@@ -2,6 +2,11 @@
   padding-block: clamp(4.75rem, 8vw, var(--pe-space-28));
 }
 
+.pe-section[id],
+[id="seller-intake"] {
+  scroll-margin-top: calc(var(--pe-navbar-h, 100px) + 1.5rem);
+}
+
 @media (min-width: 1024px) {
   .pe-section {
     padding-block: clamp(5.75rem, 8vw, 7.5rem);
