@@ -5,8 +5,9 @@ const DEFAULT_PUBLIC_LEAD_INTAKE_PATH = "/api/public/lead-intake";
 
 /**
  * Definitive Lead Intent types for internal logic.
+ * Corrected to exclude partners (handled by Synergi).
  */
-export type LeadIntent = "sell" | "valuation" | "buy" | "invest" | "partner";
+export type LeadIntent = "sell" | "valuation" | "buy" | "invest";
 
 /**
  * Unified Lead Intake Payload.
@@ -24,7 +25,7 @@ export type LeadIntakePayload = {
   page_url: string;
   submitted_at: string;
   
-  // Captcha (Optional for now, implemented by Agent D)
+  // Captcha
   captcha_token?: string;
   captcha_provider?: "recaptcha";
 
@@ -44,13 +45,9 @@ export type LeadIntakePayload = {
   budget_range?: string;
   buy_timing?: string;
   
-  // Investor
+  // Investor (Property-focused)
   investment_ticket?: string;
   investment_goal?: string;
-  
-  // Partner
-  partner_category?: string;
-  partner_proposal?: string;
 };
 
 /**
@@ -166,7 +163,7 @@ export function resolveLeadIntakeEndpoint({
 }
 
 /**
- * Generic submission function for all intents.
+ * Generic submission function for all property intents.
  */
 export async function submitLeadIntake({
   payload,

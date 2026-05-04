@@ -147,6 +147,13 @@ describe("SellerIntakeForm", () => {
     expect(recaptchaMock.resetCaptcha).toHaveBeenCalled();
   });
 
+  test("does not include partner intent in selector", () => {
+    render(<SellerIntakeForm copy={esCopy} />);
+    const select = screen.getByTestId("lead-intent-select") as HTMLSelectElement;
+    const options = Array.from(select.options).map(o => o.value);
+    expect(options).not.toContain("partner");
+  });
+
   test("shows backend errors without breaking the form shell", async () => {
     fetchMock.mockResolvedValueOnce({
       ok: false,

@@ -94,10 +94,6 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   // Investor
   const [investmentTicket, setInvestmentTicket] = useState("");
   const [investmentGoal, setInvestmentGoal] = useState("");
-  
-  // Partner
-  const [partnerCategory, setPartnerCategory] = useState("");
-  const [partnerProposal, setPartnerProposal] = useState("");
 
   // Status
   const [submitting, setSubmitting] = useState(false);
@@ -136,9 +132,6 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       } else if (intent === "invest") {
         qualifiers.investment_ticket = investmentTicket;
         qualifiers.investment_goal = investmentGoal;
-      } else if (intent === "partner") {
-        qualifiers.partner_category = partnerCategory;
-        qualifiers.partner_proposal = partnerProposal;
       }
 
       const payload = buildLeadIntakePayload({
@@ -168,7 +161,6 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       setValuationAddress(""); setValuationPropertyType("");
       setTargetZone(""); setBudgetRange(""); setBuyTiming("");
       setInvestmentTicket(""); setInvestmentGoal("");
-      setPartnerCategory(""); setPartnerProposal("");
     } catch (submissionError) {
       setError(submissionError instanceof Error ? submissionError.message : messages.genericError);
     } finally {
@@ -406,38 +398,6 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
                 value={investmentGoal}
                 onChange={(e) => setInvestmentGoal(e.target.value)}
                 placeholder={copy.placeholders.goal}
-              />
-            </label>
-          </>
-        )}
-
-        {/* Dynamic Fields - Partner */}
-        {intent === "partner" && (
-          <>
-            <label className="pe-form-field">
-              <span className="pe-eyebrow">{copy.category}</span>
-              <select
-                className="pe-select"
-                name="partnerCategory"
-                value={partnerCategory}
-                onChange={(e) => setPartnerCategory(e.target.value)}
-                required
-              >
-                <option value="" disabled>{copy.selectPlaceholder}</option>
-                {copy.categoryOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
-                ))}
-              </select>
-            </label>
-            <label className="pe-form-field">
-              <span className="pe-eyebrow">{copy.proposal}</span>
-              <input
-                className="pe-input"
-                name="partnerProposal"
-                required
-                value={partnerProposal}
-                onChange={(e) => setPartnerProposal(e.target.value)}
-                placeholder={copy.placeholders.proposal}
               />
             </label>
           </>

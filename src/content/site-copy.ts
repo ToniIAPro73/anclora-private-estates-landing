@@ -77,8 +77,6 @@ export type SellerFormCopy = {
   timing: string;
   ticket: string;
   goal: string;
-  category: string;
-  proposal: string;
   message: string;
   placeholders: {
     name: string;
@@ -90,8 +88,6 @@ export type SellerFormCopy = {
     timing: string;
     ticket: string;
     goal: string;
-    category: string;
-    proposal: string;
     message: string;
   };
   selectPlaceholder: string;
@@ -100,7 +96,6 @@ export type SellerFormCopy = {
   budgetOptions: string[];
   timingOptions: string[];
   ticketOptions: string[];
-  categoryOptions: string[];
   submitLabel: string;
 };
 
@@ -317,7 +312,7 @@ const siteCopyEs: SiteCopy = {
     links: [
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Inversores", href: "#inversores" },
-      { label: "Propietarios", href: "#propietarios" },
+      { label: "Clientes", href: "#propietarios" },
       { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contacto", href: "#contacto" },
@@ -458,7 +453,6 @@ const siteCopyEs: SiteCopy = {
         { value: "valuation", label: "Quiero una valoración privada" },
         { value: "buy", label: "Quiero comprar una propiedad premium" },
         { value: "invest", label: "Busco oportunidades de inversión" },
-        { value: "partner", label: "Soy partner / colaborador" },
       ],
       name: "Nombre",
       email: "Email",
@@ -471,8 +465,6 @@ const siteCopyEs: SiteCopy = {
       timing: "Plazo previsto",
       ticket: "Ticket de inversión",
       goal: "Objetivo de inversión",
-      category: "Categoría de servicio",
-      proposal: "Propuesta de colaboración",
       message: "Mensaje",
       placeholders: {
         name: "Tu nombre",
@@ -484,8 +476,6 @@ const siteCopyEs: SiteCopy = {
         timing: "Ej: Inmediato, 6 meses...",
         ticket: "Ej: 500k+, 2M+...",
         goal: "Ej: Patrimonio, Rentabilidad...",
-        category: "Inmobiliario, Legal, Lifestyle...",
-        proposal: "Cuéntanos cómo trabajas y qué valor aportas.",
         message: "Cuéntanos más detalles sobre tu solicitud.",
       },
       selectPlaceholder: "Selecciona una opción",
@@ -498,7 +488,6 @@ const siteCopyEs: SiteCopy = {
       budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
       timingOptions: ["Inmediato", "1-3 meses", "3-6 meses", "Sólo explorando"],
       ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
-      categoryOptions: ["Inmobiliario", "Legal / Financiero", "Arquitectura / Reforma", "Lifestyle / Lujo", "Otro"],
       submitLabel: "Enviar solicitud privada",
     },
   },
@@ -644,7 +633,7 @@ const siteCopyEs: SiteCopy = {
         links: [
           { label: "Mallorca", href: "#mallorca-focus" },
           { label: "Inversores", href: "#inversores" },
-          { label: "Propietarios", href: "#propietarios" },
+          { label: "Clientes", href: "#propietarios" },
           { label: "Partners", href: "#partners" },
           { label: "Data Lab", href: "#data-lab" },
         ],
@@ -701,7 +690,7 @@ const siteCopyEn: SiteCopy = {
       { label: "Credibility", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investors", href: "#inversores" },
-      { label: "Owners", href: "#propietarios" },
+      { label: "Clients", href: "#propietarios" },
       { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contact", href: "#contacto" },
@@ -841,7 +830,6 @@ const siteCopyEn: SiteCopy = {
         { value: "valuation", label: "I want a private valuation" },
         { value: "buy", label: "I want to buy a premium property" },
         { value: "invest", label: "I'm looking for investment opportunities" },
-        { value: "partner", label: "I'm a partner / collaborator" },
       ],
       name: "Name",
       email: "Email",
@@ -854,8 +842,6 @@ const siteCopyEn: SiteCopy = {
       timing: "Expected timing",
       ticket: "Investment ticket",
       goal: "Investment goal",
-      category: "Service category",
-      proposal: "Collaboration proposal",
       message: "Message",
       placeholders: {
         name: "Your name",
@@ -867,8 +853,6 @@ const siteCopyEn: SiteCopy = {
         timing: "e.g. Immediate, 6 months...",
         ticket: "e.g. 500k+, 2M+...",
         goal: "e.g. Wealth, ROI...",
-        category: "Real Estate, Legal, Lifestyle...",
-        proposal: "Tell us about your profile and the value you provide.",
         message: "Tell us more details about your request.",
       },
       selectPlaceholder: "Select an option",
@@ -881,7 +865,6 @@ const siteCopyEn: SiteCopy = {
       budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
       timingOptions: ["Immediate", "1-3 months", "3-6 months", "Just exploring"],
       ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
-      categoryOptions: ["Real Estate", "Legal / Financial", "Architecture / Reform", "Lifestyle / Luxury", "Other"],
       submitLabel: "Send private request",
     },
   },
@@ -1032,7 +1015,7 @@ const siteCopyEn: SiteCopy = {
         links: [
           { label: "Mallorca", href: "#mallorca-focus" },
           { label: "Investors", href: "#inversores" },
-          { label: "Owners", href: "#propietarios" },
+          { label: "Clients", href: "#propietarios" },
           { label: "Partners", href: "#partners" },
           { label: "Data Lab", href: "#data-lab" },
         ],
@@ -1089,7 +1072,7 @@ const siteCopyDe: SiteCopy = {
       { label: "Glaubwürdigkeit", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investoren", href: "#inversores" },
-      { label: "Eigentümer", href: "#propietarios" },
+      { label: "Kunden", href: "#propietarios" },
       { label: "Partner", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Kontakt", href: "#contacto" },
@@ -1166,7 +1149,7 @@ const siteCopyDe: SiteCopy = {
           "Illetas, Bendinat, Portals, Costa d'en Blanes und Punta Negra funktionieren als System, in dem Meer, Marina, Privatsphäre und Premium-Services zu zentralen Wertsignalen werden.",
         audienceLabel: "Zielgruppe",
         audience:
-          "Internationaler Käufer und Family Office mit Fokus auf Prime Coast und Beziehungskontinuität.",
+          "Internationaler Käufer und Family Office mit Fokus auf Prime Coast and Beziehungskontinuität.",
       },
       {
         ...siteCopyEs.mallorcaFocus.clusters[2],
@@ -1183,7 +1166,7 @@ const siteCopyDe: SiteCopy = {
         eyebrow: "Erbe und Serra-Charakter",
         title: "Innenland mit Charakter, Landschaft und Wohnsingularität.",
         body:
-          "Puerto de Andratx, Andratx, Esporles und Valldemossa bilden einen cluster, in dem sich die Lesart ändert: Erbe, Landschaft, Privatsphäre und Wohnnarrativ wiegen mehr als die reine Nähe zur Küste.",
+          "Puerto de Andratx, Andratx, Esporles und Valldemossa bilden einen cluster, in dem sich die Lesartändert: Erbe, Landschaft, Privatsphäre und Wohnnarrativ wiegen mehr als die reine Nähe zur Küste.",
         audienceLabel: "Zielgruppe",
         audience:
           "Beziehungsorientierter UHNW-Käufer, der Singularität, Ruhe und Objekte mit dauerhafter Geschichte schätzt.",
@@ -1232,7 +1215,6 @@ const siteCopyDe: SiteCopy = {
         { value: "valuation", label: "Ich möchte eine private Bewertung" },
         { value: "buy", label: "Ich möchte eine Premium-Immobilie kaufen" },
         { value: "invest", label: "Ich suche nach Investitionsmöglichkeiten" },
-        { value: "partner", label: "Ich bin Partner / Kooperationspartner" },
       ],
       name: "Name",
       email: "E-Mail",
@@ -1245,8 +1227,6 @@ const siteCopyDe: SiteCopy = {
       timing: "Voraussichtlicher Zeitrahmen",
       ticket: "Investitionsvolumen",
       goal: "Investitionsziel",
-      category: "Servicekategorie",
-      proposal: "Kooperationsvorschlag",
       message: "Nachricht",
       placeholders: {
         name: "Ihr Name",
@@ -1258,8 +1238,6 @@ const siteCopyDe: SiteCopy = {
         timing: "z.B. Sofort, 6 Monate...",
         ticket: "z.B. 500k+, 2M+...",
         goal: "z.B. Vermögensaufbau, Rendite...",
-        category: "Immobilien, Recht, Lifestyle...",
-        proposal: "Beschreiben Sie Ihr Profil und Ihren Mehrwert.",
         message: "Teilen Sie uns weitere Details zu Ihrer Anfrage mit.",
       },
       selectPlaceholder: "Option auswählen",
@@ -1272,7 +1250,6 @@ const siteCopyDe: SiteCopy = {
       budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
       timingOptions: ["Sofort", "1-3 Monate", "3-6 Monate", "Nur erkunden"],
       ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
-      categoryOptions: ["Immobilien", "Recht / Finanzen", "Architektur / Reform", "Lifestyle / Luxus", "Sonstiges"],
       submitLabel: "Private Anfrage senden",
     },
   },
@@ -1425,7 +1402,7 @@ const siteCopyDe: SiteCopy = {
         links: [
           { label: "Mallorca", href: "#mallorca-focus" },
           { label: "Investoren", href: "#inversores" },
-          { label: "Eigentümer", href: "#propietarios" },
+          { label: "Kunden", href: "#propietarios" },
           { label: "Partner", href: "#partners" },
           { label: "Data Lab", href: "#data-lab" },
         ],
@@ -1506,7 +1483,7 @@ const siteCopyFr: SiteCopy = {
       "Vente discrète à Andratx, Calvià, Son Vida et Portals.\nSans portails. Seulement des acheteurs qualifiés.",
     chips: [],
     note:
-      "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel et une relation plus sophistiquée avec l'actif.",
+      "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel y une relation plus sophistiquée avec l'actif.",
     primaryCta: "Demander un accès confidentiel",
     secondaryCta: "Explorer le territoire",
     media: {
@@ -1535,7 +1512,7 @@ const siteCopyFr: SiteCopy = {
   },
   mallorcaFocus: {
     ...siteCopyEs.mallorcaFocus,
-    title: "Majorque ne se lit pas comme une liste plate de zones, mais comme un système de micro-localisations et de signaux.",
+    title: "Majorque ne se lit pas comme une liste plate de zones, mais como un système de micro-localisations et de signaux.",
     intro:
       "Chaque enclave exige un langage commercial distinct. La même esthétique ne convient pas à Palma, Portals ou Valldemossa ; pas plus que le même récit de valeur.",
     areasLabel: "Zones",
@@ -1624,7 +1601,6 @@ const siteCopyFr: SiteCopy = {
         { value: "valuation", label: "Je souhaite une évaluation privée" },
         { value: "buy", label: "Je souhaite acheter un bien premium" },
         { value: "invest", label: "Je recherche des opportunités d'investissement" },
-        { value: "partner", label: "Je suis un partenaire / collaborateur" },
       ],
       name: "Nom",
       email: "E-mail",
@@ -1637,8 +1613,6 @@ const siteCopyFr: SiteCopy = {
       timing: "Délai prévu",
       ticket: "Ticket d'investissement",
       goal: "Objectif d'investissement",
-      category: "Catégorie de service",
-      proposal: "Proposition de collaboration",
       message: "Message",
       placeholders: {
         name: "Votre nom",
@@ -1650,8 +1624,6 @@ const siteCopyFr: SiteCopy = {
         timing: "ex: Immédiat, 6 mois...",
         ticket: "ex: 500k+, 2M+...",
         goal: "ex: Patrimoine, Rendement...",
-        category: "Immobilier, Juridique, Lifestyle...",
-        proposal: "Décrivez votre profil et votre valeur ajoutée.",
         message: "Donnez-nous plus de détails sur votre demande.",
       },
       selectPlaceholder: "Sélectionner une option",
@@ -1664,7 +1636,6 @@ const siteCopyFr: SiteCopy = {
       budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
       timingOptions: ["Immédiat", "1-3 mois", "3-6 mois", "Juste exploration"],
       ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
-      categoryOptions: ["Immobilier", "Juridique / Financier", "Architecture / Réforme", "Lifestyle / Luxe", "Autre"],
       submitLabel: "Envoyer une demande privée",
     },
   },
@@ -1841,3 +1812,7 @@ export const siteCopyByLanguage = {
   de: siteCopyDe,
   fr: siteCopyFr,
 } satisfies Record<LanguageCode, SiteCopy>;
+
+
+
+
