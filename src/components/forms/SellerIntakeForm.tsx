@@ -1,6 +1,11 @@
 import { useState } from "react";
 import type { LanguageCode, SellerFormCopy } from "@/content/site-copy";
-import { buildSellerLeadIntakePayload, submitSellerLeadIntake } from "@/lib/lead-intake";
+import { 
+  buildLeadIntakePayload, 
+  submitLeadIntake, 
+  type LeadIntent 
+} from "@/lib/lead-intake";
+import { useRecaptcha } from "@/hooks/useRecaptcha";
 
 type SellerIntakeFormProps = {
   copy: SellerFormCopy;
@@ -11,6 +16,7 @@ type SellerFormMessages = {
   successTitle: string;
   successBody: string;
   genericError: string;
+  captchaError: string;
 };
 
 const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
@@ -19,28 +25,33 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     successTitle: "Solicitud recibida",
     successBody: "Revisaremos tu activo y te responderemos en un plazo de dos días hábiles.",
     genericError: "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.",
+    captchaError: "Por favor completa la verificación de seguridad.",
   },
   en: {
     privacyLabel: "I have read and accept the privacy policy.",
     successTitle: "Request received",
     successBody: "We will review your asset and get back to you within two working days.",
     genericError: "We could not send your request. Please try again in a few minutes.",
+    captchaError: "Please complete the security verification.",
   },
   de: {
     privacyLabel: "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
     successTitle: "Anfrage erhalten",
     successBody: "Wir prüfen Ihren Vermögenswert und melden uns innerhalb von zwei Werktagen.",
     genericError: "Wir konnten Ihre Anfrage nicht senden. Bitte versuchen Sie es in einigen Minuten erneut.",
+    captchaError: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
   },
   fr: {
     privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
     successTitle: "Demande reçue",
     successBody: "Nous examinerons votre actif et vous répondrons sous deux jours ouvrables.",
     genericError: "Nous n'avons pas pu envoyer votre demande. Veuillez réessayer dans quelques minutes.",
+    captchaError: "Veuillez compléter la vérification de sécurité.",
   },
 };
 
 function resolveCurrentLanguage(): LanguageCode {
+  if (typeof document === "undefined") return "es";
   const documentLanguage = document.documentElement.lang;
   if (documentLanguage === "en" || documentLanguage === "de" || documentLanguage === "fr") {
     return documentLanguage;
@@ -50,14 +61,41 @@ function resolveCurrentLanguage(): LanguageCode {
 }
 
 export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
+  // Intent Selection
+  const [intent, setIntent] = useState<LeadIntent>("sell");
+  
+  // Common Fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  
+  // Captcha
+  const { captchaToken, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
+    import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined
+  );
+
+  // Intent-Specific Fields
+  // Seller
   const [zone, setZone] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [commercialization, setCommercialization] = useState("");
-  const [message, setMessage] = useState("");
-  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  
+  // Valuation
+  const [valuationAddress, setValuationAddress] = useState("");
+  const [valuationPropertyType, setValuationPropertyType] = useState("");
+  
+  // Buyer
+  const [targetZone, setTargetZone] = useState("");
+  const [budgetRange, setBudgetRange] = useState("");
+  const [buyTiming, setBuyTiming] = useState("");
+  
+  // Investor
+  const [investmentTicket, setInvestmentTicket] = useState("");
+  const [investmentGoal, setInvestmentGoal] = useState("");
+
+  // Status
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -68,36 +106,61 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+
+    if (siteKey && !captchaToken) {
+      setError(messages.captchaError);
+      return;
+    }
+
     setSubmitting(true);
 
     try {
-      const payload = buildSellerLeadIntakePayload({
+      // Collect qualifiers based on intent
+      const qualifiers: Record<string, string | undefined> = {};
+      
+      if (intent === "sell") {
+        qualifiers.zone = zone;
+        qualifiers.property_type = propertyType;
+        qualifiers.commercialization = commercialization;
+      } else if (intent === "valuation") {
+        qualifiers.valuation_address = valuationAddress;
+        qualifiers.valuation_property_type = valuationPropertyType;
+      } else if (intent === "buy") {
+        qualifiers.target_zone = targetZone;
+        qualifiers.budget_range = budgetRange;
+        qualifiers.buy_timing = buyTiming;
+      } else if (intent === "invest") {
+        qualifiers.investment_ticket = investmentTicket;
+        qualifiers.investment_goal = investmentGoal;
+      }
+
+      const payload = buildLeadIntakePayload({
+        intent,
         language,
         name,
         email,
         phone,
-        zone,
-        propertyType,
-        commercialization,
         message,
-        pageUrl: window.location.href,
+        qualifiers,
+        captchaToken: captchaToken ?? undefined,
+        pageUrl: typeof window !== "undefined" ? window.location.href : "",
       });
 
-      await submitSellerLeadIntake({
+      await submitLeadIntake({
         payload,
         webhookUrl: import.meta.env.VITE_N8N_LEAD_INTAKE_WEBHOOK_URL as string | undefined,
         nexusBaseUrl: import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined,
       });
 
       setSuccess(true);
-      setName("");
-      setEmail("");
-      setPhone("");
-      setZone("");
-      setPropertyType("");
-      setCommercialization("");
-      setMessage("");
+      // Reset form
+      setName(""); setEmail(""); setPhone(""); setMessage("");
       setPrivacyAccepted(false);
+      resetCaptcha();
+      setZone(""); setPropertyType(""); setCommercialization("");
+      setValuationAddress(""); setValuationPropertyType("");
+      setTargetZone(""); setBudgetRange(""); setBuyTiming("");
+      setInvestmentTicket(""); setInvestmentGoal("");
     } catch (submissionError) {
       setError(submissionError instanceof Error ? submissionError.message : messages.genericError);
     } finally {
@@ -120,6 +183,28 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
 
   return (
     <form className="pe-form" onSubmit={handleSubmit} data-testid="seller-intake-form">
+      {/* Intent Selector */}
+      <label className="pe-form-field" style={{ marginBottom: "2rem" }}>
+        <span className="pe-eyebrow">{copy.intentLabel}</span>
+        <select
+          className="pe-select"
+          name="intent"
+          value={intent}
+          onChange={(e) => {
+            setIntent(e.target.value as LeadIntent);
+            resetCaptcha(); // Reset captcha when intent changes to avoid confusion or staleness
+          }}
+          data-testid="lead-intent-select"
+          required
+        >
+          {copy.intentOptions.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      </label>
+
       <div className="pe-form-grid">
         <label className="pe-form-field">
           <span className="pe-eyebrow">{copy.name}</span>
@@ -158,58 +243,168 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
             data-testid="seller-phone-input"
           />
         </label>
-        <label className="pe-form-field">
-          <span className="pe-eyebrow">{copy.zone}</span>
-          <input
-            className="pe-input"
-            name="zone"
-            value={zone}
-            onChange={(event) => setZone(event.target.value)}
-            placeholder={copy.placeholders.zone}
-            data-testid="seller-zone-input"
-          />
-        </label>
-        <label className="pe-form-field">
-          <span className="pe-eyebrow">{copy.propertyType}</span>
-          <select
-            className="pe-select"
-            name="propertyType"
-            value={propertyType}
-            onChange={(event) => setPropertyType(event.target.value)}
-            data-testid="seller-property-type-select"
-          >
-            <option value="" disabled>
-              {copy.selectPlaceholder}
-            </option>
-            {copy.propertyTypeOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="pe-form-field">
-          <span className="pe-eyebrow">{copy.commercialization}</span>
-          <select
-            className="pe-select"
-            name="commercialization"
-            value={commercialization}
-            onChange={(event) => setCommercialization(event.target.value)}
-            data-testid="seller-commercialization-select"
-          >
-            <option value="" disabled>
-              {copy.selectPlaceholder}
-            </option>
-            {copy.commercializationOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
+
+        {/* Dynamic Fields - Seller */}
+        {intent === "sell" && (
+          <>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.zone}</span>
+              <input
+                className="pe-input"
+                name="zone"
+                required
+                value={zone}
+                onChange={(event) => setZone(event.target.value)}
+                placeholder={copy.placeholders.zone}
+                data-testid="seller-zone-input"
+              />
+            </label>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.propertyType}</span>
+              <select
+                className="pe-select"
+                name="propertyType"
+                value={propertyType}
+                onChange={(event) => setPropertyType(event.target.value)}
+                required
+              >
+                <option value="" disabled>{copy.selectPlaceholder}</option>
+                {copy.propertyTypeOptions.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.commercialization}</span>
+              <select
+                className="pe-select"
+                name="commercialization"
+                value={commercialization}
+                onChange={(event) => setCommercialization(event.target.value)}
+                required
+              >
+                <option value="" disabled>{copy.selectPlaceholder}</option>
+                {copy.commercializationOptions.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+          </>
+        )}
+
+        {/* Dynamic Fields - Valuation */}
+        {intent === "valuation" && (
+          <>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.address}</span>
+              <input
+                className="pe-input"
+                name="valuationAddress"
+                required
+                value={valuationAddress}
+                onChange={(e) => setValuationAddress(e.target.value)}
+                placeholder={copy.placeholders.address}
+              />
+            </label>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.propertyType}</span>
+              <select
+                className="pe-select"
+                name="valuationPropertyType"
+                value={valuationPropertyType}
+                onChange={(e) => setValuationPropertyType(e.target.value)}
+                required
+              >
+                <option value="" disabled>{copy.selectPlaceholder}</option>
+                {copy.propertyTypeOptions.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+          </>
+        )}
+
+        {/* Dynamic Fields - Buyer */}
+        {intent === "buy" && (
+          <>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.zone}</span>
+              <input
+                className="pe-input"
+                name="targetZone"
+                required
+                value={targetZone}
+                onChange={(e) => setTargetZone(e.target.value)}
+                placeholder={copy.placeholders.zone}
+              />
+            </label>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.budget}</span>
+              <select
+                className="pe-select"
+                name="budgetRange"
+                value={budgetRange}
+                onChange={(e) => setBudgetRange(e.target.value)}
+                required
+              >
+                <option value="" disabled>{copy.selectPlaceholder}</option>
+                {copy.budgetOptions.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.timing}</span>
+              <select
+                className="pe-select"
+                name="buyTiming"
+                value={buyTiming}
+                onChange={(e) => setBuyTiming(e.target.value)}
+                required
+              >
+                <option value="" disabled>{copy.selectPlaceholder}</option>
+                {copy.timingOptions.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+          </>
+        )}
+
+        {/* Dynamic Fields - Investor */}
+        {intent === "invest" && (
+          <>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.ticket}</span>
+              <select
+                className="pe-select"
+                name="investmentTicket"
+                value={investmentTicket}
+                onChange={(e) => setInvestmentTicket(e.target.value)}
+                required
+              >
+                <option value="" disabled>{copy.selectPlaceholder}</option>
+                {copy.ticketOptions.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.goal}</span>
+              <input
+                className="pe-input"
+                name="investmentGoal"
+                required
+                value={investmentGoal}
+                onChange={(e) => setInvestmentGoal(e.target.value)}
+                placeholder={copy.placeholders.goal}
+              />
+            </label>
+          </>
+        )}
       </div>
 
-      <label className="pe-form-field">
+      <label className="pe-form-field" style={{ marginTop: "1rem" }}>
         <span className="pe-eyebrow">{copy.message}</span>
         <textarea
           className="pe-textarea"
@@ -220,6 +415,14 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
           data-testid="seller-message-input"
         />
       </label>
+
+      {siteKey && (
+        <div 
+          ref={captchaContainerRef} 
+          style={{ margin: "1.5rem 0" }} 
+          data-testid="seller-captcha" 
+        />
+      )}
 
       <label className="pe-form-field pe-privacy-row" style={{ marginTop: "1.5rem" }}>
         <input

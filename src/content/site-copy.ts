@@ -64,23 +64,38 @@ export type InvestorCopy = {
 };
 
 export type SellerFormCopy = {
+  intentLabel: string;
+  intentOptions: { value: string; label: string }[];
   name: string;
   email: string;
   phone: string;
   zone: string;
   propertyType: string;
   commercialization: string;
+  address: string;
+  budget: string;
+  timing: string;
+  ticket: string;
+  goal: string;
   message: string;
   placeholders: {
     name: string;
     email: string;
     phone: string;
     zone: string;
+    address: string;
+    budget: string;
+    timing: string;
+    ticket: string;
+    goal: string;
     message: string;
   };
   selectPlaceholder: string;
   propertyTypeOptions: string[];
   commercializationOptions: string[];
+  budgetOptions: string[];
+  timingOptions: string[];
+  ticketOptions: string[];
   submitLabel: string;
 };
 
@@ -297,7 +312,7 @@ const siteCopyEs: SiteCopy = {
     links: [
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Inversores", href: "#inversores" },
-      { label: "Propietarios", href: "#propietarios" },
+      { label: "Clientes", href: "#propietarios" },
       { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contacto", href: "#contacto" },
@@ -432,19 +447,36 @@ const siteCopyEs: SiteCopy = {
     checklist: ["Microzona y competencia real", "Narrativa de posicionamiento", "Timing comercial y acceso"],
     trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
     form: {
+      intentLabel: "¿En qué podemos ayudarte?",
+      intentOptions: [
+        { value: "sell", label: "Quiero vender una propiedad" },
+        { value: "valuation", label: "Quiero una valoración privada" },
+        { value: "buy", label: "Quiero comprar una propiedad premium" },
+        { value: "invest", label: "Busco oportunidades de inversión" },
+      ],
       name: "Nombre",
       email: "Email",
       phone: "Teléfono",
       zone: "Zona del inmueble",
       propertyType: "Tipo de propiedad",
       commercialization: "Preferencia de comercialización",
+      address: "Dirección del inmueble",
+      budget: "Presupuesto aproximado",
+      timing: "Plazo previsto",
+      ticket: "Ticket de inversión",
+      goal: "Objetivo de inversión",
       message: "Mensaje",
       placeholders: {
         name: "Tu nombre",
         email: "nombre@dominio.com",
         phone: "+34 ...",
         zone: "Son Vida, Portals, Andratx...",
-        message: "Cuéntanos el contexto del activo y qué necesitas resolver.",
+        address: "Calle, zona o referencia catastral",
+        budget: "Ej: 1M - 3M €",
+        timing: "Ej: Inmediato, 6 meses...",
+        ticket: "Ej: 500k+, 2M+...",
+        goal: "Ej: Patrimonio, Rentabilidad...",
+        message: "Cuéntanos más detalles sobre tu solicitud.",
       },
       selectPlaceholder: "Selecciona una opción",
       propertyTypeOptions: ["Villa", "Ático", "Apartamento premium", "Finca"],
@@ -453,7 +485,10 @@ const siteCopyEs: SiteCopy = {
         "Venta en exclusiva",
         "Venta selectiva sin portal masivo",
       ],
-      submitLabel: "Solicitar evaluación confidencial",
+      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
+      timingOptions: ["Inmediato", "1-3 meses", "3-6 meses", "Sólo explorando"],
+      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
+      submitLabel: "Enviar solicitud privada",
     },
   },
   valuation: {
@@ -598,7 +633,7 @@ const siteCopyEs: SiteCopy = {
         links: [
           { label: "Mallorca", href: "#mallorca-focus" },
           { label: "Inversores", href: "#inversores" },
-          { label: "Propietarios", href: "#propietarios" },
+          { label: "Clientes", href: "#propietarios" },
           { label: "Partners", href: "#partners" },
           { label: "Data Lab", href: "#data-lab" },
         ],
@@ -655,7 +690,7 @@ const siteCopyEn: SiteCopy = {
       { label: "Credibility", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investors", href: "#inversores" },
-      { label: "Owners", href: "#propietarios" },
+      { label: "Clients", href: "#propietarios" },
       { label: "Partners", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Contact", href: "#contacto" },
@@ -789,20 +824,36 @@ const siteCopyEn: SiteCopy = {
     checklist: ["Micro-location and real competition", "Positioning narrative", "Commercial timing and access"],
     trustBadgeText: "International backing and operational trust through eXp Group Spain.",
     form: {
-      ...siteCopyEs.sellerIntake.form,
+      intentLabel: "How can we help you?",
+      intentOptions: [
+        { value: "sell", label: "I want to sell a property" },
+        { value: "valuation", label: "I want a private valuation" },
+        { value: "buy", label: "I want to buy a premium property" },
+        { value: "invest", label: "I'm looking for investment opportunities" },
+      ],
       name: "Name",
       email: "Email",
       phone: "Phone",
       zone: "Property area",
       propertyType: "Property type",
       commercialization: "Commercial approach",
+      address: "Property address",
+      budget: "Approximate budget",
+      timing: "Expected timing",
+      ticket: "Investment ticket",
+      goal: "Investment goal",
       message: "Message",
       placeholders: {
         name: "Your name",
         email: "name@domain.com",
         phone: "+34 ...",
         zone: "Son Vida, Portals, Andratx...",
-        message: "Tell us about the asset context and what you need to solve.",
+        address: "Street, area or cadastral reference",
+        budget: "e.g. 1M - 3M €",
+        timing: "e.g. Immediate, 6 months...",
+        ticket: "e.g. 500k+, 2M+...",
+        goal: "e.g. Wealth, ROI...",
+        message: "Tell us more details about your request.",
       },
       selectPlaceholder: "Select an option",
       propertyTypeOptions: ["Villa", "Penthouse", "Premium apartment", "Finca"],
@@ -811,7 +862,10 @@ const siteCopyEn: SiteCopy = {
         "Exclusive mandate",
         "Selective sale without mass portals",
       ],
-      submitLabel: "Request a confidential assessment",
+      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
+      timingOptions: ["Immediate", "1-3 months", "3-6 months", "Just exploring"],
+      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
+      submitLabel: "Send private request",
     },
   },
   valuation: {
@@ -961,7 +1015,7 @@ const siteCopyEn: SiteCopy = {
         links: [
           { label: "Mallorca", href: "#mallorca-focus" },
           { label: "Investors", href: "#inversores" },
-          { label: "Owners", href: "#propietarios" },
+          { label: "Clients", href: "#propietarios" },
           { label: "Partners", href: "#partners" },
           { label: "Data Lab", href: "#data-lab" },
         ],
@@ -1018,7 +1072,7 @@ const siteCopyDe: SiteCopy = {
       { label: "Glaubwürdigkeit", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Investoren", href: "#inversores" },
-      { label: "Eigentümer", href: "#propietarios" },
+      { label: "Kunden", href: "#propietarios" },
       { label: "Partner", href: "#partners" },
       { label: "Data Lab", href: "#data-lab" },
       { label: "Kontakt", href: "#contacto" },
@@ -1095,7 +1149,7 @@ const siteCopyDe: SiteCopy = {
           "Illetas, Bendinat, Portals, Costa d'en Blanes und Punta Negra funktionieren als System, in dem Meer, Marina, Privatsphäre und Premium-Services zu zentralen Wertsignalen werden.",
         audienceLabel: "Zielgruppe",
         audience:
-          "Internationaler Käufer und Family Office mit Fokus auf Prime Coast und Beziehungskontinuität.",
+          "Internationaler Käufer und Family Office mit Fokus auf Prime Coast and Beziehungskontinuität.",
       },
       {
         ...siteCopyEs.mallorcaFocus.clusters[2],
@@ -1112,7 +1166,7 @@ const siteCopyDe: SiteCopy = {
         eyebrow: "Erbe und Serra-Charakter",
         title: "Innenland mit Charakter, Landschaft und Wohnsingularität.",
         body:
-          "Puerto de Andratx, Andratx, Esporles und Valldemossa bilden einen cluster, in dem sich die Lesart ändert: Erbe, Landschaft, Privatsphäre und Wohnnarrativ wiegen mehr als die reine Nähe zur Küste.",
+          "Puerto de Andratx, Andratx, Esporles und Valldemossa bilden einen cluster, in dem sich die Lesartändert: Erbe, Landschaft, Privatsphäre und Wohnnarrativ wiegen mehr als die reine Nähe zur Küste.",
         audienceLabel: "Zielgruppe",
         audience:
           "Beziehungsorientierter UHNW-Käufer, der Singularität, Ruhe und Objekte mit dauerhafter Geschichte schätzt.",
@@ -1155,20 +1209,36 @@ const siteCopyDe: SiteCopy = {
     checklist: ["Mikrolage und reale Konkurrenz", "Positionierungsnarrativ", "Kommerzielles Timing und Zugang"],
     trustBadgeText: "Internationale Rückendeckung und operative Sicherheit durch eXp Group Spain.",
     form: {
-      ...siteCopyEs.sellerIntake.form,
+      intentLabel: "Wie können wir Ihnen helfen?",
+      intentOptions: [
+        { value: "sell", label: "Ich möchte eine Immobilie verkaufen" },
+        { value: "valuation", label: "Ich möchte eine private Bewertung" },
+        { value: "buy", label: "Ich möchte eine Premium-Immobilie kaufen" },
+        { value: "invest", label: "Ich suche nach Investitionsmöglichkeiten" },
+      ],
       name: "Name",
       email: "E-Mail",
       phone: "Telefon",
       zone: "Objektlage",
       propertyType: "Objekttyp",
       commercialization: "Vermarktungspräferenz",
+      address: "Objektadresse",
+      budget: "Ungefähres Budget",
+      timing: "Voraussichtlicher Zeitrahmen",
+      ticket: "Investitionsvolumen",
+      goal: "Investitionsziel",
       message: "Nachricht",
       placeholders: {
-        name: "Dein Name",
+        name: "Ihr Name",
         email: "name@domain.de",
         phone: "+49 ...",
         zone: "Son Vida, Portals, Andratx...",
-        message: "Erzähle uns vom Objekt und davon, was du lösen möchtest.",
+        address: "Straße, Lage oder Katasterreferenz",
+        budget: "z.B. 1M - 3M €",
+        timing: "z.B. Sofort, 6 Monate...",
+        ticket: "z.B. 500k+, 2M+...",
+        goal: "z.B. Vermögensaufbau, Rendite...",
+        message: "Teilen Sie uns weitere Details zu Ihrer Anfrage mit.",
       },
       selectPlaceholder: "Option auswählen",
       propertyTypeOptions: ["Villa", "Penthouse", "Premium-Apartment", "Finca"],
@@ -1177,7 +1247,10 @@ const siteCopyDe: SiteCopy = {
         "Exklusivverkauf",
         "Selektiver Verkauf ohne Massenportale",
       ],
-      submitLabel: "Vertrauliche Bewertung anfordern",
+      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
+      timingOptions: ["Sofort", "1-3 Monate", "3-6 Monate", "Nur erkunden"],
+      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
+      submitLabel: "Private Anfrage senden",
     },
   },
   valuation: {
@@ -1329,7 +1402,7 @@ const siteCopyDe: SiteCopy = {
         links: [
           { label: "Mallorca", href: "#mallorca-focus" },
           { label: "Investoren", href: "#inversores" },
-          { label: "Eigentümer", href: "#propietarios" },
+          { label: "Kunden", href: "#propietarios" },
           { label: "Partner", href: "#partners" },
           { label: "Data Lab", href: "#data-lab" },
         ],
@@ -1410,7 +1483,7 @@ const siteCopyFr: SiteCopy = {
       "Vente discrète à Andratx, Calvià, Son Vida et Portals.\nSans portails. Seulement des acheteurs qualifiés.",
     chips: [],
     note:
-      "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel et une relation plus sophistiquée avec l'actif.",
+      "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel y une relation plus sophistiquée avec l'actif.",
     primaryCta: "Demander un accès confidentiel",
     secondaryCta: "Explorer le territoire",
     media: {
@@ -1439,7 +1512,7 @@ const siteCopyFr: SiteCopy = {
   },
   mallorcaFocus: {
     ...siteCopyEs.mallorcaFocus,
-    title: "Majorque ne se lit pas comme une liste plate de zones, mais comme un système de micro-localisations et de signaux.",
+    title: "Majorque ne se lit pas comme une liste plate de zones, mais como un système de micro-localisations et de signaux.",
     intro:
       "Chaque enclave exige un langage commercial distinct. La même esthétique ne convient pas à Palma, Portals ou Valldemossa ; pas plus que le même récit de valeur.",
     areasLabel: "Zones",
@@ -1522,20 +1595,36 @@ const siteCopyFr: SiteCopy = {
     checklist: ["Micro-zone et concurrence réelle", "Narration de positionnement", "Timing commercial et accès"],
     trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
     form: {
-      ...siteCopyEs.sellerIntake.form,
+      intentLabel: "Comment pouvons-nous vous aider ?",
+      intentOptions: [
+        { value: "sell", label: "Je souhaite vendre un bien" },
+        { value: "valuation", label: "Je souhaite une évaluation privée" },
+        { value: "buy", label: "Je souhaite acheter un bien premium" },
+        { value: "invest", label: "Je recherche des opportunités d'investissement" },
+      ],
       name: "Nom",
       email: "E-mail",
       phone: "Téléphone",
       zone: "Zone du bien",
       propertyType: "Type de bien",
       commercialization: "Préférence de commercialisation",
+      address: "Adresse du bien",
+      budget: "Budget approximatif",
+      timing: "Délai prévu",
+      ticket: "Ticket d'investissement",
+      goal: "Objectif d'investissement",
       message: "Message",
       placeholders: {
         name: "Votre nom",
         email: "nom@domaine.fr",
         phone: "+33 ...",
         zone: "Son Vida, Portals, Andratx...",
-        message: "Décrivez le contexte de l'actif et ce que vous souhaitez résoudre.",
+        address: "Rue, zone ou référence cadastrale",
+        budget: "ex: 1M - 3M €",
+        timing: "ex: Immédiat, 6 mois...",
+        ticket: "ex: 500k+, 2M+...",
+        goal: "ex: Patrimoine, Rendement...",
+        message: "Donnez-nous plus de détails sur votre demande.",
       },
       selectPlaceholder: "Sélectionner une option",
       propertyTypeOptions: ["Villa", "Penthouse", "Appartement premium", "Finca"],
@@ -1544,7 +1633,10 @@ const siteCopyFr: SiteCopy = {
         "Vente en exclusivité",
         "Vente sélective sans portail de masse",
       ],
-      submitLabel: "Demander une évaluation confidentielle",
+      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
+      timingOptions: ["Immédiat", "1-3 mois", "3-6 mois", "Juste exploration"],
+      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
+      submitLabel: "Envoyer une demande privée",
     },
   },
   valuation: {
@@ -1720,3 +1812,7 @@ export const siteCopyByLanguage = {
   de: siteCopyDe,
   fr: siteCopyFr,
 } satisfies Record<LanguageCode, SiteCopy>;
+
+
+
+
