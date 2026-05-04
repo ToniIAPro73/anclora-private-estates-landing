@@ -70,9 +70,9 @@ describe("SellerIntakeForm", () => {
 
     // Mandatory Nexus Ingestion fields
     expect(payload.org_id).toBe("test-org-id");
-    expect(payload.source_system).toBe("anclora_private_estates_landing");
-    expect(payload.source_channel).toBe("web");
-    expect(payload.external_id).toMatch(/^anclora_private_estates_landing_\d+_\d+$/);
+    expect(payload.source_system).toBe("cta_web");
+    expect(payload.source_channel).toBe("website");
+    expect(payload.external_id).toMatch(/^private_estates_landing_\d+_\d+$/);
 
     // Legacy and Common fields
     expect(payload.lead_type).toBe("seller_intake");

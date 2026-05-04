@@ -43,15 +43,18 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
         throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
       }
 
-      const source_system = "anclora_private_estates_landing";
+      const source_system_enum = "cta_web";
+      const source_channel_enum = "website";
+      const internal_trace_prefix = "private_estates_landing";
+      
       const res = await fetch(`${nexusBase}/api/public/valuation-requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           org_id: orgId,
-          source_system,
-          source_channel: "web",
-          external_id: `${source_system}_val_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+          source_system: source_system_enum,
+          source_channel: source_channel_enum,
+          external_id: `${internal_trace_prefix}_val_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
           full_name: name,
           email,
           phone: phone || undefined,

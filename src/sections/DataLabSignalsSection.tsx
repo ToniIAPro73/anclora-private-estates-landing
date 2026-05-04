@@ -29,15 +29,18 @@ export function DataLabSignalsSection({ copy, language = "es" }: DataLabSignalsS
         throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
       }
 
-      const source_system = "anclora_private_estates_landing";
+      const source_system_enum = "cta_web";
+      const source_channel_enum = "website";
+      const internal_trace_prefix = "private_estates_landing";
+
       const res = await fetch(`${nexusBase}/api/public/data-lab-access-requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           org_id: orgId,
-          source_system,
-          source_channel: "web",
-          external_id: `${source_system}_dl_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+          source_system: source_system_enum,
+          source_channel: source_channel_enum,
+          external_id: `${internal_trace_prefix}_dl_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
           full_name: name,
           email,
           profile_type: "investor",

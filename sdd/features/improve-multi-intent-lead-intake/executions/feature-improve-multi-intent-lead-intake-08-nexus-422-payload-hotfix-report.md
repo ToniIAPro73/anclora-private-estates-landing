@@ -11,13 +11,15 @@ Additionally, frontend forms were rendering structured Pydantic/FastAPI error ob
 ## Fixes Implemented
 1.  **Mandatory Ingestion Fields**:
     *   Added `org_id` (sourced from `VITE_NEXUS_ORG_ID`).
-    *   Added `external_id` (auto-generated as `anclora_private_estates_landing_TIMESTAMP_RANDOM`).
-    *   Added `source_system` ("anclora_private_estates_landing") and `source_channel` ("web").
+    *   Added `external_id` (auto-generated with `private_estates_landing_` prefix).
+    *   Aligned `source_system` and `source_channel` with Nexus strict enums:
+        *   `source_system`: `"cta_web"`
+        *   `source_channel`: `"website"`
 2.  **Configuration Safety**:
     *   Implemented a pre-POST check for `org_id`. If `VITE_NEXUS_ORG_ID` is missing, the submission is blocked with a clear "Configuration Error" message instead of a generic backend 422.
 3.  **Refined Error Formatting**:
     *   Improved `formatBackendError` to strip the `body.` prefix from validation locations.
-    *   Example: `["body", "email"]` now renders as `email: Field required` instead of `body.email: Field required`.
+    *   Example: `["body", "org_id"]` now renders as `org_id: Field required` instead of `body.org_id: Field required`.
 4.  **Global Alignment**:
     *   Updated `SellerIntakeForm`, `ValuationRequestForm`, `DataLabSignalsSection`, and `PartnersSynergiSection` to include the mandatory Nexus fields.
 
@@ -27,8 +29,8 @@ Additionally, frontend forms were rendering structured Pydantic/FastAPI error ob
 ```json
 {
   "org_id": "YOUR_ORG_ID",
-  "source_system": "anclora_private_estates_landing",
-  "source_channel": "web",
+  "source_system": "cta_web",
+  "source_channel": "website",
   "external_id": "anclora_private_estates_landing_1714856400000_123",
   "source": "private_estates_landing",
   "submission_source": "private_estates_landing",

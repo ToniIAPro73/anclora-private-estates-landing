@@ -14,11 +14,11 @@ export type LeadIntent = "sell" | "valuation" | "buy" | "invest";
  * Designed to be flat for n8n/Nexus compatibility.
  */
 export type LeadIntakePayload = {
-  // Nexus Mandatory Ingestion Fields
+  // Nexus Mandatory Ingestion Fields (Enum aligned)
   org_id: string;
   external_id: string;
-  source_system: string;
-  source_channel: string;
+  source_system: "cta_web" | "manual" | "import" | "referral" | "partner" | "social";
+  source_channel: "website" | "linkedin" | "instagram" | "facebook" | "email" | "phone" | "other";
 
   // Common Fields
   source: "private_estates_landing";
@@ -144,19 +144,19 @@ export function buildLeadIntakePayload(input: {
   orgId?: string;
   externalId?: string;
 }): LeadIntakePayload {
-  const source_system = "anclora_private_estates_landing";
+  const internal_trace_prefix = "private_estates_landing";
   
   // Map "sell" intent to legacy "seller_intake" wire value for LNI-001 compatibility
   const wireLeadType = input.intent === "sell" ? "seller_intake" : input.intent;
 
   const payload: LeadIntakePayload = {
-    // Nexus Ingestion Alignment
-    org_id: input.orgId || "", // Form should validate this before calling
-    source_system,
-    source_channel: "web",
-    external_id: input.externalId || `${source_system}_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+    // Nexus Ingestion Alignment (Enum strict)
+    org_id: input.orgId || "", 
+    source_system: "cta_web",
+    source_channel: "website",
+    external_id: input.externalId || `${internal_trace_prefix}_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
 
-    // Legacy and Common Fields
+    // Legacy and Common Fields (Preserve for internal traceability)
     source: "private_estates_landing",
     submission_source: "private_estates_landing",
     
