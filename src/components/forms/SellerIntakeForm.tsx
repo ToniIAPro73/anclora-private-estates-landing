@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { LanguageCode, SellerFormCopy } from "@/content/site-copy";
 import { 
   buildLeadIntakePayload, 
   submitLeadIntake, 
   type LeadIntent 
 } from "@/lib/lead-intake";
-import { useRecaptcha } from "@/hooks/useRecaptcha";
+import { useTurnstile } from "@/hooks/useTurnstile";
 
 type SellerIntakeFormProps = {
   copy: SellerFormCopy;
@@ -16,6 +16,7 @@ type SellerFormMessages = {
   successTitle: string;
   successBody: string;
   genericError: string;
+  validationError: string;
   captchaError: string;
 };
 
@@ -25,6 +26,7 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     successTitle: "Solicitud recibida",
     successBody: "Revisaremos tu activo y te responderemos en un plazo de dos días hábiles.",
     genericError: "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.",
+    validationError: "Por favor, completa todos los campos obligatorios.",
     captchaError: "Por favor completa la verificación de seguridad.",
   },
   en: {
@@ -32,6 +34,7 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     successTitle: "Request received",
     successBody: "We will review your asset and get back to you within two working days.",
     genericError: "We could not send your request. Please try again in a few minutes.",
+    validationError: "Please complete all required fields.",
     captchaError: "Please complete the security verification.",
   },
   de: {
@@ -39,6 +42,7 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     successTitle: "Anfrage erhalten",
     successBody: "Wir prüfen Ihren Vermögenswert und melden uns innerhalb von zwei Werktagen.",
     genericError: "Wir konnten Ihre Anfrage nicht senden. Bitte versuchen Sie es in einigen Minuten erneut.",
+    validationError: "Bitte füllen Sie alle erforderlichen Felder aus.",
     captchaError: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
   },
 };
@@ -56,6 +60,7 @@ function resolveCurrentLanguage(): LanguageCode {
 export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   // Intent Selection
   const [intent, setIntent] = useState<LeadIntent>("sell");
+  const intentSelectRef = useRef<HTMLSelectElement>(null);
   
   // Common Fields
   const [name, setName] = useState("");
@@ -64,9 +69,24 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   
+  // Focus behavior for hash navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#propietarios") {
+        intentSelectRef.current?.focus();
+      }
+    };
+
+    // Check on mount
+    handleHashChange();
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
   // Captcha
-  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
-    import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined
+  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useTurnstile(
+    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
   );
 
   // Intent-Specific Fields
@@ -100,8 +120,13 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
     event.preventDefault();
     setError(null);
 
+    // Final validation check
+    if (!intent || !name || !email || !message || !privacyAccepted) {
+      setError(messages.validationError);
+      return;
+    }
+
     // Only block if captcha is definitely ready but token is missing.
-    // If it's disabled, loading or failed, we proceed (graceful degradation).
     if (captchaStatus === "ready" && !captchaToken) {
       setError(messages.captchaError);
       return;
@@ -184,6 +209,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       <label className="pe-form-field" style={{ marginBottom: "2rem" }}>
         <span className="pe-eyebrow">{copy.intentLabel}</span>
         <select
+          ref={intentSelectRef}
           className="pe-select"
           name="intent"
           value={intent}
@@ -406,6 +432,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         <textarea
           className="pe-textarea"
           name="message"
+          required
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           placeholder={copy.placeholders.message}
@@ -451,3 +478,4 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
     </form>
   );
 }
+

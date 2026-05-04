@@ -12,8 +12,10 @@
 - [x] Mandatory Nexus Ingestion alignment (org_id, external_id, source metadata) completed.
 - [x] Nexus Ingestion Enum corrections (source_system, source_channel) completed.
 - [x] Nexus Ingestion GDPR consent (gdpr_consent) completed.
+- [x] Client section refinement & Buyer intake mapping completed.
+- [x] Cloudflare Turnstile migration (reCAPTCHA replacement) completed.
 - [x] Agent E QA completed.
-- [x] Tests pass (8 tests passed).
+- [x] Tests pass (13 tests passed).
 - [x] Build passes.
 - [x] Manual local E2E completed.
 - [x] No secrets committed.

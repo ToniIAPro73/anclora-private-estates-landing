@@ -24,7 +24,7 @@ export type LeadIntakePayload = {
   source: "private_estates_landing";
   submission_source?: "private_estates_landing"; // Alias for Nexus
   
-  lead_type: LeadIntent | "seller_intake"; // "seller_intake" kept for wire compatibility with LNI-001
+  lead_type: LeadIntent | "seller_intake" | "buyer_intake" | "investment_intake" | "valuation_intake"; // Explicitly typed for Nexus enums
   
   language: LanguageCode;
   submission_language?: LanguageCode; // Alias for Nexus
@@ -44,7 +44,7 @@ export type LeadIntakePayload = {
   
   // Captcha
   captcha_token?: string;
-  captcha_provider?: "recaptcha";
+  captcha_provider?: "recaptcha" | "turnstile";
 
   // Intent-Specific Qualifiers (Flat semantic prefixes)
   // Seller / legacy seller compatibility
@@ -147,8 +147,15 @@ export function buildLeadIntakePayload(input: {
 }): LeadIntakePayload {
   const internal_trace_prefix = "private_estates_landing";
   
-  // Map "sell" intent to legacy "seller_intake" wire value for LNI-001 compatibility
-  const wireLeadType = input.intent === "sell" ? "seller_intake" : input.intent;
+  // Map internal intents to Nexus-compatible lead_type wire values
+  const intentToWireMap: Record<LeadIntent, LeadIntakePayload["lead_type"]> = {
+    sell: "seller_intake",
+    buy: "buyer_intake",
+    invest: "investment_intake",
+    valuation: "valuation_intake",
+  };
+
+  const wireLeadType = intentToWireMap[input.intent];
 
   const payload: LeadIntakePayload = {
     // Nexus Ingestion Alignment (Enum strict)
@@ -179,7 +186,7 @@ export function buildLeadIntakePayload(input: {
     page_url: input.pageUrl || (typeof window !== "undefined" ? window.location.href : ""),
     submitted_at: input.submittedAt || new Date().toISOString(),
     captcha_token: trimOptional(input.captchaToken),
-    captcha_provider: input.captchaToken ? "recaptcha" : undefined,
+    captcha_provider: input.captchaToken ? "turnstile" : undefined,
   };
 
   // Merge qualifiers directly into the flat payload if they match our known fields

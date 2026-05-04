@@ -438,12 +438,12 @@ const siteCopyEs: SiteCopy = {
     ],
   },
   sellerIntake: {
-    eyebrow: "Propietarios",
-    title: "Captación selectiva para activos que necesitan más que exposición masiva.",
+    eyebrow: "Clientes",
+    title: "Asesoramiento selectivo para propietarios, compradores e inversores.",
     body:
-      "Si estás valorando vender en Palma o el suroeste de Mallorca, podemos estudiar tu activo desde la microzona, la narrativa comercial y el timing correcto, con un enfoque premium y confidencial.",
-    checklistLabel: "La evaluación privada considera",
-    checklist: ["Microzona y competencia real", "Narrativa de posicionamiento", "Timing comercial y acceso"],
+      "Estudiamos cada solicitud según su intención: venta, compra, valoración o inversión. Enfoque premium y confidencial para activos singulares en Palma y el suroeste de Mallorca.",
+    checklistLabel: "Criterios de evaluación privada",
+    checklist: ["Microzona y competencia real", "Narrativa de posicionamiento", "Timing y acceso cualificado"],
     trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
     form: {
       intentLabel: "¿En qué podemos ayudarte?",
@@ -814,14 +814,15 @@ const siteCopyEn: SiteCopy = {
   },
   sellerIntake: {
     ...siteCopyEs.sellerIntake,
-    eyebrow: "Owners",
-    title: "Selective representation for assets that need more than mass exposure.",
+    eyebrow: "Clients",
+    title: "Selective advisory for owners, buyers and investors.",
     body:
-      "If you are considering a sale in Palma or Southwest Mallorca, we can review your asset through the lens of micro-location, commercial narrative and the right timing, with a premium and confidential approach.",
-    checklistLabel: "The private review considers",
-    checklist: ["Micro-location and real competition", "Positioning narrative", "Commercial timing and access"],
+      "We study each request according to its intent: sell, buy, valuation or investment. A premium and confidential approach for singular assets in Palma and Southwest Mallorca.",
+    checklistLabel: "Private evaluation criteria",
+    checklist: ["Micro-location and real competition", "Positioning narrative", "Qualified timing and access"],
     trustBadgeText: "International backing and operational trust through eXp Group Spain.",
     form: {
+      ...siteCopyEs.sellerIntake.form,
       intentLabel: "How can we help you?",
       intentOptions: [
         { value: "sell", label: "I want to sell a property" },
@@ -854,15 +855,6 @@ const siteCopyEn: SiteCopy = {
         message: "Tell us more details about your request.",
       },
       selectPlaceholder: "Select an option",
-      propertyTypeOptions: ["Villa", "Penthouse", "Premium apartment", "Finca"],
-      commercializationOptions: [
-        "Confidential assessment",
-        "Exclusive mandate",
-        "Selective sale without mass portals",
-      ],
-      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
-      timingOptions: ["Immediate", "1-3 months", "3-6 months", "Just exploring"],
-      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
       submitLabel: "Send private request",
     },
   },
@@ -1198,14 +1190,15 @@ const siteCopyDe: SiteCopy = {
   },
   sellerIntake: {
     ...siteCopyEs.sellerIntake,
-    eyebrow: "Eigentümer",
-    title: "Selektive Vermarktung für Objekte, die mehr als Massenexposition brauchen.",
+    eyebrow: "Kunden",
+    title: "Selektive Beratung für Eigentümer, Käufer und Investoren.",
     body:
-      "Wenn du einen Verkauf in Palma oder im Südwesten Mallorcas erwägst, können wir dein Objekt aus Sicht der Mikrolage, der kommerziellen Erzählung und des richtigen Timings prüfen, mit Premium- und Vertraulichkeitsansatz.",
-    checklistLabel: "Die private Prüfung berücksichtigt",
-    checklist: ["Mikrolage und reale Konkurrenz", "Positionierungsnarrativ", "Kommerzielles Timing und Zugang"],
+      "Wir prüfen jede Anfrage entsprechend ihrer Absicht: Verkauf, Kauf, Bewertung oder Investition. Ein erstklassiger und vertraulicher Ansatz für einzigartige Vermögenswerte in Palma und im Südwesten Mallorcas.",
+    checklistLabel: "Private Bewertungskriterien",
+    checklist: ["Mikrolage und reale Wettbewerbsanalyse", "Positionierungsnarrativ", "Qualifiziertes Timing und Zugang"],
     trustBadgeText: "Internationale Rückendeckung und operative Sicherheit durch eXp Group Spain.",
     form: {
+      ...siteCopyEs.sellerIntake.form,
       intentLabel: "Wie können wir Ihnen helfen?",
       intentOptions: [
         { value: "sell", label: "Ich möchte eine Immobilie verkaufen" },
@@ -1238,15 +1231,6 @@ const siteCopyDe: SiteCopy = {
         message: "Teilen Sie uns weitere Details zu Ihrer Anfrage mit.",
       },
       selectPlaceholder: "Option auswählen",
-      propertyTypeOptions: ["Villa", "Penthouse", "Premium-Apartment", "Finca"],
-      commercializationOptions: [
-        "Vertrauliche Bewertung",
-        "Exklusivverkauf",
-        "Selektiver Verkauf ohne Massenportale",
-      ],
-      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
-      timingOptions: ["Sofort", "1-3 Monate", "3-6 Monate", "Nur erkunden"],
-      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
       submitLabel: "Private Anfrage senden",
     },
   },

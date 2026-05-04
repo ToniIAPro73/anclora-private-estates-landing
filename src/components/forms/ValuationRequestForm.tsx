@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { ValuationFormCopy } from "@/content/site-copy";
-import { useRecaptcha } from "@/hooks/useRecaptcha";
+import { useTurnstile } from "@/hooks/useTurnstile";
 
 type ValuationRequestFormProps = {
   copy: ValuationFormCopy;
@@ -15,8 +15,8 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   
-  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
-    import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined
+  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useTurnstile(
+    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
   );
 
   const [submitting, setSubmitting] = useState(false);
@@ -60,7 +60,7 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
           phone: phone || undefined,
           property_address: address || undefined,
           message: message || undefined,
-          captcha_provider: siteKey ? "recaptcha" : undefined,
+          captcha_provider: captchaToken ? "turnstile" : undefined,
           captcha_token: captchaToken || undefined,
           submission_language: language,
           submission_source: "private_estates_landing",
