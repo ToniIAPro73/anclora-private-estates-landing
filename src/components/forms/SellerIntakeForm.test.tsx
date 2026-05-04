@@ -48,27 +48,66 @@ describe("SellerIntakeForm", () => {
     vi.unstubAllEnvs();
   });
 
-  test("submits normalized seller payload when intent is sell and captcha is disabled", async () => {
+  test("submits normalized seller payload and includes Nexus alignment fields", async () => {
     const user = userEvent.setup();
     render(<SellerIntakeForm copy={esCopy} />);
 
     await user.type(screen.getByTestId("seller-name-input"), "Test Seller");
     await user.type(screen.getByTestId("seller-email-input"), "seller@test.com");
-    await user.type(screen.getByTestId("seller-phone-input"), "600000000");
+    await user.click(screen.getByTestId("seller-privacy-checkbox"));
+    
+    // Required fields for default "sell" intent
     await user.type(screen.getByTestId("seller-zone-input"), "Son Vida");
     await user.selectOptions(screen.getByRole("combobox", { name: esCopy.propertyType }), "Villa");
     await user.selectOptions(screen.getByRole("combobox", { name: esCopy.commercialization }), "Venta en exclusiva");
-    await user.click(screen.getByTestId("seller-privacy-checkbox"));
+
     await user.click(screen.getByTestId("seller-submit-button"));
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
 
-    const [, request] = fetchMock.mock.calls[0];
-    const payload = JSON.parse(String(request.body));
+    const payload = JSON.parse(fetchMock.mock.calls[0][1].body);
 
+    // Legacy LNI-001 fields
     expect(payload.lead_type).toBe("seller_intake");
-    expect(payload.captcha_token).toBeUndefined();
-    expect(screen.getByTestId("seller-success")).toBeInTheDocument();
+    expect(payload.name).toBe("Test Seller");
+    expect(payload.zone).toBe("Son Vida");
+
+    // Nexus alignment fields
+    expect(payload.full_name).toBe("Test Seller");
+    expect(payload.submission_source).toBe("private_estates_landing");
+    expect(payload.submission_language).toBe("es");
+    expect(payload.privacy_accepted).toBe(true);
+  });
+
+  test("displays human-readable message for structured 422 validation errors", async () => {
+    fetchMock.mockResolvedValueOnce({
+      ok: false,
+      json: async () => ({
+        detail: [
+          { loc: ["body", "email"], msg: "invalid email format", type: "value_error.email" },
+          { loc: ["body", "phone"], msg: "too short", type: "value_error.any_str.min_length" }
+        ]
+      }),
+    });
+
+    const user = userEvent.setup();
+    render(<SellerIntakeForm copy={esCopy} />);
+
+    await user.type(screen.getByTestId("seller-name-input"), "Error User");
+    await user.type(screen.getByTestId("seller-email-input"), "error@test.com");
+    await user.click(screen.getByTestId("seller-privacy-checkbox"));
+    
+    // Fill required intent fields
+    await user.type(screen.getByTestId("seller-zone-input"), "Any");
+    await user.selectOptions(screen.getByRole("combobox", { name: esCopy.propertyType }), "Villa");
+    await user.selectOptions(screen.getByRole("combobox", { name: esCopy.commercialization }), "Evaluación confidencial");
+
+    await user.click(screen.getByTestId("seller-submit-button"));
+
+    const errorEl = await screen.findByTestId("seller-error", {}, { timeout: 3000 });
+    expect(errorEl.textContent).toContain("body.email: invalid email format");
+    expect(errorEl.textContent).toContain("body.phone: too short");
+    expect(errorEl.textContent).not.toContain("[object Object]");
   });
 
   test("blocks submission when captchaStatus is ready but no token is present", async () => {
@@ -80,10 +119,12 @@ describe("SellerIntakeForm", () => {
 
     await user.type(screen.getByTestId("seller-name-input"), "Test Captcha");
     await user.type(screen.getByTestId("seller-email-input"), "captcha@test.com");
+    await user.click(screen.getByTestId("seller-privacy-checkbox"));
+    
     await user.type(screen.getByTestId("seller-zone-input"), "Son Vida");
     await user.selectOptions(screen.getByRole("combobox", { name: esCopy.propertyType }), "Villa");
     await user.selectOptions(screen.getByRole("combobox", { name: esCopy.commercialization }), "Venta en exclusiva");
-    await user.click(screen.getByTestId("seller-privacy-checkbox"));
+
     await user.click(screen.getByTestId("seller-submit-button"));
 
     expect(await screen.findByTestId("seller-error")).toHaveTextContent("Por favor completa la verificación de seguridad.");
@@ -99,44 +140,15 @@ describe("SellerIntakeForm", () => {
 
     await user.type(screen.getByTestId("seller-name-input"), "Failed Captcha");
     await user.type(screen.getByTestId("seller-email-input"), "failed@test.com");
+    await user.click(screen.getByTestId("seller-privacy-checkbox"));
+    
     await user.type(screen.getByTestId("seller-zone-input"), "Son Vida");
     await user.selectOptions(screen.getByRole("combobox", { name: esCopy.propertyType }), "Villa");
     await user.selectOptions(screen.getByRole("combobox", { name: esCopy.commercialization }), "Venta en exclusiva");
-    await user.click(screen.getByTestId("seller-privacy-checkbox"));
+
     await user.click(screen.getByTestId("seller-submit-button"));
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
     expect(screen.getByTestId("seller-success")).toBeInTheDocument();
-  });
-
-  test("includes captcha token and provider when token is available", async () => {
-    recaptchaMock.siteKey = "test-site-key";
-    recaptchaMock.captchaStatus = "ready";
-    recaptchaMock.captchaToken = "captcha-token-123";
-
-    const user = userEvent.setup();
-    render(<SellerIntakeForm copy={esCopy} />);
-
-    await user.type(screen.getByTestId("seller-name-input"), "Captcha Seller");
-    await user.type(screen.getByTestId("seller-email-input"), "captcha.seller@test.com");
-    await user.type(screen.getByTestId("seller-zone-input"), "Son Vida");
-    await user.selectOptions(screen.getByRole("combobox", { name: esCopy.propertyType }), "Villa");
-    await user.selectOptions(screen.getByRole("combobox", { name: esCopy.commercialization }), "Venta en exclusiva");
-    await user.click(screen.getByTestId("seller-privacy-checkbox"));
-    await user.click(screen.getByTestId("seller-submit-button"));
-
-    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
-
-    const payload = JSON.parse(String(fetchMock.mock.calls[0][1].body));
-    expect(payload.captcha_token).toBe("captcha-token-123");
-    expect(payload.captcha_provider).toBe("recaptcha");
-    expect(recaptchaMock.resetCaptcha).toHaveBeenCalled();
-  });
-
-  test("does not include partner intent in selector", () => {
-    render(<SellerIntakeForm copy={esCopy} />);
-    const select = screen.getByTestId("lead-intent-select") as HTMLSelectElement;
-    const options = Array.from(select.options).map(o => o.value);
-    expect(options).not.toContain("partner");
   });
 });

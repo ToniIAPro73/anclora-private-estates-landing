@@ -40,7 +40,13 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error((body as { detail?: string }).detail || "Error en el envío.");
+        let errorMsg = "Error en el envío.";
+        if (typeof body.detail === "string") {
+          errorMsg = body.detail;
+        } else if (Array.isArray(body.detail)) {
+          errorMsg = body.detail.map((err: any) => `${err.loc.join(".")}: ${err.msg}`).join(", ");
+        }
+        throw new Error(errorMsg);
       }
       setSuccess(true);
       setName(""); setEmail(""); setServiceCategory(""); setServiceSummary("");

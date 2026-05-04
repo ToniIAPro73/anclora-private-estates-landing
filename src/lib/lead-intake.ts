@@ -16,12 +16,22 @@ export type LeadIntent = "sell" | "valuation" | "buy" | "invest";
 export type LeadIntakePayload = {
   // Common Fields
   source: "private_estates_landing";
+  submission_source?: "private_estates_landing"; // Alias for Nexus
+  
   lead_type: LeadIntent | "seller_intake"; // "seller_intake" kept for wire compatibility with LNI-001
+  
   language: LanguageCode;
+  submission_language?: LanguageCode; // Alias for Nexus
+  
   name: string;
+  full_name?: string; // Alias for Nexus
+  
   email: string;
   phone?: string;
   message?: string;
+  
+  privacy_accepted?: boolean; // For Nexus ingestion
+  
   page_url: string;
   submitted_at: string;
   
@@ -68,6 +78,45 @@ function trimOptional(value?: string) {
 }
 
 /**
+ * Helper to format complex backend error messages (FastAPI/Pydantic style).
+ */
+function formatBackendError(errorBody: any): string {
+  const DEFAULT_ERROR = "Lead intake request failed.";
+  if (!errorBody) return DEFAULT_ERROR;
+
+  // If it's a simple string detail
+  if (typeof errorBody.detail === "string") {
+    return errorBody.detail || DEFAULT_ERROR;
+  }
+
+  // If detail is an array (FastAPI validation errors)
+  if (Array.isArray(errorBody.detail) && errorBody.detail.length > 0) {
+    return errorBody.detail
+      .map((err: any) => {
+        const path = Array.isArray(err.loc) ? err.loc.join(".") : "field";
+        return `${path}: ${err.msg}`;
+      })
+      .join(", ");
+  }
+
+  // Fallback for other structured error bodies
+  if (errorBody.message && typeof errorBody.message === "string") {
+    return errorBody.message;
+  }
+
+  // Fallback for other objects
+  if (typeof errorBody.detail === "object" && errorBody.detail !== null) {
+    try {
+      return JSON.stringify(errorBody.detail);
+    } catch {
+      return "An unknown validation error occurred.";
+    }
+  }
+
+  return DEFAULT_ERROR;
+}
+
+/**
  * Generic builder for multi-intent payloads.
  */
 export function buildLeadIntakePayload(input: {
@@ -77,6 +126,7 @@ export function buildLeadIntakePayload(input: {
   email: string;
   phone?: string;
   message?: string;
+  privacyAccepted?: boolean;
   pageUrl?: string;
   submittedAt?: string;
   captchaToken?: string;
@@ -87,12 +137,22 @@ export function buildLeadIntakePayload(input: {
 
   const payload: LeadIntakePayload = {
     source: "private_estates_landing",
+    submission_source: "private_estates_landing",
+    
     lead_type: wireLeadType as LeadIntent | "seller_intake",
+    
     language: input.language,
+    submission_language: input.language,
+    
     name: input.name.trim(),
+    full_name: input.name.trim(),
+    
     email: input.email.trim(),
     phone: trimOptional(input.phone),
     message: trimOptional(input.message),
+    
+    privacy_accepted: input.privacyAccepted,
+    
     page_url: input.pageUrl || (typeof window !== "undefined" ? window.location.href : ""),
     submitted_at: input.submittedAt || new Date().toISOString(),
     captcha_token: trimOptional(input.captchaToken),
@@ -136,6 +196,7 @@ export function buildSellerLeadIntakePayload(input: {
     email: input.email,
     phone: input.phone,
     message: input.message,
+    privacyAccepted: true, // Legacy always assumes accepted if they reached this point
     pageUrl: input.pageUrl,
     submittedAt: input.submittedAt,
     qualifiers: {
@@ -180,8 +241,8 @@ export async function submitLeadIntake({
   });
 
   if (!response.ok) {
-    const body = await response.json().catch(() => ({}));
-    throw new Error((body as { detail?: string }).detail || "Lead intake request failed.");
+    const errorBody = await response.json().catch(() => ({}));
+    throw new Error(formatBackendError(errorBody));
   }
 
   return response;

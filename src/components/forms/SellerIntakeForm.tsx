@@ -136,6 +136,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         email,
         phone,
         message,
+        privacyAccepted,
         qualifiers,
         captchaToken: captchaToken ?? undefined,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",

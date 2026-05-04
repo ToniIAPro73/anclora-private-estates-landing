@@ -8,8 +8,9 @@
 - [x] Agent D captcha integration completed.
 - [x] Human review correction (Agent C/D refactor) completed.
 - [x] Production hotfix (Captcha robustness + Locale cleanup) completed.
+- [x] Nexus 422 Payload Hotfix (Contract alignment + Error handling) completed.
 - [x] Agent E QA completed.
-- [x] Tests pass (9 tests passed after production hotfix).
+- [x] Tests pass (8 tests passed).
 - [x] Build passes.
 - [x] Manual local E2E completed.
 - [x] No secrets committed.

@@ -54,7 +54,16 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
 
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error((body as { detail?: string }).detail || "Error en el envío.");
+        // Safe parsing of backend validation errors
+        let errorMsg = "Error en el envío.";
+        if (typeof body.detail === "string") {
+          errorMsg = body.detail;
+        } else if (Array.isArray(body.detail)) {
+          errorMsg = body.detail.map((err: any) => `${err.loc.join(".")}: ${err.msg}`).join(", ");
+        } else if (body.message) {
+          errorMsg = body.message;
+        }
+        throw new Error(errorMsg);
       }
 
       setSuccess(true);
