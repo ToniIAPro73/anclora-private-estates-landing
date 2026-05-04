@@ -64,23 +64,43 @@ export type InvestorCopy = {
 };
 
 export type SellerFormCopy = {
+  intentLabel: string;
+  intentOptions: { value: string; label: string }[];
   name: string;
   email: string;
   phone: string;
   zone: string;
   propertyType: string;
   commercialization: string;
+  address: string;
+  budget: string;
+  timing: string;
+  ticket: string;
+  goal: string;
+  category: string;
+  proposal: string;
   message: string;
   placeholders: {
     name: string;
     email: string;
     phone: string;
     zone: string;
+    address: string;
+    budget: string;
+    timing: string;
+    ticket: string;
+    goal: string;
+    category: string;
+    proposal: string;
     message: string;
   };
   selectPlaceholder: string;
   propertyTypeOptions: string[];
   commercializationOptions: string[];
+  budgetOptions: string[];
+  timingOptions: string[];
+  ticketOptions: string[];
+  categoryOptions: string[];
   submitLabel: string;
 };
 
@@ -432,19 +452,41 @@ const siteCopyEs: SiteCopy = {
     checklist: ["Microzona y competencia real", "Narrativa de posicionamiento", "Timing comercial y acceso"],
     trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
     form: {
+      intentLabel: "¿En qué podemos ayudarte?",
+      intentOptions: [
+        { value: "sell", label: "Quiero vender una propiedad" },
+        { value: "valuation", label: "Quiero una valoración privada" },
+        { value: "buy", label: "Quiero comprar una propiedad premium" },
+        { value: "invest", label: "Busco oportunidades de inversión" },
+        { value: "partner", label: "Soy partner / colaborador" },
+      ],
       name: "Nombre",
       email: "Email",
       phone: "Teléfono",
       zone: "Zona del inmueble",
       propertyType: "Tipo de propiedad",
       commercialization: "Preferencia de comercialización",
+      address: "Dirección del inmueble",
+      budget: "Presupuesto aproximado",
+      timing: "Plazo previsto",
+      ticket: "Ticket de inversión",
+      goal: "Objetivo de inversión",
+      category: "Categoría de servicio",
+      proposal: "Propuesta de colaboración",
       message: "Mensaje",
       placeholders: {
         name: "Tu nombre",
         email: "nombre@dominio.com",
         phone: "+34 ...",
         zone: "Son Vida, Portals, Andratx...",
-        message: "Cuéntanos el contexto del activo y qué necesitas resolver.",
+        address: "Calle, zona o referencia catastral",
+        budget: "Ej: 1M - 3M €",
+        timing: "Ej: Inmediato, 6 meses...",
+        ticket: "Ej: 500k+, 2M+...",
+        goal: "Ej: Patrimonio, Rentabilidad...",
+        category: "Inmobiliario, Legal, Lifestyle...",
+        proposal: "Cuéntanos cómo trabajas y qué valor aportas.",
+        message: "Cuéntanos más detalles sobre tu solicitud.",
       },
       selectPlaceholder: "Selecciona una opción",
       propertyTypeOptions: ["Villa", "Ático", "Apartamento premium", "Finca"],
@@ -453,7 +495,11 @@ const siteCopyEs: SiteCopy = {
         "Venta en exclusiva",
         "Venta selectiva sin portal masivo",
       ],
-      submitLabel: "Solicitar evaluación confidencial",
+      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
+      timingOptions: ["Inmediato", "1-3 meses", "3-6 meses", "Sólo explorando"],
+      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
+      categoryOptions: ["Inmobiliario", "Legal / Financiero", "Arquitectura / Reforma", "Lifestyle / Lujo", "Otro"],
+      submitLabel: "Enviar solicitud privada",
     },
   },
   valuation: {
@@ -789,20 +835,41 @@ const siteCopyEn: SiteCopy = {
     checklist: ["Micro-location and real competition", "Positioning narrative", "Commercial timing and access"],
     trustBadgeText: "International backing and operational trust through eXp Group Spain.",
     form: {
-      ...siteCopyEs.sellerIntake.form,
+      intentLabel: "How can we help you?",
+      intentOptions: [
+        { value: "sell", label: "I want to sell a property" },
+        { value: "valuation", label: "I want a private valuation" },
+        { value: "buy", label: "I want to buy a premium property" },
+        { value: "invest", label: "I'm looking for investment opportunities" },
+        { value: "partner", label: "I'm a partner / collaborator" },
+      ],
       name: "Name",
       email: "Email",
       phone: "Phone",
       zone: "Property area",
       propertyType: "Property type",
       commercialization: "Commercial approach",
+      address: "Property address",
+      budget: "Approximate budget",
+      timing: "Expected timing",
+      ticket: "Investment ticket",
+      goal: "Investment goal",
+      category: "Service category",
+      proposal: "Collaboration proposal",
       message: "Message",
       placeholders: {
         name: "Your name",
         email: "name@domain.com",
         phone: "+34 ...",
         zone: "Son Vida, Portals, Andratx...",
-        message: "Tell us about the asset context and what you need to solve.",
+        address: "Street, area or cadastral reference",
+        budget: "e.g. 1M - 3M €",
+        timing: "e.g. Immediate, 6 months...",
+        ticket: "e.g. 500k+, 2M+...",
+        goal: "e.g. Wealth, ROI...",
+        category: "Real Estate, Legal, Lifestyle...",
+        proposal: "Tell us about your profile and the value you provide.",
+        message: "Tell us more details about your request.",
       },
       selectPlaceholder: "Select an option",
       propertyTypeOptions: ["Villa", "Penthouse", "Premium apartment", "Finca"],
@@ -811,7 +878,11 @@ const siteCopyEn: SiteCopy = {
         "Exclusive mandate",
         "Selective sale without mass portals",
       ],
-      submitLabel: "Request a confidential assessment",
+      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
+      timingOptions: ["Immediate", "1-3 months", "3-6 months", "Just exploring"],
+      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
+      categoryOptions: ["Real Estate", "Legal / Financial", "Architecture / Reform", "Lifestyle / Luxury", "Other"],
+      submitLabel: "Send private request",
     },
   },
   valuation: {
@@ -1155,20 +1226,41 @@ const siteCopyDe: SiteCopy = {
     checklist: ["Mikrolage und reale Konkurrenz", "Positionierungsnarrativ", "Kommerzielles Timing und Zugang"],
     trustBadgeText: "Internationale Rückendeckung und operative Sicherheit durch eXp Group Spain.",
     form: {
-      ...siteCopyEs.sellerIntake.form,
+      intentLabel: "Wie können wir Ihnen helfen?",
+      intentOptions: [
+        { value: "sell", label: "Ich möchte eine Immobilie verkaufen" },
+        { value: "valuation", label: "Ich möchte eine private Bewertung" },
+        { value: "buy", label: "Ich möchte eine Premium-Immobilie kaufen" },
+        { value: "invest", label: "Ich suche nach Investitionsmöglichkeiten" },
+        { value: "partner", label: "Ich bin Partner / Kooperationspartner" },
+      ],
       name: "Name",
       email: "E-Mail",
       phone: "Telefon",
       zone: "Objektlage",
       propertyType: "Objekttyp",
       commercialization: "Vermarktungspräferenz",
+      address: "Objektadresse",
+      budget: "Ungefähres Budget",
+      timing: "Voraussichtlicher Zeitrahmen",
+      ticket: "Investitionsvolumen",
+      goal: "Investitionsziel",
+      category: "Servicekategorie",
+      proposal: "Kooperationsvorschlag",
       message: "Nachricht",
       placeholders: {
-        name: "Dein Name",
+        name: "Ihr Name",
         email: "name@domain.de",
         phone: "+49 ...",
         zone: "Son Vida, Portals, Andratx...",
-        message: "Erzähle uns vom Objekt und davon, was du lösen möchtest.",
+        address: "Straße, Lage oder Katasterreferenz",
+        budget: "z.B. 1M - 3M €",
+        timing: "z.B. Sofort, 6 Monate...",
+        ticket: "z.B. 500k+, 2M+...",
+        goal: "z.B. Vermögensaufbau, Rendite...",
+        category: "Immobilien, Recht, Lifestyle...",
+        proposal: "Beschreiben Sie Ihr Profil und Ihren Mehrwert.",
+        message: "Teilen Sie uns weitere Details zu Ihrer Anfrage mit.",
       },
       selectPlaceholder: "Option auswählen",
       propertyTypeOptions: ["Villa", "Penthouse", "Premium-Apartment", "Finca"],
@@ -1177,7 +1269,11 @@ const siteCopyDe: SiteCopy = {
         "Exklusivverkauf",
         "Selektiver Verkauf ohne Massenportale",
       ],
-      submitLabel: "Vertrauliche Bewertung anfordern",
+      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
+      timingOptions: ["Sofort", "1-3 Monate", "3-6 Monate", "Nur erkunden"],
+      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
+      categoryOptions: ["Immobilien", "Recht / Finanzen", "Architektur / Reform", "Lifestyle / Luxus", "Sonstiges"],
+      submitLabel: "Private Anfrage senden",
     },
   },
   valuation: {
@@ -1522,20 +1618,41 @@ const siteCopyFr: SiteCopy = {
     checklist: ["Micro-zone et concurrence réelle", "Narration de positionnement", "Timing commercial et accès"],
     trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
     form: {
-      ...siteCopyEs.sellerIntake.form,
+      intentLabel: "Comment pouvons-nous vous aider ?",
+      intentOptions: [
+        { value: "sell", label: "Je souhaite vendre un bien" },
+        { value: "valuation", label: "Je souhaite une évaluation privée" },
+        { value: "buy", label: "Je souhaite acheter un bien premium" },
+        { value: "invest", label: "Je recherche des opportunités d'investissement" },
+        { value: "partner", label: "Je suis un partenaire / collaborateur" },
+      ],
       name: "Nom",
       email: "E-mail",
       phone: "Téléphone",
       zone: "Zone du bien",
       propertyType: "Type de bien",
       commercialization: "Préférence de commercialisation",
+      address: "Adresse du bien",
+      budget: "Budget approximatif",
+      timing: "Délai prévu",
+      ticket: "Ticket d'investissement",
+      goal: "Objectif d'investissement",
+      category: "Catégorie de service",
+      proposal: "Proposition de collaboration",
       message: "Message",
       placeholders: {
         name: "Votre nom",
         email: "nom@domaine.fr",
         phone: "+33 ...",
         zone: "Son Vida, Portals, Andratx...",
-        message: "Décrivez le contexte de l'actif et ce que vous souhaitez résoudre.",
+        address: "Rue, zone ou référence cadastrale",
+        budget: "ex: 1M - 3M €",
+        timing: "ex: Immédiat, 6 mois...",
+        ticket: "ex: 500k+, 2M+...",
+        goal: "ex: Patrimoine, Rendement...",
+        category: "Immobilier, Juridique, Lifestyle...",
+        proposal: "Décrivez votre profil et votre valeur ajoutée.",
+        message: "Donnez-nous plus de détails sur votre demande.",
       },
       selectPlaceholder: "Sélectionner une option",
       propertyTypeOptions: ["Villa", "Penthouse", "Appartement premium", "Finca"],
@@ -1544,7 +1661,11 @@ const siteCopyFr: SiteCopy = {
         "Vente en exclusivité",
         "Vente sélective sans portail de masse",
       ],
-      submitLabel: "Demander une évaluation confidentielle",
+      budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"],
+      timingOptions: ["Immédiat", "1-3 mois", "3-6 mois", "Juste exploration"],
+      ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"],
+      categoryOptions: ["Immobilier", "Juridique / Financier", "Architecture / Réforme", "Lifestyle / Luxe", "Autre"],
+      submitLabel: "Envoyer une demande privée",
     },
   },
   valuation: {
