@@ -1,18 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { ValuationFormCopy } from "@/content/site-copy";
-
-interface RecaptchaApi {
-  render: (container: HTMLElement, params: Record<string, unknown>) => number;
-  reset: (widgetId?: number) => void;
-  getResponse: (widgetId?: number) => string;
-}
-
-declare global {
-  interface Window {
-    grecaptcha: RecaptchaApi;
-    onRecaptchaReady?: () => void;
-  }
-}
+import { useRecaptcha } from "@/hooks/useRecaptcha";
 
 type ValuationRequestFormProps = {
   copy: ValuationFormCopy;
@@ -26,43 +14,14 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  
+  const { captchaToken, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
+    import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined
+  );
+
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const captchaContainerRef = useRef<HTMLDivElement>(null);
-  const captchaWidgetIdRef = useRef<number | null>(null);
-
-  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined;
-
-  useEffect(() => {
-    if (!siteKey) return;
-    if (document.querySelector('script[data-recaptcha="valuation"]')) return;
-
-    const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
-    script.async = true;
-    script.defer = true;
-    script.dataset.recaptcha = "valuation";
-    script.onload = () => {
-      const tryRender = () => {
-        if (window.grecaptcha && captchaContainerRef.current) {
-          captchaWidgetIdRef.current = window.grecaptcha.render(captchaContainerRef.current, {
-            sitekey: siteKey,
-            callback: (token: string) => setCaptchaToken(token),
-            "expired-callback": () => setCaptchaToken(null),
-            theme: "dark",
-            size: "normal",
-          });
-        } else {
-          setTimeout(tryRender, 200);
-        }
-      };
-      tryRender();
-    };
-    document.head.appendChild(script);
-  }, [siteKey]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,10 +59,8 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
 
       setSuccess(true);
       setName(""); setEmail(""); setPhone(""); setAddress(""); setMessage("");
-      setPrivacyAccepted(false); setCaptchaToken(null);
-      if (captchaWidgetIdRef.current !== null && window.grecaptcha) {
-        window.grecaptcha.reset(captchaWidgetIdRef.current);
-      }
+      setPrivacyAccepted(false); 
+      resetCaptcha();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido.");
     } finally {

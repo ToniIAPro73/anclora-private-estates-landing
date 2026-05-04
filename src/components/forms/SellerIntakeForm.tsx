@@ -5,6 +5,7 @@ import {
   submitLeadIntake, 
   type LeadIntent 
 } from "@/lib/lead-intake";
+import { useRecaptcha } from "@/hooks/useRecaptcha";
 
 type SellerIntakeFormProps = {
   copy: SellerFormCopy;
@@ -15,6 +16,7 @@ type SellerFormMessages = {
   successTitle: string;
   successBody: string;
   genericError: string;
+  captchaError: string;
 };
 
 const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
@@ -23,24 +25,28 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     successTitle: "Solicitud recibida",
     successBody: "Revisaremos tu activo y te responderemos en un plazo de dos días hábiles.",
     genericError: "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.",
+    captchaError: "Por favor completa la verificación de seguridad.",
   },
   en: {
     privacyLabel: "I have read and accept the privacy policy.",
     successTitle: "Request received",
     successBody: "We will review your asset and get back to you within two working days.",
     genericError: "We could not send your request. Please try again in a few minutes.",
+    captchaError: "Please complete the security verification.",
   },
   de: {
     privacyLabel: "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
     successTitle: "Anfrage erhalten",
     successBody: "Wir prüfen Ihren Vermögenswert und melden uns innerhalb von zwei Werktagen.",
     genericError: "Wir konnten Ihre Anfrage nicht senden. Bitte versuchen Sie es in einigen Minuten erneut.",
+    captchaError: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
   },
   fr: {
     privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
     successTitle: "Demande reçue",
     successBody: "Nous examinerons votre actif et vous répondrons sous deux jours ouvrables.",
     genericError: "Nous n'avons pas pu envoyer votre demande. Veuillez réessayer dans quelques minutes.",
+    captchaError: "Veuillez compléter la vérification de sécurité.",
   },
 };
 
@@ -65,6 +71,11 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   
+  // Captcha
+  const { captchaToken, captchaContainerRef, resetCaptcha, siteKey } = useRecaptcha(
+    import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined
+  );
+
   // Intent-Specific Fields
   // Seller
   const [zone, setZone] = useState("");
@@ -99,6 +110,12 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+
+    if (siteKey && !captchaToken) {
+      setError(messages.captchaError);
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -132,6 +149,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         phone,
         message,
         qualifiers,
+        captchaToken: captchaToken ?? undefined,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
       });
 
@@ -145,6 +163,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       // Reset form
       setName(""); setEmail(""); setPhone(""); setMessage("");
       setPrivacyAccepted(false);
+      resetCaptcha();
       setZone(""); setPropertyType(""); setCommercialization("");
       setValuationAddress(""); setValuationPropertyType("");
       setTargetZone(""); setBudgetRange(""); setBuyTiming("");
@@ -179,7 +198,10 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
           className="pe-select"
           name="intent"
           value={intent}
-          onChange={(e) => setIntent(e.target.value as LeadIntent)}
+          onChange={(e) => {
+            setIntent(e.target.value as LeadIntent);
+            resetCaptcha(); // Reset captcha when intent changes to avoid confusion or staleness
+          }}
           data-testid="lead-intent-select"
           required
         >
@@ -433,6 +455,14 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
           data-testid="seller-message-input"
         />
       </label>
+
+      {siteKey && (
+        <div 
+          ref={captchaContainerRef} 
+          style={{ margin: "1.5rem 0" }} 
+          data-testid="seller-captcha" 
+        />
+      )}
 
       <label className="pe-form-field pe-privacy-row" style={{ marginTop: "1.5rem" }}>
         <input
