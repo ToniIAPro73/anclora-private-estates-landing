@@ -2,9 +2,18 @@
   padding-block: clamp(4.75rem, 8vw, var(--pe-space-28));
 }
 
-.pe-section[id],
+/* Sections already have large padding-top (~80px+).
+   To avoid overcompensation and large empty gaps, we use a minimal 
+   scroll-margin-top that allows some padding to swallow under the sticky navbar 
+   while bringing the content (eyebrow/title) to a natural entry point. */
+.pe-section[id] {
+  scroll-margin-top: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* Internal anchors (markers) inside content area need full navbar compensation 
+   to ensure the content immediately following them is visible. */
 [id="seller-intake"] {
-  scroll-margin-top: calc(var(--pe-navbar-h, 100px) + 1.5rem);
+  scroll-margin-top: var(--pe-navbar-h, 100px);
 }
 
 @media (min-width: 1024px) {

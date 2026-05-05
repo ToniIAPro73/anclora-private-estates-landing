@@ -443,7 +443,12 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       {siteKey && (
         <div 
           ref={captchaContainerRef} 
-          style={{ margin: "1.5rem 0", minHeight: captchaStatus === "ready" ? "78px" : "0" }} 
+          style={{ 
+            margin: "1.5rem 0", 
+            minHeight: (captchaStatus === "ready" || captchaStatus === "loading") ? "65px" : "0",
+            display: "flex",
+            justifyContent: "flex-start" 
+          }} 
           data-testid="seller-captcha" 
         />
       )}

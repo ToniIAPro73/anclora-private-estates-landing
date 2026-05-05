@@ -42,6 +42,9 @@ Replaced Google reCAPTCHA v2 with Cloudflare Turnstile to improve user experienc
 - **Result**: 13/13 tests passed.
 - **Build**: Successful production build.
 
+## Visible Configuration
+Turnstile is now configured with `appearance: "always"` and `size: "flexible"` to ensure the verification widget is visible and properly integrated into the premium forms. This provides visual feedback to the user and facilitates debugging in production.
+
 ## Why Native Turnstile?
 Native integration was chosen over reCAPTCHA compatibility mode to:
 1. Avoid loading unnecessary Google scripts.

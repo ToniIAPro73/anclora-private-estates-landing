@@ -6,11 +6,12 @@ Fixed UX regressions in navigation and improved the visual quality of the cookie
 ## Changes Implemented
 
 ### 1. Anchor Navigation Corrected
-- **Problem**: Sections reached via hash links (#propietarios, #inversores, etc.) were partially hidden by the sticky header or appeared with inconsistent vertical offset.
+- **Problem**: Sections reached via hash links (#propietarios, #inversores, etc.) were partially hidden by the sticky header or appeared with inconsistent vertical offset. Initial attempt with `navbar height + 1.5rem` global offset caused overcompensation (large empty gaps).
 - **Solution**: 
-    - Defined `--pe-navbar-h: 100px;` in `private-estates-tokens.css`.
-    - Applied `scroll-margin-top: calc(var(--pe-navbar-h, 100px) + 1.5rem);` to all sections with an `id` and the `#seller-intake` hidden target in `private-estates-helpers.css`.
-- **Result**: Sections are now correctly framed when navigating via menu or CTAs.
+    - Differentiated between section-level anchors and internal markers.
+    - **Sections**: Applied `scroll-margin-top: clamp(0.75rem, 2vw, 1.5rem);`. Since `.pe-section` has its own `padding-top` (~80px+), a small offset allows the padding to partially swallow under the sticky navbar, bringing the content (eyebrow/title) to a clean, natural entry point.
+    - **Internal Markers**: Applied `scroll-margin-top: var(--pe-navbar-h, 100px);` to `[id="seller-intake"]` to ensure content starting exactly at that marker is fully visible.
+- **Result**: Sections and internal targets are now correctly framed when navigating via menu or CTAs.
 
 ### 2. Cookie Modal Refinement
 - **Problem**: The settings view had poor legibility, line-clamped descriptions, and a non-premium "Reject" button.

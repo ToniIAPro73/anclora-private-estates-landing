@@ -173,7 +173,16 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
       </label>
 
       {siteKey && (
-        <div ref={captchaContainerRef} style={{ margin: "1.25rem 0 0", minHeight: captchaStatus === "ready" ? "78px" : "0" }} data-testid="valuation-captcha" />
+        <div 
+          ref={captchaContainerRef} 
+          style={{ 
+            margin: "1.5rem 0", 
+            minHeight: (captchaStatus === "ready" || captchaStatus === "loading") ? "65px" : "0",
+            display: "flex",
+            justifyContent: "flex-start" 
+          }} 
+          data-testid="valuation-captcha" 
+        />
       )}
 
       <label className="pe-form-field pe-form-field--checkbox" style={{ marginTop: "1rem", display: "flex", gap: "0.75rem", alignItems: "flex-start", cursor: "pointer" }}>

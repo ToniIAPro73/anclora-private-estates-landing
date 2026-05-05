@@ -95,7 +95,8 @@ export function useTurnstile(siteKey?: string) {
               }
             },
             theme: "dark",
-            appearance: "interaction-only",
+            appearance: "always",
+            size: "flexible",
           });
           // Note: status stays "loading" here until callback fires
         } catch (err) {
