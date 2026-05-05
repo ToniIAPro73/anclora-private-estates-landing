@@ -121,15 +121,34 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
         >
           <nav className="pe-nav-drawer__nav">
             {copy.links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="pe-nav-drawer__link"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+  <a
+    key={link.href}
+    href={link.href}
+    className="pe-nav-drawer__link"
+    onClick={(event) => {
+      setMenuOpen(false);
+
+      if (link.href !== "#clientes") return;
+
+      event.preventDefault();
+      window.history.pushState(null, "", "#clientes");
+
+      const target = document.querySelector(".pe-owner-shell");
+      const navbar = document.querySelector(".pe-navbar");
+      if (!target) return;
+
+      const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: targetTop - navbarHeight - 24,
+        behavior: "smooth",
+      });
+    }}
+  >
+    {link.label}
+  </a>
+))}
           </nav>
         </aside>
       )}
