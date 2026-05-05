@@ -65,7 +65,18 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
             className="pe-btn-primary pe-btn-primary-gold"
             data-testid="hero-primary-cta"
             type="button"
-            onClick={() => document.getElementById("seller-intake")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => (() => {
+                const target = document.querySelector(".pe-owner-shell");
+                const navbar = document.querySelector(".pe-navbar");
+                if (!target) return;
+
+                const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
+                const targetTop = target.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({
+                  top: targetTop - navbarHeight - 24,
+                  behavior: "smooth",
+                });
+              })()}
             style={{ minHeight: "56px", paddingInline: "2rem" }}
           >
             {copy.primaryCta}

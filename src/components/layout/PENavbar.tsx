@@ -74,7 +74,22 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
               />
               <a
                 className="pe-btn-primary pe-btn-primary-gold pe-nav-cta"
-                href="#propietarios"
+                href="#clientes"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.history.pushState(null, "", "#clientes");
+
+                  const target = document.querySelector(".pe-owner-shell");
+                  const navbar = document.querySelector(".pe-navbar");
+                  if (!target) return;
+
+                  const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
+                  const targetTop = target.getBoundingClientRect().top + window.scrollY;
+                  window.scrollTo({
+                    top: targetTop - navbarHeight - 24,
+                    behavior: "smooth",
+                  });
+                }}
                 style={{ minHeight: "44px" }}
                 data-testid="navbar-primary-cta"
               >

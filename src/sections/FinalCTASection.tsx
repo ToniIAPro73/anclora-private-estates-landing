@@ -25,7 +25,7 @@ export function FinalCTASection({ copy }: FinalCTASectionProps) {
             <p className="pe-final-cta-body">{copy.body}</p>
 
             <div className="pe-cta-row" style={{ marginTop: "2rem" }}>
-              <a className="pe-btn-primary pe-btn-primary-gold" href="#propietarios" data-testid="final-cta-primary">
+              <a className="pe-btn-primary pe-btn-primary-gold" href="#clientes" data-testid="final-cta-primary">
                 {copy.primaryCta}
               </a>
               <a className="pe-btn-secondary pe-btn-secondary-ghost" href="#contacto" data-testid="final-cta-secondary">

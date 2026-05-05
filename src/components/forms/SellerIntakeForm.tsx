@@ -72,7 +72,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   // Focus behavior for hash navigation
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === "#propietarios") {
+      if (window.location.hash === "#clientes" || window.location.hash === "#propietarios") {
         intentSelectRef.current?.focus();
       }
     };

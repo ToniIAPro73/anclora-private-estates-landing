@@ -10,10 +10,12 @@
   scroll-margin-top: clamp(0.75rem, 2vw, 1.5rem);
 }
 
-/* Internal anchors (markers) inside content area need full navbar compensation 
-   to ensure the content immediately following them is visible. */
+/* Client intake anchors use a reduced offset so the section frames naturally
+   below the sticky navbar without excessive vertical whitespace. */
+#clientes,
+#propietarios,
 [id="seller-intake"] {
-  scroll-margin-top: var(--pe-navbar-h, 100px);
+  scroll-margin-top: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 @media (min-width: 1024px) {
@@ -21,6 +23,7 @@
     padding-block: clamp(5.75rem, 8vw, 7.5rem);
   }
 }
+
 
 .pe-container {
   width: min(1280px, calc(100% - 1.5rem));

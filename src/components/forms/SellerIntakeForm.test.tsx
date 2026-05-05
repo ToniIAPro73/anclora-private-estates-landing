@@ -264,8 +264,8 @@ describe("SellerIntakeForm Integration & Coverage", () => {
     expect(screen.getByTestId("seller-error")).toBeInTheDocument();
   });
 
-  test("7. Focus behavior: #propietarios focuses intent selector", () => {
-    window.location.hash = "#propietarios";
+  test("7. Focus behavior: #clientes focuses intent selector", () => {
+    window.location.hash = "#clientes";
     render(<SellerIntakeForm copy={copy} />);
     
     const select = screen.getByTestId("lead-intent-select");

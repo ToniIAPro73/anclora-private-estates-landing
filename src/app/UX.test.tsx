@@ -16,6 +16,7 @@ describe("UX Navigation and Modal", () => {
     // Check main sections IDs
     expect(document.getElementById("mallorca-focus")).toBeInTheDocument();
     expect(document.getElementById("inversores")).toBeInTheDocument();
+    expect(document.getElementById("clientes")).toBeInTheDocument();
     expect(document.getElementById("propietarios")).toBeInTheDocument();
     expect(document.getElementById("partners")).toBeInTheDocument();
     expect(document.getElementById("data-lab")).toBeInTheDocument();
