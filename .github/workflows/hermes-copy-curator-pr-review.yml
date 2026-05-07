@@ -1,0 +1,143 @@
+name: Hermes Copy Curator PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  hermes-copy-curator:
+    name: Hermes Copy Curator
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout consumer repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: consumer-repo
+
+      - name: Checkout Hermes tooling repository
+        uses: actions/checkout@v4
+        with:
+          repository: ToniIAPro73/anclora-content-generator-ai
+          ref: main
+          path: .hermes-tooling/anclora-content-generator-ai
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: .hermes-tooling/anclora-content-generator-ai/package-lock.json
+
+      - name: Install Hermes tooling dependencies
+        working-directory: .hermes-tooling/anclora-content-generator-ai
+        run: npm ci
+
+      - name: Validate Hermes Copy Curator tooling
+        working-directory: .hermes-tooling/anclora-content-generator-ai
+        run: npm run test:hermes
+
+      - name: Prepare consumer PR diff
+        working-directory: consumer-repo
+        run: |
+          mkdir -p ../tmp/hermes-copy-curator
+          git diff origin/${{ github.base_ref }}...HEAD > ../tmp/hermes-copy-curator/pr.diff
+
+      - name: Run Hermes Copy Curator on consumer diff
+        working-directory: .hermes-tooling/anclora-content-generator-ai
+        run: |
+          mkdir -p ../../reports/hermes-copy-curator
+          npm run hermes:copy-curator -- \
+            --repo ../../consumer-repo \
+            --mode diff \
+            --diff ../../tmp/hermes-copy-curator/pr.diff \
+            --output ../../reports/hermes-copy-curator/pr-${{ github.event.pull_request.number }}-copy-curator-report.md \
+            --summary-output ../../tmp/hermes-copy-curator/pr-summary.json \
+            --maxFindings 20
+
+      - name: Upload Copy Curator report
+        uses: actions/upload-artifact@v4
+        with:
+          name: hermes-copy-curator-pr-${{ github.event.pull_request.number }}
+          path: reports/hermes-copy-curator/pr-${{ github.event.pull_request.number }}-copy-curator-report.md
+          if-no-files-found: warn
+
+      - name: Comment PR with Copy Curator summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = 'tmp/hermes-copy-curator/pr-summary.json';
+            const marker = '<!-- hermes-copy-curator-summary -->';
+
+            let summary = {
+              status: 'review_failed',
+              findings: 0,
+              locales: [],
+              maxVisualRisk: 'unknown',
+              warnings: ['Summary file was not generated.'],
+            };
+
+            if (fs.existsSync(summaryPath)) {
+              summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+            }
+
+            const statusLabel = {
+              copy_changes_detected: 'Copy changes detected',
+              no_user_facing_copy_changes_detected: 'No user-facing copy changes detected',
+              review_skipped: 'Review skipped',
+              review_failed: 'Review could not be completed',
+            }[summary.status] || summary.status;
+
+            const locales = summary.locales?.length ? summary.locales.join(', ') : 'none detected';
+            const warnings = summary.warnings?.length
+              ? `\n\n**Warnings:**\n${summary.warnings.map((w) => `- ${w}`).join('\n')}`
+              : '';
+
+            const body = `${marker}
+            ## Hermes Copy Curator
+
+            **Status:** ${statusLabel}  
+            **Findings:** ${summary.findings ?? 0}  
+            **Locales:** ${locales}  
+            **Max visual risk:** ${summary.maxVisualRisk ?? 'unknown'}  
+            **Report:** see workflow artifact \`hermes-copy-curator-pr-${context.payload.pull_request.number}\`
+            ${warnings}
+
+            Hermes Copy Curator does not apply changes automatically. Review the artifact before deciding whether to adjust copy.`;
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+
+            const comments = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number,
+              per_page: 100,
+            });
+
+            const existing = comments.data.find((comment) =>
+              comment.body && comment.body.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+            }
