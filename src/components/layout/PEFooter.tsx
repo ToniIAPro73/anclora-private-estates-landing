@@ -1,13 +1,17 @@
 import { BrandLockup } from "@/components/brand/BrandLockup";
 import { ExpTrustBadge } from "@/components/brand/ExpTrustBadge";
-import type { FooterCopy } from "@/content/site-copy";
+import type { FooterCopy, LanguageCode } from "@/content/site-copy";
+import { LEGAL_CONFIG } from "@/lib/legal-config";
 
 type PEFooterProps = {
   copy: FooterCopy;
   trustBadgeText: string;
+  language?: LanguageCode;
 };
 
-export function PEFooter({ copy, trustBadgeText }: PEFooterProps) {
+export function PEFooter({ copy, trustBadgeText, language = "es" }: PEFooterProps) {
+  const brandDeclaration = LEGAL_CONFIG.getBrandDeclaration("Anclora Private Estates", language);
+
   return (
     <footer id="footer" className="pe-section pe-footer-shell">
       <div className="pe-container pe-footer-inner">
@@ -27,6 +31,14 @@ export function PEFooter({ copy, trustBadgeText }: PEFooterProps) {
       </div>
       <div className="pe-container">
         <p className="pe-footer-copyright">{copy.copyright}</p>
+        <p className="pe-footer-legal-declaration" style={{ 
+          fontSize: "0.75rem", 
+          opacity: 0.6, 
+          marginTop: "0.5rem",
+          maxWidth: "600px" 
+        }}>
+          {brandDeclaration}
+        </p>
       </div>
     </footer>
   );

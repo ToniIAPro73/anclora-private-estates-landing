@@ -48,7 +48,11 @@ export default function App() {
         <FinalCTASection copy={copy.finalCta} />
       </main>
 
-      <PEFooter copy={copy.footer} trustBadgeText={copy.trustBadgeText} />
+      <PEFooter 
+        copy={copy.footer} 
+        trustBadgeText={copy.trustBadgeText} 
+        language={language}
+      />
 
       {/* Global Components */}
       <SocialSidebar copy={copy.social} />

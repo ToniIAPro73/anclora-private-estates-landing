@@ -645,7 +645,7 @@ const siteCopyEs: SiteCopy = {
         ],
       },
     ],
-    copyright: "© 2026 Anclora Private Estates. Todos los derechos reservados.",
+    copyright: "© 2026 Anclora Group. Todos los derechos reservados.",
   },
   cookies: {
     title: "Preferencias de cookies",
@@ -1018,7 +1018,7 @@ const siteCopyEn: SiteCopy = {
         ],
       },
     ],
-    copyright: "© 2026 Anclora Private Estates. All rights reserved.",
+    copyright: "© 2026 Anclora Group. All rights reserved.",
   },
   cookies: {
     title: "Cookie Preferences",
@@ -1396,7 +1396,7 @@ const siteCopyDe: SiteCopy = {
         ],
       },
     ],
-    copyright: "© 2026 Anclora Private Estates. Alle Rechte vorbehalten.",
+    copyright: "© 2026 Anclora Group. Alle Rechte vorbehalten.",
   },
   cookies: {
     title: "Cookie-Einstellungen",
@@ -1781,7 +1781,7 @@ const siteCopyFr: SiteCopy = {
         ],
       },
     ],
-    copyright: "© 2026 Anclora Private Estates. Tous droits réservés.",
+    copyright: "© 2026 Anclora Group. Tous droits réservés.",
   },
   trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
 };
