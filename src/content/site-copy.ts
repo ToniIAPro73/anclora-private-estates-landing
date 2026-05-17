@@ -640,8 +640,9 @@ const siteCopyEs: SiteCopy = {
       {
         title: "Legal",
         links: [
-          { label: "Privacidad", href: "#contacto" },
-          { label: "Aviso legal", href: "#contacto" },
+          { label: "Privacidad", href: "/privacy" },
+          { label: "Términos", href: "/terms" },
+          { label: "Aviso legal", href: "/legal" },
         ],
       },
     ],
@@ -1013,8 +1014,9 @@ const siteCopyEn: SiteCopy = {
       {
         title: "Legal",
         links: [
-          { label: "Privacy", href: "#contacto" },
-          { label: "Legal notice", href: "#contacto" },
+          { label: "Privacy", href: "/privacy" },
+          { label: "Terms", href: "/terms" },
+          { label: "Legal notice", href: "/legal" },
         ],
       },
     ],
@@ -1391,8 +1393,9 @@ const siteCopyDe: SiteCopy = {
       {
         title: "Rechtliches",
         links: [
-          { label: "Datenschutz", href: "#contacto" },
-          { label: "Impressum", href: "#contacto" },
+          { label: "Datenschutz", href: "/privacy" },
+          { label: "Nutzungsbedingungen", href: "/terms" },
+          { label: "Impressum", href: "/legal" },
         ],
       },
     ],
@@ -1776,8 +1779,9 @@ const siteCopyFr: SiteCopy = {
       {
         title: "Mentions légales",
         links: [
-          { label: "Confidentialité", href: "#contacto" },
-          { label: "Mentions légales", href: "#contacto" },
+          { label: "Confidentialité", href: "/privacy" },
+          { label: "Conditions", href: "/terms" },
+          { label: "Mentions légales", href: "/legal" },
         ],
       },
     ],

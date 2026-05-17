@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { siteCopyByLanguage } from "@/content/site-copy";
 import type { LanguageCode } from "@/content/site-copy";
+import { LegalPagePE } from "@/components/legal/LegalPagePE";
 import { PEFooter } from "@/components/layout/PEFooter";
 import { PENavbar } from "@/components/layout/PENavbar";
 import { ContactSection } from "@/sections/ContactSection";
@@ -18,6 +19,8 @@ import { CookieBanner } from "@/components/layout/CookieBanner";
 
 const STORAGE_KEY = "ape:language";
 
+const legalPath = typeof window !== 'undefined' ? window.location.pathname.replace(/^\/+/, '') : '';
+
 export default function App() {
   const [language, setLanguage] = useState<LanguageCode>(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -31,6 +34,10 @@ export default function App() {
     document.documentElement.lang = language;
     window.localStorage.setItem(STORAGE_KEY, language);
   }, [language]);
+
+  if (legalPath === 'privacy' || legalPath === 'terms' || legalPath === 'legal') {
+    return <LegalPagePE kind={legalPath} />;
+  }
 
   return (
     <>
@@ -48,22 +55,22 @@ export default function App() {
         <FinalCTASection copy={copy.finalCta} />
       </main>
 
-      <PEFooter 
-        copy={copy.footer} 
-        trustBadgeText={copy.trustBadgeText} 
+      <PEFooter
+        copy={copy.footer}
+        trustBadgeText={copy.trustBadgeText}
         language={language}
       />
 
       {/* Global Components */}
       <SocialSidebar copy={copy.social} />
-      <FloatingControls 
+      <FloatingControls
         onOpenCookieModal={() => setIsCookieModalOpen(true)}
         scrollCopy={copy.scroll}
         contactLabel={copy.contactFloatingLabel}
       />
-      <CookieBanner 
-        isOpen={isCookieModalOpen} 
-        onClose={() => setIsCookieModalOpen(false)} 
+      <CookieBanner
+        isOpen={isCookieModalOpen}
+        onClose={() => setIsCookieModalOpen(false)}
         copy={copy.cookies}
       />
     </>

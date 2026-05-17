@@ -15,9 +15,9 @@ export const LEGAL_CONFIG = {
   },
   getBrandDeclaration: (appName: string, lang: "es" | "en" | "de" = "es") => {
     const declarations = {
-      es: `${appName} es una marca comercial operada bajo licencia exclusiva por Anclora Group.`,
-      en: `${appName} is a trademark operated under exclusive license by Anclora Group.`,
-      de: `${appName} ist eine Marke, die unter exklusiver Lizenz von Anclora Group betrieben wird.`,
+      es: `${appName} forma parte del ecosistema tecnológico de Anclora Group.`,
+      en: `${appName} is part of the Anclora Group technology ecosystem.`,
+      de: `${appName} ist Teil des technologischen Ökosystems von Anclora Group.`,
     };
     return declarations[lang] || declarations.es;
   }
