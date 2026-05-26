@@ -708,7 +708,7 @@ const siteCopyEn: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
-    title: "Exclusive access to high-net-worth buyers.",
+    title: "Unlock access to elite buyers, sellers, and investors today.",
     description:
       "Discreet sales in Andratx, Calvià, Son Vida and Portals.\nNo portals. Only qualified buyers.",
     chips: [],
