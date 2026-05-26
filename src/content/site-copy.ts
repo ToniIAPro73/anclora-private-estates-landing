@@ -329,7 +329,7 @@ const siteCopyEs: SiteCopy = {
   },
   hero: {
     eyebrow: "Palma · Suroeste de Mallorca · Capital premium",
-    title: "Acceso exclusivo a compradores de alto poder adquisitivo.",
+    title: "Conéctate con los principales compradores, vendedores e inversores hoy.",
     description:
       "Vende tu finca en el suroeste de Mallorca sin exponer tu propiedad.\nSolo cobramos si vendemos.",
     chips: [],
@@ -708,7 +708,7 @@ const siteCopyEn: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
-    title: "Unlock access to elite buyers, sellers, and investors today.",
+    title: "Connect with top buyers, sellers, and investors today.",
     description:
       "Discover exclusive properties in Andratx, Calvià, Son Vida, and Portals. Serious inquiries are encouraged.",
     chips: [],
@@ -1082,7 +1082,7 @@ const siteCopyDe: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Südwest-Mallorca · Premium-Kapital",
-    title: "Exklusiver Zugang zu vermögenden Käufern.",
+    title: "Verbinden Sie sich noch heute mit den besten Käufern, Verkäufern und Investoren.",
     description:
       "Diskreter Verkauf in Andratx, Calvià, Son Vida und Portals.\nKeine Portale. Nur qualifizierte Käufer.",
     chips: [],
