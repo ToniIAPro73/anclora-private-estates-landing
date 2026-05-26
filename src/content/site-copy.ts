@@ -710,7 +710,7 @@ const siteCopyEn: SiteCopy = {
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
     title: "Unlock access to elite buyers, sellers, and investors today.",
     description:
-      "Discreet sales in Andratx, Calvià, Son Vida and Portals.\nNo portals. Only qualified buyers.",
+      "Exclusive property transactions in Andratx, Calvià, Son Vida, and Portals. Only serious inquiries welcome.",
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
