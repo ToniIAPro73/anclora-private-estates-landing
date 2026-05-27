@@ -350,7 +350,7 @@ const siteCopyEs: SiteCopy = {
   },
   credibility: {
     eyebrow: "Credibilidad",
-    title: "Una propuesta premium que no necesita simular volumen para transmitir confianza.",
+    title: "Descubre una propuesta premium que genera confianza de forma genuina.",
     intro:
       "La autoridad aquí no se comunica con promesas estridentes, sino con estructura, respaldo y una lectura más madura del mercado.",
     pillars: [
@@ -731,7 +731,7 @@ const siteCopyEn: SiteCopy = {
   credibility: {
     ...siteCopyEs.credibility,
     eyebrow: "Credibility",
-    title: "A premium proposition that does not need to simulate scale in order to communicate trust.",
+    title: "Discover a premium proposal that generates trust genuinely.",
     intro:
       "Authority is not expressed here through louder promises, but through structure, backing and a more mature reading of the market.",
     pillars: [
@@ -1105,7 +1105,7 @@ const siteCopyDe: SiteCopy = {
   credibility: {
     ...siteCopyEs.credibility,
     eyebrow: "Glaubwürdigkeit",
-    title: "Eine Premium-Darstellung, die keine Größe simulieren muss, um Vertrauen zu kommunizieren.",
+    title: "Entdecken Sie ein Premium-Angebot, das auf authentische Weise Vertrauen schafft.",
     intro:
       "Autorität wird hier nicht durch lautere Versprechen ausgedrückt, sondern durch Struktur, Rückendeckung und eine reifere Marktlesart.",
     pillars: [
