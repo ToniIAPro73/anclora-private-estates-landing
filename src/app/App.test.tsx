@@ -7,6 +7,11 @@ import App from "./App";
 describe("App landing home", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    window.history.replaceState({}, "", "/");
+    Object.defineProperty(window.navigator, "languages", {
+      value: ["es-ES"],
+      configurable: true,
+    });
     document.documentElement.lang = "";
     document.documentElement.dataset.theme = "";
   });
@@ -44,6 +49,7 @@ describe("App landing home", () => {
     expect(siteCopyByLanguage.es.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.en.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.de.hero.title).toBeTruthy();
+    expect(siteCopyByLanguage.fr.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.es.navbar.links).toHaveLength(6);
     expect(siteCopyByLanguage.en.footer.columns).toHaveLength(3);
     expect(siteCopyByLanguage.de.sellerIntake.form.submitLabel).toBeTruthy();
@@ -62,28 +68,26 @@ describe("App landing home", () => {
     ).not.toBeInTheDocument();
 
     expect(screen.getByRole("group", { name: /selector de idioma/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /idioma español|español/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /idioma inglés|english/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /idioma alemán|deutsch/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /selector de idioma/i })).toBeInTheDocument();
   });
 
-  test("switches between es, en, and de from the header language switcher", async () => {
+  test("switches between active locales and keeps pending Ultra Premium locales disabled", async () => {
     const user = userEvent.setup();
     render(<App />);
 
-    const spanishButton = screen.getByRole("button", { name: /idioma español|español/i });
-    const englishButton = screen.getByRole("button", { name: /idioma inglés|english/i });
-    const germanButton = screen.getByRole("button", { name: /idioma alemán|deutsch/i });
+    await user.click(screen.getByRole("button", { name: /selector de idioma/i }));
+    const spanishButton = screen.getByTestId("language-button-es");
+    const catalanButton = screen.getByTestId("language-button-ca");
+    const englishButton = screen.getByTestId("language-button-en");
 
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.es.hero.title })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: siteCopyByLanguage.es.navbar.ctaLabel })).toBeInTheDocument();
-    expect(spanishButton).toHaveAttribute("aria-pressed", "true");
+    expect(spanishButton).toHaveAttribute("aria-selected", "true");
+    expect(catalanButton).toBeDisabled();
     expect(document.documentElement.lang).toBe("es");
     expect(window.localStorage.getItem("ape:language")).toBe("es");
 
     await user.click(englishButton);
-    expect(englishButton).toHaveAttribute("aria-pressed", "true");
-    expect(spanishButton).toHaveAttribute("aria-pressed", "false");
     expect(document.documentElement.lang).toBe("en");
     expect(window.localStorage.getItem("ape:language")).toBe("en");
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.en.hero.title })).toBeInTheDocument();
@@ -92,9 +96,14 @@ describe("App landing home", () => {
     expect(screen.getByRole("heading", { level: 2, name: siteCopyByLanguage.en.contact.title })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { level: 1, name: siteCopyByLanguage.es.hero.title })).not.toBeInTheDocument();
 
-    await user.click(germanButton);
-    expect(germanButton).toHaveAttribute("aria-pressed", "true");
-    expect(englishButton).toHaveAttribute("aria-pressed", "false");
+    await user.click(screen.getByRole("button", { name: /language selector/i }));
+    await user.click(screen.getByTestId("language-button-fr"));
+    expect(document.documentElement.lang).toBe("fr");
+    expect(window.localStorage.getItem("ape:language")).toBe("fr");
+    expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.fr.hero.title })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: /sélecteur de langue/i }));
+    await user.click(screen.getByTestId("language-button-de"));
     expect(document.documentElement.lang).toBe("de");
     expect(window.localStorage.getItem("ape:language")).toBe("de");
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.de.hero.title })).toBeInTheDocument();

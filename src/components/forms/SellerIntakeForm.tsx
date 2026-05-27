@@ -45,12 +45,20 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     validationError: "Bitte füllen Sie alle erforderlichen Felder aus.",
     captchaError: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
   },
+  fr: {
+    privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
+    successTitle: "Demande reçue",
+    successBody: "Nous examinerons votre actif et vous répondrons sous deux jours ouvrés.",
+    genericError: "Nous n'avons pas pu envoyer votre demande. Veuillez réessayer dans quelques minutes.",
+    validationError: "Veuillez compléter tous les champs obligatoires.",
+    captchaError: "Veuillez compléter la vérification de sécurité.",
+  },
 };
 
 function resolveCurrentLanguage(): LanguageCode {
   if (typeof document === "undefined") return "es";
   const documentLanguage = document.documentElement.lang as LanguageCode;
-  if (documentLanguage === "en" || documentLanguage === "de") {
+  if (documentLanguage === "en" || documentLanguage === "de" || documentLanguage === "fr") {
     return documentLanguage;
   }
 
@@ -483,4 +491,3 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
     </form>
   );
 }
-

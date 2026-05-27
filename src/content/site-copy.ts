@@ -1,4 +1,6 @@
-export type LanguageCode = "es" | "en" | "de";
+import type { ActiveAncloraLocale } from "@/lib/anclora-language-toggle";
+
+export type LanguageCode = ActiveAncloraLocale;
 
 export type NavLinkCopy = {
   label: string;
@@ -244,6 +246,11 @@ export type LanguageSwitcherOptionCopy = {
 
 export type LanguageSwitcherCopy = {
   groupLabel: string;
+  title: string;
+  eyebrow: string;
+  pendingLabel: string;
+  closeLabel: string;
+  saveLabel: string;
   options: LanguageSwitcherOptionCopy[];
 };
 
@@ -320,6 +327,11 @@ const siteCopyEs: SiteCopy = {
     ctaLabel: "Solicitar valoración",
     languageSwitcher: {
       groupLabel: "Selector de idioma",
+      eyebrow: "Ajustes",
+      title: "Idioma",
+      pendingLabel: "Pendiente",
+      closeLabel: "Cerrar selector de idioma",
+      saveLabel: "Guardar y cerrar",
       options: [
         { code: "es", label: "ES", ariaLabel: "Idioma español" },
         { code: "en", label: "EN", ariaLabel: "Idioma inglés" },
@@ -698,6 +710,11 @@ const siteCopyEn: SiteCopy = {
     ctaLabel: "Request a valuation",
     languageSwitcher: {
       groupLabel: "Language selector",
+      eyebrow: "Settings",
+      title: "Language",
+      pendingLabel: "Pending",
+      closeLabel: "Close language selector",
+      saveLabel: "Save and close",
       options: [
         { code: "es", label: "ES", ariaLabel: "Spanish language" },
         { code: "en", label: "EN", ariaLabel: "English language" },
@@ -1072,6 +1089,11 @@ const siteCopyDe: SiteCopy = {
     ctaLabel: "Bewertung anfragen",
     languageSwitcher: {
       groupLabel: "Sprachauswahl",
+      eyebrow: "Einstellungen",
+      title: "Sprache",
+      pendingLabel: "Ausstehend",
+      closeLabel: "Sprachauswahl schließen",
+      saveLabel: "Speichern und schließen",
       options: [
         { code: "es", label: "ES", ariaLabel: "Spanische Sprache" },
         { code: "en", label: "EN", ariaLabel: "Englische Sprache" },
@@ -1451,10 +1473,16 @@ const siteCopyFr: SiteCopy = {
     ctaLabel: "Demander une évaluation",
     languageSwitcher: {
       groupLabel: "Sélecteur de langue",
+      eyebrow: "Réglages",
+      title: "Langue",
+      pendingLabel: "À localiser",
+      closeLabel: "Fermer le sélecteur de langue",
+      saveLabel: "Enregistrer et fermer",
       options: [
         { code: "es", label: "ES", ariaLabel: "Langue espagnole" },
         { code: "en", label: "EN", ariaLabel: "Langue anglaise" },
         { code: "de", label: "DE", ariaLabel: "Langue allemande" },
+        { code: "fr", label: "FR", ariaLabel: "Langue française" },
       ],
     },
   },
@@ -1794,8 +1822,8 @@ export const siteCopyByLanguage = {
   es: siteCopyEs,
   en: siteCopyEn,
   de: siteCopyDe,
+  fr: siteCopyFr,
 } satisfies Record<LanguageCode, SiteCopy>;
-
 
 
 
