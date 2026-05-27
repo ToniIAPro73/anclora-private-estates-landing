@@ -331,7 +331,7 @@ const siteCopyEs: SiteCopy = {
     eyebrow: "Palma · Suroeste de Mallorca · Capital premium",
     title: "Únete a los principales compradores y vendedores para impulsar tus oportunidades.",
     description:
-      "Vende tu finca en el suroeste de Mallorca sin exponer tu propiedad.\nSolo cobramos si vendemos.",
+      "Explora nuestras propiedades únicas en Andratx, Calvià, Son Vida y Portals. ¡Damos la bienvenida a tus preguntas!",
     chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
@@ -710,7 +710,7 @@ const siteCopyEn: SiteCopy = {
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
     title: "Join the leading buyers and sellers to boost your opportunities.",
     description:
-      "Discover exclusive properties in Andratx, Calvià, Son Vida, and Portals. Serious inquiries are encouraged.",
+      "Explore our unique properties in Andratx, Calvià, Son Vida, and Portals. We welcome your questions!",
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
@@ -1084,7 +1084,7 @@ const siteCopyDe: SiteCopy = {
     eyebrow: "Palma · Südwest-Mallorca · Premium-Kapital",
     title: "Schließe dich den führenden Käufern und Verkäufern an, um deine Möglichkeiten zu fördern.",
     description:
-      "Diskreter Verkauf in Andratx, Calvià, Son Vida und Portals.\nKeine Portale. Nur qualifizierte Käufer.",
+      "Entdecken Sie unsere einzigartigen Immobilien in Andratx, Calvià, Son Vida und Portals. Wir freuen uns auf Ihre Fragen!",
     chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
