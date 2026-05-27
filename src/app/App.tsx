@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { siteCopyByLanguage } from "@/content/site-copy";
 import type { LanguageCode } from "@/content/site-copy";
+import { resolveInitialLocale } from "@/lib/anclora-language-toggle";
 import { LegalPagePE } from "@/components/legal/LegalPagePE";
 import { PEFooter } from "@/components/layout/PEFooter";
 import { PENavbar } from "@/components/layout/PENavbar";
@@ -23,8 +24,12 @@ const legalPath = typeof window !== 'undefined' ? window.location.pathname.repla
 
 export default function App() {
   const [language, setLanguage] = useState<LanguageCode>(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    return (stored === "en" || stored === "de") ? (stored as LanguageCode) : "es";
+    const searchParams = new URLSearchParams(window.location.search);
+    return resolveInitialLocale({
+      urlLocale: searchParams.get("lang") ?? searchParams.get("locale"),
+      persistedLocale: window.localStorage.getItem(STORAGE_KEY),
+      browserLocales: Array.from(window.navigator.languages ?? [window.navigator.language]),
+    });
   });
   const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
   const copy = siteCopyByLanguage[language];
