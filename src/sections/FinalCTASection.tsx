@@ -26,9 +26,22 @@ export function FinalCTASection({ copy, mediaAlt }: FinalCTASectionProps) {
             <p className="pe-final-cta-body">{copy.body}</p>
 
             <div className="pe-cta-row" style={{ marginTop: "2rem" }}>
-              <a className="pe-btn-primary pe-btn-primary-gold" href="#clientes" data-testid="final-cta-primary">
+              <button
+                className="pe-btn-primary pe-btn-primary-gold"
+                data-testid="final-cta-primary"
+                type="button"
+                onClick={() => {
+                  window.history.pushState(null, "", "#clientes");
+                  const target = document.querySelector(".pe-owner-shell");
+                  const navbar = document.querySelector(".pe-navbar");
+                  if (!target) return;
+                  const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
+                  const targetTop = target.getBoundingClientRect().top + window.scrollY;
+                  window.scrollTo({ top: targetTop - navbarHeight - 24, behavior: "smooth" });
+                }}
+              >
                 {copy.primaryCta}
-              </a>
+              </button>
               <a className="pe-btn-secondary pe-btn-secondary-ghost" href="#contacto" data-testid="final-cta-secondary">
                 {copy.secondaryCta}
               </a>
