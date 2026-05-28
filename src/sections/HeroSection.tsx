@@ -102,9 +102,9 @@ export function HeroSection({ copy, trustBadgeText }: HeroSectionProps) {
         className="pe-hero-down"
         data-testid="hero-scroll-hint"
         onClick={() => document.querySelector('#credibilidad')?.scrollIntoView({ behavior: 'smooth' })}
-        aria-label="Continuar"
+        aria-label={copy.scrollLabel}
       >
-        <span>Descubrir</span>
+        <span>{copy.scrollText}</span>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="m6 9 6 6 6-6" />
         </svg>

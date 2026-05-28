@@ -40,6 +40,27 @@ export default function App() {
     window.localStorage.setItem(STORAGE_KEY, language);
   }, [language]);
 
+  useEffect(() => {
+    const setMeta = (selector: string, content: string) => {
+      document.querySelector<HTMLMetaElement>(selector)?.setAttribute("content", content);
+    };
+
+    document.title = copy.seo.title;
+    setMeta('meta[name="description"]', copy.seo.description);
+    setMeta('meta[property="og:title"]', copy.seo.ogTitle);
+    setMeta('meta[property="og:description"]', copy.seo.ogDescription);
+    setMeta('meta[name="twitter:title"]', copy.seo.ogTitle);
+    setMeta('meta[name="twitter:description"]', copy.seo.ogDescription);
+
+    const schemaNode = document.querySelector<HTMLScriptElement>('script[type="application/ld+json"]');
+    if (schemaNode) {
+      const schema = JSON.parse(schemaNode.textContent || "{}");
+      schema.description = copy.seo.schemaDescription;
+      schema.serviceType = copy.seo.serviceType;
+      schemaNode.textContent = JSON.stringify(schema);
+    }
+  }, [copy]);
+
   if (legalPath === 'privacy' || legalPath === 'terms' || legalPath === 'legal') {
     return <LegalPagePE kind={legalPath} />;
   }
@@ -51,13 +72,13 @@ export default function App() {
       <main>
         <HeroSection copy={copy.hero} trustBadgeText={copy.trustBadgeText} />
         <CredibilitySection copy={copy.credibility} />
-        <MallorcaFocusSection copy={copy.mallorcaFocus} />
-        <InvestorSection copy={copy.investors} />
+        <MallorcaFocusSection copy={copy.mallorcaFocus} mediaAlt={copy.mediaAlt} />
+        <InvestorSection copy={copy.investors} mediaAlt={copy.mediaAlt} />
         <SellerIntakeSection copy={copy.sellerIntake} />
         <PartnersSynergiSection copy={copy.partners} language={language} />
         <DataLabSignalsSection copy={copy.dataLab} language={language} />
         <ContactSection copy={copy.contact} />
-        <FinalCTASection copy={copy.finalCta} />
+        <FinalCTASection copy={copy.finalCta} mediaAlt={copy.mediaAlt} />
       </main>
 
       <PEFooter

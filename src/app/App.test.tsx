@@ -50,7 +50,7 @@ describe("App landing home", () => {
     expect(siteCopyByLanguage.en.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.de.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.fr.hero.title).toBeTruthy();
-    expect(siteCopyByLanguage.es.navbar.links).toHaveLength(6);
+    expect(siteCopyByLanguage.es.navbar.links).toHaveLength(7);
     expect(siteCopyByLanguage.en.footer.columns).toHaveLength(3);
     expect(siteCopyByLanguage.de.sellerIntake.form.submitLabel).toBeTruthy();
   });
@@ -68,26 +68,26 @@ describe("App landing home", () => {
     ).not.toBeInTheDocument();
 
     expect(screen.getByRole("group", { name: /selector de idioma/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /selector de idioma/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /preferencias globales/i })).toBeInTheDocument();
   });
 
-  test("switches between active locales and keeps pending Ultra Premium locales disabled", async () => {
+  test("switches between active Ultra Premium locales in the governed order", async () => {
     const user = userEvent.setup();
     render(<App />);
+    const languageCombobox = () => screen.getAllByRole("combobox")[0];
 
-    await user.click(screen.getByRole("button", { name: /selector de idioma/i }));
-    const spanishButton = screen.getByTestId("language-button-es");
-    const catalanButton = screen.getByTestId("language-button-ca");
-    const englishButton = screen.getByTestId("language-button-en");
+    await user.click(screen.getByRole("button", { name: /preferencias globales/i }));
+    const languageSelect = languageCombobox();
+    expect(Array.from(languageSelect.querySelectorAll("option")).map((option) => option.value)).toEqual([
+      "es", "ca", "de", "en", "sv", "fr", "it", "da", "nl", "no", "pt",
+    ]);
 
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.es.hero.title })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: siteCopyByLanguage.es.navbar.ctaLabel })).toBeInTheDocument();
-    expect(spanishButton).toHaveAttribute("aria-selected", "true");
-    expect(catalanButton).toBeDisabled();
     expect(document.documentElement.lang).toBe("es");
     expect(window.localStorage.getItem("ape:language")).toBe("es");
 
-    await user.click(englishButton);
+    await user.selectOptions(languageSelect, "en");
     expect(document.documentElement.lang).toBe("en");
     expect(window.localStorage.getItem("ape:language")).toBe("en");
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.en.hero.title })).toBeInTheDocument();
@@ -96,14 +96,16 @@ describe("App landing home", () => {
     expect(screen.getByRole("heading", { level: 2, name: siteCopyByLanguage.en.contact.title })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { level: 1, name: siteCopyByLanguage.es.hero.title })).not.toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: /language selector/i }));
-    await user.click(screen.getByTestId("language-button-fr"));
+    await user.selectOptions(languageCombobox(), "ca");
+    expect(document.documentElement.lang).toBe("ca");
+    expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.ca.hero.title })).toBeInTheDocument();
+
+    await user.selectOptions(languageCombobox(), "fr");
     expect(document.documentElement.lang).toBe("fr");
     expect(window.localStorage.getItem("ape:language")).toBe("fr");
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.fr.hero.title })).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: /sélecteur de langue/i }));
-    await user.click(screen.getByTestId("language-button-de"));
+    await user.selectOptions(languageCombobox(), "de");
     expect(document.documentElement.lang).toBe("de");
     expect(window.localStorage.getItem("ape:language")).toBe("de");
     expect(screen.getByRole("heading", { level: 1, name: siteCopyByLanguage.de.hero.title })).toBeInTheDocument();

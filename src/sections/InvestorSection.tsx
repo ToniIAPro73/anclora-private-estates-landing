@@ -1,12 +1,13 @@
-import type { InvestorCopy } from "@/content/site-copy";
+import type { InvestorCopy, MediaAltCopy } from "@/content/site-copy";
 
 const INVESTOR_IMAGE = "/brand/investor-infinity-pool.jpg";
 
 type InvestorSectionProps = {
   copy: InvestorCopy;
+  mediaAlt: MediaAltCopy;
 };
 
-export function InvestorSection({ copy }: InvestorSectionProps) {
+export function InvestorSection({ copy, mediaAlt }: InvestorSectionProps) {
   return (
     <section id="inversores" className="pe-section pe-section-soft">
       <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
@@ -20,7 +21,7 @@ export function InvestorSection({ copy }: InvestorSectionProps) {
           </div>
 
           <aside className="pe-investor-aside pe-investor-aside--image">
-            <img className="pe-investor-aside__image" src={INVESTOR_IMAGE} alt="Terraza premium con piscina y vistas al mar en Mallorca" />
+            <img className="pe-investor-aside__image" src={INVESTOR_IMAGE} alt={mediaAlt.investorImage} />
             <div className="pe-investor-aside__overlay" />
             <div className="pe-investor-aside__copy">
               <p className="pe-investor-aside__quote">{copy.asideQuote}</p>

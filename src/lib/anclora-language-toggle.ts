@@ -11,7 +11,7 @@ export type AncloraLocale =
   | "no"
   | "pt";
 
-export type ActiveAncloraLocale = "es" | "en" | "de" | "fr";
+export type ActiveAncloraLocale = AncloraLocale;
 
 export const ULTRA_PREMIUM_LOCALES: AncloraLocale[] = [
   "es",
@@ -27,7 +27,7 @@ export const ULTRA_PREMIUM_LOCALES: AncloraLocale[] = [
   "pt",
 ];
 
-export const ACTIVE_LOCALES: ActiveAncloraLocale[] = ["es", "en", "de", "fr"];
+export const ACTIVE_LOCALES: ActiveAncloraLocale[] = [...ULTRA_PREMIUM_LOCALES];
 
 export const ANCLORA_LOCALE_LABELS: Record<
   AncloraLocale,
