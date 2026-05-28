@@ -16,6 +16,7 @@ type LanguageSwitcherProps = {
 
 export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [currency, setCurrency] = useState(() => window.localStorage.getItem("anclora-pe-landing-currency") || "EUR");
   const panelRef = useRef<HTMLDivElement>(null);
   const currentLocale = ANCLORA_LOCALE_LABELS[language];
 
@@ -40,7 +41,11 @@ export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageS
 
   const selectLanguage = (code: ActiveAncloraLocale) => {
     onLanguageChange(code);
-    setIsOpen(false);
+  };
+
+  const selectCurrency = (nextCurrency: string) => {
+    setCurrency(nextCurrency);
+    window.localStorage.setItem("anclora-pe-landing-currency", nextCurrency);
   };
 
   return (
@@ -50,19 +55,19 @@ export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageS
         className={`pe-lang-trigger ${isOpen ? "is-open" : ""}`}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
-        aria-label={copy.groupLabel}
+        aria-label="Global preferences"
         onClick={() => setIsOpen((open) => !open)}
       >
         <Globe size={16} aria-hidden="true" />
         <span className="pe-lang-trigger__copy">
-          <strong>{currentLocale.short}</strong>
-          <span>{currentLocale.nativeName}</span>
+          <strong>{currentLocale.nativeName}</strong>
+          <span>{currency}</span>
         </span>
         <ChevronDown size={15} aria-hidden="true" />
       </button>
 
       {isOpen && (
-        <div className="pe-lang-panel" role="dialog" aria-label={copy.groupLabel}>
+        <div className="pe-lang-panel" role="dialog" aria-label="Global preferences settings">
           <div className="pe-lang-panel__header">
             <div>
               <p>{copy.eyebrow}</p>
@@ -102,6 +107,19 @@ export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageS
               );
             })}
           </div>
+
+          <label className="pe-lang-field">
+            <span>Currency</span>
+            <select value={currency} onChange={(event) => selectCurrency(event.target.value)}>
+              <option value="EUR">Euro - EUR €</option>
+              <option value="USD">US Dollar - USD $</option>
+              <option value="GBP">Pound sterling - GBP £</option>
+              <option value="CHF">Swiss franc - CHF</option>
+              <option value="SEK">Swedish krona - SEK kr</option>
+              <option value="DKK">Danish krone - DKK kr</option>
+              <option value="NOK">Norwegian krone - NOK kr</option>
+            </select>
+          </label>
 
           <button type="button" className="pe-lang-save" onClick={() => setIsOpen(false)}>
             {copy.saveLabel}

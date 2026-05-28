@@ -1336,6 +1336,30 @@
   cursor: pointer;
 }
 
+.pe-lang-field {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: var(--pe-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pe-lang-field select {
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--pe-gold) 28%, transparent);
+  border-radius: 0.9rem;
+  background: var(--pe-deep-surface);
+  color: var(--pe-text);
+  padding: 0.75rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .pe-input,
 .pe-textarea,
 .pe-select {

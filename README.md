@@ -29,3 +29,12 @@ Este repo deja preparada la estructura para implementar una landing `Vite + Reac
 ## Siguiente paso
 
 Implementar la home a partir de los documentos de `docs/architecture/` y consolidar el copy maestro en `docs/strategy/`.
+## Global Preferences Toggle
+
+Esta app sigue el contrato global de preferencias de Anclora Group.
+
+Incluye:
+- idioma
+- moneda, porque muestra presupuestos/importes
+
+El Theme Toggle se gestiona por separado y no aparece en apps Ultra Premium.
