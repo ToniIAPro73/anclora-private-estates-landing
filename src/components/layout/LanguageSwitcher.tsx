@@ -55,7 +55,7 @@ export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageS
         className={`pe-lang-trigger ${isOpen ? "is-open" : ""}`}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
-        aria-label="Global preferences"
+        aria-label={copy.preferencesLabel}
         onClick={() => setIsOpen((open) => !open)}
       >
         <Globe size={16} aria-hidden="true" />
@@ -67,7 +67,7 @@ export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageS
       </button>
 
       {isOpen && (
-        <div className="pe-lang-panel" role="dialog" aria-label="Global preferences settings">
+        <div className="pe-lang-panel" role="dialog" aria-label={copy.preferencesDialogLabel}>
           <div className="pe-lang-panel__header">
             <div>
               <p>{copy.eyebrow}</p>
@@ -79,7 +79,7 @@ export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageS
           </div>
 
           <label className="pe-lang-field">
-            <span>Language</span>
+            <span>{copy.languageLabel}</span>
             <select value={language} onChange={(event) => selectLanguage(event.target.value as ActiveAncloraLocale)}>
             {ULTRA_PREMIUM_LOCALES.map((code) => {
               const entry = ANCLORA_LOCALE_LABELS[code];
@@ -99,15 +99,15 @@ export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageS
           </label>
 
           <label className="pe-lang-field">
-            <span>Currency</span>
+            <span>{copy.currencyLabel}</span>
             <select value={currency} onChange={(event) => selectCurrency(event.target.value)}>
-              <option value="EUR">Euro - EUR €</option>
-              <option value="USD">US Dollar - USD $</option>
-              <option value="GBP">Pound sterling - GBP £</option>
-              <option value="CHF">Swiss franc - CHF</option>
-              <option value="SEK">Swedish krona - SEK kr</option>
-              <option value="DKK">Danish krone - DKK kr</option>
-              <option value="NOK">Norwegian krone - NOK kr</option>
+              <option value="EUR">{copy.currency.eur}</option>
+              <option value="USD">{copy.currency.usd}</option>
+              <option value="GBP">{copy.currency.gbp}</option>
+              <option value="CHF">{copy.currency.chf}</option>
+              <option value="SEK">{copy.currency.sek}</option>
+              <option value="DKK">{copy.currency.dkk}</option>
+              <option value="NOK">{copy.currency.nok}</option>
             </select>
           </label>
 

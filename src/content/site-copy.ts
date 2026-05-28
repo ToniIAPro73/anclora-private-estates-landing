@@ -246,11 +246,24 @@ export type LanguageSwitcherOptionCopy = {
 
 export type LanguageSwitcherCopy = {
   groupLabel: string;
+  preferencesLabel: string;
+  preferencesDialogLabel: string;
   title: string;
   eyebrow: string;
+  languageLabel: string;
+  currencyLabel: string;
   pendingLabel: string;
   closeLabel: string;
   saveLabel: string;
+  currency: {
+    eur: string;
+    usd: string;
+    gbp: string;
+    chf: string;
+    sek: string;
+    dkk: string;
+    nok: string;
+  };
   options: LanguageSwitcherOptionCopy[];
 };
 
@@ -327,11 +340,24 @@ const siteCopyEs: SiteCopy = {
     ctaLabel: "Solicitar valoración",
     languageSwitcher: {
       groupLabel: "Selector de idioma",
-      eyebrow: "Ajustes",
+      preferencesLabel: "Preferencias globales",
+      preferencesDialogLabel: "Ajustes de preferencias globales",
+      eyebrow: "Preferencias",
       title: "Idioma",
+      languageLabel: "Idioma",
+      currencyLabel: "Moneda",
       pendingLabel: "Pendiente",
       closeLabel: "Cerrar selector de idioma",
       saveLabel: "Guardar y cerrar",
+      currency: {
+        eur: "Euro - EUR €",
+        usd: "Dólar estadounidense - USD $",
+        gbp: "Libra esterlina - GBP £",
+        chf: "Franco suizo - CHF",
+        sek: "Corona sueca - SEK kr",
+        dkk: "Corona danesa - DKK kr",
+        nok: "Corona noruega - NOK kr",
+      },
       options: [
         { code: "es", label: "ES", ariaLabel: "Idioma español" },
         { code: "en", label: "EN", ariaLabel: "Idioma inglés" },
@@ -710,11 +736,24 @@ const siteCopyEn: SiteCopy = {
     ctaLabel: "Request a valuation",
     languageSwitcher: {
       groupLabel: "Language selector",
-      eyebrow: "Settings",
+      preferencesLabel: "Global preferences",
+      preferencesDialogLabel: "Global preferences settings",
+      eyebrow: "Preferences",
       title: "Language",
+      languageLabel: "Language",
+      currencyLabel: "Currency",
       pendingLabel: "Pending",
       closeLabel: "Close language selector",
       saveLabel: "Save and close",
+      currency: {
+        eur: "Euro - EUR €",
+        usd: "US dollar - USD $",
+        gbp: "Pound sterling - GBP £",
+        chf: "Swiss franc - CHF",
+        sek: "Swedish krona - SEK kr",
+        dkk: "Danish krone - DKK kr",
+        nok: "Norwegian krone - NOK kr",
+      },
       options: [
         { code: "es", label: "ES", ariaLabel: "Spanish language" },
         { code: "en", label: "EN", ariaLabel: "English language" },
@@ -1089,11 +1128,24 @@ const siteCopyDe: SiteCopy = {
     ctaLabel: "Bewertung anfragen",
     languageSwitcher: {
       groupLabel: "Sprachauswahl",
-      eyebrow: "Einstellungen",
+      preferencesLabel: "Globale Einstellungen",
+      preferencesDialogLabel: "Globale Präferenzeinstellungen",
+      eyebrow: "Präferenzen",
       title: "Sprache",
+      languageLabel: "Sprache",
+      currencyLabel: "Währung",
       pendingLabel: "Ausstehend",
       closeLabel: "Sprachauswahl schließen",
       saveLabel: "Speichern und schließen",
+      currency: {
+        eur: "Euro - EUR €",
+        usd: "US-Dollar - USD $",
+        gbp: "Pfund Sterling - GBP £",
+        chf: "Schweizer Franken - CHF",
+        sek: "Schwedische Krone - SEK kr",
+        dkk: "Dänische Krone - DKK kr",
+        nok: "Norwegische Krone - NOK kr",
+      },
       options: [
         { code: "es", label: "ES", ariaLabel: "Spanische Sprache" },
         { code: "en", label: "EN", ariaLabel: "Englische Sprache" },
@@ -1473,11 +1525,24 @@ const siteCopyFr: SiteCopy = {
     ctaLabel: "Demander une évaluation",
     languageSwitcher: {
       groupLabel: "Sélecteur de langue",
-      eyebrow: "Réglages",
+      preferencesLabel: "Préférences globales",
+      preferencesDialogLabel: "Réglages des préférences globales",
+      eyebrow: "Préférences",
       title: "Langue",
+      languageLabel: "Langue",
+      currencyLabel: "Devise",
       pendingLabel: "À localiser",
       closeLabel: "Fermer le sélecteur de langue",
       saveLabel: "Enregistrer et fermer",
+      currency: {
+        eur: "Euro - EUR €",
+        usd: "Dollar américain - USD $",
+        gbp: "Livre sterling - GBP £",
+        chf: "Franc suisse - CHF",
+        sek: "Couronne suédoise - SEK kr",
+        dkk: "Couronne danoise - DKK kr",
+        nok: "Couronne norvégienne - NOK kr",
+      },
       options: [
         { code: "es", label: "ES", ariaLabel: "Langue espagnole" },
         { code: "en", label: "EN", ariaLabel: "Langue anglaise" },
@@ -1824,6 +1889,4 @@ export const siteCopyByLanguage = {
   de: siteCopyDe,
   fr: siteCopyFr,
 } satisfies Record<LanguageCode, SiteCopy>;
-
-
 
