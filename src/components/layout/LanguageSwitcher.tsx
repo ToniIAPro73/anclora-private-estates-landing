@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Check, ChevronDown, Globe, X } from "lucide-react";
+import { ChevronDown, Globe, X } from "lucide-react";
 import type { LanguageCode, LanguageSwitcherCopy } from "@/content/site-copy";
 import {
   ACTIVE_LOCALES,
@@ -78,35 +78,25 @@ export function LanguageSwitcher({ copy, language, onLanguageChange }: LanguageS
             </button>
           </div>
 
-          <div className="pe-lang-list" role="listbox" aria-label={copy.groupLabel}>
+          <label className="pe-lang-field">
+            <span>Language</span>
+            <select value={language} onChange={(event) => selectLanguage(event.target.value as ActiveAncloraLocale)}>
             {ULTRA_PREMIUM_LOCALES.map((code) => {
               const entry = ANCLORA_LOCALE_LABELS[code];
               const isEnabled = ACTIVE_LOCALES.includes(code as ActiveAncloraLocale);
-              const isActive = language === code;
 
               return (
-        <button
+        <option
           key={code}
-          type="button"
-          className={`pe-lang-option ${isActive ? "is-active" : ""}`}
-          aria-label={entry.nativeName}
-          aria-selected={isActive}
-          data-testid={`language-button-${code}`}
           disabled={!isEnabled}
-          role="option"
-          onClick={() => isEnabled && selectLanguage(code as ActiveAncloraLocale)}
+          value={code}
         >
-          <span className="pe-lang-option__short">{entry.short}</span>
-          <span className="pe-lang-option__label">
-            <strong>{entry.nativeName}</strong>
-            <small>{entry.englishName}</small>
-          </span>
-          {!isEnabled && <span className="pe-lang-option__pending">{copy.pendingLabel}</span>}
-          {isActive && <Check className="pe-lang-option__check" size={16} aria-hidden="true" />}
-        </button>
+          {entry.nativeName} - {entry.englishName}{isEnabled ? "" : ` - ${copy.pendingLabel}`}
+        </option>
               );
             })}
-          </div>
+            </select>
+          </label>
 
           <label className="pe-lang-field">
             <span>Currency</span>
