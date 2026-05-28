@@ -1,13 +1,14 @@
-import type { MallorcaFocusCopy } from "@/content/site-copy";
+import type { MallorcaFocusCopy, MediaAltCopy } from "@/content/site-copy";
 
 const MALLORCA_FOCUS_IMAGE =
   "https://customer-assets.emergentagent.com/job_luxury-landing-hub/artifacts/bllgrtju_Mallorca_focus_v5.png";
 
 type MallorcaFocusSectionProps = {
   copy: MallorcaFocusCopy;
+  mediaAlt: MediaAltCopy;
 };
 
-export function MallorcaFocusSection({ copy }: MallorcaFocusSectionProps) {
+export function MallorcaFocusSection({ copy, mediaAlt }: MallorcaFocusSectionProps) {
   return (
     <section id="mallorca-focus" className="pe-section pe-section-territory">
       <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
@@ -23,7 +24,7 @@ export function MallorcaFocusSection({ copy }: MallorcaFocusSectionProps) {
             <img
               className="pe-investor-aside__image"
               src={MALLORCA_FOCUS_IMAGE}
-              alt="Costa de Mallorca con aguas turquesa y embarcación en cala privada"
+              alt={mediaAlt.mallorcaFocusImage}
             />
             <div className="pe-investor-aside__overlay" />
             <div className="pe-investor-aside__copy">

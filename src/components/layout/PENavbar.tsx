@@ -51,7 +51,7 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
             <button
               className="pe-menu-toggle"
               aria-expanded={menuOpen}
-              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-label={menuOpen ? copy.menuCloseLabel : copy.menuOpenLabel}
               onClick={() => setMenuOpen((v) => !v)}
               data-testid="navbar-menu-toggle"
             >
@@ -60,8 +60,8 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
 
             {/* Center: logo */}
             <div className="pe-nav-logo">
-              <a href="#" className="pe-nav-logo__link" aria-label="Anclora Private Estates — Inicio">
-                <BrandLockup variant="full-exp" />
+              <a href="#" className="pe-nav-logo__link" aria-label={copy.homeAriaLabel}>
+                <BrandLockup variant="full-exp" alt={copy.logoAlt} />
               </a>
             </div>
 
@@ -116,7 +116,7 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
           className="pe-nav-drawer"
           role="dialog"
           aria-modal="true"
-          aria-label="Menú de navegación"
+          aria-label={copy.menuDialogLabel}
           data-testid="navbar-links"
         >
           <nav className="pe-nav-drawer__nav">

@@ -12,7 +12,7 @@ Base de proyecto para la landing pública premium de `Anclora Private Estates`.
 - `src/components/`: bloques reutilizables de marca, layout, formularios y SEO.
 - `src/sections/`: secciones de la home.
 - `src/content/`: contenido estructurado, navegación e inputs editoriales.
-- `src/i18n/`: mensajes por idioma para `es`, `en` y `de`.
+- `src/content/site-copy.ts`: fuente tipada de copy por idioma.
 - `src/styles/`: tokens, helpers y base visual.
 - `src/lib/`: utilidades de navegación, SEO y schema.
 - `tests/`: smoke tests, SEO y contenido.
@@ -38,3 +38,12 @@ Incluye:
 - moneda, porque muestra presupuestos/importes
 
 El Theme Toggle se gestiona por separado y no aparece en apps Ultra Premium.
+
+## Ultra Premium locales
+
+This landing follows Anclora Group Ultra Premium locale governance.
+
+Supported locales:
+ES, CA, DE, EN, SV, FR, IT, DA, NL, NO, PT.
+
+Copy localization follows Anclora Locale Copy Guardian: intent over literal translation, premium tone, no added claims and no artificial machine-translated phrasing.

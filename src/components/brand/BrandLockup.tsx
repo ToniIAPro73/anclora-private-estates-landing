@@ -1,8 +1,9 @@
 type BrandLockupProps = {
   variant?: "mark" | "full" | "full-exp";
+  alt?: string;
 };
 
-export function BrandLockup({ variant = "full" }: BrandLockupProps) {
+export function BrandLockup({ variant = "full", alt }: BrandLockupProps) {
   if (variant === "mark") {
     return <span style={{ fontFamily: "var(--pe-font-display)", fontStyle: "italic" }}>A</span>;
   }
@@ -11,7 +12,7 @@ export function BrandLockup({ variant = "full" }: BrandLockupProps) {
     <div style={{ display: "flex", alignItems: "center" }}>
       <img
         src="/brand/logo-anclora-private-estates-exp.png"
-        alt={variant === "full-exp" ? "Anclora Private Estates by eXp Group Spain" : "Anclora Private Estates"}
+        alt={alt ?? (variant === "full-exp" ? "Anclora Private Estates by eXp Group Spain" : "Anclora Private Estates")}
         style={{
           display: "block",
           width: "auto",

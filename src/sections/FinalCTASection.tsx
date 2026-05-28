@@ -1,12 +1,13 @@
-import type { FinalCtaCopy } from "@/content/site-copy";
+import type { FinalCtaCopy, MediaAltCopy } from "@/content/site-copy";
 
 const FINAL_CTA_IMAGE = "/brand/contact-villa-living.jpg";
 
 type FinalCTASectionProps = {
   copy: FinalCtaCopy;
+  mediaAlt: MediaAltCopy;
 };
 
-export function FinalCTASection({ copy }: FinalCTASectionProps) {
+export function FinalCTASection({ copy, mediaAlt }: FinalCTASectionProps) {
   return (
     <section className="pe-section pe-final-cta-section">
       <div className="pe-final-cta-background" aria-hidden="true">
@@ -35,7 +36,7 @@ export function FinalCTASection({ copy }: FinalCTASectionProps) {
           </div>
 
           <div className="pe-final-cta-visual" aria-hidden="true">
-            <img className="pe-final-cta-visual__image" src={FINAL_CTA_IMAGE} alt="Villa de lujo en Mallorca" />
+            <img className="pe-final-cta-visual__image" src={FINAL_CTA_IMAGE} alt={mediaAlt.finalCtaImage} />
             <div className="pe-final-cta-visual__overlay" />
           </div>
         </div>

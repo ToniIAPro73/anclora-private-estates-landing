@@ -29,6 +29,14 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     validationError: "Por favor, completa todos los campos obligatorios.",
     captchaError: "Por favor completa la verificación de seguridad.",
   },
+  ca: {
+    privacyLabel: "He llegit i accepto la política de privacitat.",
+    successTitle: "Sol·licitud rebuda",
+    successBody: "Revisarem el teu actiu i et respondrem en un termini de dos dies hàbils.",
+    genericError: "No hem pogut enviar la sol·licitud. Torna-ho a provar d'aquí a uns minuts.",
+    validationError: "Completa tots els camps obligatoris.",
+    captchaError: "Completa la verificació de seguretat.",
+  },
   en: {
     privacyLabel: "I have read and accept the privacy policy.",
     successTitle: "Request received",
@@ -45,6 +53,14 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     validationError: "Bitte füllen Sie alle erforderlichen Felder aus.",
     captchaError: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
   },
+  sv: {
+    privacyLabel: "Jag har läst och accepterar integritetspolicyn.",
+    successTitle: "Förfrågan mottagen",
+    successBody: "Vi granskar din tillgång och återkommer inom två arbetsdagar.",
+    genericError: "Vi kunde inte skicka din förfrågan. Försök igen om några minuter.",
+    validationError: "Fyll i alla obligatoriska fält.",
+    captchaError: "Slutför säkerhetsverifieringen.",
+  },
   fr: {
     privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
     successTitle: "Demande reçue",
@@ -53,12 +69,52 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
     validationError: "Veuillez compléter tous les champs obligatoires.",
     captchaError: "Veuillez compléter la vérification de sécurité.",
   },
+  it: {
+    privacyLabel: "Ho letto e accetto l'informativa sulla privacy.",
+    successTitle: "Richiesta ricevuta",
+    successBody: "Esamineremo il tuo asset e ti risponderemo entro due giorni lavorativi.",
+    genericError: "Non siamo riusciti a inviare la richiesta. Riprova tra qualche minuto.",
+    validationError: "Completa tutti i campi obbligatori.",
+    captchaError: "Completa la verifica di sicurezza.",
+  },
+  da: {
+    privacyLabel: "Jeg har læst og accepterer privatlivspolitikken.",
+    successTitle: "Anmodning modtaget",
+    successBody: "Vi gennemgår dit aktiv og vender tilbage inden for to hverdage.",
+    genericError: "Vi kunne ikke sende din anmodning. Prøv igen om et par minutter.",
+    validationError: "Udfyld alle obligatoriske felter.",
+    captchaError: "Gennemfør sikkerhedsbekræftelsen.",
+  },
+  nl: {
+    privacyLabel: "Ik heb het privacybeleid gelezen en accepteer het.",
+    successTitle: "Aanvraag ontvangen",
+    successBody: "We beoordelen uw object en nemen binnen twee werkdagen contact op.",
+    genericError: "We konden uw aanvraag niet verzenden. Probeer het over enkele minuten opnieuw.",
+    validationError: "Vul alle verplichte velden in.",
+    captchaError: "Voltooi de veiligheidsverificatie.",
+  },
+  no: {
+    privacyLabel: "Jeg har lest og godtar personvernerklæringen.",
+    successTitle: "Forespørsel mottatt",
+    successBody: "Vi vurderer eiendelen din og svarer innen to virkedager.",
+    genericError: "Vi kunne ikke sende forespørselen. Prøv igjen om noen minutter.",
+    validationError: "Fyll ut alle obligatoriske felt.",
+    captchaError: "Fullfør sikkerhetsverifiseringen.",
+  },
+  pt: {
+    privacyLabel: "Li e aceito a política de privacidade.",
+    successTitle: "Pedido recebido",
+    successBody: "Analisaremos o seu activo e responderemos no prazo de dois dias úteis.",
+    genericError: "Não foi possível enviar o pedido. Tente novamente dentro de alguns minutos.",
+    validationError: "Preencha todos os campos obrigatórios.",
+    captchaError: "Conclua a verificação de segurança.",
+  },
 };
 
 function resolveCurrentLanguage(): LanguageCode {
   if (typeof document === "undefined") return "es";
   const documentLanguage = document.documentElement.lang as LanguageCode;
-  if (documentLanguage === "en" || documentLanguage === "de" || documentLanguage === "fr") {
+  if (documentLanguage in sellerFormMessagesByLanguage) {
     return documentLanguage;
   }
 

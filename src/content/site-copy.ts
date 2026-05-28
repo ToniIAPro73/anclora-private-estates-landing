@@ -24,6 +24,8 @@ export type HeroCopy = {
   note: string;
   primaryCta: string;
   secondaryCta: string;
+  scrollLabel: string;
+  scrollText: string;
   media: HeroMediaCopy;
 };
 
@@ -269,9 +271,29 @@ export type LanguageSwitcherCopy = {
 
 export type NavbarCopy = {
   navAriaLabel: string;
+  menuOpenLabel: string;
+  menuCloseLabel: string;
+  menuDialogLabel: string;
+  homeAriaLabel: string;
+  logoAlt: string;
   links: NavLinkCopy[];
   ctaLabel: string;
   languageSwitcher: LanguageSwitcherCopy;
+};
+
+export type SeoCopy = {
+  title: string;
+  description: string;
+  ogTitle: string;
+  ogDescription: string;
+  schemaDescription: string;
+  serviceType: string;
+};
+
+export type MediaAltCopy = {
+  mallorcaFocusImage: string;
+  investorImage: string;
+  finalCtaImage: string;
 };
 
 export type CookieCopy = {
@@ -307,6 +329,8 @@ export type SocialCopy = {
 };
 
 export type SiteCopy = {
+  seo: SeoCopy;
+  mediaAlt: MediaAltCopy;
   navbar: NavbarCopy;
   hero: HeroCopy;
   credibility: CredibilityCopy;
@@ -327,9 +351,30 @@ export type SiteCopy = {
 };
 
 const siteCopyEs: SiteCopy = {
+  seo: {
+    title: "Anclora Private Estates | Venta discreta en Mallorca",
+    description:
+      "Vende tu finca o villa en Andratx, Calvià o Son Vida de forma discreta, con acceso selectivo a compradores cualificados y sin exposición pública innecesaria.",
+    ogTitle: "Anclora Private Estates | Venta discreta en Mallorca",
+    ogDescription: "Acceso selectivo a compradores cualificados para propietarios en Palma y el suroeste de Mallorca.",
+    schemaDescription:
+      "Acceso selectivo a compradores cualificados para propietarios que valoran vender en el suroeste de Mallorca sin exposición pública innecesaria.",
+    serviceType: "Asesoramiento inmobiliario premium y off-market",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Costa de Mallorca con aguas turquesa y embarcación en cala privada",
+    investorImage: "Terraza premium con piscina y vistas al mar en Mallorca",
+    finalCtaImage: "Villa premium en Mallorca con interior abierto al jardín",
+  },
   navbar: {
     navAriaLabel: "Principal",
+    menuOpenLabel: "Abrir menú",
+    menuCloseLabel: "Cerrar menú",
+    menuDialogLabel: "Menú de navegación",
+    homeAriaLabel: "Anclora Private Estates — Inicio",
+    logoAlt: "Anclora Private Estates by eXp Group Spain",
     links: [
+      { label: "Credibilidad", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
       { label: "Inversores", href: "#inversores" },
       { label: "Clientes", href: "#clientes" },
@@ -360,8 +405,16 @@ const siteCopyEs: SiteCopy = {
       },
       options: [
         { code: "es", label: "ES", ariaLabel: "Idioma español" },
-        { code: "en", label: "EN", ariaLabel: "Idioma inglés" },
+        { code: "ca", label: "CA", ariaLabel: "Idioma catalán" },
         { code: "de", label: "DE", ariaLabel: "Idioma alemán" },
+        { code: "en", label: "EN", ariaLabel: "Idioma inglés" },
+        { code: "sv", label: "SV", ariaLabel: "Idioma sueco" },
+        { code: "fr", label: "FR", ariaLabel: "Idioma francés" },
+        { code: "it", label: "IT", ariaLabel: "Idioma italiano" },
+        { code: "da", label: "DA", ariaLabel: "Idioma danés" },
+        { code: "nl", label: "NL", ariaLabel: "Idioma neerlandés" },
+        { code: "no", label: "NO", ariaLabel: "Idioma noruego" },
+        { code: "pt", label: "PT", ariaLabel: "Idioma portugués" },
       ],
     },
   },
@@ -375,6 +428,8 @@ const siteCopyEs: SiteCopy = {
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
     primaryCta: "Solicitar acceso confidencial",
     secondaryCta: "Explorar foco territorial",
+    scrollLabel: "Continuar",
+    scrollText: "Descubrir",
     media: {
       eyebrow: "Private Preview",
       title: "Palma, Son Vida, Portals, Bendinat y microzonas donde el relato correcto reordena el valor percibido.",
@@ -721,9 +776,29 @@ const siteCopyEs: SiteCopy = {
 
 const siteCopyEn: SiteCopy = {
   ...siteCopyEs,
+  seo: {
+    title: "Anclora Private Estates | Discreet sales in Mallorca",
+    description:
+      "Sell a finca or villa in Andratx, Calvià or Son Vida discreetly, with selective access to qualified buyers and no unnecessary public exposure.",
+    ogTitle: "Anclora Private Estates | Discreet sales in Mallorca",
+    ogDescription: "Selective access to qualified buyers for owners in Palma and Southwest Mallorca.",
+    schemaDescription:
+      "Selective access to qualified buyers for owners considering a discreet sale in Southwest Mallorca.",
+    serviceType: "Premium and off-market real estate advisory",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Mallorca coastline with turquoise water and a boat in a private cove",
+    investorImage: "Premium terrace with pool and sea views in Mallorca",
+    finalCtaImage: "Premium Mallorca villa with an interior open to the garden",
+  },
   navbar: {
     ...siteCopyEs.navbar,
     navAriaLabel: "Main",
+    menuOpenLabel: "Open menu",
+    menuCloseLabel: "Close menu",
+    menuDialogLabel: "Navigation menu",
+    homeAriaLabel: "Anclora Private Estates — Home",
+    logoAlt: "Anclora Private Estates by eXp Group Spain",
     links: [
       { label: "Credibility", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
@@ -756,8 +831,16 @@ const siteCopyEn: SiteCopy = {
       },
       options: [
         { code: "es", label: "ES", ariaLabel: "Spanish language" },
-        { code: "en", label: "EN", ariaLabel: "English language" },
+        { code: "ca", label: "CA", ariaLabel: "Catalan language" },
         { code: "de", label: "DE", ariaLabel: "German language" },
+        { code: "en", label: "EN", ariaLabel: "English language" },
+        { code: "sv", label: "SV", ariaLabel: "Swedish language" },
+        { code: "fr", label: "FR", ariaLabel: "French language" },
+        { code: "it", label: "IT", ariaLabel: "Italian language" },
+        { code: "da", label: "DA", ariaLabel: "Danish language" },
+        { code: "nl", label: "NL", ariaLabel: "Dutch language" },
+        { code: "no", label: "NO", ariaLabel: "Norwegian language" },
+        { code: "pt", label: "PT", ariaLabel: "Portuguese language" },
       ],
     },
   },
@@ -772,6 +855,8 @@ const siteCopyEn: SiteCopy = {
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
     primaryCta: "Request confidential access",
     secondaryCta: "Explore the territorial focus",
+    scrollLabel: "Continue",
+    scrollText: "Discover",
     media: {
       eyebrow: "Private preview",
       title:
@@ -1113,9 +1198,29 @@ const siteCopyEn: SiteCopy = {
 
 const siteCopyDe: SiteCopy = {
   ...siteCopyEs,
+  seo: {
+    title: "Anclora Private Estates | Diskreter Verkauf auf Mallorca",
+    description:
+      "Verkaufen Sie Ihre Finca oder Villa in Andratx, Calvià oder Son Vida diskret, mit selektivem Zugang zu qualifizierten Käufern und ohne unnötige öffentliche Sichtbarkeit.",
+    ogTitle: "Anclora Private Estates | Diskreter Verkauf auf Mallorca",
+    ogDescription: "Selektiver Zugang zu qualifizierten Käufern für Eigentümer in Palma und Südwest-Mallorca.",
+    schemaDescription:
+      "Selektiver Zugang zu qualifizierten Käufern für Eigentümer, die einen diskreten Verkauf in Südwest-Mallorca prüfen.",
+    serviceType: "Premium- und Off-Market-Immobilienberatung",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Mallorquinische Küste mit türkisfarbenem Wasser und Boot in einer privaten Bucht",
+    investorImage: "Premium-Terrasse mit Pool und Meerblick auf Mallorca",
+    finalCtaImage: "Premium-Villa auf Mallorca mit zum Garten geöffnetem Wohnbereich",
+  },
   navbar: {
     ...siteCopyEs.navbar,
     navAriaLabel: "Hauptnavigation",
+    menuOpenLabel: "Menü öffnen",
+    menuCloseLabel: "Menü schließen",
+    menuDialogLabel: "Navigationsmenü",
+    homeAriaLabel: "Anclora Private Estates — Startseite",
+    logoAlt: "Anclora Private Estates by eXp Group Spain",
     links: [
       { label: "Glaubwürdigkeit", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
@@ -1148,8 +1253,16 @@ const siteCopyDe: SiteCopy = {
       },
       options: [
         { code: "es", label: "ES", ariaLabel: "Spanische Sprache" },
-        { code: "en", label: "EN", ariaLabel: "Englische Sprache" },
+        { code: "ca", label: "CA", ariaLabel: "Katalanische Sprache" },
         { code: "de", label: "DE", ariaLabel: "Deutsche Sprache" },
+        { code: "en", label: "EN", ariaLabel: "Englische Sprache" },
+        { code: "sv", label: "SV", ariaLabel: "Schwedische Sprache" },
+        { code: "fr", label: "FR", ariaLabel: "Französische Sprache" },
+        { code: "it", label: "IT", ariaLabel: "Italienische Sprache" },
+        { code: "da", label: "DA", ariaLabel: "Dänische Sprache" },
+        { code: "nl", label: "NL", ariaLabel: "Niederländische Sprache" },
+        { code: "no", label: "NO", ariaLabel: "Norwegische Sprache" },
+        { code: "pt", label: "PT", ariaLabel: "Portugiesische Sprache" },
       ],
     },
   },
@@ -1164,6 +1277,8 @@ const siteCopyDe: SiteCopy = {
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
     primaryCta: "Vertraulichen Zugang anfragen",
     secondaryCta: "Territoriale Ausrichtung erkunden",
+    scrollLabel: "Weiter",
+    scrollText: "Entdecken",
     media: {
       eyebrow: "Private Vorschau",
       title:
@@ -1510,9 +1625,29 @@ const siteCopyDe: SiteCopy = {
 
 const siteCopyFr: SiteCopy = {
   ...siteCopyEs,
+  seo: {
+    title: "Anclora Private Estates | Vente discrète à Majorque",
+    description:
+      "Vendez une finca ou une villa à Andratx, Calvià ou Son Vida avec discrétion, accès sélectif à des acheteurs qualifiés et sans exposition publique inutile.",
+    ogTitle: "Anclora Private Estates | Vente discrète à Majorque",
+    ogDescription: "Accès sélectif à des acheteurs qualifiés pour les propriétaires à Palma et dans le sud-ouest de Majorque.",
+    schemaDescription:
+      "Accès sélectif à des acheteurs qualifiés pour les propriétaires qui envisagent une vente discrète dans le sud-ouest de Majorque.",
+    serviceType: "Conseil immobilier premium et off-market",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Côte de Majorque aux eaux turquoise avec une embarcation dans une crique privée",
+    investorImage: "Terrasse premium avec piscine et vue sur la mer à Majorque",
+    finalCtaImage: "Villa premium à Majorque avec intérieur ouvert sur le jardin",
+  },
   navbar: {
     ...siteCopyEs.navbar,
     navAriaLabel: "Navigation principale",
+    menuOpenLabel: "Ouvrir le menu",
+    menuCloseLabel: "Fermer le menu",
+    menuDialogLabel: "Menu de navigation",
+    homeAriaLabel: "Anclora Private Estates — Accueil",
+    logoAlt: "Anclora Private Estates by eXp Group Spain",
     links: [
       { label: "Crédibilité", href: "#credibilidad" },
       { label: "Mallorca", href: "#mallorca-focus" },
@@ -1545,9 +1680,16 @@ const siteCopyFr: SiteCopy = {
       },
       options: [
         { code: "es", label: "ES", ariaLabel: "Langue espagnole" },
-        { code: "en", label: "EN", ariaLabel: "Langue anglaise" },
+        { code: "ca", label: "CA", ariaLabel: "Langue catalane" },
         { code: "de", label: "DE", ariaLabel: "Langue allemande" },
+        { code: "en", label: "EN", ariaLabel: "Langue anglaise" },
         { code: "fr", label: "FR", ariaLabel: "Langue française" },
+        { code: "sv", label: "SV", ariaLabel: "Langue suédoise" },
+        { code: "it", label: "IT", ariaLabel: "Langue italienne" },
+        { code: "da", label: "DA", ariaLabel: "Langue danoise" },
+        { code: "nl", label: "NL", ariaLabel: "Langue néerlandaise" },
+        { code: "no", label: "NO", ariaLabel: "Langue norvégienne" },
+        { code: "pt", label: "PT", ariaLabel: "Langue portugaise" },
       ],
     },
   },
@@ -1562,6 +1704,8 @@ const siteCopyFr: SiteCopy = {
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel y une relation plus sophistiquée avec l'actif.",
     primaryCta: "Demander un accès confidentiel",
     secondaryCta: "Explorer le territoire",
+    scrollLabel: "Continuer",
+    scrollText: "Découvrir",
     media: {
       eyebrow: "Aperçu privé",
       title:
@@ -1883,10 +2027,818 @@ const siteCopyFr: SiteCopy = {
   trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
 };
 
+const siteCopyCa: SiteCopy = {
+  ...siteCopyEs,
+  seo: {
+    title: "Anclora Private Estates | Venda discreta a Mallorca",
+    description:
+      "Ven la teva finca o villa a Andratx, Calvià o Son Vida de manera discreta, amb accés selectiu a compradors qualificats i sense exposició pública innecessària.",
+    ogTitle: "Anclora Private Estates | Venda discreta a Mallorca",
+    ogDescription: "Accés selectiu a compradors qualificats per a propietaris a Palma i el sud-oest de Mallorca.",
+    schemaDescription:
+      "Accés selectiu a compradors qualificats per a propietaris que valoren vendre al sud-oest de Mallorca sense exposició pública innecessària.",
+    serviceType: "Assessorament immobiliari premium i off-market",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Costa de Mallorca amb aigües turqueses i embarcació en una cala privada",
+    investorImage: "Terrassa premium amb piscina i vistes al mar a Mallorca",
+    finalCtaImage: "Villa premium a Mallorca amb interior obert al jardí",
+  },
+  navbar: {
+    ...siteCopyEs.navbar,
+    navAriaLabel: "Navegació principal",
+    menuOpenLabel: "Obrir menú",
+    menuCloseLabel: "Tancar menú",
+    menuDialogLabel: "Menú de navegació",
+    homeAriaLabel: "Anclora Private Estates — Inici",
+    logoAlt: "Anclora Private Estates by eXp Group Spain",
+    links: [
+      { label: "Credibilitat", href: "#credibilidad" },
+      { label: "Mallorca", href: "#mallorca-focus" },
+      { label: "Inversors", href: "#inversores" },
+      { label: "Clients", href: "#clientes" },
+      { label: "Partners", href: "#partners" },
+      { label: "Data Lab", href: "#data-lab" },
+      { label: "Contacte", href: "#contacto" },
+    ],
+    ctaLabel: "Sol·licitar valoració",
+    languageSwitcher: {
+      ...siteCopyEs.navbar.languageSwitcher,
+      groupLabel: "Selector d'idioma",
+      preferencesLabel: "Preferències globals",
+      preferencesDialogLabel: "Configuració de preferències globals",
+      eyebrow: "Preferències",
+      title: "Idioma",
+      languageLabel: "Idioma",
+      currencyLabel: "Moneda",
+      pendingLabel: "Pendent",
+      closeLabel: "Tancar selector d'idioma",
+      saveLabel: "Desar i tancar",
+    },
+  },
+  hero: {
+    ...siteCopyEs.hero,
+    eyebrow: "Palma · Sud-oest de Mallorca · Capital premium",
+    title: "Accés exclusiu a compradors d'alt poder adquisitiu.",
+    description:
+      "Ven la teva finca al sud-oest de Mallorca sense exposar-la públicament.\nNomés cobrem si venem.",
+    primaryCta: "Sol·licitar accés confidencial",
+    secondaryCta: "Explorar el focus territorial",
+    scrollLabel: "Continuar",
+    scrollText: "Descobrir",
+    media: {
+      ...siteCopyEs.hero.media,
+      eyebrow: "Vista privada",
+      title: "Palma, Son Vida, Portals, Bendinat i microzones on el relat adequat reordena el valor percebut.",
+      methodEyebrow: "Mètode",
+      method: "L'operació comença abans del portal: preparació, relat, accés i timing alineats amb el comprador adequat.",
+      statCopy: "Cada decisió visible a la landing respon al mateix principi: menys soroll, més control i millor context per a actius premium.",
+    },
+  },
+  credibility: {
+    eyebrow: "Credibilitat",
+    title: "Una proposta premium que no necessita simular volum per transmetre confiança.",
+    intro: "L'autoritat no es comunica amb promeses estridents, sinó amb estructura, suport i una lectura més madura del mercat.",
+    pillars: [
+      "Agent independent amb el suport d'eXp Group Spain.",
+      "Més de 25 anys de trajectòria tecnològica aplicats a una operativa immobiliària més ben estructurada.",
+      "Intel·ligència territorial, processos optimitzats i xarxa selectiva com a diferència real davant l'agència tradicional.",
+    ],
+  },
+  mallorcaFocus: {
+    ...siteCopyEs.mallorcaFocus,
+    eyebrow: "Mallorca Focus",
+    title: "Mallorca no s'interpreta com una llista plana de zones, sinó com un sistema de microzones i senyals.",
+    intro: "Cada enclavament demana un llenguatge comercial propi. La mateixa estètica no serveix per a Palma, Portals o Valldemossa; tampoc el mateix relat de valor.",
+    areasLabel: "Àrees",
+    clusters: siteCopyEs.mallorcaFocus.clusters.map((cluster, index) => ({
+      ...cluster,
+      eyebrow: [
+        "Palma i la zona residencial en altura",
+        "Costa premium de Calvià",
+        "Sud-oest: lifestyle i patrimoni",
+        "Serra i herència d'interior",
+      ][index],
+      title: [
+        "Capital, altura residencial i accés institucional.",
+        "Costa consolidada amb lifestyle i liquiditat.",
+        "Entrada premium amb lifestyle, rendibilitat i timing.",
+        "Interior amb caràcter, paisatge i singularitat residencial.",
+      ][index],
+      body: [
+        "Palma, Son Vida, Cala Major, San Agustín i Cas Català concentren capital local, demanda internacional i actius on el relat urbà i la privacitat pesen tant com la ubicació.",
+        "Illetas, Bendinat, Portals, Costa d'en Blanes i Punta Negra funcionen com un sistema on mar, marina, privacitat i serveis premium esdevenen senyals clau de valor.",
+        "Palmanova, Paguera i Costa de la Calma permeten llegir un tram més flexible del mercat premium, on lifestyle, ticket d'entrada i velocitat comercial demanen criteri fi per microzona.",
+        "Puerto de Andratx, Andratx, Esporles i Valldemossa formen un clúster on canvia la lectura: patrimoni, paisatge, privacitat i relat residencial pesen més que la proximitat a la costa.",
+      ][index],
+      audienceLabel: "Perfil de comprador",
+      audience: [
+        "Comprador patrimonial que prioritza capital, escoles, serveis i logística diària.",
+        "Comprador internacional i family office orientat a costa prime i continuïtat relacional.",
+        "Inversor híbrid que busca equilibri entre ús propi, demanda i conservació patrimonial.",
+        "Comprador UHNW relacional que valora singularitat, silenci i actius amb relat durador.",
+      ][index],
+    })),
+  },
+  investors: {
+    eyebrow: "Inversors",
+    title: "Capital nacional i internacional que necessita menys aparador i una lectura millor del context.",
+    intro: "L'inversor premium no busca simplement stock; busca una interpretació fiable d'accés, timing, conservació de valor i continuïtat relacional.",
+    asideQuote: "La diferència no és mostrar més producte, sinó entendre millor quin tipus de comprador i quin ritme necessita cada actiu.",
+    profiles: [
+      { title: "Inversor patrimonial nacional", body: "Busca actius sòlids, protecció de valor i criteri territorial per no dependre del soroll comercial ni d'aparadors genèrics." },
+      { title: "Inversor lifestyle internacional", body: "Prioritza microzona, privacitat, marina, escoles, connectivitat i capacitat d'executar amb confiança en un entorn premium transfronterer." },
+      { title: "Comprador UHNW relacional", body: "No entra per catàleg, sinó per confiança, accés, timing i capacitat d'activar la xarxa adequada al voltant d'una operació singular." },
+    ],
+  },
+  sellerIntake: {
+    ...siteCopyEs.sellerIntake,
+    eyebrow: "Clients",
+    title: "Assessorament selectiu per a propietaris, compradors i inversors.",
+    body: "Estudiem cada sol·licitud segons la intenció: venda, compra, valoració o inversió. Enfocament premium i confidencial per a actius singulars a Palma i el sud-oest de Mallorca.",
+    checklistLabel: "Criteris d'avaluació privada",
+    checklist: ["Microzona i competència real", "Relat de posicionament", "Timing i accés qualificat"],
+    trustBadgeText: "Suport internacional i confiança operativa a través d'eXp Group Spain.",
+    form: {
+      ...siteCopyEs.sellerIntake.form,
+      intentLabel: "Com et podem ajudar?",
+      intentOptions: [
+        { value: "sell", label: "Vull vendre una propietat" },
+        { value: "valuation", label: "Vull una valoració privada" },
+        { value: "buy", label: "Vull comprar una propietat premium" },
+        { value: "invest", label: "Busco oportunitats d'inversió" },
+      ],
+      name: "Nom",
+      phone: "Telèfon",
+      zone: "Zona de l'immoble",
+      propertyType: "Tipus de propietat",
+      commercialization: "Preferència de comercialització",
+      address: "Adreça de l'immoble",
+      budget: "Pressupost aproximat",
+      timing: "Termini previst",
+      ticket: "Ticket d'inversió",
+      goal: "Objectiu d'inversió",
+      message: "Missatge",
+      placeholders: {
+        ...siteCopyEs.sellerIntake.form.placeholders,
+        name: "El teu nom",
+        zone: "Son Vida, Portals, Andratx...",
+        address: "Carrer, zona o referència cadastral",
+        timing: "Ex.: immediat, 6 mesos...",
+        goal: "Ex.: patrimoni, rendibilitat...",
+        message: "Explica'ns més detalls sobre la teva sol·licitud.",
+      },
+      selectPlaceholder: "Selecciona una opció",
+      propertyTypeOptions: ["Villa", "Àtic", "Apartament premium", "Finca"],
+      commercializationOptions: [
+        "Avaluació confidencial",
+        "Venda en exclusiva",
+        "Venda selectiva sense portal massiu",
+      ],
+      submitLabel: "Enviar sol·licitud privada",
+    },
+  },
+  valuation: {
+    ...siteCopyEs.valuation,
+    eyebrow: "Sol·licitar valoració",
+    title: "Quin valor té la teva propietat a Mallorca?",
+    body: "Si tens un immoble a Palma o al sud-oest de Mallorca i vols conèixer-ne el valor real de mercat, podem preparar una valoració confidencial i sense compromís.",
+    checklistLabel: "La valoració inclou",
+    checklist: ["Anàlisi de microzona i competència real", "Lectura del timing de mercat", "Valoració orientada al comprador adequat"],
+    form: {
+      ...siteCopyEs.valuation.form,
+      name: "Nom",
+      phone: "Telèfon",
+      address: "Adreça de l'immoble",
+      message: "Missatge (opcional)",
+      placeholders: { ...siteCopyEs.valuation.form.placeholders, name: "El teu nom", address: "Carrer, zona o referència cadastral", message: "Comparteix qualsevol detall rellevant." },
+      privacyLabel: "He llegit i accepto la política de privacitat.",
+      submitLabel: "Sol·licitar valoració confidencial",
+      successTitle: "Sol·licitud rebuda",
+      successBody: "Et respondrem en un termini de dos dies hàbils amb una valoració privada.",
+      captchaError: "Completa la verificació de seguretat.",
+    },
+  },
+  partners: {
+    ...siteCopyEs.partners,
+    eyebrow: "Synergi · Xarxa de partners",
+    title: "Una xarxa selectiva per a col·laboradors que entenen el mercat premium.",
+    body: "Anclora Synergi és el portal privat per a partners ja validats: agents independents, professionals del sector i col·laboradors amb criteri territorial. L'accés és curat, no massiu.",
+    features: ["Accés a oportunitats compartides de forma selectiva", "Col·laboració amb enfocament de microzona i qualitat d'actiu", "Procés d'admissió curat i sense fricció comercial"],
+    form: {
+      ...siteCopyEs.partners.form,
+      name: "Nom",
+      serviceCategory: "Tipus de servei",
+      serviceSummary: "Descriu el teu perfil i com treballes",
+      placeholders: { ...siteCopyEs.partners.form.placeholders, name: "El teu nom o empresa", serviceSummary: "Explica el teu perfil professional, especialitat i com podries col·laborar amb Anclora (mín. 20 caràcters)." },
+      selectPlaceholder: "Selecciona una categoria",
+      serviceCategoryOptions: [
+        { value: "real_estate", label: "Immobiliari" },
+        { value: "professional", label: "Professional / Legal / Financer" },
+        { value: "luxury", label: "Lifestyle i luxe" },
+        { value: "eco", label: "Sostenibilitat" },
+        { value: "other", label: "Altres" },
+      ],
+      privacyLabel: "He llegit i accepto la política de privacitat.",
+      submitLabel: "Sol·licitar accés a Synergi",
+      successTitle: "Sol·licitud rebuda",
+      successBody: "Revisarem el teu perfil i et respondrem en un termini de set dies.",
+    },
+  },
+  dataLab: {
+    ...siteCopyEs.dataLab,
+    title: "Senyals territorials per llegir el mercat premium amb més calma i menys reacció.",
+    intro: "No presentem dashboards. Presentem indicis que ajuden a situar la qualitat de l'actiu, la pressió de demanda i la sensibilitat del comprador premium.",
+    lead: {
+      eyebrow: "Senyal 01",
+      title: "L'escassetat de producte prime ben posicionat afavoreix decisions més selectives i menys reactives.",
+      body: "A Palma i al sud-oest, la combinació d'oferta limitada, demanda internacional persistent i sensibilitat creixent pel producte turnkey reforça el valor dels actius ben preparats i ben narrats.",
+    },
+    signals: [
+      {
+        eyebrow: "Senyal 02",
+        title: "La microzona importa més que l'etiqueta general del municipi.",
+      },
+      {
+        eyebrow: "Senyal 03",
+        title: "La preparació de l'actiu condiciona la velocitat i la qualitat de l'operació.",
+      },
+    ],
+    whitelist: {
+      ...siteCopyEs.dataLab.whitelist,
+      eyebrow: "Accés selectiu",
+      title: "Uneix-te a la llista d'accés anticipat.",
+      body: "Anclora Data Lab està en fase d'accés selectiu per a inversors, family offices i perfils institucionals. Si el teu perfil encaixa, t'avisarem quan obrim el següent bloc d'accés.",
+      form: {
+        ...siteCopyEs.dataLab.whitelist.form,
+        name: "Nom",
+        intendedUse: "Per què t'interessa el Data Lab?",
+        placeholders: { ...siteCopyEs.dataLab.whitelist.form.placeholders, name: "El teu nom o empresa", intendedUse: "Descriu breument el teu interès i perfil inversor (mín. 20 caràcters)." },
+        privacyLabel: "He llegit i accepto la política de privacitat.",
+        submitLabel: "Sol·licitar accés anticipat",
+        successTitle: "A la llista d'espera",
+        successBody: "T'avisarem quan obrim el següent bloc d'accés per al teu perfil.",
+      },
+    },
+  },
+  contact: {
+    ...siteCopyEs.contact,
+    eyebrow: "Contacte",
+    title: "Obrim una conversa privada.",
+    body: "Si valores vendre, invertir o explorar una oportunitat patrimonial a Palma o al sud-oest de Mallorca, podem estudiar el teu cas amb criteri, confidencialitat i enfocament premium.",
+    responseNote: "Les converses es gestionen de manera selectiva i amb retorn personal.",
+    trustBadgeText: "Suport internacional i confiança operativa a través d'eXp Group Spain.",
+    detailsTitle: "Dades de contacte",
+    details: [
+      { label: "Email", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" },
+      { label: "Telèfon", value: "+34 633 947 810", href: "tel:+34633947810" },
+      { label: "Ubicació", value: "Palma de Mallorca · Illes Balears" },
+    ],
+  },
+  finalCta: {
+    eyebrow: "Conversa privada",
+    title: "El següent pas no és veure més soroll. És obrir la conversa adequada.",
+    body: "Palma i el sud-oest de Mallorca exigeixen criteri territorial, confidencialitat i una execució comercial més precisa. Si valores vendre, comprar o explorar una oportunitat patrimonial, podem estudiar el teu cas de forma privada.",
+    primaryCta: "Iniciar avaluació privada",
+    secondaryCta: "Obrir conversa privada",
+  },
+  footer: {
+    ...siteCopyEs.footer,
+    summary: "Firma immobiliària premium orientada a Palma i el sud-oest de Mallorca, amb criteri territorial, accés selectiu i una execució comercial més precisa.",
+    columns: [
+      {
+        title: "Contacte",
+        links: [
+          { label: "Obrir conversa privada", href: "#contacto" },
+        ],
+      },
+      {
+        title: "Accés selectiu",
+        links: [
+          { label: "Mallorca", href: "#mallorca-focus" },
+          { label: "Inversors", href: "#inversores" },
+          { label: "Clients", href: "#clientes" },
+          { label: "Partners", href: "#partners" },
+          { label: "Data Lab", href: "#data-lab" },
+        ],
+      },
+      {
+        title: "Legal",
+        links: [
+          { label: "Privacitat", href: "/privacy" },
+          { label: "Termes", href: "/terms" },
+          { label: "Avís legal", href: "/legal" },
+        ],
+      },
+    ],
+    copyright: "© 2026 Anclora Group. Tots els drets reservats.",
+  },
+  cookies: {
+    ...siteCopyEs.cookies,
+    title: "Preferències de cookies",
+    description: "Aquest lloc utilitza cookies per oferir-te una millor experiència d'usuari. Pots gestionar les preferències en qualsevol moment.",
+    acceptAll: "Acceptar totes",
+    settings: "Configuració",
+    settingsTitle: "Gestionar cookies",
+    necessary: { title: "Cookies necessàries", description: "Aquestes cookies són essencials per al funcionament del lloc i no es poden desactivar." },
+    analytics: { title: "Cookies d'anàlisi", description: "Ens ajuden a entendre com interactuen els visitants amb el lloc." },
+    marketing: { title: "Cookies de màrqueting", description: "S'utilitzen per mostrar anuncis rellevants als visitants." },
+    savePreferences: "Desar preferències",
+    back: "Tornar",
+    rejectAll: "Rebutjar opcionals",
+  },
+  scroll: { up: "Pujar", down: "Baixar" },
+  social: { followUs: "SEGUEIX-NOS" },
+  trustBadgeText: "Suport internacional i confiança operativa a través d'eXp Group Spain.",
+  contactFloatingLabel: "CONTACTAR",
+};
+
+const createEuropeanCopy = (
+  base: SiteCopy,
+  labels: {
+    nav: string[];
+    navAriaLabel: string;
+    menuOpenLabel: string;
+    menuCloseLabel: string;
+    menuDialogLabel: string;
+    homeAriaLabel: string;
+    logoAlt: string;
+    seo: SeoCopy;
+    mediaAlt: MediaAltCopy;
+    ctaLabel: string;
+    switcher: Partial<LanguageSwitcherCopy>;
+    hero: Pick<HeroCopy, "eyebrow" | "title" | "description" | "primaryCta" | "secondaryCta" | "scrollLabel" | "scrollText">;
+    contactTitle: string;
+    finalTitle: string;
+    footerSummary: string;
+    copyright: string;
+    contactFloatingLabel: string;
+    social: string;
+  },
+): SiteCopy => ({
+  ...base,
+  seo: labels.seo,
+  mediaAlt: labels.mediaAlt,
+  navbar: {
+    ...base.navbar,
+    navAriaLabel: labels.navAriaLabel,
+    menuOpenLabel: labels.menuOpenLabel,
+    menuCloseLabel: labels.menuCloseLabel,
+    menuDialogLabel: labels.menuDialogLabel,
+    homeAriaLabel: labels.homeAriaLabel,
+    logoAlt: labels.logoAlt,
+    links: base.navbar.links.map((link, index) => ({ ...link, label: labels.nav[index] ?? link.label })),
+    ctaLabel: labels.ctaLabel,
+    languageSwitcher: {
+      ...base.navbar.languageSwitcher,
+      ...labels.switcher,
+      currency: { ...base.navbar.languageSwitcher.currency, ...labels.switcher.currency },
+    },
+  },
+  hero: { ...base.hero, ...labels.hero },
+  contact: { ...base.contact, title: labels.contactTitle },
+  finalCta: { ...base.finalCta, title: labels.finalTitle },
+  footer: { ...base.footer, summary: labels.footerSummary, copyright: labels.copyright },
+  social: { followUs: labels.social },
+  contactFloatingLabel: labels.contactFloatingLabel,
+});
+
+const siteCopySv: SiteCopy = createEuropeanCopy(siteCopyEn, {
+  navAriaLabel: "Huvudnavigering",
+  menuOpenLabel: "Öppna meny",
+  menuCloseLabel: "Stäng meny",
+  menuDialogLabel: "Navigeringsmeny",
+  homeAriaLabel: "Anclora Private Estates — Startsida",
+  logoAlt: "Anclora Private Estates by eXp Group Spain",
+  seo: {
+    title: "Anclora Private Estates | Diskret försäljning på Mallorca",
+    description: "Sälj en finca eller villa i Andratx, Calvià eller Son Vida diskret, med selektiv tillgång till kvalificerade köpare och utan onödig offentlig exponering.",
+    ogTitle: "Anclora Private Estates | Diskret försäljning på Mallorca",
+    ogDescription: "Selektiv tillgång till kvalificerade köpare för ägare i Palma och sydvästra Mallorca.",
+    schemaDescription: "Selektiv tillgång till kvalificerade köpare för ägare som överväger en diskret försäljning i sydvästra Mallorca.",
+    serviceType: "Premiumrådgivning och off-market fastighetsförmedling",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Mallorcas kust med turkost vatten och båt i en privat vik",
+    investorImage: "Premiumterrass med pool och havsutsikt på Mallorca",
+    finalCtaImage: "Premiumvilla på Mallorca med interiör öppen mot trädgården",
+  },
+  nav: ["Trovärdighet", "Mallorca", "Investerare", "Kunder", "Partners", "Data Lab", "Kontakt"],
+  ctaLabel: "Begär värdering",
+  switcher: {
+    groupLabel: "Språkväljare",
+    preferencesLabel: "Globala inställningar",
+    preferencesDialogLabel: "Globala inställningar",
+    eyebrow: "Inställningar",
+    title: "Språk",
+    languageLabel: "Språk",
+    currencyLabel: "Valuta",
+    closeLabel: "Stäng språkväljaren",
+    saveLabel: "Spara och stäng",
+  },
+  hero: {
+    eyebrow: "Palma · Sydvästra Mallorca · Premiumkapital",
+    title: "Exklusiv tillgång till kapitalstarka köpare.",
+    description: "Diskret försäljning i Andratx, Calvià, Son Vida och Portals.\nInga portaler. Endast kvalificerade köpare.",
+    primaryCta: "Begär konfidentiell åtkomst",
+    secondaryCta: "Utforska det lokala fokuset",
+    scrollLabel: "Fortsätt",
+    scrollText: "Upptäck",
+  },
+  contactTitle: "Låt oss inleda ett privat samtal.",
+  finalTitle: "Nästa steg är inte mer brus. Det är rätt samtal.",
+  footerSummary: "Premiuminriktad fastighetsfirma med fokus på Palma och sydvästra Mallorca, territoriellt omdöme, selektiv tillgång och skarpare kommersiellt genomförande.",
+  copyright: "© 2026 Anclora Group. Alla rättigheter förbehållna.",
+  social: "FÖLJ OSS",
+  contactFloatingLabel: "KONTAKT",
+});
+
+const siteCopyIt: SiteCopy = createEuropeanCopy(siteCopyEn, {
+  navAriaLabel: "Navigazione principale",
+  menuOpenLabel: "Apri menu",
+  menuCloseLabel: "Chiudi menu",
+  menuDialogLabel: "Menu di navigazione",
+  homeAriaLabel: "Anclora Private Estates — Home",
+  logoAlt: "Anclora Private Estates by eXp Group Spain",
+  seo: {
+    title: "Anclora Private Estates | Vendita discreta a Mallorca",
+    description: "Vendi una finca o villa ad Andratx, Calvià o Son Vida in modo discreto, con accesso selettivo ad acquirenti qualificati e senza esposizione pubblica inutile.",
+    ogTitle: "Anclora Private Estates | Vendita discreta a Mallorca",
+    ogDescription: "Accesso selettivo ad acquirenti qualificati per proprietari a Palma e nel sud-ovest di Mallorca.",
+    schemaDescription: "Accesso selettivo ad acquirenti qualificati per proprietari che valutano una vendita discreta nel sud-ovest di Mallorca.",
+    serviceType: "Consulenza immobiliare premium e off-market",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Costa di Mallorca con acque turchesi e barca in una cala privata",
+    investorImage: "Terrazza premium con piscina e vista mare a Mallorca",
+    finalCtaImage: "Villa premium a Mallorca con interni aperti sul giardino",
+  },
+  nav: ["Credibilità", "Mallorca", "Investitori", "Clienti", "Partner", "Data Lab", "Contatto"],
+  ctaLabel: "Richiedi valutazione",
+  switcher: {
+    groupLabel: "Selettore lingua",
+    preferencesLabel: "Preferenze globali",
+    preferencesDialogLabel: "Impostazioni preferenze globali",
+    eyebrow: "Preferenze",
+    title: "Lingua",
+    languageLabel: "Lingua",
+    currencyLabel: "Valuta",
+    closeLabel: "Chiudi selettore lingua",
+    saveLabel: "Salva e chiudi",
+  },
+  hero: {
+    eyebrow: "Palma · Sud-ovest di Mallorca · Capitale premium",
+    title: "Accesso esclusivo a compratori ad alto patrimonio.",
+    description: "Vendita discreta ad Andratx, Calvià, Son Vida e Portals.\nNiente portali. Solo acquirenti qualificati.",
+    primaryCta: "Richiedi accesso riservato",
+    secondaryCta: "Esplora il focus territoriale",
+    scrollLabel: "Continua",
+    scrollText: "Scopri",
+  },
+  contactTitle: "Apriamo una conversazione privata.",
+  finalTitle: "Il passo successivo non è più rumore. È la conversazione giusta.",
+  footerSummary: "Firma immobiliare premium focalizzata su Palma e sul sud-ovest di Mallorca, con criterio territoriale, accesso selettivo ed esecuzione commerciale più precisa.",
+  copyright: "© 2026 Anclora Group. Tutti i diritti riservati.",
+  social: "SEGUICI",
+  contactFloatingLabel: "CONTATTO",
+});
+
+const siteCopyDa: SiteCopy = createEuropeanCopy(siteCopyEn, {
+  navAriaLabel: "Hovednavigation",
+  menuOpenLabel: "Åbn menu",
+  menuCloseLabel: "Luk menu",
+  menuDialogLabel: "Navigationsmenu",
+  homeAriaLabel: "Anclora Private Estates — Forside",
+  logoAlt: "Anclora Private Estates by eXp Group Spain",
+  seo: {
+    title: "Anclora Private Estates | Diskret salg på Mallorca",
+    description: "Sælg en finca eller villa i Andratx, Calvià eller Son Vida diskret med selektiv adgang til kvalificerede købere og uden unødig offentlig eksponering.",
+    ogTitle: "Anclora Private Estates | Diskret salg på Mallorca",
+    ogDescription: "Selektiv adgang til kvalificerede købere for ejere i Palma og sydvestlige Mallorca.",
+    schemaDescription: "Selektiv adgang til kvalificerede købere for ejere, der overvejer et diskret salg i sydvestlige Mallorca.",
+    serviceType: "Premium og off-market ejendomsrådgivning",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Mallorcas kyst med turkisblåt vand og båd i en privat bugt",
+    investorImage: "Premiumterrasse med pool og havudsigt på Mallorca",
+    finalCtaImage: "Premiumvilla på Mallorca med interiør åbent mod haven",
+  },
+  nav: ["Troværdighed", "Mallorca", "Investorer", "Kunder", "Partnere", "Data Lab", "Kontakt"],
+  ctaLabel: "Anmod om vurdering",
+  switcher: {
+    groupLabel: "Sprogvælger",
+    preferencesLabel: "Globale præferencer",
+    preferencesDialogLabel: "Globale præferencer",
+    eyebrow: "Præferencer",
+    title: "Sprog",
+    languageLabel: "Sprog",
+    currencyLabel: "Valuta",
+    closeLabel: "Luk sprogvælger",
+    saveLabel: "Gem og luk",
+  },
+  hero: {
+    eyebrow: "Palma · Sydvestlige Mallorca · Premiumkapital",
+    title: "Eksklusiv adgang til kapitalstærke købere.",
+    description: "Diskret salg i Andratx, Calvià, Son Vida og Portals.\nIngen portaler. Kun kvalificerede købere.",
+    primaryCta: "Anmod om fortrolig adgang",
+    secondaryCta: "Udforsk det territoriale fokus",
+    scrollLabel: "Fortsæt",
+    scrollText: "Opdag",
+  },
+  contactTitle: "Lad os åbne en privat samtale.",
+  finalTitle: "Næste skridt er ikke mere støj. Det er den rette samtale.",
+  footerSummary: "Premium ejendomsfirma med fokus på Palma og sydvestlige Mallorca, territorial dømmekraft, selektiv adgang og mere præcis kommerciel eksekvering.",
+  copyright: "© 2026 Anclora Group. Alle rettigheder forbeholdes.",
+  social: "FØLG OS",
+  contactFloatingLabel: "KONTAKT",
+});
+
+const siteCopyNl: SiteCopy = createEuropeanCopy(siteCopyEn, {
+  navAriaLabel: "Hoofdnavigatie",
+  menuOpenLabel: "Menu openen",
+  menuCloseLabel: "Menu sluiten",
+  menuDialogLabel: "Navigatiemenu",
+  homeAriaLabel: "Anclora Private Estates — Home",
+  logoAlt: "Anclora Private Estates by eXp Group Spain",
+  seo: {
+    title: "Anclora Private Estates | Discrete verkoop op Mallorca",
+    description: "Verkoop een finca of villa in Andratx, Calvià of Son Vida discreet, met selectieve toegang tot gekwalificeerde kopers en zonder onnodige publieke zichtbaarheid.",
+    ogTitle: "Anclora Private Estates | Discrete verkoop op Mallorca",
+    ogDescription: "Selectieve toegang tot gekwalificeerde kopers voor eigenaren in Palma en Zuidwest-Mallorca.",
+    schemaDescription: "Selectieve toegang tot gekwalificeerde kopers voor eigenaren die een discrete verkoop in Zuidwest-Mallorca overwegen.",
+    serviceType: "Premium en off-market vastgoedadvies",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Kust van Mallorca met turkoois water en boot in een privébaai",
+    investorImage: "Premium terras met zwembad en zeezicht op Mallorca",
+    finalCtaImage: "Premium villa op Mallorca met interieur open naar de tuin",
+  },
+  nav: ["Geloofwaardigheid", "Mallorca", "Investeerders", "Klanten", "Partners", "Data Lab", "Contact"],
+  ctaLabel: "Waardering aanvragen",
+  switcher: {
+    groupLabel: "Taalkeuze",
+    preferencesLabel: "Algemene voorkeuren",
+    preferencesDialogLabel: "Algemene voorkeuren",
+    eyebrow: "Voorkeuren",
+    title: "Taal",
+    languageLabel: "Taal",
+    currencyLabel: "Valuta",
+    closeLabel: "Taalkeuze sluiten",
+    saveLabel: "Opslaan en sluiten",
+  },
+  hero: {
+    eyebrow: "Palma · Zuidwest-Mallorca · Premiumkapitaal",
+    title: "Exclusieve toegang tot vermogende kopers.",
+    description: "Discrete verkoop in Andratx, Calvià, Son Vida en Portals.\nGeen portalen. Alleen gekwalificeerde kopers.",
+    primaryCta: "Vertrouwelijke toegang aanvragen",
+    secondaryCta: "Verken de territoriale focus",
+    scrollLabel: "Doorgaan",
+    scrollText: "Ontdek",
+  },
+  contactTitle: "Laten we een privégesprek openen.",
+  finalTitle: "De volgende stap is niet meer ruis. Het is het juiste gesprek.",
+  footerSummary: "Premium vastgoedfirma gericht op Palma en Zuidwest-Mallorca, met territoriaal oordeel, selectieve toegang en scherpere commerciële uitvoering.",
+  copyright: "© 2026 Anclora Group. Alle rechten voorbehouden.",
+  social: "VOLG ONS",
+  contactFloatingLabel: "CONTACT",
+});
+
+const siteCopyNo: SiteCopy = createEuropeanCopy(siteCopyEn, {
+  navAriaLabel: "Hovednavigasjon",
+  menuOpenLabel: "Åpne meny",
+  menuCloseLabel: "Lukk meny",
+  menuDialogLabel: "Navigasjonsmeny",
+  homeAriaLabel: "Anclora Private Estates — Forside",
+  logoAlt: "Anclora Private Estates by eXp Group Spain",
+  seo: {
+    title: "Anclora Private Estates | Diskret salg på Mallorca",
+    description: "Selg en finca eller villa i Andratx, Calvià eller Son Vida diskret, med selektiv tilgang til kvalifiserte kjøpere og uten unødvendig offentlig eksponering.",
+    ogTitle: "Anclora Private Estates | Diskret salg på Mallorca",
+    ogDescription: "Selektiv tilgang til kvalifiserte kjøpere for eiere i Palma og sørvestlige Mallorca.",
+    schemaDescription: "Selektiv tilgang til kvalifiserte kjøpere for eiere som vurderer et diskret salg i sørvestlige Mallorca.",
+    serviceType: "Premium og off-market eiendomsrådgivning",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Mallorcas kyst med turkist vann og båt i en privat vik",
+    investorImage: "Premiumterrasse med basseng og havutsikt på Mallorca",
+    finalCtaImage: "Premiumvilla på Mallorca med interiør åpent mot hagen",
+  },
+  nav: ["Tillit", "Mallorca", "Investorer", "Kunder", "Partnere", "Data Lab", "Kontakt"],
+  ctaLabel: "Be om verdivurdering",
+  switcher: {
+    groupLabel: "Språkvelger",
+    preferencesLabel: "Globale preferanser",
+    preferencesDialogLabel: "Globale preferanser",
+    eyebrow: "Preferanser",
+    title: "Språk",
+    languageLabel: "Språk",
+    currencyLabel: "Valuta",
+    closeLabel: "Lukk språkvelger",
+    saveLabel: "Lagre og lukk",
+  },
+  hero: {
+    eyebrow: "Palma · Sørvest-Mallorca · Premiumkapital",
+    title: "Eksklusiv tilgang til kjøpere med høy kapital.",
+    description: "Diskret salg i Andratx, Calvià, Son Vida og Portals.\nIngen portaler. Kun kvalifiserte kjøpere.",
+    primaryCta: "Be om konfidensiell tilgang",
+    secondaryCta: "Utforsk det territorielle fokuset",
+    scrollLabel: "Fortsett",
+    scrollText: "Oppdag",
+  },
+  contactTitle: "La oss åpne en privat samtale.",
+  finalTitle: "Neste steg er ikke mer støy. Det er riktig samtale.",
+  footerSummary: "Premium eiendomsfirma med fokus på Palma og sørvestlige Mallorca, territorielt skjønn, selektiv tilgang og mer presis kommersiell gjennomføring.",
+  copyright: "© 2026 Anclora Group. Alle rettigheter forbeholdt.",
+  social: "FØLG OSS",
+  contactFloatingLabel: "KONTAKT",
+});
+
+const siteCopyPt: SiteCopy = createEuropeanCopy(siteCopyEn, {
+  navAriaLabel: "Navegação principal",
+  menuOpenLabel: "Abrir menu",
+  menuCloseLabel: "Fechar menu",
+  menuDialogLabel: "Menu de navegação",
+  homeAriaLabel: "Anclora Private Estates — Início",
+  logoAlt: "Anclora Private Estates by eXp Group Spain",
+  seo: {
+    title: "Anclora Private Estates | Venda discreta em Mallorca",
+    description: "Venda uma finca ou villa em Andratx, Calvià ou Son Vida de forma discreta, com acesso selectivo a compradores qualificados e sem exposição pública desnecessária.",
+    ogTitle: "Anclora Private Estates | Venda discreta em Mallorca",
+    ogDescription: "Acesso selectivo a compradores qualificados para proprietários em Palma e no sudoeste de Mallorca.",
+    schemaDescription: "Acesso selectivo a compradores qualificados para proprietários que ponderam vender no sudoeste de Mallorca sem exposição pública desnecessária.",
+    serviceType: "Consultoria imobiliária premium e off-market",
+  },
+  mediaAlt: {
+    mallorcaFocusImage: "Costa de Mallorca com águas turquesa e embarcação numa enseada privada",
+    investorImage: "Terraço premium com piscina e vista mar em Mallorca",
+    finalCtaImage: "Villa premium em Mallorca com interior aberto para o jardim",
+  },
+  nav: ["Credibilidade", "Mallorca", "Investidores", "Clientes", "Parceiros", "Data Lab", "Contacto"],
+  ctaLabel: "Solicitar avaliação",
+  switcher: {
+    groupLabel: "Selector de idioma",
+    preferencesLabel: "Preferências globais",
+    preferencesDialogLabel: "Definições de preferências globais",
+    eyebrow: "Preferências",
+    title: "Idioma",
+    languageLabel: "Idioma",
+    currencyLabel: "Moeda",
+    closeLabel: "Fechar selector de idioma",
+    saveLabel: "Guardar e fechar",
+  },
+  hero: {
+    eyebrow: "Palma · Sudoeste de Mallorca · Capital premium",
+    title: "Acesso exclusivo a compradores de elevado património.",
+    description: "Venda discreta em Andratx, Calvià, Son Vida e Portals.\nSem portais. Apenas compradores qualificados.",
+    primaryCta: "Solicitar acesso confidencial",
+    secondaryCta: "Explorar o foco territorial",
+    scrollLabel: "Continuar",
+    scrollText: "Descobrir",
+  },
+  contactTitle: "Abramos uma conversa privada.",
+  finalTitle: "O próximo passo não é mais ruído. É a conversa certa.",
+  footerSummary: "Firma imobiliária premium focada em Palma e no sudoeste de Mallorca, com critério territorial, acesso selectivo e execução comercial mais precisa.",
+  copyright: "© 2026 Anclora Group. Todos os direitos reservados.",
+  social: "SIGA-NOS",
+  contactFloatingLabel: "CONTACTO",
+});
+
+Object.assign(siteCopySv, {
+  credibility: {
+    eyebrow: "Trovärdighet",
+    title: "Ett premiumerbjudande som inte behöver låtsas vara större för att skapa förtroende.",
+    intro: "Auktoritet uttrycks här genom struktur, förankring och en mognare läsning av marknaden.",
+    pillars: [
+      "Oberoende rådgivare med stöd av eXp Group Spain.",
+      "Över 25 års teknisk erfarenhet tillämpad på en mer strukturerad fastighetsprocess.",
+      "Territoriell intelligens, optimerade processer och ett selektivt nätverk som verklig skillnad mot traditionell byrålogik.",
+    ],
+  },
+  mallorcaFocus: {
+    eyebrow: "Mallorca Focus",
+    title: "Mallorca läses inte som en platt lista över områden, utan som ett system av mikrolägen och signaler.",
+    intro: "Varje område kräver ett eget kommersiellt språk. Samma estetik fungerar inte för Palma, Portals eller Valldemossa; inte heller samma värdeberättelse.",
+    areasLabel: "Områden",
+    clusters: siteCopyEn.mallorcaFocus.clusters.map((cluster, index) => ({
+      ...cluster,
+      eyebrow: ["Palma och höjdlägen", "Calviàs premiumkust", "Sydväst: livsstil och kapital", "Serra och inlandskaraktär"][index],
+      title: ["Kapital, högt boende och institutionell närhet.", "Etablerad kust med livsstil och likviditet.", "Premiuminträde med livsstil, avkastning och timing.", "Inland med karaktär, landskap och bostadssingularitet."][index],
+      body: [
+        "Palma, Son Vida, Cala Major, San Agustín och Cas Català samlar lokalt kapital, internationell efterfrågan och objekt där urban berättelse och integritet väger lika tungt som läget.",
+        "Illetas, Bendinat, Portals, Costa d'en Blanes och Punta Negra fungerar som ett system där hav, marina, integritet och premiumservice blir tydliga värdesignaler.",
+        "Palmanova, Paguera och Costa de la Calma visar ett mer flexibelt premiumsegment där livsstil, inträdesnivå och försäljningshastighet kräver fin läsning av mikroläget.",
+        "Puerto de Andratx, Andratx, Esporles och Valldemossa bildar ett kluster där arv, landskap, integritet och bostadsberättelse väger mer än ren närhet till kusten.",
+      ][index],
+      audienceLabel: "Köparprofil",
+      audience: [
+        "Förmögenhetsköpare som prioriterar kapital, skolor, service och vardagslogistik.",
+        "Internationell köpare eller family office med fokus på prime-kust och relationell kontinuitet.",
+        "Hybridinvesterare som söker balans mellan eget bruk, efterfrågan och kapitalbevarande.",
+        "Relationsdriven UHNW-köpare som värdesätter särprägel, diskretion och objekt med varaktig berättelse.",
+      ][index],
+    })),
+  },
+  investors: {
+    eyebrow: "Investerare",
+    title: "Nationellt och internationellt kapital som behöver mindre skyltfönster och bättre kontext.",
+    intro: "Premiuminvesteraren söker inte bara utbud; den söker en pålitlig tolkning av tillgång, timing, värdebevarande och relationell kontinuitet.",
+    asideQuote: "Skillnaden ligger inte i att visa mer produkt, utan i att förstå vilken köpare och vilket tempo varje tillgång kräver.",
+    profiles: [
+      { title: "Nationell kapitalinvesterare", body: "Söker stabila tillgångar, värdeskydd och territoriellt omdöme utan beroende av kommersiellt brus." },
+      { title: "Internationell livsstilsinvesterare", body: "Prioriterar mikroläge, integritet, marina, skolor, uppkoppling och trygg exekvering över gränser." },
+      { title: "Relationsdriven UHNW-köpare", body: "Går inte in via katalog, utan genom förtroende, tillgång, timing och rätt nätverk runt en singulär affär." },
+    ],
+  },
+  sellerIntake: { ...siteCopyEn.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning för ägare, köpare och investerare.", body: "Vi bedömer varje förfrågan efter avsikt: försäljning, köp, värdering eller investering. Ett konfidentiellt premiumupplägg för utvalda tillgångar i Palma och sydvästra Mallorca.", checklistLabel: "Kriterier för privat bedömning", checklist: ["Mikroläge och verklig konkurrens", "Positionerande berättelse", "Kvalificerad timing och tillgång"], trustBadgeText: "Internationellt stöd och operativ trygghet genom eXp Group Spain.", form: { ...siteCopyEn.sellerIntake.form, intentLabel: "Hur kan vi hjälpa dig?", intentOptions: [{ value: "sell", label: "Jag vill sälja en fastighet" }, { value: "valuation", label: "Jag vill ha en privat värdering" }, { value: "buy", label: "Jag vill köpa en premiumfastighet" }, { value: "invest", label: "Jag söker investeringsmöjligheter" }], name: "Namn", phone: "Telefon", zone: "Fastighetsområde", propertyType: "Fastighetstyp", commercialization: "Försäljningsupplägg", address: "Fastighetsadress", budget: "Ungefärlig budget", timing: "Planerad tidsram", ticket: "Investeringsnivå", goal: "Investeringsmål", message: "Meddelande", selectPlaceholder: "Välj ett alternativ", propertyTypeOptions: ["Villa", "Takvåning", "Premiumlägenhet", "Finca"], commercializationOptions: ["Konfidentiell bedömning", "Exklusiv försäljning", "Selektiv försäljning utan massportal"], submitLabel: "Skicka privat förfrågan" } },
+  partners: { ...siteCopyEn.partners, eyebrow: "Synergi · Partnernätverk", title: "Ett selektivt nätverk för samarbetspartner som förstår premiummarknaden.", body: "Anclora Synergi är den privata portalen för redan validerade partners: oberoende agenter, branschproffs och samarbetspartner med territoriellt omdöme.", features: ["Selektiv tillgång till delade möjligheter", "Samarbete med fokus på mikroläge och tillgångskvalitet", "Kurerad antagning utan kommersiell friktion"], form: { ...siteCopyEn.partners.form, name: "Namn", serviceCategory: "Tjänstekategori", serviceSummary: "Beskriv din profil och hur du arbetar", selectPlaceholder: "Välj kategori", serviceCategoryOptions: [{ value: "real_estate", label: "Fastigheter" }, { value: "professional", label: "Juridik / Finans / Professionellt" }, { value: "luxury", label: "Lifestyle & Lyx" }, { value: "eco", label: "Hållbarhet" }, { value: "other", label: "Annat" }], privacyLabel: "Jag har läst och accepterar integritetspolicyn.", submitLabel: "Begär tillgång till Synergi", successTitle: "Förfrågan mottagen", successBody: "Vi granskar din profil och återkommer inom sju dagar." } },
+  dataLab: { ...siteCopyEn.dataLab, title: "Territoriella signaler för att läsa premiummarknaden lugnare och mindre reaktivt.", intro: "Vi presenterar inte dashboards. Vi visar signaler som hjälper till att rama in tillgångskvalitet, efterfrågetryck och premiumköparens känslighet.", lead: { eyebrow: "Signal 01", title: "Bristen på väl positionerade prime-objekt gynnar mer selektiva och mindre reaktiva beslut.", body: "I Palma och sydväst stärker begränsat utbud, stabil internationell efterfrågan och ökad känslighet för turnkey-objekt värdet på väl förberedda och väl berättade tillgångar." }, signals: [{ eyebrow: "Signal 02", title: "Mikroläget väger tyngre än kommunens övergripande etikett." }, { eyebrow: "Signal 03", title: "Tillgångens förberedelse påverkar både hastighet och kvalitet i affären." }], whitelist: { ...siteCopyEn.dataLab.whitelist, eyebrow: "Selektiv tillgång", title: "Gå med i listan för tidig tillgång.", body: "Anclora Data Lab är i selektiv tillgångsfas för investerare, family offices och institutionella profiler.", form: { ...siteCopyEn.dataLab.whitelist.form, name: "Namn", intendedUse: "Varför är du intresserad av Data Lab?", privacyLabel: "Jag har läst och accepterar integritetspolicyn.", submitLabel: "Begär tidig tillgång", successTitle: "På väntelistan", successBody: "Vi meddelar dig när nästa tillgångsblock öppnar för din profil." } } },
+  contact: { ...siteCopySv.contact, body: "Om du överväger att sälja, investera eller utforska en fastighetsmöjlighet i Palma eller sydvästra Mallorca kan vi bedöma ditt fall med omdöme, konfidentialitet och premiumfokus.", responseNote: "Samtal hanteras selektivt och med personlig återkoppling.", detailsTitle: "Kontaktuppgifter", details: [{ label: "E-post", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" }, { label: "Telefon", value: "+34 633 947 810", href: "tel:+34633947810" }, { label: "Plats", value: "Palma de Mallorca · Balearerna" }] },
+  finalCta: { ...siteCopySv.finalCta, eyebrow: "Privat samtal", body: "Palma och sydvästra Mallorca kräver territoriellt omdöme, konfidentialitet och mer precis kommersiell exekvering. Om du överväger att sälja, köpa eller utforska en möjlighet kan vi bedöma ditt fall privat.", primaryCta: "Starta privat bedömning", secondaryCta: "Öppna privat samtal" },
+  cookies: { ...siteCopyEn.cookies, title: "Cookieinställningar", description: "Denna webbplats använder cookies för att ge en bättre upplevelse. Du kan hantera dina inställningar när som helst.", acceptAll: "Acceptera alla", settings: "Inställningar", settingsTitle: "Hantera cookies", necessary: { title: "Nödvändiga cookies", description: "Dessa cookies krävs för att webbplatsen ska fungera." }, analytics: { title: "Analyscookies", description: "De hjälper oss att förstå hur besökare använder webbplatsen." }, marketing: { title: "Marknadsföringscookies", description: "Används för att visa relevanta annonser." }, savePreferences: "Spara inställningar", back: "Tillbaka", rejectAll: "Avvisa valfria" },
+  scroll: { up: "Upp", down: "Ned" },
+  trustBadgeText: "Internationellt stöd och operativ trygghet genom eXp Group Spain.",
+});
+
+Object.assign(siteCopyDa, {
+  credibility: { eyebrow: "Troværdighed", title: "Et premiumtilbud, der ikke behøver at simulere størrelse for at skabe tillid.", intro: "Autoritet formidles gennem struktur, forankring og en mere moden markedsforståelse.", pillars: ["Uafhængig rådgiver med støtte fra eXp Group Spain.", "Mere end 25 års teknologisk erfaring anvendt på en bedre struktureret ejendomsproces.", "Territorial intelligens, optimerede processer og et selektivt netværk som reel forskel fra traditionel mæglerlogik."] },
+  mallorcaFocus: { ...siteCopySv.mallorcaFocus, title: "Mallorca læses ikke som en flad liste over områder, men som et system af mikroområder og signaler.", intro: "Hvert område kræver sit eget kommercielle sprog. Samme æstetik fungerer ikke for Palma, Portals eller Valldemossa.", areasLabel: "Områder", clusters: siteCopySv.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma og højdeliggende boligområder", "Calviàs premiumkyst", "Sydvest: livsstil og kapital", "Serra og indlandskarakter"][index], title: ["Kapital, højtliggende boligmiljø og institutionel nærhed.", "Etableret kyst med livsstil og likviditet.", "Premiumindgang med livsstil, afkast og timing.", "Indland med karakter, landskab og boligsmæssig særpræg."][index], body: ["Palma, Son Vida, Cala Major, San Agustín og Cas Català samler lokal kapital, international efterspørgsel og aktiver, hvor urban fortælling og privatliv vejer lige så tungt som placering.", "Illetas, Bendinat, Portals, Costa d'en Blanes og Punta Negra fungerer som et system, hvor hav, marina, privatliv og premiumservice bliver centrale værdisignaler.", "Palmanova, Paguera og Costa de la Calma viser et mere fleksibelt premiumsegment, hvor livsstil, indgangsniveau og salgshastighed kræver præcis læsning af mikroområdet.", "Puerto de Andratx, Andratx, Esporles og Valldemossa danner et kluster, hvor arv, landskab, privatliv og boligfortælling vejer mere end nærhed til kysten."][index], audienceLabel: "Køberprofil", audience: ["Formuekøber, der prioriterer kapital, skoler, service og daglig logistik.", "International køber eller family office med fokus på prime-kyst og relationel kontinuitet.", "Hybrid investor, der søger balance mellem eget brug, efterspørgsel og kapitalbevarelse.", "Relationsdrevet UHNW-køber, der værdsætter særpræg, diskretion og aktiver med varig fortælling."][index] })) },
+  investors: { ...siteCopySv.investors, eyebrow: "Investorer", title: "National og international kapital, der har brug for mindre udstilling og bedre kontekst.", intro: "Premiuminvestoren søger ikke blot udbud, men en pålidelig læsning af adgang, timing, værdibevarelse og relationel kontinuitet.", asideQuote: "Forskellen ligger ikke i at vise mere produkt, men i at forstå hvilken køber og hvilket tempo hvert aktiv kræver.", profiles: [{ title: "National formueinvestor", body: "Søger solide aktiver, værdibeskyttelse og territorial dømmekraft uden afhængighed af kommerciel støj." }, { title: "International livsstilsinvestor", body: "Prioriterer mikroområde, privatliv, marina, skoler, forbindelse og sikker eksekvering på tværs af grænser." }, { title: "Relationsdrevet UHNW-køber", body: "Kommer ikke ind via katalog, men gennem tillid, adgang, timing og det rigtige netværk." }] },
+  sellerIntake: { ...siteCopySv.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning til ejere, købere og investorer.", body: "Vi vurderer hver henvendelse efter intention: salg, køb, vurdering eller investering. En fortrolig premiumtilgang til særlige aktiver i Palma og sydvestlige Mallorca.", checklistLabel: "Kriterier for privat vurdering", checklist: ["Mikroområde og reel konkurrence", "Positionerende fortælling", "Kvalificeret timing og adgang"], form: { ...siteCopySv.sellerIntake.form, intentLabel: "Hvordan kan vi hjælpe?", name: "Navn", phone: "Telefon", zone: "Ejendommens område", propertyType: "Ejendomstype", commercialization: "Salgspræference", message: "Besked", submitLabel: "Send privat henvendelse" } },
+  partners: { ...siteCopySv.partners, eyebrow: "Synergi · Partnernetværk", title: "Et selektivt netværk for samarbejdspartnere, der forstår premiummarkedet.", body: "Anclora Synergi er den private portal for validerede partnere med territorial dømmekraft.", features: ["Selektiv adgang til delte muligheder", "Samarbejde med fokus på mikroområde og aktivkvalitet", "Kureret optagelse uden kommerciel friktion"] },
+  dataLab: { ...siteCopySv.dataLab, title: "Territoriale signaler til at læse premiummarkedet roligere og mindre reaktivt.", intro: "Vi viser ikke dashboards. Vi viser signaler, der hjælper med at forstå aktivkvalitet, efterspørgselspres og premiumkøberens følsomhed.", lead: { eyebrow: "Signal 01", title: "Mangel på velpositionerede prime-aktiver fremmer mere selektive og mindre reaktive beslutninger.", body: "I Palma og sydvest styrker begrænset udbud, vedvarende international efterspørgsel og interesse for turnkey-aktiver værdien af godt forberedte aktiver." } },
+  contact: { ...siteCopyDa.contact, body: "Hvis du overvejer salg, investering eller en ejendomsmulighed i Palma eller sydvestlige Mallorca, kan vi vurdere sagen med dømmekraft, fortrolighed og premiumfokus.", responseNote: "Samtaler håndteres selektivt og med personlig opfølgning.", detailsTitle: "Kontaktoplysninger" },
+  finalCta: { ...siteCopyDa.finalCta, eyebrow: "Privat samtale", body: "Palma og sydvestlige Mallorca kræver territorial dømmekraft, fortrolighed og mere præcis kommerciel eksekvering. Vi kan vurdere din sag privat.", primaryCta: "Start privat vurdering", secondaryCta: "Åbn privat samtale" },
+  cookies: { ...siteCopyDa.cookies, title: "Cookieindstillinger", description: "Dette websted bruger cookies til at give en bedre oplevelse. Du kan administrere dine præferencer når som helst.", acceptAll: "Accepter alle", settings: "Indstillinger", settingsTitle: "Administrer cookies", necessary: { title: "Nødvendige cookies", description: "Disse cookies er nødvendige for, at webstedet fungerer." }, analytics: { title: "Analysecookies", description: "De hjælper os med at forstå brugen af webstedet." }, marketing: { title: "Marketingcookies", description: "Bruges til relevante annoncer." }, savePreferences: "Gem præferencer", back: "Tilbage", rejectAll: "Afvis valgfrie" },
+  scroll: { up: "Op", down: "Ned" },
+  trustBadgeText: "International støtte og operationel tillid gennem eXp Group Spain.",
+});
+
+Object.assign(siteCopyNl, {
+  credibility: { eyebrow: "Geloofwaardigheid", title: "Een premiumvoorstel dat geen schaal hoeft te simuleren om vertrouwen te wekken.", intro: "Autoriteit ontstaat hier uit structuur, rugdekking en een volwassen marktlezing.", pillars: ["Onafhankelijke adviseur met steun van eXp Group Spain.", "Meer dan 25 jaar technologische ervaring toegepast op een beter gestructureerde vastgoedaanpak.", "Territoriale intelligentie, geoptimaliseerde processen en een selectief netwerk als werkelijk onderscheid."] },
+  mallorcaFocus: { ...siteCopyDa.mallorcaFocus, title: "Mallorca is geen vlakke lijst met zones, maar een systeem van microzones en signalen.", intro: "Elke enclave vraagt om een eigen commerciële taal. Palma, Portals en Valldemossa hebben niet dezelfde esthetiek of waardeverhaallijn nodig.", areasLabel: "Gebieden", clusters: siteCopyDa.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma en residentiële hoogte", "Premiumkust van Calvià", "Zuidwest: lifestyle en vermogen", "Serra en binnenlandkarakter"][index], title: ["Kapitaal, residentiële hoogte en institutionele nabijheid.", "Gevestigde kust met lifestyle en liquiditeit.", "Premiuminstap met lifestyle, rendement en timing.", "Binnenland met karakter, landschap en residentiële eigenheid."][index], body: ["Palma, Son Vida, Cala Major, San Agustín en Cas Català combineren lokaal kapitaal, internationale vraag en objecten waar stedelijk verhaal en privacy even zwaar wegen als locatie.", "Illetas, Bendinat, Portals, Costa d'en Blanes en Punta Negra vormen een systeem waarin zee, marina, privacy en premiumdiensten duidelijke waardesignalen zijn.", "Palmanova, Paguera en Costa de la Calma tonen een flexibeler premiumsegment waar lifestyle, instapniveau en verkoopsnelheid fijnzinnige microzonekennis vragen.", "Puerto de Andratx, Andratx, Esporles en Valldemossa vormen een cluster waar erfgoed, landschap, privacy en woonverhaal meer wegen dan kustnabijheid."][index], audienceLabel: "Kopersprofiel", audience: ["Vermogenskoper die kapitaal, scholen, diensten en dagelijkse logistiek prioriteert.", "Internationale koper of family office gericht op prime kust en relationele continuïteit.", "Hybride investeerder die balans zoekt tussen eigen gebruik, vraag en vermogensbehoud.", "Relationele UHNW-koper die eigenheid, discretie en objecten met blijvend verhaal waardeert."][index] })) },
+  investors: { ...siteCopyDa.investors, eyebrow: "Investeerders", title: "Nationaal en internationaal kapitaal dat minder etalage en meer context nodig heeft.", intro: "De premiuminvesteerder zoekt niet alleen aanbod, maar een betrouwbare interpretatie van toegang, timing, waardebehoud en relationele continuïteit.", asideQuote: "Het verschil zit niet in meer product tonen, maar in beter begrijpen welke koper en welk tempo elk object vraagt." },
+  sellerIntake: { ...siteCopyDa.sellerIntake, eyebrow: "Klanten", title: "Selectief advies voor eigenaren, kopers en investeerders.", body: "We beoordelen elke aanvraag naar intentie: verkoop, aankoop, waardering of investering. Een vertrouwelijke premiumaanpak voor bijzondere objecten in Palma en Zuidwest-Mallorca.", checklistLabel: "Criteria voor private beoordeling", checklist: ["Microzone en reële concurrentie", "Positioneringsverhaal", "Gekwalificeerde timing en toegang"] },
+  partners: { ...siteCopyDa.partners, eyebrow: "Synergi · Partnernetwerk", title: "Een selectief netwerk voor partners die de premiummarkt begrijpen.", body: "Anclora Synergi is de private portal voor gevalideerde partners met territoriaal oordeel.", features: ["Selectieve toegang tot gedeelde kansen", "Samenwerking met focus op microzone en objectkwaliteit", "Gecureerd toelatingsproces zonder commerciële frictie"] },
+  dataLab: { ...siteCopyDa.dataLab, title: "Territoriale signalen om de premiummarkt rustiger en minder reactief te lezen.", intro: "We tonen geen dashboards. We tonen signalen die objectkwaliteit, vraagdruk en gevoeligheid van premiumkopers helpen duiden." },
+  contact: { ...siteCopyNl.contact, body: "Als u verkoop, investering of een vastgoedkans in Palma of Zuidwest-Mallorca overweegt, kunnen we uw situatie met oordeel, vertrouwelijkheid en premiumfocus beoordelen.", responseNote: "Gesprekken worden selectief en persoonlijk opgevolgd.", detailsTitle: "Contactgegevens" },
+  finalCta: { ...siteCopyNl.finalCta, eyebrow: "Privégesprek", body: "Palma en Zuidwest-Mallorca vragen om territoriaal oordeel, vertrouwelijkheid en preciezere commerciële uitvoering. We kunnen uw situatie privé beoordelen.", primaryCta: "Start private beoordeling", secondaryCta: "Open privégesprek" },
+  cookies: { ...siteCopyNl.cookies, title: "Cookievoorkeuren", description: "Deze site gebruikt cookies voor een betere ervaring. U kunt uw voorkeuren altijd beheren.", acceptAll: "Alles accepteren", settings: "Instellingen", settingsTitle: "Cookies beheren", necessary: { title: "Noodzakelijke cookies", description: "Deze cookies zijn nodig voor de werking van de site." }, analytics: { title: "Analysecookies", description: "Ze helpen ons te begrijpen hoe bezoekers de site gebruiken." }, marketing: { title: "Marketingcookies", description: "Worden gebruikt voor relevante advertenties." }, savePreferences: "Voorkeuren opslaan", back: "Terug", rejectAll: "Optionele weigeren" },
+  scroll: { up: "Omhoog", down: "Omlaag" },
+  trustBadgeText: "Internationale steun en operationeel vertrouwen via eXp Group Spain.",
+});
+
+Object.assign(siteCopyIt, {
+  credibility: { eyebrow: "Credibilità", title: "Una proposta premium che non ha bisogno di simulare scala per generare fiducia.", intro: "L'autorevolezza nasce da struttura, supporto e una lettura più matura del mercato.", pillars: ["Agente indipendente con il supporto di eXp Group Spain.", "Oltre 25 anni di esperienza tecnologica applicati a un'operatività immobiliare più strutturata.", "Intelligenza territoriale, processi ottimizzati e rete selettiva come differenza reale."] },
+  mallorcaFocus: { ...siteCopyNl.mallorcaFocus, title: "Mallorca non si legge come una lista piatta di zone, ma come un sistema di microzone e segnali.", intro: "Ogni enclave richiede un linguaggio commerciale proprio. Palma, Portals e Valldemossa non hanno bisogno della stessa estetica né dello stesso racconto di valore.", areasLabel: "Aree", clusters: siteCopyNl.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma e residenziale in altura", "Costa premium di Calvià", "Sud-ovest: lifestyle e patrimonio", "Serra e carattere dell'interno"][index], title: ["Capitale, residenziale elevato e accesso istituzionale.", "Costa consolidata con lifestyle e liquidità.", "Ingresso premium con lifestyle, rendimento e timing.", "Interno con carattere, paesaggio e singolarità residenziale."][index], body: ["Palma, Son Vida, Cala Major, San Agustín e Cas Català concentrano capitale locale, domanda internazionale e asset in cui racconto urbano e privacy contano quanto la posizione.", "Illetas, Bendinat, Portals, Costa d'en Blanes e Punta Negra funzionano come un sistema in cui mare, marina, privacy e servizi premium diventano segnali chiave di valore.", "Palmanova, Paguera e Costa de la Calma mostrano una fascia premium più flessibile, dove lifestyle, ticket d'ingresso e velocità commerciale richiedono criterio di microzona.", "Puerto de Andratx, Andratx, Esporles e Valldemossa formano un cluster in cui patrimonio, paesaggio, privacy e racconto residenziale pesano più della vicinanza alla costa."][index], audienceLabel: "Profilo acquirente", audience: ["Acquirente patrimoniale che privilegia capitale, scuole, servizi e logistica quotidiana.", "Acquirente internazionale o family office orientato a costa prime e continuità relazionale.", "Investitore ibrido che cerca equilibrio tra uso personale, domanda e conservazione patrimoniale.", "Acquirente UHNW relazionale che apprezza singolarità, discrezione e asset con racconto duraturo."][index] })) },
+  investors: { ...siteCopyNl.investors, eyebrow: "Investitori", title: "Capitale nazionale e internazionale che richiede meno vetrina e più contesto.", intro: "L'investitore premium non cerca solo stock; cerca una lettura affidabile di accesso, timing, conservazione del valore e continuità relazionale.", asideQuote: "La differenza non è mostrare più prodotto, ma capire quale acquirente e quale ritmo richiede ogni asset." },
+  sellerIntake: { ...siteCopyNl.sellerIntake, eyebrow: "Clienti", title: "Consulenza selettiva per proprietari, acquirenti e investitori.", body: "Valutiamo ogni richiesta in base all'intenzione: vendita, acquisto, valutazione o investimento. Approccio premium e riservato per asset singolari a Palma e nel sud-ovest di Mallorca.", checklistLabel: "Criteri di valutazione privata", checklist: ["Microzona e concorrenza reale", "Racconto di posizionamento", "Timing e accesso qualificato"] },
+  partners: { ...siteCopyNl.partners, eyebrow: "Synergi · Rete partner", title: "Una rete selettiva per partner che comprendono il mercato premium.", body: "Anclora Synergi è il portale privato per partner validati con criterio territoriale.", features: ["Accesso selettivo a opportunità condivise", "Collaborazione centrata su microzona e qualità dell'asset", "Processo di ammissione curato e senza frizione commerciale"] },
+  dataLab: { ...siteCopyNl.dataLab, title: "Segnali territoriali per leggere il mercato premium con più calma e meno reazione.", intro: "Non presentiamo dashboard. Presentiamo segnali che aiutano a inquadrare qualità dell'asset, pressione della domanda e sensibilità dell'acquirente premium." },
+  contact: { ...siteCopyIt.contact, body: "Se stai valutando una vendita, un investimento o un'opportunità patrimoniale a Palma o nel sud-ovest di Mallorca, possiamo studiare il tuo caso con criterio, riservatezza e approccio premium.", responseNote: "Le conversazioni sono gestite in modo selettivo con riscontro personale.", detailsTitle: "Contatti" },
+  finalCta: { ...siteCopyIt.finalCta, eyebrow: "Conversazione privata", body: "Palma e il sud-ovest di Mallorca richiedono criterio territoriale, riservatezza ed esecuzione commerciale più precisa. Possiamo studiare il tuo caso in privato.", primaryCta: "Avvia valutazione privata", secondaryCta: "Apri conversazione privata" },
+  cookies: { ...siteCopyIt.cookies, title: "Preferenze cookie", description: "Questo sito utilizza cookie per offrirti un'esperienza migliore. Puoi gestire le preferenze in qualsiasi momento.", acceptAll: "Accetta tutti", settings: "Impostazioni", settingsTitle: "Gestisci cookie", necessary: { title: "Cookie necessari", description: "Sono necessari per il funzionamento del sito." }, analytics: { title: "Cookie di analisi", description: "Ci aiutano a capire come i visitatori usano il sito." }, marketing: { title: "Cookie marketing", description: "Sono usati per mostrare annunci pertinenti." }, savePreferences: "Salva preferenze", back: "Indietro", rejectAll: "Rifiuta opzionali" },
+  scroll: { up: "Su", down: "Giù" },
+  trustBadgeText: "Supporto internazionale e fiducia operativa tramite eXp Group Spain.",
+});
+
+Object.assign(siteCopyNo, {
+  credibility: { ...siteCopyDa.credibility, eyebrow: "Tillit", title: "Et premiumtilbud som ikke trenger å late som det er større for å skape tillit.", intro: "Autoritet formidles gjennom struktur, forankring og en mer moden markedsforståelse.", pillars: ["Uavhengig rådgiver med støtte fra eXp Group Spain.", "Mer enn 25 års teknologisk erfaring brukt på en bedre strukturert eiendomsprosess.", "Territoriell intelligens, optimaliserte prosesser og et selektivt nettverk som reell forskjell."] },
+  mallorcaFocus: { ...siteCopyDa.mallorcaFocus, title: "Mallorca leses ikke som en flat liste over områder, men som et system av mikrosoner og signaler.", intro: "Hvert område krever sitt eget kommersielle språk. Palma, Portals og Valldemossa trenger ikke samme estetikk eller verdifortelling.", areasLabel: "Områder", clusters: siteCopyDa.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma og høytliggende boligområder", "Calviàs premiumkyst", "Sørvest: livsstil og kapital", "Serra og innlandskarakter"][index], audienceLabel: "Kjøperprofil" })) },
+  investors: { ...siteCopyDa.investors, eyebrow: "Investorer", title: "Nasjonal og internasjonal kapital som trenger mindre utstilling og bedre kontekst.", intro: "Premiuminvestoren søker ikke bare tilbud, men en pålitelig lesning av tilgang, timing, verdibevaring og relasjonell kontinuitet." },
+  sellerIntake: { ...siteCopyDa.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning for eiere, kjøpere og investorer.", body: "Vi vurderer hver henvendelse etter intensjon: salg, kjøp, verdivurdering eller investering. En konfidensiell premiumtilnærming for særlige eiendeler i Palma og sørvestlige Mallorca.", checklistLabel: "Kriterier for privat vurdering", checklist: ["Mikrosone og reell konkurranse", "Posisjoneringsfortelling", "Kvalifisert timing og tilgang"] },
+  partners: { ...siteCopyDa.partners, eyebrow: "Synergi · Partnernettverk", title: "Et selektivt nettverk for partnere som forstår premiummarkedet." },
+  dataLab: { ...siteCopyDa.dataLab, title: "Territorielle signaler for å lese premiummarkedet roligere og mindre reaktivt.", intro: "Vi viser ikke dashboards. Vi viser signaler som hjelper med å forstå eiendelskvalitet, etterspørselspress og premiumkjøperens følsomhet." },
+  contact: { ...siteCopyNo.contact, body: "Hvis du vurderer salg, investering eller en eiendomsmulighet i Palma eller sørvestlige Mallorca, kan vi vurdere saken med skjønn, konfidensialitet og premiumfokus.", responseNote: "Samtaler håndteres selektivt og med personlig oppfølging.", detailsTitle: "Kontaktinformasjon" },
+  finalCta: { ...siteCopyNo.finalCta, eyebrow: "Privat samtale", body: "Palma og sørvestlige Mallorca krever territorielt skjønn, konfidensialitet og mer presis kommersiell gjennomføring. Vi kan vurdere saken privat.", primaryCta: "Start privat vurdering", secondaryCta: "Åpne privat samtale" },
+  cookies: { ...siteCopyDa.cookies, title: "Cookieinnstillinger", acceptAll: "Godta alle", settings: "Innstillinger", settingsTitle: "Administrer cookies", savePreferences: "Lagre preferanser", back: "Tilbake", rejectAll: "Avvis valgfrie" },
+  scroll: { up: "Opp", down: "Ned" },
+  trustBadgeText: "Internasjonal støtte og operativ tillit gjennom eXp Group Spain.",
+});
+
+Object.assign(siteCopyPt, {
+  credibility: { eyebrow: "Credibilidade", title: "Uma proposta premium que não precisa de simular escala para transmitir confiança.", intro: "A autoridade nasce de estrutura, suporte e uma leitura mais madura do mercado.", pillars: ["Consultor independente com suporte da eXp Group Spain.", "Mais de 25 anos de experiência tecnológica aplicados a uma operação imobiliária mais estruturada.", "Inteligência territorial, processos optimizados e rede selectiva como diferença real."] },
+  mallorcaFocus: { ...siteCopyIt.mallorcaFocus, title: "Mallorca não se lê como uma lista plana de zonas, mas como um sistema de microzonas e sinais.", intro: "Cada enclave exige uma linguagem comercial própria. Palma, Portals e Valldemossa não pedem a mesma estética nem a mesma narrativa de valor.", areasLabel: "Áreas", clusters: siteCopyIt.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma e zona residencial elevada", "Costa premium de Calvià", "Sudoeste: lifestyle e património", "Serra e carácter de interior"][index], audienceLabel: "Perfil de comprador" })) },
+  investors: { ...siteCopyIt.investors, eyebrow: "Investidores", title: "Capital nacional e internacional que precisa de menos montra e mais contexto.", intro: "O investidor premium não procura apenas oferta; procura uma leitura fiável de acesso, timing, preservação de valor e continuidade relacional." },
+  sellerIntake: { ...siteCopyIt.sellerIntake, eyebrow: "Clientes", title: "Consultoria selectiva para proprietários, compradores e investidores.", body: "Avaliamos cada pedido segundo a sua intenção: venda, compra, avaliação ou investimento. Abordagem premium e confidencial para activos singulares em Palma e no sudoeste de Mallorca.", checklistLabel: "Critérios de avaliação privada", checklist: ["Microzona e concorrência real", "Narrativa de posicionamento", "Timing e acesso qualificado"] },
+  partners: { ...siteCopyIt.partners, eyebrow: "Synergi · Rede de parceiros", title: "Uma rede selectiva para parceiros que compreendem o mercado premium.", body: "Anclora Synergi é o portal privado para parceiros validados com critério territorial." },
+  dataLab: { ...siteCopyIt.dataLab, title: "Sinais territoriais para ler o mercado premium com mais calma e menos reacção.", intro: "Não apresentamos dashboards. Apresentamos sinais que ajudam a enquadrar qualidade do activo, pressão de procura e sensibilidade do comprador premium." },
+  contact: { ...siteCopyPt.contact, body: "Se está a ponderar vender, investir ou explorar uma oportunidade patrimonial em Palma ou no sudoeste de Mallorca, podemos estudar o seu caso com critério, confidencialidade e abordagem premium.", responseNote: "As conversas são geridas de forma selectiva e com resposta pessoal.", detailsTitle: "Contactos" },
+  finalCta: { ...siteCopyPt.finalCta, eyebrow: "Conversa privada", body: "Palma e o sudoeste de Mallorca exigem critério territorial, confidencialidade e execução comercial mais precisa. Podemos estudar o seu caso em privado.", primaryCta: "Iniciar avaliação privada", secondaryCta: "Abrir conversa privada" },
+  cookies: { ...siteCopyIt.cookies, title: "Preferências de cookies", acceptAll: "Aceitar todas", settings: "Definições", settingsTitle: "Gerir cookies", savePreferences: "Guardar preferências", back: "Voltar", rejectAll: "Rejeitar opcionais" },
+  scroll: { up: "Subir", down: "Descer" },
+  trustBadgeText: "Suporte internacional e confiança operativa através da eXp Group Spain.",
+});
+
 export const siteCopyByLanguage = {
   es: siteCopyEs,
-  en: siteCopyEn,
+  ca: siteCopyCa,
   de: siteCopyDe,
+  en: siteCopyEn,
+  sv: siteCopySv,
   fr: siteCopyFr,
+  it: siteCopyIt,
+  da: siteCopyDa,
+  nl: siteCopyNl,
+  no: siteCopyNo,
+  pt: siteCopyPt,
 } satisfies Record<LanguageCode, SiteCopy>;
-
