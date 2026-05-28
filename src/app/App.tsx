@@ -62,7 +62,7 @@ export default function App() {
   }, [copy]);
 
   if (legalPath === 'privacy' || legalPath === 'terms' || legalPath === 'legal') {
-    return <LegalPagePE kind={legalPath} />;
+    return <LegalPagePE kind={legalPath} language={language} />;
   }
 
   return (
