@@ -1,6 +1,6 @@
 # Locale Copy Quality Report
 
-Generated: 2026-05-28T05:37:46.485Z
+Generated: 2026-06-11T11:33:12.071Z
 
 ## Rules
 
