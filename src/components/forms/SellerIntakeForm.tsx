@@ -172,6 +172,12 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   const [investmentTicket, setInvestmentTicket] = useState("");
   const [investmentGoal, setInvestmentGoal] = useState("");
 
+  // Holiday Rental
+  const [holidayRentalZone, setHolidayRentalZone] = useState("");
+  const [holidayRentalPropertyType, setHolidayRentalPropertyType] = useState("");
+  const [holidayRentalAvailability, setHolidayRentalAvailability] = useState("");
+  const [holidayRentalObjective, setHolidayRentalObjective] = useState("");
+
   // Status
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -218,6 +224,11 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       } else if (intent === "invest") {
         qualifiers.investment_ticket = investmentTicket;
         qualifiers.investment_goal = investmentGoal;
+      } else if (intent === "holiday_rental") {
+        qualifiers.holiday_rental_zone = holidayRentalZone;
+        qualifiers.holiday_rental_property_type = holidayRentalPropertyType;
+        qualifiers.holiday_rental_availability = holidayRentalAvailability;
+        qualifiers.holiday_rental_objective = holidayRentalObjective;
       }
 
       const payload = buildLeadIntakePayload({
@@ -249,6 +260,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       setValuationAddress(""); setValuationPropertyType("");
       setTargetZone(""); setBudgetRange(""); setBuyTiming("");
       setInvestmentTicket(""); setInvestmentGoal("");
+      setHolidayRentalZone(""); setHolidayRentalPropertyType(""); setHolidayRentalAvailability(""); setHolidayRentalObjective("");
     } catch (submissionError) {
       if (submissionError instanceof Error && submissionError.message.includes("NEXUS_ORG_ID")) {
         setConfigError(true);
@@ -491,6 +503,64 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
                 value={investmentGoal}
                 onChange={(e) => setInvestmentGoal(e.target.value)}
                 placeholder={copy.placeholders.goal}
+              />
+            </label>
+          </>
+        )}
+
+        {/* Dynamic Fields - Holiday Rental */}
+        {intent === "holiday_rental" && (
+          <>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.zone}</span>
+              <input
+                className="pe-input"
+                name="holidayRentalZone"
+                required
+                value={holidayRentalZone}
+                onChange={(e) => setHolidayRentalZone(e.target.value)}
+                placeholder={copy.placeholders.zone}
+              />
+            </label>
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.propertyType}</span>
+              <select
+                className="pe-select"
+                name="holidayRentalPropertyType"
+                value={holidayRentalPropertyType}
+                onChange={(e) => setHolidayRentalPropertyType(e.target.value)}
+                required
+              >
+                <option value="" disabled>{copy.selectPlaceholder}</option>
+                {copy.propertyTypeOptions.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+            {copy.holidayRentalObjectiveOptions && (
+              <label className="pe-form-field">
+                <span className="pe-eyebrow">{copy.holidayRentalObjective ?? copy.goal}</span>
+                <select
+                  className="pe-select"
+                  name="holidayRentalObjective"
+                  value={holidayRentalObjective}
+                  onChange={(e) => setHolidayRentalObjective(e.target.value)}
+                >
+                  <option value="" disabled>{copy.selectPlaceholder}</option>
+                  {copy.holidayRentalObjectiveOptions.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </label>
+            )}
+            <label className="pe-form-field">
+              <span className="pe-eyebrow">{copy.holidayRentalAvailability ?? copy.timing}</span>
+              <input
+                className="pe-input"
+                name="holidayRentalAvailability"
+                value={holidayRentalAvailability}
+                onChange={(e) => setHolidayRentalAvailability(e.target.value)}
+                placeholder={copy.placeholders.timing}
               />
             </label>
           </>
