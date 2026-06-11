@@ -46,6 +46,11 @@ export type LeadIntakePayload = {
   captcha_token?: string;
   captcha_provider?: "recaptcha" | "turnstile";
 
+  // Behavioral scoring signals (collected frontend-side, enriched by Nexus)
+  time_on_page_s?: number;
+  scroll_depth_pct?: number;
+  pre_submit_cta_clicks?: number;
+
   // Intent-Specific Qualifiers (Flat semantic prefixes)
   // Seller / legacy seller compatibility
   zone?: string;
@@ -150,6 +155,9 @@ export function buildLeadIntakePayload(input: {
   qualifiers?: Record<string, string | undefined>;
   orgId?: string;
   externalId?: string;
+  timeOnPageS?: number;
+  scrollDepthPct?: number;
+  preSubmitCtaClicks?: number;
 }): LeadIntakePayload {
   const internal_trace_prefix = "private_estates_landing";
   
@@ -194,6 +202,10 @@ export function buildLeadIntakePayload(input: {
     submitted_at: input.submittedAt || new Date().toISOString(),
     captcha_token: trimOptional(input.captchaToken),
     captcha_provider: input.captchaToken ? "turnstile" : undefined,
+
+    time_on_page_s: input.timeOnPageS,
+    scroll_depth_pct: input.scrollDepthPct,
+    pre_submit_cta_clicks: input.preSubmitCtaClicks,
   };
 
   // Merge qualifiers directly into the flat payload if they match our known fields
