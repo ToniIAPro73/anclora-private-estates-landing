@@ -70,15 +70,15 @@ describe("Ultra Premium locale copy", () => {
     const spanishHeroTitle = siteCopyByLanguage.es.hero.title.toLowerCase();
     const spanishHeroDescription = siteCopyByLanguage.es.hero.description.toLowerCase();
 
-    expect(spanishHeroTitle).toContain("propietarios");
-    expect(spanishHeroTitle).toContain("venta privada");
-    expect(spanishHeroDescription).toContain("valoración");
+    expect(spanishHeroTitle).toContain("venta discreta");
+    expect(spanishHeroTitle).toContain("mallorca");
     expect(spanishHeroDescription).toContain("compradores cualificados");
+    expect(spanishHeroDescription).toContain("discreción");
 
-    expect(siteCopyByLanguage.en.hero.title).toContain("owners");
-    expect(siteCopyByLanguage.en.hero.title).toContain("private sale");
+    expect(siteCopyByLanguage.en.hero.title.toLowerCase()).toContain("discreet");
+    expect(siteCopyByLanguage.en.hero.title.toLowerCase()).toContain("mallorca");
 
-    expect(siteCopyByLanguage.de.hero.title).toContain("Eigentümer");
-    expect(siteCopyByLanguage.de.hero.title).toContain("privaten Verkauf");
+    expect(siteCopyByLanguage.de.hero.title.toLowerCase()).toContain("diskret");
+    expect(siteCopyByLanguage.de.hero.title.toLowerCase()).toContain("mallorca");
   });
 });
