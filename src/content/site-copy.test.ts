@@ -65,4 +65,20 @@ describe("Ultra Premium locale copy", () => {
       expect(allCopy).not.toContain(pattern.toLowerCase());
     }
   });
+
+  test("keeps the hero proposition direct for premium property owners", () => {
+    const spanishHeroTitle = siteCopyByLanguage.es.hero.title.toLowerCase();
+    const spanishHeroDescription = siteCopyByLanguage.es.hero.description.toLowerCase();
+
+    expect(spanishHeroTitle).toContain("propietarios");
+    expect(spanishHeroTitle).toContain("venta privada");
+    expect(spanishHeroDescription).toContain("valoración");
+    expect(spanishHeroDescription).toContain("compradores cualificados");
+
+    expect(siteCopyByLanguage.en.hero.title).toContain("owners");
+    expect(siteCopyByLanguage.en.hero.title).toContain("private sale");
+
+    expect(siteCopyByLanguage.de.hero.title).toContain("Eigentümer");
+    expect(siteCopyByLanguage.de.hero.title).toContain("privaten Verkauf");
+  });
 });
