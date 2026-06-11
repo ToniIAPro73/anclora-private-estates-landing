@@ -17,6 +17,7 @@ import { HeroSection } from "@/sections/HeroSection";
 import { InvestorSection } from "@/sections/InvestorSection";
 import { MallorcaFocusSection } from "@/sections/MallorcaFocusSection";
 import { PartnersSynergiSection } from "@/sections/PartnersSynergiSection";
+import { AfterContactSection } from "@/sections/AfterContactSection";
 import { SellerIntakeSection } from "@/sections/SellerIntakeSection";
 import { SocialSidebar } from "@/components/layout/SocialSidebar";
 import { FloatingControls } from "@/components/layout/FloatingControls";
@@ -89,6 +90,7 @@ export default function App() {
         <MallorcaFocusSection copy={copy.mallorcaFocus} mediaAlt={copy.mediaAlt} />
         <HolidayRentalSection copy={copy.holidayRental} />
         <InvestorSection copy={copy.investors} mediaAlt={copy.mediaAlt} />
+        <AfterContactSection copy={copy.afterContact} />
         <SellerIntakeSection copy={copy.sellerIntake} getSignals={getSignals} />
         <FAQSection copy={copy.faq} />
         <PartnersSynergiSection copy={copy.partners} language={language} />
