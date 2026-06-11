@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import type { LanguageCode, SellerFormCopy } from "@/content/site-copy";
-import { 
-  buildLeadIntakePayload, 
-  submitLeadIntake, 
-  type LeadIntent 
+import {
+  buildLeadIntakePayload,
+  submitLeadIntake,
+  type LeadIntent
 } from "@/lib/lead-intake";
 import { useTurnstile } from "@/hooks/useTurnstile";
+import { trackEvent } from "@/hooks/useAnalytics";
+import type { BehaviorSignals } from "@/hooks/useBehaviorSignals";
 
 type SellerIntakeFormProps = {
   copy: SellerFormCopy;
+  getSignals?: () => BehaviorSignals;
 };
 
 type SellerFormMessages = {
@@ -121,7 +124,7 @@ function resolveCurrentLanguage(): LanguageCode {
   return "es";
 }
 
-export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
+export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
   // Intent Selection
   const [intent, setIntent] = useState<LeadIntent>("sell");
   const intentSelectRef = useRef<HTMLSelectElement>(null);
@@ -231,6 +234,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         qualifiers.holiday_rental_objective = holidayRentalObjective;
       }
 
+      const signals = getSignals?.();
       const payload = buildLeadIntakePayload({
         intent,
         language,
@@ -243,6 +247,9 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         captchaToken: captchaToken ?? undefined,
         orgId: import.meta.env.VITE_NEXUS_ORG_ID as string | undefined,
         pageUrl: typeof window !== "undefined" ? window.location.href : "",
+        timeOnPageS: signals?.time_on_page_s,
+        scrollDepthPct: signals?.scroll_depth_pct,
+        preSubmitCtaClicks: signals?.pre_submit_cta_clicks,
       });
 
       await submitLeadIntake({
@@ -251,6 +258,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         nexusBaseUrl: import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined,
       });
 
+      trackEvent("form_submit", { intent, language });
       setSuccess(true);
       // Reset form
       setName(""); setEmail(""); setPhone(""); setMessage("");

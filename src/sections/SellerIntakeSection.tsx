@@ -1,12 +1,14 @@
 import { ExpTrustBadge } from "@/components/brand/ExpTrustBadge";
 import { SellerIntakeForm } from "@/components/forms/SellerIntakeForm";
 import type { SellerIntakeCopy } from "@/content/site-copy";
+import type { BehaviorSignals } from "@/hooks/useBehaviorSignals";
 
 type SellerIntakeSectionProps = {
   copy: SellerIntakeCopy;
+  getSignals?: () => BehaviorSignals;
 };
 
-export function SellerIntakeSection({ copy }: SellerIntakeSectionProps) {
+export function SellerIntakeSection({ copy, getSignals }: SellerIntakeSectionProps) {
   return (
     <section id="clientes" className="pe-section pe-section-clientes">
       <div id="propietarios" aria-hidden="true" />
@@ -36,7 +38,7 @@ export function SellerIntakeSection({ copy }: SellerIntakeSectionProps) {
         </div>
 
         <div className="pe-card pe-owner-form-card" data-testid="seller-form-card">
-          <SellerIntakeForm copy={copy.form} />
+          <SellerIntakeForm copy={copy.form} getSignals={getSignals} />
         </div>
       </div>
     </section>

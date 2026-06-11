@@ -50,7 +50,7 @@ describe("App landing home", () => {
     expect(siteCopyByLanguage.en.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.de.hero.title).toBeTruthy();
     expect(siteCopyByLanguage.fr.hero.title).toBeTruthy();
-    expect(siteCopyByLanguage.es.navbar.links).toHaveLength(7);
+    expect(siteCopyByLanguage.es.navbar.links).toHaveLength(11);
     expect(siteCopyByLanguage.en.footer.columns).toHaveLength(3);
     expect(siteCopyByLanguage.de.sellerIntake.form.submitLabel).toBeTruthy();
   });

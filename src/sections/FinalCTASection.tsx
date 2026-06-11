@@ -5,9 +5,10 @@ const FINAL_CTA_IMAGE = "/brand/contact-villa-living.jpg";
 type FinalCTASectionProps = {
   copy: FinalCtaCopy;
   mediaAlt: MediaAltCopy;
+  onCtaClick?: () => void;
 };
 
-export function FinalCTASection({ copy, mediaAlt }: FinalCTASectionProps) {
+export function FinalCTASection({ copy, mediaAlt, onCtaClick }: FinalCTASectionProps) {
   return (
     <section className="pe-section pe-final-cta-section">
       <div className="pe-final-cta-background" aria-hidden="true">
@@ -31,6 +32,7 @@ export function FinalCTASection({ copy, mediaAlt }: FinalCTASectionProps) {
                 data-testid="final-cta-primary"
                 type="button"
                 onClick={() => {
+                  onCtaClick?.();
                   window.history.pushState(null, "", "#clientes");
                   const target = document.querySelector(".pe-owner-shell");
                   const navbar = document.querySelector(".pe-navbar");
@@ -42,7 +44,12 @@ export function FinalCTASection({ copy, mediaAlt }: FinalCTASectionProps) {
               >
                 {copy.primaryCta}
               </button>
-              <a className="pe-btn-secondary pe-btn-secondary-ghost" href="#contacto" data-testid="final-cta-secondary">
+              <a
+                className="pe-btn-secondary pe-btn-secondary-ghost"
+                href="#contacto"
+                data-testid="final-cta-secondary"
+                onClick={() => onCtaClick?.()}
+              >
                 {copy.secondaryCta}
               </a>
             </div>
