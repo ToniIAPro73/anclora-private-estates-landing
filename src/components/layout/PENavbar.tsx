@@ -9,6 +9,30 @@ type PENavbarProps = {
   onLanguageChange: (language: LanguageCode) => void;
 };
 
+// Left column hrefs (core services, page flow order)
+const LEFT_HREFS = [
+  "#credibilidad",
+  "#como-trabajamos",
+  "#mallorca-focus",
+  "#alquiler-vacacional",
+  "#inversores",
+  "#clientes",
+];
+
+// Right column groups (platform, then info)
+const RIGHT_GROUP_A = ["#data-lab", "#editorial", "#partners"];
+const RIGHT_GROUP_B = ["#faq", "#contacto"];
+
+function scrollToClientSection(href: string) {
+  window.history.pushState(null, "", href);
+  const target = document.querySelector(".pe-owner-shell");
+  const navbar = document.querySelector(".pe-navbar");
+  if (!target) return;
+  const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
+  const targetTop = target.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({ top: targetTop - navbarHeight - 24, behavior: "smooth" });
+}
+
 function HamburgerIcon() {
   return (
     <svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true" fill="none">
@@ -28,10 +52,28 @@ function CloseIcon() {
   );
 }
 
+type NavLink = { href: string; label: string };
+
+function DrawerLink({ link, onClose }: { link: NavLink; onClose: () => void }) {
+  return (
+    <a
+      href={link.href}
+      className="pe-nav-drawer__link"
+      onClick={(e) => {
+        onClose();
+        if (link.href !== "#clientes") return;
+        e.preventDefault();
+        scrollToClientSection(link.href);
+      }}
+    >
+      {link.label}
+    </a>
+  );
+}
+
 export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Blur page content when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.classList.add("pe-menu-open");
@@ -41,13 +83,16 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
     return () => document.body.classList.remove("pe-menu-open");
   }, [menuOpen]);
 
+  const leftLinks = copy.links.filter((l) => LEFT_HREFS.includes(l.href));
+  const rightGroupA = copy.links.filter((l) => RIGHT_GROUP_A.includes(l.href));
+  const rightGroupB = copy.links.filter((l) => RIGHT_GROUP_B.includes(l.href));
+
   return (
     <>
       <header className="pe-navbar" data-testid="site-navbar">
         <nav aria-label={copy.navAriaLabel} className="pe-nav-bar">
           <div className="pe-nav-inner pe-nav-inner--centered">
 
-            {/* Left: hamburger icon only */}
             <button
               className="pe-menu-toggle"
               aria-expanded={menuOpen}
@@ -58,14 +103,12 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
               {menuOpen ? <CloseIcon /> : <HamburgerIcon />}
             </button>
 
-            {/* Center: logo */}
             <div className="pe-nav-logo">
               <a href="#" className="pe-nav-logo__link" aria-label={copy.homeAriaLabel}>
                 <BrandLockup variant="full-exp" alt={copy.logoAlt} />
               </a>
             </div>
 
-            {/* Right: language switcher + CTA */}
             <div className="pe-nav-actions">
               <LanguageSwitcher
                 copy={copy.languageSwitcher}
@@ -77,18 +120,7 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
                 href="#clientes"
                 onClick={(event) => {
                   event.preventDefault();
-                  window.history.pushState(null, "", "#clientes");
-
-                  const target = document.querySelector(".pe-owner-shell");
-                  const navbar = document.querySelector(".pe-navbar");
-                  if (!target) return;
-
-                  const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
-                  const targetTop = target.getBoundingClientRect().top + window.scrollY;
-                  window.scrollTo({
-                    top: targetTop - navbarHeight - 24,
-                    behavior: "smooth",
-                  });
+                  scrollToClientSection("#clientes");
                 }}
                 style={{ minHeight: "44px" }}
                 data-testid="navbar-primary-cta"
@@ -101,7 +133,6 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
         </nav>
       </header>
 
-      {/* Backdrop — blurs/dims page, click to close */}
       {menuOpen && (
         <div
           className="pe-nav-backdrop"
@@ -110,7 +141,6 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
         />
       )}
 
-      {/* Drawer panel — left side, 25vw */}
       {menuOpen && (
         <aside
           className="pe-nav-drawer"
@@ -119,37 +149,36 @@ export function PENavbar({ copy, language, onLanguageChange }: PENavbarProps) {
           aria-label={copy.menuDialogLabel}
           data-testid="navbar-links"
         >
-          <nav className="pe-nav-drawer__nav">
-            {copy.links.map((link) => (
-  <a
-    key={link.href}
-    href={link.href}
-    className="pe-nav-drawer__link"
-    onClick={(event) => {
-      setMenuOpen(false);
+          {/* Premium drawer header */}
+          <div className="pe-nav-drawer__header">
+            <span className="pe-nav-drawer__header-ornament" aria-hidden="true" />
+          </div>
 
-      if (link.href !== "#clientes") return;
+          {/* 2-column navigation grid */}
+          <div className="pe-nav-drawer__columns">
+            {/* Left column — core/services */}
+            <div className="pe-nav-drawer__col">
+              {leftLinks.map((link) => (
+                <DrawerLink key={link.href} link={link} onClose={() => setMenuOpen(false)} />
+              ))}
+            </div>
 
-      event.preventDefault();
-      window.history.pushState(null, "", "#clientes");
+            {/* Right column — platform + info */}
+            <div className="pe-nav-drawer__col pe-nav-drawer__col--right">
+              <div className="pe-nav-drawer__group">
+                {rightGroupA.map((link) => (
+                  <DrawerLink key={link.href} link={link} onClose={() => setMenuOpen(false)} />
+                ))}
+              </div>
+              <div className="pe-nav-drawer__group-sep" aria-hidden="true" />
+              <div className="pe-nav-drawer__group">
+                {rightGroupB.map((link) => (
+                  <DrawerLink key={link.href} link={link} onClose={() => setMenuOpen(false)} />
+                ))}
+              </div>
+            </div>
+          </div>
 
-      const target = document.querySelector(".pe-owner-shell");
-      const navbar = document.querySelector(".pe-navbar");
-      if (!target) return;
-
-      const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY;
-
-      window.scrollTo({
-        top: targetTop - navbarHeight - 24,
-        behavior: "smooth",
-      });
-    }}
-  >
-    {link.label}
-  </a>
-))}
-          </nav>
         </aside>
       )}
     </>
