@@ -7,6 +7,7 @@ import { PEFooter } from "@/components/layout/PEFooter";
 import { PENavbar } from "@/components/layout/PENavbar";
 import { ContactSection } from "@/sections/ContactSection";
 import { CredibilitySection } from "@/sections/CredibilitySection";
+import { EditorialHubSection } from "@/sections/EditorialHubSection";
 import { FAQSection } from "@/sections/FAQSection";
 import { HolidayRentalSection } from "@/sections/HolidayRentalSection";
 import { HowWeWorkSection } from "@/sections/HowWeWorkSection";
@@ -20,6 +21,9 @@ import { SellerIntakeSection } from "@/sections/SellerIntakeSection";
 import { SocialSidebar } from "@/components/layout/SocialSidebar";
 import { FloatingControls } from "@/components/layout/FloatingControls";
 import { CookieBanner } from "@/components/layout/CookieBanner";
+import { editorialHubCopy } from "@/content/editorial/hub-copy";
+import { trackEvent } from "@/hooks/useAnalytics";
+import { useBehaviorSignals } from "@/hooks/useBehaviorSignals";
 
 const STORAGE_KEY = "ape:language";
 
@@ -36,6 +40,12 @@ export default function App() {
   });
   const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
   const copy = siteCopyByLanguage[language];
+  const { getSignals, recordCtaClick } = useBehaviorSignals();
+
+  const handleLanguageChange = (lang: LanguageCode) => {
+    trackEvent("language_change", { locale: lang });
+    setLanguage(lang);
+  };
 
   useEffect(() => {
     document.documentElement.dataset.theme = "dark";
@@ -70,21 +80,22 @@ export default function App() {
 
   return (
     <>
-      <PENavbar copy={copy.navbar} language={language} onLanguageChange={setLanguage} />
+      <PENavbar copy={copy.navbar} language={language} onLanguageChange={handleLanguageChange} />
 
       <main>
-        <HeroSection copy={copy.hero} trustBadgeText={copy.trustBadgeText} />
+        <HeroSection copy={copy.hero} trustBadgeText={copy.trustBadgeText} onCtaClick={recordCtaClick} />
         <CredibilitySection copy={copy.credibility} />
         <HowWeWorkSection copy={copy.howWeWork} />
         <MallorcaFocusSection copy={copy.mallorcaFocus} mediaAlt={copy.mediaAlt} />
         <HolidayRentalSection copy={copy.holidayRental} />
         <InvestorSection copy={copy.investors} mediaAlt={copy.mediaAlt} />
-        <SellerIntakeSection copy={copy.sellerIntake} />
+        <SellerIntakeSection copy={copy.sellerIntake} getSignals={getSignals} />
         <FAQSection copy={copy.faq} />
         <PartnersSynergiSection copy={copy.partners} language={language} />
         <DataLabSignalsSection copy={copy.dataLab} language={language} />
+        <EditorialHubSection hub={editorialHubCopy} />
         <ContactSection copy={copy.contact} />
-        <FinalCTASection copy={copy.finalCta} mediaAlt={copy.mediaAlt} />
+        <FinalCTASection copy={copy.finalCta} mediaAlt={copy.mediaAlt} onCtaClick={recordCtaClick} />
       </main>
 
       <PEFooter

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FAQSectionCopy } from "@/content/site-copy";
+import { trackEvent } from "@/hooks/useAnalytics";
 
 type FAQSectionProps = {
   copy: FAQSectionCopy;
@@ -29,7 +30,10 @@ export function FAQSection({ copy }: FAQSectionProps) {
                 <button
                   type="button"
                   aria-expanded={isOpen}
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  onClick={() => {
+                    if (!isOpen) trackEvent("faq_open", { question_index: index });
+                    setOpenIndex(isOpen ? null : index);
+                  }}
                   style={{
                     width: "100%",
                     background: "none",
