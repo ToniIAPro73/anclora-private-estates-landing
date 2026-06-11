@@ -368,6 +368,25 @@ export type HolidayRentalCopy = {
   technologyNote: string;
   primaryCta: string;
   secondaryCta: string;
+  // P2: owner-centric repositioning (optional for locale backward compat)
+  forWhomLabel?: string;
+  whatWeReviewLabel?: string;
+  forWhom?: string[];
+  whatWeReview?: string[];
+  prudenceNote?: string;
+};
+
+export type AfterContactStepCopy = {
+  number: string;
+  title: string;
+  description: string;
+};
+
+export type AfterContactCopy = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  steps: AfterContactStepCopy[];
 };
 
 export type SiteCopy = {
@@ -391,6 +410,7 @@ export type SiteCopy = {
   scroll: ScrollCopy;
   social: SocialCopy;
   faq: FAQSectionCopy;
+  afterContact: AfterContactCopy;
   trustBadgeText: string;
   contactFloatingLabel: string;
 };
@@ -469,14 +489,14 @@ const siteCopyEs: SiteCopy = {
   },
   hero: {
     eyebrow: "Palma · Suroeste de Mallorca · Capital premium",
-    title: "Para propietarios que valoran una venta privada en Mallorca.",
+    title: "Venta discreta y rentabilización premium de activos singulares en Mallorca.",
     description:
-      "Valoración y preparación de villas, fincas y activos premium para vender con discreción, criterio territorial y acceso a compradores cualificados.",
+      "Preparamos, posicionamos y gestionamos villas, fincas y activos únicos para propietarios que no quieren exposición masiva. Discreción, control y acceso a compradores cualificados.",
     chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
-    primaryCta: "Solicitar valoración privada",
-    secondaryCta: "Explorar foco territorial",
+    primaryCta: "Solicitar evaluación privada",
+    secondaryCta: "Explorar alquiler vacacional premium",
     scrollLabel: "Continuar",
     scrollText: "Descubrir",
     media: {
@@ -586,19 +606,33 @@ const siteCopyEs: SiteCopy = {
     ],
   },
   holidayRental: {
-    eyebrow: "Propietarios premium · Alquiler vacacional de alto standing",
-    title: "Rentabiliza tu propiedad en Mallorca sin renunciar a discreción, control ni posicionamiento premium.",
-    body: "Para villas, fincas y apartamentos singulares, el alquiler vacacional no debería tratarse como un producto turístico masivo. Evaluamos el potencial del activo, la microzona, el perfil de huésped y la viabilidad operativa para construir una estrategia selectiva, compatible con el valor patrimonial de la propiedad.",
+    eyebrow: "Alquiler vacacional premium",
+    title: "Rentabilizar sin perder control del activo.",
+    body: "El alquiler vacacional puede ser una palanca de rentabilidad inteligente para activos singulares. Pero hacerlo bien exige preparación, criterio de posicionamiento y una estrategia operativa que preserve el valor del activo y la experiencia del propietario.",
+    forWhomLabel: "Para quién encaja",
+    forWhom: [
+      "Propietarios de villas o fincas con periodos de no uso que quieren generar ingresos sin perder privacidad.",
+      "Propietarios en proceso de venta que quieren mantener rentabilidad durante la fase de preparación.",
+      "Inversores que combinan uso propio con rendimiento vacacional selectivo.",
+    ],
+    whatWeReviewLabel: "Qué revisamos contigo",
+    whatWeReview: [
+      "Potencial real de la microzona y la tipología del activo.",
+      "Perfil de huésped adecuado y estrategia de posicionamiento.",
+      "Estructura operativa y documental (SES.HOSPEDAJES, contratos, cobertura).",
+      "Compatibilidad con una posible estrategia de venta futura.",
+    ],
     benefits: [
       "Evaluación privada del potencial de alquiler.",
       "Posicionamiento alineado con activos de alto standing.",
       "Captación orientada a huéspedes cualificados.",
       "Preparación operativa y documental más ordenada.",
-      "Posibilidad de combinar uso propio, rentabilidad y futura venta.",
+      "Compatibilidad con uso propio y estrategia de venta futura.",
     ],
-    technologyNote: "La operativa puede apoyarse en tecnología propia de Anclora SyncXML para revisar datos de reservas y preparar XML revisable orientado al flujo SES.HOSPEDAJES. Esta capa no sustituye la revisión humana ni el criterio legal, pero aporta estructura, trazabilidad y menos fricción documental.",
+    technologyNote: "La gestión documental puede apoyarse en Anclora SyncXML para estructurar datos de reservas orientados al flujo SES.HOSPEDAJES. Esta capa aporta trazabilidad y menos fricción documental; no sustituye la revisión legal ni el criterio del profesional.",
     primaryCta: "Evaluar potencial de alquiler premium",
     secondaryCta: "Abrir conversación privada",
+    prudenceNote: "El alquiler vacacional en Mallorca está sujeto a regulación local. Disponibilidad de licencias, zonificación y normativa municipal son factores que evaluamos en cada caso antes de cualquier compromiso.",
   },
   investors: {
     eyebrow: "Inversores",
@@ -897,6 +931,33 @@ const siteCopyEs: SiteCopy = {
       },
     ],
   },
+  afterContact: {
+    eyebrow: "Qué ocurre después",
+    title: "Un proceso sin promesas vacías.",
+    intro: "Cuando envías una solicitud, esto es lo que sucede en los días siguientes:",
+    steps: [
+      {
+        number: "01",
+        title: "Revisión inicial",
+        description: "Estudiamos tu solicitud con criterio: intención, tipología del activo y encaje con lo que gestionamos.",
+      },
+      {
+        number: "02",
+        title: "Lectura privada",
+        description: "Si hay un encaje real, organizamos una llamada o encuentro para entender la situación sin presión ni compromiso.",
+      },
+      {
+        number: "03",
+        title: "Propuesta de siguiente paso",
+        description: "Según el caso, proponemos una valoración, un plan de alquiler o una estrategia de acceso a compradores cualificados.",
+      },
+      {
+        number: "04",
+        title: "Descarte honesto",
+        description: "Si no encaja, te lo decimos con claridad. Preferimos la honestidad a ocupar tu tiempo con un proceso sin futuro.",
+      },
+    ],
+  },
   trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
   contactFloatingLabel: "CONTACTAR",
 };
@@ -978,14 +1039,14 @@ const siteCopyEn: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
-    title: "For owners considering a private sale in Mallorca.",
+    title: "Discreet sale and premium monetisation of singular assets in Mallorca.",
     description:
-      "We value and prepare villas, fincas and premium assets for discreet sale, territorial judgment and access to qualified buyers.",
+      "We prepare, position and manage villas, fincas and unique assets for owners who prefer no mass exposure. Discretion, control and access to qualified buyers.",
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
-    primaryCta: "Request private valuation",
-    secondaryCta: "Explore the territorial focus",
+    primaryCta: "Request private evaluation",
+    secondaryCta: "Explore premium holiday rental",
     scrollLabel: "Continue",
     scrollText: "Discover",
     media: {
@@ -1091,19 +1152,33 @@ const siteCopyEn: SiteCopy = {
     ],
   },
   holidayRental: {
-    eyebrow: "Premium owners · High-standing holiday rental",
-    title: "Monetise your Mallorca property without sacrificing discretion, control or premium positioning.",
-    body: "For villas, fincas and singular apartments, holiday rental should not be treated as a mass tourism product. We evaluate the asset's potential, the micro-location, the guest profile and operational viability to build a selective strategy compatible with the property's patrimonial value.",
+    eyebrow: "Premium holiday rental",
+    title: "Monetise without losing control of the asset.",
+    body: "Holiday rental can be an intelligent income lever for singular assets. But doing it well requires preparation, positioning judgment and an operational strategy that preserves the asset's value and the owner's experience.",
+    forWhomLabel: "Who this is for",
+    forWhom: [
+      "Villa and finca owners with non-use periods who want income without losing privacy.",
+      "Owners preparing for sale who want to maintain returns during the preparation phase.",
+      "Investors who combine personal use with selective holiday yield.",
+    ],
+    whatWeReviewLabel: "What we review with you",
+    whatWeReview: [
+      "Real potential of the micro-location and asset type.",
+      "Appropriate guest profile and positioning strategy.",
+      "Operational and documentary structure (SES.HOSPEDAJES, contracts, coverage).",
+      "Compatibility with any future sale strategy.",
+    ],
     benefits: [
       "Private evaluation of rental potential.",
       "Positioning aligned with high-standing assets.",
       "Acquisition focused on qualified guests.",
       "More organised operational and documentary preparation.",
-      "Ability to combine personal use, income and future sale.",
+      "Compatibility with personal use and future sale strategy.",
     ],
-    technologyNote: "Operations can be supported by Anclora SyncXML technology to review booking data and prepare reviewable XML aligned with the SES.HOSPEDAJES flow. This layer does not replace human review or legal judgment, but adds structure, traceability and less documentary friction.",
+    technologyNote: "Documentary operations can be supported by Anclora SyncXML to structure booking data oriented to the SES.HOSPEDAJES flow. This layer adds traceability and less documentary friction; it does not replace legal review or professional judgment.",
     primaryCta: "Evaluate holiday rental potential",
     secondaryCta: "Open private conversation",
+    prudenceNote: "Holiday rental in Mallorca is subject to local regulation. Licence availability, zoning and municipal rules are factors we assess in each case before any commitment.",
   },
   investors: {
     ...siteCopyEs.investors,
@@ -1401,6 +1476,33 @@ const siteCopyEn: SiteCopy = {
       },
     ],
   },
+  afterContact: {
+    eyebrow: "What happens next",
+    title: "A process without empty promises.",
+    intro: "When you send a request, here is what happens in the following days:",
+    steps: [
+      {
+        number: "01",
+        title: "Initial review",
+        description: "We study your request with judgment: intent, asset type and fit with what we manage.",
+      },
+      {
+        number: "02",
+        title: "Private reading",
+        description: "If there is a genuine fit, we arrange a call or meeting to understand the situation with no pressure or commitment.",
+      },
+      {
+        number: "03",
+        title: "Next-step proposal",
+        description: "Depending on the case, we propose a valuation, a rental plan or a qualified buyer access strategy.",
+      },
+      {
+        number: "04",
+        title: "Honest pass",
+        description: "If there is no fit, we say so clearly. We prefer honesty to taking up your time with a process that has no future.",
+      },
+    ],
+  },
   trustBadgeText: "International backing and operational trust through eXp Group Spain.",
   contactFloatingLabel: "CONTACT US",
 };
@@ -1482,14 +1584,14 @@ const siteCopyDe: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Südwest-Mallorca · Premium-Kapital",
-    title: "Für Eigentümer, die einen privaten Verkauf auf Mallorca prüfen.",
+    title: "Diskreter Verkauf und Premium-Rentabilisierung einzigartiger Assets auf Mallorca.",
     description:
-      "Wir bewerten und positionieren Villen, Fincas und Premium-Assets diskret, mit territorialer Urteilskraft und Zugang zu qualifizierten Käufern.",
+      "Wir bereiten, positionieren und verwalten Villen, Fincas und einzigartige Objekte für Eigentümer, die keine Massenexposition möchten. Diskretion, Kontrolle und Zugang zu qualifizierten Käufern.",
     chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
     primaryCta: "Private Bewertung anfragen",
-    secondaryCta: "Territoriale Ausrichtung erkunden",
+    secondaryCta: "Premium-Ferienvermietung erkunden",
     scrollLabel: "Weiter",
     scrollText: "Entdecken",
     media: {
@@ -1532,19 +1634,33 @@ const siteCopyDe: SiteCopy = {
     ],
   },
   holidayRental: {
-    eyebrow: "Premium-Eigentümer · Ferienvermietung im Hochsegment",
-    title: "Erzielen Sie Einnahmen aus Ihrer Mallorca-Immobilie, ohne auf Diskretion, Kontrolle oder Premium-Positionierung zu verzichten.",
-    body: "Für Villen, Fincas und einzigartige Apartments sollte die Ferienvermietung nicht als Massentourismusprodukt behandelt werden. Wir bewerten das Potenzial des Assets, die Mikrolage, das Gästeprofil und die operative Machbarkeit, um eine selektive Strategie zu entwickeln, die mit dem patrimonialen Wert der Immobilie vereinbar ist.",
+    eyebrow: "Premium-Ferienvermietung",
+    title: "Rendite erzielen ohne Kontrollverlust über das Asset.",
+    body: "Ferienvermietung kann für einzigartige Assets ein intelligenter Einkommenshebel sein. Eine gute Umsetzung erfordert jedoch Vorbereitung, Positionierungsurteil und eine operative Strategie, die den Assetwert und die Eigentümererfahrung bewahrt.",
+    forWhomLabel: "Für wen es passt",
+    forWhom: [
+      "Villen- und Finca-Eigentümer mit Leerstandszeiten, die Einnahmen erzielen möchten, ohne die Privatsphäre zu verlieren.",
+      "Eigentümer in Verkaufsvorbereitung, die in der Vorbereitungsphase Rendite erhalten möchten.",
+      "Investoren, die Eigennutzung mit selektiver Ferienrendite kombinieren.",
+    ],
+    whatWeReviewLabel: "Was wir gemeinsam prüfen",
+    whatWeReview: [
+      "Reales Potenzial der Mikrolage und des Assettyps.",
+      "Geeignetes Gästeprofil und Positionierungsstrategie.",
+      "Operative und dokumentarische Struktur (SES.HOSPEDAJES, Verträge, Versicherung).",
+      "Vereinbarkeit mit einer möglichen zukünftigen Verkaufsstrategie.",
+    ],
     benefits: [
       "Private Bewertung des Vermietungspotenzials.",
       "Positionierung abgestimmt auf Hochsegment-Assets.",
       "Ausrichtung auf qualifizierte Gäste.",
       "Strukturiertere operative und dokumentarische Vorbereitung.",
-      "Möglichkeit, Eigennutzung, Rendite und zukünftigen Verkauf zu kombinieren.",
+      "Vereinbarkeit mit Eigennutzung und zukünftiger Verkaufsstrategie.",
     ],
-    technologyNote: "Die Operative kann durch Anclora SyncXML-Technologie unterstützt werden, um Buchungsdaten zu prüfen und überprüfbares XML für den SES.HOSPEDAJES-Ablauf vorzubereiten. Diese Schicht ersetzt weder die menschliche Prüfung noch das juristische Urteilsvermögen, bietet aber Struktur, Nachvollziehbarkeit und weniger dokumentarische Reibung.",
+    technologyNote: "Das Dokumentenmanagement kann durch Anclora SyncXML unterstützt werden, um Buchungsdaten für den SES.HOSPEDAJES-Ablauf zu strukturieren. Diese Schicht bietet Nachvollziehbarkeit und weniger dokumentarische Reibung; sie ersetzt weder die rechtliche Prüfung noch das Urteilsvermögen des Fachmanns.",
     primaryCta: "Vermietungspotenzial bewerten",
     secondaryCta: "Privates Gespräch öffnen",
+    prudenceNote: "Die Ferienvermietung auf Mallorca unterliegt lokalen Vorschriften. Lizenzverfügbarkeit, Zoneneinteilung und Gemeinderegeln sind Faktoren, die wir in jedem Fall vor jeder Verpflichtung bewerten.",
   },
   mallorcaFocus: {
     ...siteCopyEs.mallorcaFocus,
@@ -1894,6 +2010,33 @@ const siteCopyDe: SiteCopy = {
       },
     ],
   },
+  afterContact: {
+    eyebrow: "Was danach passiert",
+    title: "Ein Prozess ohne leere Versprechen.",
+    intro: "Wenn Sie eine Anfrage senden, passiert in den folgenden Tagen Folgendes:",
+    steps: [
+      {
+        number: "01",
+        title: "Erste Überprüfung",
+        description: "Wir prüfen Ihre Anfrage mit Urteilskraft: Absicht, Assettyp und Passung mit dem, was wir verwalten.",
+      },
+      {
+        number: "02",
+        title: "Private Einschätzung",
+        description: "Wenn es eine echte Passung gibt, organisieren wir einen Anruf oder ein Treffen, um die Situation ohne Druck oder Verpflichtung zu verstehen.",
+      },
+      {
+        number: "03",
+        title: "Nächster Schritt",
+        description: "Je nach Fall schlagen wir eine Bewertung, einen Mietplan oder eine Strategie für den Zugang zu qualifizierten Käufern vor.",
+      },
+      {
+        number: "04",
+        title: "Ehrliche Absage",
+        description: "Wenn es keine Passung gibt, sagen wir das klar. Wir bevorzugen Ehrlichkeit gegenüber dem Verschwenden Ihrer Zeit.",
+      },
+    ],
+  },
   trustBadgeText: "Internationale Rückendeckung und operative Sicherheit durch eXp Group Spain.",
   contactFloatingLabel: "KONTAKT",
 };
@@ -1975,14 +2118,14 @@ const siteCopyFr: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Sud-Ouest de Majorque · Capital premium",
-    title: "Pour propriétaires envisageant une vente privée à Majorque.",
+    title: "Vente discrète et rentabilisation premium d'actifs singuliers à Majorque.",
     description:
-      "Évaluation et préparation de villas, fincas et actifs premium pour vendre avec discrétion, lecture territoriale et acheteurs qualifiés.",
+      "Nous préparons, positionnons et gérons des villas, fincas et actifs uniques pour des propriétaires qui ne souhaitent pas d'exposition massive. Discrétion, contrôle et accès à des acheteurs qualifiés.",
     chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel y une relation plus sophistiquée avec l'actif.",
     primaryCta: "Demander une évaluation privée",
-    secondaryCta: "Explorer le territoire",
+    secondaryCta: "Explorer la location saisonnière premium",
     scrollLabel: "Continuer",
     scrollText: "Découvrir",
     media: {
@@ -2025,19 +2168,33 @@ const siteCopyFr: SiteCopy = {
     ],
   },
   holidayRental: {
-    eyebrow: "Propriétaires premium · Location saisonnière haut de gamme",
-    title: "Rentabilisez votre propriété à Majorque sans renoncer à la discrétion, au contrôle ni au positionnement premium.",
-    body: "Pour les villas, fincas et appartements singuliers, la location saisonnière ne devrait pas être traitée comme un produit touristique de masse. Nous évaluons le potentiel de l'actif, la micro-localisation, le profil des hôtes et la faisabilité opérationnelle pour construire une stratégie sélective, compatible avec la valeur patrimoniale de la propriété.",
+    eyebrow: "Location saisonnière premium",
+    title: "Rentabiliser sans perdre le contrôle de l'actif.",
+    body: "La location saisonnière peut être un levier de revenus intelligent pour les actifs singuliers. Mais bien la réaliser exige préparation, discernement de positionnement et une stratégie opérationnelle qui préserve la valeur de l'actif et l'expérience du propriétaire.",
+    forWhomLabel: "Pour qui c'est adapté",
+    forWhom: [
+      "Propriétaires de villas ou fincas avec des périodes de non-occupation qui souhaitent générer des revenus sans perdre leur confidentialité.",
+      "Propriétaires en phase de préparation à la vente qui souhaitent maintenir un rendement pendant cette période.",
+      "Investisseurs qui combinent usage personnel et rendement locatif sélectif.",
+    ],
+    whatWeReviewLabel: "Ce que nous examinons ensemble",
+    whatWeReview: [
+      "Potentiel réel de la micro-localisation et du type d'actif.",
+      "Profil d'hôtes approprié et stratégie de positionnement.",
+      "Structure opérationnelle et documentaire (SES.HOSPEDAJES, contrats, couverture).",
+      "Compatibilité avec une éventuelle stratégie de vente future.",
+    ],
     benefits: [
       "Évaluation privée du potentiel locatif.",
       "Positionnement aligné sur les actifs haut de gamme.",
       "Acquisition orientée vers des hôtes qualifiés.",
       "Préparation opérationnelle et documentaire plus structurée.",
-      "Possibilité de combiner usage personnel, revenus et vente future.",
+      "Compatibilité avec l'usage personnel et la stratégie de vente future.",
     ],
-    technologyNote: "L'opérationnel peut s'appuyer sur la technologie Anclora SyncXML pour examiner les données de réservation et préparer un XML révisable orienté vers le flux SES.HOSPEDAJES. Cette couche ne remplace ni la révision humaine ni le jugement légal, mais apporte structure, traçabilité et moins de friction documentaire.",
+    technologyNote: "La gestion documentaire peut s'appuyer sur Anclora SyncXML pour structurer les données de réservation orientées vers le flux SES.HOSPEDAJES. Cette couche apporte traçabilité et moins de friction documentaire ; elle ne remplace pas l'examen juridique ni le jugement du professionnel.",
     primaryCta: "Évaluer le potentiel locatif premium",
     secondaryCta: "Ouvrir une conversation privée",
+    prudenceNote: "La location saisonnière à Majorque est soumise à la réglementation locale. La disponibilité des licences, le zonage et les règles municipales sont des facteurs que nous évaluons dans chaque cas avant tout engagement.",
   },
   mallorcaFocus: {
     ...siteCopyEs.mallorcaFocus,
@@ -2365,6 +2522,33 @@ const siteCopyFr: SiteCopy = {
       },
     ],
   },
+  afterContact: {
+    eyebrow: "Ce qui se passe ensuite",
+    title: "Un processus sans promesses creuses.",
+    intro: "Lorsque vous envoyez une demande, voici ce qui se passe dans les jours suivants :",
+    steps: [
+      {
+        number: "01",
+        title: "Examen initial",
+        description: "Nous étudions votre demande avec discernement : intention, type d'actif et adéquation avec ce que nous gérons.",
+      },
+      {
+        number: "02",
+        title: "Lecture privée",
+        description: "Si l'adéquation est réelle, nous organisons un appel ou une rencontre pour comprendre la situation sans pression ni engagement.",
+      },
+      {
+        number: "03",
+        title: "Proposition d'étape suivante",
+        description: "Selon le cas, nous proposons une évaluation, un plan locatif ou une stratégie d'accès à des acheteurs qualifiés.",
+      },
+      {
+        number: "04",
+        title: "Réponse honnête",
+        description: "Si ce n'est pas le bon profil, nous le disons clairement. Nous préférons l'honnêteté à une perte de temps.",
+      },
+    ],
+  },
   trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
 };
 
@@ -2424,11 +2608,11 @@ const siteCopyCa: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Sud-oest de Mallorca · Capital premium",
-    title: "Per a propietaris que valoren una venda privada a Mallorca.",
+    title: "Venda discreta i rendibilització premium d'actius singulars a Mallorca.",
     description:
-      "Valoració i preparació de vil·les, finques i actius premium per vendre amb discreció, criteri territorial i compradors qualificats.",
-    primaryCta: "Sol·licitar valoració privada",
-    secondaryCta: "Explorar el focus territorial",
+      "Preparem, posicionem i gestionem vil·les, finques i actius únics per a propietaris que no volen exposició massiva. Discreció, control i accés a compradors qualificats.",
+    primaryCta: "Sol·licitar avaluació privada",
+    secondaryCta: "Explorar lloguer vacacional premium",
     scrollLabel: "Continuar",
     scrollText: "Descobrir",
     media: {
@@ -2466,19 +2650,33 @@ const siteCopyCa: SiteCopy = {
     ],
   },
   holidayRental: {
-    eyebrow: "Propietaris premium · Lloguer vacacional d'alt standing",
-    title: "Rendibilitza la teva propietat a Mallorca sense renunciar a discreció, control ni posicionament premium.",
-    body: "Per a vil·les, finques i apartaments singulars, el lloguer vacacional no hauria de tractar-se com un producte turístic massiu. Avaluem el potencial de l'actiu, la microzona, el perfil d'hoste i la viabilitat operativa per construir una estratègia selectiva, compatible amb el valor patrimonial de la propietat.",
+    eyebrow: "Lloguer vacacional premium",
+    title: "Rendibilitzar sense perdre el control de l'actiu.",
+    body: "El lloguer vacacional pot ser un palanca de rendibilitat intel·ligent per a actius singulars. Però fer-ho bé requereix preparació, criteri de posicionament i una estratègia operativa que preservi el valor de l'actiu i l'experiència del propietari.",
+    forWhomLabel: "Per a qui encaixa",
+    forWhom: [
+      "Propietaris de vil·les o finques amb períodes de no ús que volen generar ingressos sense perdre privacitat.",
+      "Propietaris en procés de venda que volen mantenir rendibilitat durant la fase de preparació.",
+      "Inversors que combinen ús propi amb rendiment vacacional selectiu.",
+    ],
+    whatWeReviewLabel: "Què revisem amb tu",
+    whatWeReview: [
+      "Potencial real de la microzona i la tipologia de l'actiu.",
+      "Perfil d'hoste adequat i estratègia de posicionament.",
+      "Estructura operativa i documental (SES.HOSPEDAJES, contractes, cobertura).",
+      "Compatibilitat amb una possible estratègia de venda futura.",
+    ],
     benefits: [
       "Avaluació privada del potencial de lloguer.",
       "Posicionament alineat amb actius d'alt standing.",
       "Captació orientada a hostes qualificats.",
       "Preparació operativa i documental més ordenada.",
-      "Possibilitat de combinar ús propi, rendibilitat i futura venda.",
+      "Compatibilitat amb ús propi i estratègia de venda futura.",
     ],
-    technologyNote: "L'operativa pot recolzar-se en tecnologia pròpia d'Anclora SyncXML per revisar dades de reserves i preparar XML revisable orientat al flux SES.HOSPEDAJES. Aquesta capa no substitueix la revisió humana ni el criteri legal, però aporta estructura, traçabilitat i menys fricció documental.",
+    technologyNote: "La gestió documental pot recolzar-se en Anclora SyncXML per estructurar dades de reserves orientades al flux SES.HOSPEDAJES. Aquesta capa aporta traçabilitat i menys fricció documental; no substitueix la revisió legal ni el criteri del professional.",
     primaryCta: "Avaluar potencial de lloguer premium",
     secondaryCta: "Obrir conversa privada",
+    prudenceNote: "El lloguer vacacional a Mallorca està subjecte a regulació local. Disponibilitat de llicències, zonificació i normativa municipal són factors que avaluem en cada cas abans de qualsevol compromís.",
   },
   mallorcaFocus: {
     ...siteCopyEs.mallorcaFocus,
@@ -2753,6 +2951,33 @@ const siteCopyCa: SiteCopy = {
       {
         question: "En quines zones de Mallorca opereu?",
         answer: "Operem principalment a Palma, Andratx, Calvià, Son Vida, Portals Nous, Bendinat, Deià i Valldemossa. Avaluem actius en altres ubicacions segons criteri.",
+      },
+    ],
+  },
+  afterContact: {
+    eyebrow: "Què passa després",
+    title: "Un procés sense promeses buides.",
+    intro: "Quan envies una sol·licitud, això és el que passa els dies següents:",
+    steps: [
+      {
+        number: "01",
+        title: "Revisió inicial",
+        description: "Estudiem la teva sol·licitud amb criteri: intenció, tipologia de l'actiu i encaix amb el que gestionem.",
+      },
+      {
+        number: "02",
+        title: "Lectura privada",
+        description: "Si hi ha un encaix real, organitzem una trucada o reunió per entendre la situació sense pressió ni compromís.",
+      },
+      {
+        number: "03",
+        title: "Proposta de pas següent",
+        description: "Segons el cas, proposem una valoració, un pla de lloguer o una estratègia d'accés a compradors qualificats.",
+      },
+      {
+        number: "04",
+        title: "Descart honest",
+        description: "Si no encaixa, t'ho diem clarament. Preferim l'honestedat a ocupar el teu temps amb un procés sense futur.",
       },
     ],
   },
@@ -3177,7 +3402,7 @@ Object.assign(siteCopySv, {
   cookies: { ...siteCopyEn.cookies, title: "Cookieinställningar", description: "Denna webbplats använder cookies för att ge en bättre upplevelse. Du kan hantera dina inställningar när som helst.", acceptAll: "Acceptera alla", settings: "Inställningar", settingsTitle: "Hantera cookies", necessary: { title: "Nödvändiga cookies", description: "Dessa cookies krävs för att webbplatsen ska fungera." }, analytics: { title: "Analyscookies", description: "De hjälper oss att förstå hur besökare använder webbplatsen." }, marketing: { title: "Marknadsföringscookies", description: "Används för att visa relevanta annonser." }, savePreferences: "Spara inställningar", back: "Tillbaka", rejectAll: "Avvisa valfria" },
   scroll: { up: "Upp", down: "Ned" },
   howWeWork: { eyebrow: "Process · Hur vi arbetar", title: "Fyra steg för en operation byggd på omdöme och diskretion.", steps: [{ number: "01", title: "Privat värdering", description: "Vi analyserar tillgången, mikroläget och ägarens profil innan vi avtalar om någon åtgärd." }, { number: "02", title: "Territoriell strategi", description: "Vi definierar värdenarrativet, positioneringen och rätt köparprofil för tillgången." }, { number: "03", title: "Kvalificerad åtkomst", description: "Vi aktiverar åtkomst till utvalda köpare och investerare utan offentlig exponering av tillgången." }, { number: "04", title: "Uppföljning och avslut", description: "Vi följer varje samtal fram till avslut med omdöme, konfidentialitet och operativt stöd." }] },
-  holidayRental: { eyebrow: "Premiumägare · Semesteruthyrning i toppklass", title: "Tjäna på din Mallorca-fastighet utan att offra diskretion, kontroll eller premiumpositionering.", body: "För villor, fincas och unika lägenheter bör semesteruthyrning inte behandlas som en masstouristprodukt. Vi utvärderar tillgångens potential, mikroläget, gästprofilen och operativ genomförbarhet för att bygga en selektiv strategi.", benefits: ["Privat utvärdering av uthyrningspotential.", "Positionering anpassad till premiumtillgångar.", "Inriktning mot kvalificerade gäster.", "Mer strukturerad operativ och dokumentär förberedelse.", "Möjlighet att kombinera eget boende, inkomst och framtida försäljning."], technologyNote: "Operationen kan stödjas av Anclora SyncXML-teknologi för att granska bokningsdata och förbereda granskningsbar XML för SES.HOSPEDAJES-flödet. Detta lager ersätter varken mänsklig granskning eller rättsligt omdöme.", primaryCta: "Utvärdera uthyrningspotential", secondaryCta: "Öppna privat samtal" },
+  holidayRental: { ...siteCopyEn.holidayRental, eyebrow: "Premiumägare · Semesteruthyrning i toppklass", title: "Tjäna på din Mallorca-fastighet utan att offra diskretion, kontroll eller premiumpositionering.", body: "För villor, fincas och unika lägenheter bör semesteruthyrning inte behandlas som en masstouristprodukt. Vi utvärderar tillgångens potential, mikroläget, gästprofilen och operativ genomförbarhet för att bygga en selektiv strategi.", benefits: ["Privat utvärdering av uthyrningspotential.", "Positionering anpassad till premiumtillgångar.", "Inriktning mot kvalificerade gäster.", "Mer strukturerad operativ och dokumentär förberedelse.", "Möjlighet att kombinera eget boende, inkomst och framtida försäljning."], technologyNote: "Dokumenthanteringen kan stödjas av Anclora SyncXML för att strukturera bokningsdata för SES.HOSPEDAJES-flödet. Detta lager ger spårbarhet och mindre dokumentär friktion; det ersätter varken juridisk granskning eller yrkesmässigt omdöme.", primaryCta: "Utvärdera uthyrningspotential", secondaryCta: "Öppna privat samtal" },
   trustBadgeText: "Internationellt stöd och operativ trygghet genom eXp Group Spain.",
 });
 
@@ -3195,7 +3420,7 @@ Object.assign(siteCopyDa, {
   cookies: { ...siteCopyDa.cookies, title: "Cookieindstillinger", description: "Dette websted bruger cookies til at give en bedre oplevelse. Du kan administrere dine præferencer når som helst.", acceptAll: "Accepter alle", settings: "Indstillinger", settingsTitle: "Administrer cookies", necessary: { title: "Nødvendige cookies", description: "Disse cookies er nødvendige for, at webstedet fungerer." }, analytics: { title: "Analysecookies", description: "De hjælper os med at forstå brugen af webstedet." }, marketing: { title: "Marketingcookies", description: "Bruges til relevante annoncer." }, savePreferences: "Gem præferencer", back: "Tilbage", rejectAll: "Afvis valgfrie" },
   scroll: { up: "Op", down: "Ned" },
   howWeWork: { eyebrow: "Proces · Sådan arbejder vi", title: "Fire trin til en operation baseret på dømmekraft og diskretion.", steps: [{ number: "01", title: "Privat vurdering", description: "Vi analyserer aktivet, mikroområdet og ejerens profil, inden vi aftaler nogen handling." }, { number: "02", title: "Territorial strategi", description: "Vi definerer værdinarrativet, positioneringen og den rette køberprofil for aktivet." }, { number: "03", title: "Kvalificeret adgang", description: "Vi aktiverer adgang til udvalgte købere og investorer uden offentlig eksponering af aktivet." }, { number: "04", title: "Opfølgning og afslutning", description: "Vi ledsager hvert samtale frem til afslutning med dømmekraft, fortrolighed og operationel støtte." }] },
-  holidayRental: { eyebrow: "Premiumejere · Ferieboligudlejning i topklasse", title: "Opnå indkomst fra din Mallorca-ejendom uden at opgive diskretion, kontrol eller premiumpositionering.", body: "For villaer, fincas og unikke lejligheder bør ferieboligudlejning ikke behandles som et masseturistprodukt. Vi evaluerer aktivets potentiale, mikroområdet, gæsteprofilen og den operative gennemførlighed.", benefits: ["Privat evaluering af udlejningspotentiale.", "Positionering tilpasset premiumaktiver.", "Rekruttering rettet mod kvalificerede gæster.", "Mere struktureret operativ og dokumentarisk forberedelse.", "Mulighed for at kombinere eget brug, indkomst og fremtidigt salg."], technologyNote: "Driften kan understøttes af Anclora SyncXML-teknologi til at gennemgå bookingdata og forberede gennemgåeligt XML til SES.HOSPEDAJES-flowet.", primaryCta: "Evaluér udlejningspotentiale", secondaryCta: "Åbn privat samtale" },
+  holidayRental: { ...siteCopyEn.holidayRental, eyebrow: "Premiumejere · Ferieboligudlejning i topklasse", title: "Opnå indkomst fra din Mallorca-ejendom uden at opgive diskretion, kontrol eller premiumpositionering.", body: "For villaer, fincas og unikke lejligheder bør ferieboligudlejning ikke behandles som et masseturistprodukt. Vi evaluerer aktivets potentiale, mikroområdet, gæsteprofilen og den operative gennemførlighed.", benefits: ["Privat evaluering af udlejningspotentiale.", "Positionering tilpasset premiumaktiver.", "Rekruttering rettet mod kvalificerede gæster.", "Mere struktureret operativ og dokumentarisk forberedelse.", "Mulighed for at kombinere eget brug, indkomst og fremtidigt salg."], technologyNote: "Dokumentstyring kan understøttes af Anclora SyncXML til at strukturere bookingdata til SES.HOSPEDAJES-flowet. Dette lag giver sporbarhed og mindre dokumentar friktion; det erstatter hverken juridisk gennemgang eller fagmands skøn.", primaryCta: "Evaluér udlejningspotentiale", secondaryCta: "Åbn privat samtale" },
   trustBadgeText: "International støtte og operationel tillid gennem eXp Group Spain.",
 });
 
@@ -3213,7 +3438,7 @@ Object.assign(siteCopyNl, {
   cookies: { ...siteCopyNl.cookies, title: "Cookievoorkeuren", description: "Deze site gebruikt cookies voor een betere ervaring. U kunt uw voorkeuren altijd beheren.", acceptAll: "Alles accepteren", settings: "Instellingen", settingsTitle: "Cookies beheren", necessary: { title: "Noodzakelijke cookies", description: "Deze cookies zijn nodig voor de werking van de site." }, analytics: { title: "Analysecookies", description: "Ze helpen ons te begrijpen hoe bezoekers de site gebruiken." }, marketing: { title: "Marketingcookies", description: "Worden gebruikt voor relevante advertenties." }, savePreferences: "Voorkeuren opslaan", back: "Terug", rejectAll: "Optionele weigeren" },
   scroll: { up: "Omhoog", down: "Omlaag" },
   howWeWork: { eyebrow: "Proces · Hoe wij werken", title: "Vier stappen voor een operatie gebouwd op oordeel en discretie.", steps: [{ number: "01", title: "Privé beoordeling", description: "We analyseren het actief, de microlocatie en het profiel van de eigenaar voordat we actie ondernemen." }, { number: "02", title: "Territoriale strategie", description: "We definiëren het waardenarrief, de positionering en het juiste kopersprofiel voor het actief." }, { number: "03", title: "Gekwalificeerde toegang", description: "We activeren toegang tot geselecteerde kopers en investeerders zonder publieke blootstelling van het actief." }, { number: "04", title: "Opvolging en afsluiting", description: "We begeleiden elk gesprek tot afsluiting met oordeel, vertrouwelijkheid en operationele ondersteuning." }] },
-  holidayRental: { eyebrow: "Premiumeigenaren · Vakantieverhuur in het topsegment", title: "Verdien aan uw Mallorca-woning zonder afstand te doen van discretie, controle of premiumpositionering.", body: "Voor villa's, finca's en unieke appartementen mag vakantieverhuur niet als een massatoerismeproduct worden behandeld. We beoordelen het potentieel van het actief, de microlocatie, het gastprofiel en de operationele haalbaarheid.", benefits: ["Privé evaluatie van verhuringspotentieel.", "Positionering afgestemd op premiumactiva.", "Werving gericht op gekwalificeerde gasten.", "Meer gestructureerde operationele en documentaire voorbereiding.", "Mogelijkheid om eigen gebruik, inkomen en toekomstige verkoop te combineren."], technologyNote: "De operatie kan worden ondersteund door Anclora SyncXML-technologie voor het beoordelen van boekingsgegevens en het voorbereiden van controleerbare XML voor de SES.HOSPEDAJES-stroom.", primaryCta: "Verhuringspotentieel beoordelen", secondaryCta: "Privégesprek openen" },
+  holidayRental: { ...siteCopyEn.holidayRental, eyebrow: "Premiumeigenaren · Vakantieverhuur in het topsegment", title: "Verdien aan uw Mallorca-woning zonder afstand te doen van discretie, controle of premiumpositionering.", body: "Voor villa's, finca's en unieke appartementen mag vakantieverhuur niet als een massatoerismeproduct worden behandeld. We beoordelen het potentieel van het actief, de microlocatie, het gastprofiel en de operationele haalbaarheid.", benefits: ["Privé evaluatie van verhuringspotentieel.", "Positionering afgestemd op premiumactiva.", "Werving gericht op gekwalificeerde gasten.", "Meer gestructureerde operationele en documentaire voorbereiding.", "Mogelijkheid om eigen gebruik, inkomen en toekomstige verkoop te combineren."], technologyNote: "Documentbeheer kan worden ondersteund door Anclora SyncXML voor het structureren van boekingsgegevens voor de SES.HOSPEDAJES-stroom. Deze laag biedt traceerbaarheid en minder documentaire wrijving; zij vervangt noch juridische controle, noch het oordeel van de professional.", primaryCta: "Verhuringspotentieel beoordelen", secondaryCta: "Privégesprek openen" },
   trustBadgeText: "Internationale steun en operationeel vertrouwen via eXp Group Spain.",
 });
 
@@ -3231,7 +3456,7 @@ Object.assign(siteCopyIt, {
   cookies: { ...siteCopyIt.cookies, title: "Preferenze cookie", description: "Questo sito utilizza cookie per offrirti un'esperienza migliore. Puoi gestire le preferenze in qualsiasi momento.", acceptAll: "Accetta tutti", settings: "Impostazioni", settingsTitle: "Gestisci cookie", necessary: { title: "Cookie necessari", description: "Sono necessari per il funzionamento del sito." }, analytics: { title: "Cookie di analisi", description: "Ci aiutano a capire come i visitatori usano il sito." }, marketing: { title: "Cookie marketing", description: "Sono usati per mostrare annunci pertinenti." }, savePreferences: "Salva preferenze", back: "Indietro", rejectAll: "Rifiuta opzionali" },
   scroll: { up: "Su", down: "Giù" },
   howWeWork: { eyebrow: "Processo · Come lavoriamo", title: "Quattro passi per un'operazione condotta con criterio e discrezione.", steps: [{ number: "01", title: "Valutazione privata", description: "Analizziamo l'asset, la microzona e il profilo del proprietario prima di concordare qualsiasi azione." }, { number: "02", title: "Strategia territoriale", description: "Definiamo il racconto di valore, il posizionamento e il profilo di acquirente adatto all'asset." }, { number: "03", title: "Accesso qualificato", description: "Attiviamo l'accesso ad acquirenti e investitori selezionati senza esposizione pubblica dell'asset." }, { number: "04", title: "Accompagnamento e chiusura", description: "Accompagniamo ogni conversazione fino alla chiusura con criterio, riservatezza e supporto operativo." }] },
-  holidayRental: { eyebrow: "Proprietari premium · Affitto vacanziero di alto standing", title: "Rendere redditizia la tua proprietà a Mallorca senza rinunciare a discrezione, controllo né posizionamento premium.", body: "Per ville, fincas e appartamenti singolari, l'affitto vacanziero non dovrebbe essere trattato come un prodotto turistico di massa. Valutiamo il potenziale dell'asset, la microzona, il profilo dell'ospite e la fattibilità operativa.", benefits: ["Valutazione privata del potenziale locativo.", "Posizionamento allineato ad asset di alto standing.", "Acquisizione orientata a ospiti qualificati.", "Preparazione operativa e documentale più ordinata.", "Possibilità di combinare uso personale, reddito e futura vendita."], technologyNote: "L'operativa può avvalersi della tecnologia Anclora SyncXML per esaminare i dati delle prenotazioni e preparare XML verificabile per il flusso SES.HOSPEDAJES.", primaryCta: "Valutare il potenziale locativo", secondaryCta: "Aprire conversazione privata" },
+  holidayRental: { ...siteCopyEn.holidayRental, eyebrow: "Proprietari premium · Affitto vacanziero di alto standing", title: "Rendere redditizia la tua proprietà a Mallorca senza rinunciare a discrezione, controllo né posizionamento premium.", body: "Per ville, fincas e appartamenti singolari, l'affitto vacanziero non dovrebbe essere trattato come un prodotto turistico di massa. Valutiamo il potenziale dell'asset, la microzona, il profilo dell'ospite e la fattibilità operativa.", benefits: ["Valutazione privata del potenziale locativo.", "Posizionamento allineato ad asset di alto standing.", "Acquisizione orientata a ospiti qualificati.", "Preparazione operativa e documentale più ordinata.", "Possibilità di combinare uso personale, reddito e futura vendita."], technologyNote: "La gestione documentale può avvalersi di Anclora SyncXML per strutturare i dati delle prenotazioni per il flusso SES.HOSPEDAJES. Questo strato fornisce tracciabilità e minore attrito documentale; non sostituisce la revisione legale né il giudizio del professionista.", primaryCta: "Valutare il potenziale locativo", secondaryCta: "Aprire conversazione privata" },
   trustBadgeText: "Supporto internazionale e fiducia operativa tramite eXp Group Spain.",
 });
 
@@ -3249,7 +3474,7 @@ Object.assign(siteCopyNo, {
   cookies: { ...siteCopyDa.cookies, title: "Cookieinnstillinger", description: "Dette nettstedet bruker informasjonskapsler for å gi en bedre opplevelse. Du kan administrere dine preferanser når som helst.", acceptAll: "Godta alle", settings: "Innstillinger", settingsTitle: "Administrer cookies", necessary: { title: "Nødvendige cookies", description: "Disse informasjonskapslene er nødvendige for at nettstedet skal fungere." }, analytics: { title: "Analysecookies", description: "De hjelper oss å forstå hvordan besøkende bruker nettstedet." }, marketing: { title: "Markedsføringscookies", description: "Brukes til å vise relevante annonser." }, savePreferences: "Lagre preferanser", back: "Tilbake", rejectAll: "Avvis valgfrie" },
   scroll: { up: "Opp", down: "Ned" },
   howWeWork: { eyebrow: "Prosess · Slik jobber vi", title: "Fire trinn for en operasjon bygget på skjønn og diskresjon.", steps: [{ number: "01", title: "Privat vurdering", description: "Vi analyserer eiendelen, mikrosonen og eierens profil før vi avtaler noen handling." }, { number: "02", title: "Territoriell strategi", description: "Vi definerer verdinarrativet, posisjoneringen og riktig kjøperprofil for eiendelen." }, { number: "03", title: "Kvalifisert tilgang", description: "Vi aktiverer tilgang til utvalgte kjøpere og investorer uten offentlig eksponering av eiendelen." }, { number: "04", title: "Oppfølging og avslutning", description: "Vi følger hvert samtale frem til avslutning med skjønn, konfidensialitet og operativ støtte." }] },
-  holidayRental: { eyebrow: "Premiumeiere · Ferieutleie i toppklassen", title: "Generer inntekter fra din Mallorca-eiendom uten å ofre diskresjon, kontroll eller premiumposisjonering.", body: "For villaer, fincas og unike leiligheter bør ferieutleie ikke behandles som et masseturistprodukt. Vi evaluerer eiendelens potensial, mikrosonen, gjesteprofilen og operativ gjennomførbarhet.", benefits: ["Privat evaluering av utleiepotensial.", "Posisjonering tilpasset premiueiendeler.", "Rekruttering rettet mot kvalifiserte gjester.", "Mer strukturert operativ og dokumentarisk forberedelse.", "Mulighet til å kombinere eget bruk, inntekt og fremtidig salg."], technologyNote: "Driften kan støttes av Anclora SyncXML-teknologi for å gjennomgå bestillingsdata og forberede gjennomgåbar XML for SES.HOSPEDAJES-flyten.", primaryCta: "Evaluer utleiepotensial", secondaryCta: "Åpne privat samtale" },
+  holidayRental: { ...siteCopyEn.holidayRental, eyebrow: "Premiumeiere · Ferieutleie i toppklassen", title: "Generer inntekter fra din Mallorca-eiendom uten å ofre diskresjon, kontroll eller premiumposisjonering.", body: "For villaer, fincas og unike leiligheter bør ferieutleie ikke behandles som et masseturistprodukt. Vi evaluerer eiendelens potensial, mikrosonen, gjesteprofilen og operativ gjennomførbarhet.", benefits: ["Privat evaluering av utleiepotensial.", "Posisjonering tilpasset premiueiendeler.", "Rekruttering rettet mot kvalifiserte gjester.", "Mer strukturert operativ og dokumentarisk forberedelse.", "Mulighet til å kombinere eget bruk, inntekt og fremtidig salg."], technologyNote: "Dokumenthåndteringen kan støttes av Anclora SyncXML for å strukturere bestillingsdata for SES.HOSPEDAJES-flyten. Dette laget gir sporbarhet og mindre dokumentarisk friksjon; det erstatter verken juridisk gjennomgang eller faglig skjønn.", primaryCta: "Evaluer utleiepotensial", secondaryCta: "Åpne privat samtale" },
   trustBadgeText: "Internasjonal støtte og operativ tillit gjennom eXp Group Spain.",
 });
 
@@ -3267,7 +3492,7 @@ Object.assign(siteCopyPt, {
   cookies: { ...siteCopyIt.cookies, title: "Preferências de cookies", description: "Este site utiliza cookies para oferecer uma melhor experiência. Pode gerir as suas preferências em qualquer momento.", acceptAll: "Aceitar todas", settings: "Definições", settingsTitle: "Gerir cookies", necessary: { title: "Cookies necessários", description: "Estes cookies são essenciais para o funcionamento do site." }, analytics: { title: "Cookies de análise", description: "Ajudam-nos a perceber como os visitantes utilizam o site." }, marketing: { title: "Cookies de marketing", description: "Utilizados para mostrar anúncios relevantes aos visitantes." }, savePreferences: "Guardar preferências", back: "Voltar", rejectAll: "Rejeitar opcionais" },
   scroll: { up: "Subir", down: "Descer" },
   howWeWork: { eyebrow: "Processo · Como trabalhamos", title: "Quatro passos para uma operação conduzida com critério e discrição.", steps: [{ number: "01", title: "Avaliação privada", description: "Analisamos o activo, a microzona e o perfil do proprietário antes de acordar qualquer acção." }, { number: "02", title: "Estratégia territorial", description: "Definimos a narrativa de valor, o posicionamento e o perfil de comprador adequado ao activo." }, { number: "03", title: "Acesso qualificado", description: "Activamos o acesso a compradores e investidores seleccionados sem exposição pública do activo." }, { number: "04", title: "Acompanhamento e fecho", description: "Acompanhamos cada conversa até ao fecho com critério, confidencialidade e suporte operativo." }] },
-  holidayRental: { eyebrow: "Proprietários premium · Aluguer de férias de alto standing", title: "Rentabilize a sua propriedade em Mallorca sem abdicar de discrição, controlo nem posicionamento premium.", body: "Para villas, fincas e apartamentos singulares, o aluguer de férias não deve ser tratado como um produto turístico de massas. Avaliamos o potencial do activo, a microzona, o perfil do hóspede e a viabilidade operativa.", benefits: ["Avaliação privada do potencial de aluguer.", "Posicionamento alinhado com activos de alto standing.", "Captação orientada para hóspedes qualificados.", "Preparação operativa e documental mais estruturada.", "Possibilidade de combinar uso pessoal, rendimento e futura venda."], technologyNote: "A operativa pode apoiar-se na tecnologia Anclora SyncXML para rever dados de reservas e preparar XML revisável orientado ao fluxo SES.HOSPEDAJES.", primaryCta: "Avaliar potencial de aluguer premium", secondaryCta: "Abrir conversa privada" },
+  holidayRental: { ...siteCopyEn.holidayRental, eyebrow: "Proprietários premium · Aluguer de férias de alto standing", title: "Rentabilize a sua propriedade em Mallorca sem abdicar de discrição, controlo nem posicionamento premium.", body: "Para villas, fincas e apartamentos singulares, o aluguer de férias não deve ser tratado como um produto turístico de massas. Avaliamos o potencial do activo, a microzona, o perfil do hóspede e a viabilidade operativa.", benefits: ["Avaliação privada do potencial de aluguer.", "Posicionamento alinhado com activos de alto standing.", "Captação orientada para hóspedes qualificados.", "Preparação operativa e documental mais estruturada.", "Possibilidade de combinar uso pessoal, rendimento e futura venda."], technologyNote: "A gestão documental pode apoiar-se no Anclora SyncXML para estruturar dados de reservas orientados ao fluxo SES.HOSPEDAJES. Esta camada acrescenta rastreabilidade e menos fricção documental; não substitui a revisão jurídica nem o critério do profissional.", primaryCta: "Avaliar potencial de aluguer premium", secondaryCta: "Abrir conversa privada" },
   trustBadgeText: "Suporte internacional e confiança operativa através da eXp Group Spain.",
 });
 

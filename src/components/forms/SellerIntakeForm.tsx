@@ -16,6 +16,8 @@ type SellerIntakeFormProps = {
 
 type SellerFormMessages = {
   privacyLabel: string;
+  marketingConsentLabel: string;
+  privacyFirstLayer: string;
   successTitle: string;
   successBody: string;
   genericError: string;
@@ -26,6 +28,8 @@ type SellerFormMessages = {
 const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   es: {
     privacyLabel: "He leído y acepto la política de privacidad.",
+    marketingConsentLabel: "Acepto recibir comunicaciones comerciales sobre servicios similares (opcional).",
+    privacyFirstLayer: "Responsable: Anclora Private Estates. Finalidad: gestionar solicitudes de información, valoración o contacto. Derechos: acceso, rectificación, supresión, oposición y otros derechos aplicables a través de legal@anclora.com.",
     successTitle: "Solicitud recibida",
     successBody: "Revisaremos tu activo y te responderemos en un plazo de dos días hábiles.",
     genericError: "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.",
@@ -34,6 +38,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   ca: {
     privacyLabel: "He llegit i accepto la política de privacitat.",
+    marketingConsentLabel: "Accepto rebre comunicacions comercials sobre serveis similars (opcional).",
+    privacyFirstLayer: "Responsable: Anclora Private Estates. Finalitat: gestionar sol·licituds d'informació, valoració o contacte. Drets: accés, rectificació, supressió, oposició i altres drets aplicables a través de legal@anclora.com.",
     successTitle: "Sol·licitud rebuda",
     successBody: "Revisarem el teu actiu i et respondrem en un termini de dos dies hàbils.",
     genericError: "No hem pogut enviar la sol·licitud. Torna-ho a provar d'aquí a uns minuts.",
@@ -42,6 +48,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   en: {
     privacyLabel: "I have read and accept the privacy policy.",
+    marketingConsentLabel: "I agree to receive commercial communications about similar services (optional).",
+    privacyFirstLayer: "Controller: Anclora Private Estates. Purpose: managing information, valuation and contact requests. Rights: access, rectification, erasure, objection and other applicable rights via legal@anclora.com.",
     successTitle: "Request received",
     successBody: "We will review your asset and get back to you within two working days.",
     genericError: "We could not send your request. Please try again in a few minutes.",
@@ -50,6 +58,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   de: {
     privacyLabel: "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
+    marketingConsentLabel: "Ich stimme dem Erhalt kommerzieller Mitteilungen über ähnliche Dienstleistungen zu (optional).",
+    privacyFirstLayer: "Verantwortlicher: Anclora Private Estates. Zweck: Bearbeitung von Informations-, Bewertungs- und Kontaktanfragen. Rechte: Auskunft, Berichtigung, Löschung, Widerspruch und weitere Rechte über legal@anclora.com.",
     successTitle: "Anfrage erhalten",
     successBody: "Wir prüfen Ihren Vermögenswert und melden uns innerhalb von zwei Werktagen.",
     genericError: "Wir konnten Ihre Anfrage nicht senden. Bitte versuchen Sie es in einigen Minuten erneut.",
@@ -58,6 +68,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   sv: {
     privacyLabel: "Jag har läst och accepterar integritetspolicyn.",
+    marketingConsentLabel: "Jag godkänner att ta emot kommersiella meddelanden om liknande tjänster (valfritt).",
+    privacyFirstLayer: "Personuppgiftsansvarig: Anclora Private Estates. Ändamål: hantering av informations-, värdering- och kontaktförfrågningar. Rättigheter: tillgång, rättelse, radering, invändning via legal@anclora.com.",
     successTitle: "Förfrågan mottagen",
     successBody: "Vi granskar din tillgång och återkommer inom två arbetsdagar.",
     genericError: "Vi kunde inte skicka din förfrågan. Försök igen om några minuter.",
@@ -66,6 +78,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   fr: {
     privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
+    marketingConsentLabel: "J'accepte de recevoir des communications commerciales sur des services similaires (optionnel).",
+    privacyFirstLayer: "Responsable: Anclora Private Estates. Finalité: traitement des demandes d'information, d'évaluation et de contact. Droits: accès, rectification, suppression, opposition et autres droits via legal@anclora.com.",
     successTitle: "Demande reçue",
     successBody: "Nous examinerons votre actif et vous répondrons sous deux jours ouvrés.",
     genericError: "Nous n'avons pas pu envoyer votre demande. Veuillez réessayer dans quelques minutes.",
@@ -74,6 +88,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   it: {
     privacyLabel: "Ho letto e accetto l'informativa sulla privacy.",
+    marketingConsentLabel: "Accetto di ricevere comunicazioni commerciali su servizi simili (opzionale).",
+    privacyFirstLayer: "Titolare: Anclora Private Estates. Finalità: gestione di richieste di informazioni, valutazione e contatto. Diritti: accesso, rettifica, cancellazione, opposizione e altri diritti tramite legal@anclora.com.",
     successTitle: "Richiesta ricevuta",
     successBody: "Esamineremo il tuo asset e ti risponderemo entro due giorni lavorativi.",
     genericError: "Non siamo riusciti a inviare la richiesta. Riprova tra qualche minuto.",
@@ -82,6 +98,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   da: {
     privacyLabel: "Jeg har læst og accepterer privatlivspolitikken.",
+    marketingConsentLabel: "Jeg accepterer at modtage kommercielle meddelelser om lignende tjenester (valgfrit).",
+    privacyFirstLayer: "Dataansvarlig: Anclora Private Estates. Formål: behandling af informations-, vurderings- og kontaktanmodninger. Rettigheder: adgang, berigtigelse, sletning, indsigelse via legal@anclora.com.",
     successTitle: "Anmodning modtaget",
     successBody: "Vi gennemgår dit aktiv og vender tilbage inden for to hverdage.",
     genericError: "Vi kunne ikke sende din anmodning. Prøv igen om et par minutter.",
@@ -90,6 +108,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   nl: {
     privacyLabel: "Ik heb het privacybeleid gelezen en accepteer het.",
+    marketingConsentLabel: "Ik ga akkoord met het ontvangen van commerciële communicatie over vergelijkbare diensten (optioneel).",
+    privacyFirstLayer: "Verwerkingsverantwoordelijke: Anclora Private Estates. Doel: verwerking van informatie-, taxatie- en contactverzoeken. Rechten: inzage, rectificatie, verwijdering, bezwaar via legal@anclora.com.",
     successTitle: "Aanvraag ontvangen",
     successBody: "We beoordelen uw object en nemen binnen twee werkdagen contact op.",
     genericError: "We konden uw aanvraag niet verzenden. Probeer het over enkele minuten opnieuw.",
@@ -98,6 +118,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   no: {
     privacyLabel: "Jeg har lest og godtar personvernerklæringen.",
+    marketingConsentLabel: "Jeg samtykker til å motta kommersielle meldinger om lignende tjenester (valgfritt).",
+    privacyFirstLayer: "Behandlingsansvarlig: Anclora Private Estates. Formål: behandling av informasjons-, verdsettings- og kontaktforespørsler. Rettigheter: innsyn, retting, sletting, innsigelse via legal@anclora.com.",
     successTitle: "Forespørsel mottatt",
     successBody: "Vi vurderer eiendelen din og svarer innen to virkedager.",
     genericError: "Vi kunne ikke sende forespørselen. Prøv igjen om noen minutter.",
@@ -106,6 +128,8 @@ const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   },
   pt: {
     privacyLabel: "Li e aceito a política de privacidade.",
+    marketingConsentLabel: "Aceito receber comunicações comerciais sobre serviços similares (opcional).",
+    privacyFirstLayer: "Responsável: Anclora Private Estates. Finalidade: gestão de pedidos de informação, avaliação e contacto. Direitos: acesso, rectificação, apagamento, oposição e outros direitos via legal@anclora.com.",
     successTitle: "Pedido recebido",
     successBody: "Analisaremos o seu activo e responderemos no prazo de dois dias úteis.",
     genericError: "Não foi possível enviar o pedido. Tente novamente dentro de alguns minutos.",
@@ -135,6 +159,7 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [marketingAccepted, setMarketingAccepted] = useState(false);
   
   // Focus behavior for hash navigation
   useEffect(() => {
@@ -613,6 +638,17 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
         <span className="pe-note">{messages.privacyLabel}</span>
       </label>
 
+      <label className="pe-form-field pe-privacy-row" style={{ marginTop: "0.75rem" }}>
+        <input
+          type="checkbox"
+          checked={marketingAccepted}
+          onChange={(event) => setMarketingAccepted(event.target.checked)}
+          data-testid="seller-marketing-checkbox"
+          className="pe-checkbox"
+        />
+        <span className="pe-note" style={{ color: "var(--pe-text-muted)" }}>{messages.marketingConsentLabel}</span>
+      </label>
+
       {configError ? (
         <p className="pe-form-error" data-testid="seller-error">
           {messages.genericError}{" "}
@@ -636,6 +672,18 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
       >
         {submitting ? "..." : copy.submitLabel}
       </button>
+
+      <p
+        style={{
+          color: "var(--pe-text-muted)",
+          fontSize: "0.75rem",
+          lineHeight: 1.6,
+          margin: "0.75rem 0 0",
+        }}
+        data-testid="seller-privacy-first-layer"
+      >
+        {messages.privacyFirstLayer}
+      </p>
     </form>
   );
 }
