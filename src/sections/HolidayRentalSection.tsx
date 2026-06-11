@@ -60,9 +60,9 @@ export function HolidayRentalSection({ copy }: HolidayRentalSectionProps) {
           </aside>
         </div>
 
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-          <a href="#contacto" className="pe-btn pe-btn-primary">{copy.primaryCta}</a>
-          <a href="#contacto" className="pe-btn pe-btn-ghost">{copy.secondaryCta}</a>
+        <div className="pe-cta-row">
+          <a href="#clientes" className="pe-btn-primary pe-btn-primary-gold">{copy.primaryCta}</a>
+          <a href="#contacto" className="pe-btn-secondary pe-btn-secondary-ghost">{copy.secondaryCta}</a>
         </div>
       </div>
     </section>
