@@ -7,6 +7,9 @@ import { PEFooter } from "@/components/layout/PEFooter";
 import { PENavbar } from "@/components/layout/PENavbar";
 import { ContactSection } from "@/sections/ContactSection";
 import { CredibilitySection } from "@/sections/CredibilitySection";
+import { FAQSection } from "@/sections/FAQSection";
+import { HolidayRentalSection } from "@/sections/HolidayRentalSection";
+import { HowWeWorkSection } from "@/sections/HowWeWorkSection";
 import { DataLabSignalsSection } from "@/sections/DataLabSignalsSection";
 import { FinalCTASection } from "@/sections/FinalCTASection";
 import { HeroSection } from "@/sections/HeroSection";
@@ -72,9 +75,12 @@ export default function App() {
       <main>
         <HeroSection copy={copy.hero} trustBadgeText={copy.trustBadgeText} />
         <CredibilitySection copy={copy.credibility} />
+        <HowWeWorkSection copy={copy.howWeWork} />
         <MallorcaFocusSection copy={copy.mallorcaFocus} mediaAlt={copy.mediaAlt} />
+        <HolidayRentalSection copy={copy.holidayRental} />
         <InvestorSection copy={copy.investors} mediaAlt={copy.mediaAlt} />
         <SellerIntakeSection copy={copy.sellerIntake} />
+        <FAQSection copy={copy.faq} />
         <PartnersSynergiSection copy={copy.partners} language={language} />
         <DataLabSignalsSection copy={copy.dataLab} language={language} />
         <ContactSection copy={copy.contact} />
