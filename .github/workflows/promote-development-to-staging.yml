@@ -1,7 +1,7 @@
 name: Promote development to staging
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 env:
   VITE_ANCLORA_NEXUS_BASE_URL: "http://localhost:3000"
