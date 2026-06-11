@@ -61,7 +61,22 @@ export function HolidayRentalSection({ copy }: HolidayRentalSectionProps) {
         </div>
 
         <div className="pe-cta-row">
-          <a href="#clientes" className="pe-btn-primary pe-btn-primary-gold">{copy.primaryCta}</a>
+          <a
+            href="#clientes"
+            className="pe-btn-primary pe-btn-primary-gold"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState(null, "", "#clientes");
+              const target = document.querySelector(".pe-owner-shell");
+              const navbar = document.querySelector(".pe-navbar");
+              if (!target) return;
+              const navbarHeight = navbar?.getBoundingClientRect().height ?? 0;
+              const targetTop = target.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({ top: targetTop - navbarHeight - 24, behavior: "smooth" });
+            }}
+          >
+            {copy.primaryCta}
+          </a>
           <a href="#contacto" className="pe-btn-secondary pe-btn-secondary-ghost">{copy.secondaryCta}</a>
         </div>
       </div>

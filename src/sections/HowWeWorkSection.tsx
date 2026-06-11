@@ -17,7 +17,7 @@ export function HowWeWorkSection({ copy }: HowWeWorkSectionProps) {
           {copy.steps.map((step) => (
             <article
               key={step.number}
-              className="pe-card pe-offset-card pe-card-hover-gold"
+              className="pe-card pe-offset-card pe-card-hover-gold pe-pillar-card"
               data-testid={`how-we-work-step-${step.number}`}
             >
               <span className="pe-pillar-card__index">{step.number}</span>
