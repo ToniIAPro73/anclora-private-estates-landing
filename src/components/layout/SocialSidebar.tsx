@@ -13,6 +13,9 @@ export function SocialSidebar({ copy }: SocialSidebarProps) {
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
   ];
 
+  const hasRealLinks = socialLinks.some((l) => l.href !== '#');
+  if (!hasRealLinks) return null;
+
   return (
     <div className="social-sidebar">
       <div className="social-label">{copy.followUs}</div>

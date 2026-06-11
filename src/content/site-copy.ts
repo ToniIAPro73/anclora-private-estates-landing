@@ -29,11 +29,28 @@ export type HeroCopy = {
   media: HeroMediaCopy;
 };
 
+export type CredentialBadgeCopy = {
+  text: string;
+  detail: string;
+};
+
 export type CredibilityCopy = {
   eyebrow: string;
   title: string;
   intro: string;
   pillars: string[];
+  credentialBadges?: CredentialBadgeCopy[];
+};
+
+export type FAQItemCopy = {
+  question: string;
+  answer: string;
+};
+
+export type FAQSectionCopy = {
+  eyebrow: string;
+  title: string;
+  items: FAQItemCopy[];
 };
 
 export type MallorcaClusterCopy = {
@@ -101,6 +118,9 @@ export type SellerFormCopy = {
   timingOptions: string[];
   ticketOptions: string[];
   submitLabel: string;
+  holidayRentalObjective?: string;
+  holidayRentalAvailability?: string;
+  holidayRentalObjectiveOptions?: string[];
 };
 
 export type SellerIntakeCopy = {
@@ -328,13 +348,37 @@ export type SocialCopy = {
   followUs: string;
 };
 
+export type HowWeWorkStepCopy = {
+  number: string;
+  title: string;
+  description: string;
+};
+
+export type HowWeWorkCopy = {
+  eyebrow: string;
+  title: string;
+  steps: HowWeWorkStepCopy[];
+};
+
+export type HolidayRentalCopy = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  benefits: string[];
+  technologyNote: string;
+  primaryCta: string;
+  secondaryCta: string;
+};
+
 export type SiteCopy = {
   seo: SeoCopy;
   mediaAlt: MediaAltCopy;
   navbar: NavbarCopy;
   hero: HeroCopy;
   credibility: CredibilityCopy;
+  howWeWork: HowWeWorkCopy;
   mallorcaFocus: MallorcaFocusCopy;
+  holidayRental: HolidayRentalCopy;
   investors: InvestorCopy;
   sellerIntake: SellerIntakeCopy;
   valuation: ValuationSectionCopy;
@@ -346,6 +390,7 @@ export type SiteCopy = {
   cookies: CookieCopy;
   scroll: ScrollCopy;
   social: SocialCopy;
+  faq: FAQSectionCopy;
   trustBadgeText: string;
   contactFloatingLabel: string;
 };
@@ -426,7 +471,7 @@ const siteCopyEs: SiteCopy = {
     chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
-    primaryCta: "Solicitar acceso confidencial",
+    primaryCta: "Solicitar valoración privada",
     secondaryCta: "Explorar foco territorial",
     scrollLabel: "Continuar",
     scrollText: "Descubrir",
@@ -450,6 +495,37 @@ const siteCopyEs: SiteCopy = {
       "Agente independiente con respaldo de eXp Group Spain.",
       "Más de 25 años de trayectoria tecnológica aplicados a una operativa inmobiliaria mejor estructurada.",
       "Inteligencia territorial, procesos optimizados y red selectiva como diferencia real frente a la agencia tradicional.",
+    ],
+    credentialBadges: [
+      { text: "eXp Group Spain", detail: "Red global de +80.000 agentes activos" },
+      { text: "Mallorca Premium", detail: "Especialización exclusiva en el suroeste de Mallorca" },
+      { text: "Comprador internacional", detail: "Acceso a perfiles cualificados de +40 países" },
+    ],
+  },
+  howWeWork: {
+    eyebrow: "Proceso · Cómo trabajamos",
+    title: "Cuatro pasos para una operación con criterio y discreción.",
+    steps: [
+      {
+        number: "01",
+        title: "Evaluación privada",
+        description: "Analizamos el activo, la microzona y el perfil del propietario antes de acordar ninguna acción.",
+      },
+      {
+        number: "02",
+        title: "Estrategia territorial",
+        description: "Definimos el relato de valor, el posicionamiento y el tipo de comprador adecuado para el activo.",
+      },
+      {
+        number: "03",
+        title: "Acceso cualificado",
+        description: "Activamos el acceso a compradores e inversores seleccionados sin exposición pública del activo.",
+      },
+      {
+        number: "04",
+        title: "Seguimiento y cierre",
+        description: "Acompañamos cada conversación hasta el cierre con criterio, confidencialidad y respaldo operativo.",
+      },
     ],
   },
   mallorcaFocus: {
@@ -505,6 +581,21 @@ const siteCopyEs: SiteCopy = {
       },
     ],
   },
+  holidayRental: {
+    eyebrow: "Propietarios premium · Alquiler vacacional de alto standing",
+    title: "Rentabiliza tu propiedad en Mallorca sin renunciar a discreción, control ni posicionamiento premium.",
+    body: "Para villas, fincas y apartamentos singulares, el alquiler vacacional no debería tratarse como un producto turístico masivo. Evaluamos el potencial del activo, la microzona, el perfil de huésped y la viabilidad operativa para construir una estrategia selectiva, compatible con el valor patrimonial de la propiedad.",
+    benefits: [
+      "Evaluación privada del potencial de alquiler.",
+      "Posicionamiento alineado con activos de alto standing.",
+      "Captación orientada a huéspedes cualificados.",
+      "Preparación operativa y documental más ordenada.",
+      "Posibilidad de combinar uso propio, rentabilidad y futura venta.",
+    ],
+    technologyNote: "La operativa puede apoyarse en tecnología propia de Anclora SyncXML para revisar datos de reservas y preparar XML revisable orientado al flujo SES.HOSPEDAJES. Esta capa no sustituye la revisión humana ni el criterio legal, pero aporta estructura, trazabilidad y menos fricción documental.",
+    primaryCta: "Evaluar potencial de alquiler premium",
+    secondaryCta: "Abrir conversación privada",
+  },
   investors: {
     eyebrow: "Inversores",
     title: "Capital nacional e internacional que necesita menos escaparate y una mejor lectura de contexto.",
@@ -545,7 +636,11 @@ const siteCopyEs: SiteCopy = {
         { value: "valuation", label: "Quiero una valoración privada" },
         { value: "buy", label: "Quiero comprar una propiedad premium" },
         { value: "invest", label: "Busco oportunidades de inversión" },
+        { value: "holiday_rental", label: "Quiero rentabilizar mi propiedad como alquiler vacacional" },
       ],
+      holidayRentalObjective: "Objetivo de explotación",
+      holidayRentalAvailability: "Disponibilidad prevista",
+      holidayRentalObjectiveOptions: ["Rendimiento máximo", "Uso mixto (personal + alquiler)", "Gestión full-service"],
       name: "Nombre",
       email: "Email",
       phone: "Teléfono",
@@ -662,10 +757,12 @@ const siteCopyEs: SiteCopy = {
       {
         eyebrow: "Signal 02",
         title: "La microzona importa más que la etiqueta general del municipio.",
+        body: "Andratx, Portals Nous y Son Vida generan perfiles de comprador, velocidades de absorción y rangos de precio distintos. Operar sin esta lectura es perder posicionamiento antes de empezar.",
       },
       {
         eyebrow: "Signal 03",
         title: "La preparación del activo condiciona la velocidad y la calidad de la operación.",
+        body: "Los activos con documentación completa, narrativa comercial clara y presentación cuidada reducen el tiempo de exposición y mejoran la selectividad de las conversaciones que generan.",
       },
     ],
     whitelist: {
@@ -770,6 +867,32 @@ const siteCopyEs: SiteCopy = {
   social: {
     followUs: "SÍGUENOS",
   },
+  faq: {
+    eyebrow: "Preguntas frecuentes",
+    title: "Lo que nos preguntan los propietarios, compradores e inversores.",
+    items: [
+      {
+        question: "¿Qué es exactamente una venta off-market o discreta?",
+        answer: "Una venta off-market es aquella en la que el activo no se publica en portales inmobiliarios de acceso masivo. Se trabaja de forma confidencial con un grupo selecto de compradores cualificados, preservando la privacidad del vendedor, evitando la fatiga del mercado y manteniendo el poder de negociación del activo.",
+      },
+      {
+        question: "¿Cuánto tiempo tarda normalmente una venta privada en Mallorca?",
+        answer: "Depende del activo, la microzona y el precio de posicionamiento. Una operación bien ejecutada puede cerrarse entre 3 y 12 meses. Priorizamos el precio adecuado y el comprador correcto sobre la velocidad. Un activo bien preparado y bien narrado atrae conversaciones de mayor calidad.",
+      },
+      {
+        question: "¿Cómo accedo a propiedades no publicadas en Mallorca?",
+        answer: "A través de nuestra lista de compradores cualificados. Trabajamos con perfiles que han sido evaluados previamente y que cuentan con capacidad de decisión real. Si encajas en ese perfil, puedes acceder a activos que no están en ningún portal.",
+      },
+      {
+        question: "¿Qué rentabilidad puedo esperar como inversor en el suroeste de Mallorca?",
+        answer: "La rentabilidad varía según el tipo de activo, la microzona y la estrategia (alquiler vacacional, plusvalía a largo plazo o mix). En zonas prime como Son Vida o Portals, el mercado muestra resistencia de precio y demanda internacional sostenida. Evaluamos cada caso con datos actualizados de la microzona.",
+      },
+      {
+        question: "¿En qué zonas de Mallorca operáis?",
+        answer: "Operamos principalmente en Palma, Andratx, Calvià, Son Vida, Portals Nous, Bendinat, Deià y Valldemossa. Evaluamos activos en otras ubicaciones según criterio y potencial del activo.",
+      },
+    ],
+  },
   trustBadgeText: "Respaldo internacional y confianza operativa a través de eXp Group Spain.",
   contactFloatingLabel: "CONTACTAR",
 };
@@ -853,7 +976,7 @@ const siteCopyEn: SiteCopy = {
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
-    primaryCta: "Request confidential access",
+    primaryCta: "Request private valuation",
     secondaryCta: "Explore the territorial focus",
     scrollLabel: "Continue",
     scrollText: "Discover",
@@ -879,6 +1002,11 @@ const siteCopyEn: SiteCopy = {
       "Independent agent backed by eXp Group Spain.",
       "More than 25 years in technology applied to a better-structured real estate operation.",
       "Territorial intelligence, optimized processes and a selective network as the real edge over the traditional agency.",
+    ],
+    credentialBadges: [
+      { text: "eXp Group Spain", detail: "Global network of 80,000+ active agents" },
+      { text: "Mallorca Premium", detail: "Exclusive focus on southwest Mallorca" },
+      { text: "International buyer access", detail: "Qualified profiles from 40+ countries" },
     ],
   },
   mallorcaFocus: {
@@ -928,6 +1056,47 @@ const siteCopyEn: SiteCopy = {
       },
     ],
   },
+  howWeWork: {
+    eyebrow: "Process · How we work",
+    title: "Four steps for an operation built on judgment and discretion.",
+    steps: [
+      {
+        number: "01",
+        title: "Private assessment",
+        description: "We analyse the asset, the micro-location and the owner's profile before agreeing on any action.",
+      },
+      {
+        number: "02",
+        title: "Territorial strategy",
+        description: "We define the value narrative, the positioning and the right buyer profile for the asset.",
+      },
+      {
+        number: "03",
+        title: "Qualified access",
+        description: "We activate access to selected buyers and investors without public exposure of the asset.",
+      },
+      {
+        number: "04",
+        title: "Follow-up and close",
+        description: "We accompany every conversation through to closing with judgment, confidentiality and operational support.",
+      },
+    ],
+  },
+  holidayRental: {
+    eyebrow: "Premium owners · High-standing holiday rental",
+    title: "Monetise your Mallorca property without sacrificing discretion, control or premium positioning.",
+    body: "For villas, fincas and singular apartments, holiday rental should not be treated as a mass tourism product. We evaluate the asset's potential, the micro-location, the guest profile and operational viability to build a selective strategy compatible with the property's patrimonial value.",
+    benefits: [
+      "Private evaluation of rental potential.",
+      "Positioning aligned with high-standing assets.",
+      "Acquisition focused on qualified guests.",
+      "More organised operational and documentary preparation.",
+      "Ability to combine personal use, income and future sale.",
+    ],
+    technologyNote: "Operations can be supported by Anclora SyncXML technology to review booking data and prepare reviewable XML aligned with the SES.HOSPEDAJES flow. This layer does not replace human review or legal judgment, but adds structure, traceability and less documentary friction.",
+    primaryCta: "Evaluate holiday rental potential",
+    secondaryCta: "Open private conversation",
+  },
   investors: {
     ...siteCopyEs.investors,
     eyebrow: "Investors",
@@ -971,7 +1140,11 @@ const siteCopyEn: SiteCopy = {
         { value: "valuation", label: "I want a private valuation" },
         { value: "buy", label: "I want to buy a premium property" },
         { value: "invest", label: "I'm looking for investment opportunities" },
+        { value: "holiday_rental", label: "I want to monetise my property as a holiday rental" },
       ],
+      holidayRentalObjective: "Rental objective",
+      holidayRentalAvailability: "Expected availability",
+      holidayRentalObjectiveOptions: ["Maximum yield", "Mixed use (personal + rental)", "Full-service management"],
       name: "Name",
       email: "Email",
       phone: "Phone",
@@ -1082,10 +1255,12 @@ const siteCopyEn: SiteCopy = {
       {
         eyebrow: "Signal 02",
         title: "Micro-location matters more than the municipality's broad label.",
+        body: "Andratx, Portals Nous and Son Vida each generate distinct buyer profiles, absorption rates and price ranges. Operating without this reading means losing positioning before the conversation even starts.",
       },
       {
         eyebrow: "Signal 03",
         title: "Asset preparation shapes both the speed and quality of the transaction.",
+        body: "Assets with complete documentation, a clear commercial narrative and careful presentation reduce exposure time and improve the selectivity of the conversations they generate.",
       },
     ],
     whitelist: {
@@ -1192,6 +1367,32 @@ const siteCopyEn: SiteCopy = {
   social: {
     followUs: "FOLLOW US",
   },
+  faq: {
+    eyebrow: "Frequently asked questions",
+    title: "What owners, buyers and investors ask us.",
+    items: [
+      {
+        question: "What exactly is an off-market or discreet sale?",
+        answer: "An off-market sale is one in which the property is not listed on mass-market portals. It is handled confidentially with a select group of qualified buyers, preserving the seller's privacy, avoiding market fatigue and maintaining the asset's negotiating strength.",
+      },
+      {
+        question: "How long does a private sale in Mallorca normally take?",
+        answer: "It depends on the asset, the micro-location and the asking price. A well-executed transaction can close in 3 to 12 months. We prioritise the right price and the right buyer over speed. A well-prepared, well-narrated asset attracts higher-quality conversations.",
+      },
+      {
+        question: "How do I access off-market properties in Mallorca?",
+        answer: "Through our qualified buyer list. We work with profiles that have been pre-screened and have real decision-making capacity. If your profile fits, you can access assets that are not listed on any portal.",
+      },
+      {
+        question: "What return can I expect as an investor in southwest Mallorca?",
+        answer: "Returns vary by asset type, micro-location and strategy (holiday rental, long-term capital gain or a mix). In prime zones such as Son Vida or Portals, the market shows price resilience and sustained international demand. We evaluate each case with up-to-date micro-location data.",
+      },
+      {
+        question: "Which areas of Mallorca do you cover?",
+        answer: "We operate mainly in Palma, Andratx, Calvià, Son Vida, Portals Nous, Bendinat, Deià and Valldemossa. We evaluate assets in other locations on a case-by-case basis.",
+      },
+    ],
+  },
   trustBadgeText: "International backing and operational trust through eXp Group Spain.",
   contactFloatingLabel: "CONTACT US",
 };
@@ -1275,7 +1476,7 @@ const siteCopyDe: SiteCopy = {
     chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
-    primaryCta: "Vertraulichen Zugang anfragen",
+    primaryCta: "Private Bewertung anfragen",
     secondaryCta: "Territoriale Ausrichtung erkunden",
     scrollLabel: "Weiter",
     scrollText: "Entdecken",
@@ -1302,6 +1503,36 @@ const siteCopyDe: SiteCopy = {
       "Mehr als 25 Jahre Technologieerfahrung angewendet auf eine besser strukturierte Immobilienoperativ.",
       "Territoriale Intelligenz, optimierte Prozesse und ein selektives Netzwerk als echter Unterschied zur traditionellen Agentur.",
     ],
+    credentialBadges: [
+      { text: "eXp Group Spain", detail: "Globales Netzwerk mit +80.000 aktiven Maklern" },
+      { text: "Mallorca Premium", detail: "Exklusive Ausrichtung auf Südwest-Mallorca" },
+      { text: "Internationaler Käuferzugang", detail: "Qualifizierte Profile aus +40 Ländern" },
+    ],
+  },
+  howWeWork: {
+    eyebrow: "Prozess · So arbeiten wir",
+    title: "Vier Schritte für eine Operation mit Urteilsvermögen und Diskretion.",
+    steps: [
+      { number: "01", title: "Private Bewertung", description: "Wir analysieren das Asset, die Mikrolage und das Profil des Eigentümers, bevor wir irgendwelche Maßnahmen vereinbaren." },
+      { number: "02", title: "Territoriale Strategie", description: "Wir definieren die Wertgeschichte, die Positionierung und das geeignete Käuferprofil für das Asset." },
+      { number: "03", title: "Qualifizierter Zugang", description: "Wir aktivieren den Zugang zu ausgewählten Käufern und Investoren ohne öffentliche Exposition des Assets." },
+      { number: "04", title: "Begleitung bis zum Abschluss", description: "Wir begleiten jedes Gespräch bis zum Abschluss mit Urteilsvermögen, Vertraulichkeit und operativer Unterstützung." },
+    ],
+  },
+  holidayRental: {
+    eyebrow: "Premium-Eigentümer · Ferienvermietung im Hochsegment",
+    title: "Erzielen Sie Einnahmen aus Ihrer Mallorca-Immobilie, ohne auf Diskretion, Kontrolle oder Premium-Positionierung zu verzichten.",
+    body: "Für Villen, Fincas und einzigartige Apartments sollte die Ferienvermietung nicht als Massentourismusprodukt behandelt werden. Wir bewerten das Potenzial des Assets, die Mikrolage, das Gästeprofil und die operative Machbarkeit, um eine selektive Strategie zu entwickeln, die mit dem patrimonialen Wert der Immobilie vereinbar ist.",
+    benefits: [
+      "Private Bewertung des Vermietungspotenzials.",
+      "Positionierung abgestimmt auf Hochsegment-Assets.",
+      "Ausrichtung auf qualifizierte Gäste.",
+      "Strukturiertere operative und dokumentarische Vorbereitung.",
+      "Möglichkeit, Eigennutzung, Rendite und zukünftigen Verkauf zu kombinieren.",
+    ],
+    technologyNote: "Die Operative kann durch Anclora SyncXML-Technologie unterstützt werden, um Buchungsdaten zu prüfen und überprüfbares XML für den SES.HOSPEDAJES-Ablauf vorzubereiten. Diese Schicht ersetzt weder die menschliche Prüfung noch das juristische Urteilsvermögen, bietet aber Struktur, Nachvollziehbarkeit und weniger dokumentarische Reibung.",
+    primaryCta: "Vermietungspotenzial bewerten",
+    secondaryCta: "Privates Gespräch öffnen",
   },
   mallorcaFocus: {
     ...siteCopyEs.mallorcaFocus,
@@ -1396,7 +1627,11 @@ const siteCopyDe: SiteCopy = {
         { value: "valuation", label: "Ich möchte eine private Bewertung" },
         { value: "buy", label: "Ich möchte eine Premium-Immobilie kaufen" },
         { value: "invest", label: "Ich suche nach Investitionsmöglichkeiten" },
+        { value: "holiday_rental", label: "Ich möchte meine Immobilie als Ferienunterkunft vermieten" },
       ],
+      holidayRentalObjective: "Vermietungsziel",
+      holidayRentalAvailability: "Erwartete Verfügbarkeit",
+      holidayRentalObjectiveOptions: ["Maximale Rendite", "Gemischte Nutzung (Eigennutzung + Vermietung)", "Full-Service-Verwaltung"],
       name: "Name",
       email: "E-Mail",
       phone: "Telefon",
@@ -1508,10 +1743,12 @@ const siteCopyDe: SiteCopy = {
       {
         eyebrow: "Signal 02",
         title: "Die Mikrolage ist wichtiger als das grobe Etikett der Gemeinde.",
+        body: "Andratx, Portals Nous und Son Vida generieren jeweils eigene Käuferprofile, Absorptionsraten und Preisspannen. Ohne diese Lesart verliert man Positionierung, bevor das Gespräch beginnt.",
       },
       {
         eyebrow: "Signal 03",
         title: "Die Vorbereitung des Objekts prägt Geschwindigkeit und Qualität der Transaktion.",
+        body: "Objekte mit vollständiger Dokumentation, klarer Vermarktungsnarrative und sorgfältiger Präsentation reduzieren die Expositionszeit und verbessern die Selektivität der geführten Gespräche.",
       },
     ],
     whitelist: {
@@ -1619,6 +1856,32 @@ const siteCopyDe: SiteCopy = {
   social: {
     followUs: "FOLGEN SIE UNS",
   },
+  faq: {
+    eyebrow: "Häufig gestellte Fragen",
+    title: "Was Eigentümer, Käufer und Investoren uns fragen.",
+    items: [
+      {
+        question: "Was genau ist ein Off-Market- oder diskreter Verkauf?",
+        answer: "Ein Off-Market-Verkauf ist einer, bei dem das Objekt nicht auf massentauglichen Immobilienportalen veröffentlicht wird. Es wird vertraulich mit einer ausgewählten Gruppe qualifizierter Käufer gearbeitet, die Privatsphäre des Verkäufers gewahrt und die Verhandlungsposition des Assets erhalten.",
+      },
+      {
+        question: "Wie lange dauert ein privater Verkauf auf Mallorca in der Regel?",
+        answer: "Das hängt vom Objekt, der Mikrolage und dem Angebotspreis ab. Eine gut durchgeführte Transaktion kann innerhalb von 3 bis 12 Monaten abgeschlossen werden. Wir priorisieren den richtigen Preis und den richtigen Käufer vor der Geschwindigkeit.",
+      },
+      {
+        question: "Wie erhalte ich Zugang zu nicht veröffentlichten Immobilien auf Mallorca?",
+        answer: "Über unsere Liste qualifizierter Käufer. Wir arbeiten mit Profilen, die vorab geprüft wurden und über echte Entscheidungskapazität verfügen. Wenn Ihr Profil passt, können Sie Assets einsehen, die auf keinem Portal gelistet sind.",
+      },
+      {
+        question: "Welche Rendite kann ich als Investor in Südwest-Mallorca erwarten?",
+        answer: "Die Rendite variiert je nach Assettyp, Mikrolage und Strategie. In Premiumzonen wie Son Vida oder Portals zeigt der Markt Preisresistenz und anhaltende internationale Nachfrage. Wir evaluieren jeden Fall mit aktuellen Mikrolage-Daten.",
+      },
+      {
+        question: "In welchen Gebieten Mallorcas sind Sie tätig?",
+        answer: "Wir sind hauptsächlich in Palma, Andratx, Calvià, Son Vida, Portals Nous, Bendinat, Deià und Valldemossa tätig. Wir evaluieren Objekte in anderen Lagen nach Einzelfallbewertung.",
+      },
+    ],
+  },
   trustBadgeText: "Internationale Rückendeckung und operative Sicherheit durch eXp Group Spain.",
   contactFloatingLabel: "KONTAKT",
 };
@@ -1702,7 +1965,7 @@ const siteCopyFr: SiteCopy = {
     chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel y une relation plus sophistiquée avec l'actif.",
-    primaryCta: "Demander un accès confidentiel",
+    primaryCta: "Demander une évaluation privée",
     secondaryCta: "Explorer le territoire",
     scrollLabel: "Continuer",
     scrollText: "Découvrir",
@@ -1729,6 +1992,36 @@ const siteCopyFr: SiteCopy = {
       "Plus de 25 ans d'expérience technologique appliqués à une opération immobilière mieux structurée.",
       "Intelligence territoriale, processus optimisés et réseau sélectif comme avantage réel face à l'agence traditionnelle.",
     ],
+    credentialBadges: [
+      { text: "eXp Group Spain", detail: "Réseau mondial de +80 000 agents actifs" },
+      { text: "Majorque Premium", detail: "Spécialisation exclusive sur le sud-ouest de Majorque" },
+      { text: "Accès acheteurs internationaux", detail: "Profils qualifiés de +40 pays" },
+    ],
+  },
+  howWeWork: {
+    eyebrow: "Processus · Comment nous travaillons",
+    title: "Quatre étapes pour une opération conduite avec discernement et discrétion.",
+    steps: [
+      { number: "01", title: "Évaluation privée", description: "Nous analysons l'actif, la micro-localisation et le profil du propriétaire avant de convenir d'une quelconque action." },
+      { number: "02", title: "Stratégie territoriale", description: "Nous définissons le récit de valeur, le positionnement et le profil d'acquéreur adapté à l'actif." },
+      { number: "03", title: "Accès qualifié", description: "Nous activons l'accès à des acheteurs et investisseurs sélectionnés sans exposition publique de l'actif." },
+      { number: "04", title: "Suivi et clôture", description: "Nous accompagnons chaque conversation jusqu'à la clôture avec discernement, confidentialité et soutien opérationnel." },
+    ],
+  },
+  holidayRental: {
+    eyebrow: "Propriétaires premium · Location saisonnière haut de gamme",
+    title: "Rentabilisez votre propriété à Majorque sans renoncer à la discrétion, au contrôle ni au positionnement premium.",
+    body: "Pour les villas, fincas et appartements singuliers, la location saisonnière ne devrait pas être traitée comme un produit touristique de masse. Nous évaluons le potentiel de l'actif, la micro-localisation, le profil des hôtes et la faisabilité opérationnelle pour construire une stratégie sélective, compatible avec la valeur patrimoniale de la propriété.",
+    benefits: [
+      "Évaluation privée du potentiel locatif.",
+      "Positionnement aligné sur les actifs haut de gamme.",
+      "Acquisition orientée vers des hôtes qualifiés.",
+      "Préparation opérationnelle et documentaire plus structurée.",
+      "Possibilité de combiner usage personnel, revenus et vente future.",
+    ],
+    technologyNote: "L'opérationnel peut s'appuyer sur la technologie Anclora SyncXML pour examiner les données de réservation et préparer un XML révisable orienté vers le flux SES.HOSPEDAJES. Cette couche ne remplace ni la révision humaine ni le jugement légal, mais apporte structure, traçabilité et moins de friction documentaire.",
+    primaryCta: "Évaluer le potentiel locatif premium",
+    secondaryCta: "Ouvrir une conversation privée",
   },
   mallorcaFocus: {
     ...siteCopyEs.mallorcaFocus,
@@ -1821,7 +2114,11 @@ const siteCopyFr: SiteCopy = {
         { value: "valuation", label: "Je souhaite une évaluation privée" },
         { value: "buy", label: "Je souhaite acheter un bien premium" },
         { value: "invest", label: "Je recherche des opportunités d'investissement" },
+        { value: "holiday_rental", label: "Je souhaite valoriser mon bien en location saisonnière" },
       ],
+      holidayRentalObjective: "Objectif locatif",
+      holidayRentalAvailability: "Disponibilité prévue",
+      holidayRentalObjectiveOptions: ["Rendement maximum", "Usage mixte (personnel + location)", "Gestion full-service"],
       name: "Nom",
       email: "E-mail",
       phone: "Téléphone",
@@ -1942,10 +2239,12 @@ const siteCopyFr: SiteCopy = {
       {
         eyebrow: "Signal 02",
         title: "La micro-localisation compte davantage que l'étiquette générale de la commune.",
+        body: "Andratx, Portals Nous et Son Vida génèrent des profils d'acheteurs, des vitesses d'absorption et des fourchettes de prix distincts. Opérer sans cette lecture, c'est perdre le positionnement avant même d'engager la conversation.",
       },
       {
         eyebrow: "Signal 03",
         title: "La préparation de l'actif conditionne la vitesse et la qualité de l'opération.",
+        body: "Les actifs dotés d'une documentation complète, d'un récit commercial clair et d'une présentation soignée réduisent le temps d'exposition et améliorent la sélectivité des conversations qu'ils génèrent.",
       },
     ],
     whitelist: {
@@ -2024,6 +2323,32 @@ const siteCopyFr: SiteCopy = {
     ],
     copyright: "© 2026 Anclora Group. Tous droits réservés.",
   },
+  faq: {
+    eyebrow: "Questions fréquentes",
+    title: "Ce que nous demandent les propriétaires, acheteurs et investisseurs.",
+    items: [
+      {
+        question: "Qu'est-ce exactement qu'une vente off-market ou discrète ?",
+        answer: "Une vente off-market est une vente dans laquelle le bien n'est pas publié sur des portails immobiliers grand public. Elle se déroule de façon confidentielle avec un groupe sélect d'acheteurs qualifiés, en préservant la vie privée du vendeur et la force de négociation de l'actif.",
+      },
+      {
+        question: "Combien de temps dure généralement une vente privée à Majorque ?",
+        answer: "Cela dépend du bien, de la micro-localisation et du prix de positionnement. Une transaction bien conduite peut se conclure en 3 à 12 mois. Nous privilégions le bon prix et le bon acheteur plutôt que la vitesse.",
+      },
+      {
+        question: "Comment accéder à des biens non publiés à Majorque ?",
+        answer: "Via notre liste d'acheteurs qualifiés. Nous travaillons avec des profils préalablement évalués et disposant d'une réelle capacité de décision. Si votre profil correspond, vous pouvez accéder à des actifs absents de tout portail.",
+      },
+      {
+        question: "Quel rendement puis-je espérer en tant qu'investisseur dans le sud-ouest de Majorque ?",
+        answer: "Le rendement varie selon le type d'actif, la micro-localisation et la stratégie. Dans des zones premium comme Son Vida ou Portals, le marché affiche une résistance des prix et une demande internationale soutenue. Nous évaluons chaque cas avec des données actualisées.",
+      },
+      {
+        question: "Dans quelles zones de Majorque intervenez-vous ?",
+        answer: "Nous opérons principalement à Palma, Andratx, Calvià, Son Vida, Portals Nous, Bendinat, Deià et Valldemossa. Nous évaluons les biens dans d'autres localisations au cas par cas.",
+      },
+    ],
+  },
   trustBadgeText: "Soutien international et confiance opérationnelle via eXp Group Spain.",
 };
 
@@ -2082,7 +2407,7 @@ const siteCopyCa: SiteCopy = {
     title: "Per a propietaris que valoren una venda privada a Mallorca.",
     description:
       "Valoració i preparació de vil·les, finques i actius premium per vendre amb discreció, criteri territorial i compradors qualificats.",
-    primaryCta: "Sol·licitar accés confidencial",
+    primaryCta: "Sol·licitar valoració privada",
     secondaryCta: "Explorar el focus territorial",
     scrollLabel: "Continuar",
     scrollText: "Descobrir",
@@ -2104,6 +2429,36 @@ const siteCopyCa: SiteCopy = {
       "Més de 25 anys de trajectòria tecnològica aplicats a una operativa immobiliària més ben estructurada.",
       "Intel·ligència territorial, processos optimitzats i xarxa selectiva com a diferència real davant l'agència tradicional.",
     ],
+    credentialBadges: [
+      { text: "eXp Group Spain", detail: "Xarxa global de +80.000 agents actius" },
+      { text: "Mallorca Premium", detail: "Especialització exclusiva al sud-oest de Mallorca" },
+      { text: "Accés a compradors internacionals", detail: "Perfils qualificats de +40 països" },
+    ],
+  },
+  howWeWork: {
+    eyebrow: "Procés · Com treballem",
+    title: "Quatre passos per a una operació amb criteri i discreció.",
+    steps: [
+      { number: "01", title: "Avaluació privada", description: "Analitzem l'actiu, la microzona i el perfil del propietari abans d'acordar cap acció." },
+      { number: "02", title: "Estratègia territorial", description: "Definim el relat de valor, el posicionament i el perfil de comprador adequat per a l'actiu." },
+      { number: "03", title: "Accés qualificat", description: "Activem l'accés a compradors i inversors seleccionats sense exposició pública de l'actiu." },
+      { number: "04", title: "Seguiment i tancament", description: "Acompanyem cada conversa fins al tancament amb criteri, confidencialitat i suport operatiu." },
+    ],
+  },
+  holidayRental: {
+    eyebrow: "Propietaris premium · Lloguer vacacional d'alt standing",
+    title: "Rendibilitza la teva propietat a Mallorca sense renunciar a discreció, control ni posicionament premium.",
+    body: "Per a vil·les, finques i apartaments singulars, el lloguer vacacional no hauria de tractar-se com un producte turístic massiu. Avaluem el potencial de l'actiu, la microzona, el perfil d'hoste i la viabilitat operativa per construir una estratègia selectiva, compatible amb el valor patrimonial de la propietat.",
+    benefits: [
+      "Avaluació privada del potencial de lloguer.",
+      "Posicionament alineat amb actius d'alt standing.",
+      "Captació orientada a hostes qualificats.",
+      "Preparació operativa i documental més ordenada.",
+      "Possibilitat de combinar ús propi, rendibilitat i futura venda.",
+    ],
+    technologyNote: "L'operativa pot recolzar-se en tecnologia pròpia d'Anclora SyncXML per revisar dades de reserves i preparar XML revisable orientat al flux SES.HOSPEDAJES. Aquesta capa no substitueix la revisió humana ni el criteri legal, però aporta estructura, traçabilitat i menys fricció documental.",
+    primaryCta: "Avaluar potencial de lloguer premium",
+    secondaryCta: "Obrir conversa privada",
   },
   mallorcaFocus: {
     ...siteCopyEs.mallorcaFocus,
@@ -2167,7 +2522,11 @@ const siteCopyCa: SiteCopy = {
         { value: "valuation", label: "Vull una valoració privada" },
         { value: "buy", label: "Vull comprar una propietat premium" },
         { value: "invest", label: "Busco oportunitats d'inversió" },
+        { value: "holiday_rental", label: "Vull rendibilitzar la meva propietat com a lloguer vacacional" },
       ],
+      holidayRentalObjective: "Objectiu d'explotació",
+      holidayRentalAvailability: "Disponibilitat prevista",
+      holidayRentalObjectiveOptions: ["Rendiment màxim", "Ús mixt (personal + lloguer)", "Gestió full-service"],
       name: "Nom",
       phone: "Telèfon",
       zone: "Zona de l'immoble",
@@ -2258,10 +2617,12 @@ const siteCopyCa: SiteCopy = {
       {
         eyebrow: "Senyal 02",
         title: "La microzona importa més que l'etiqueta general del municipi.",
+        body: "Andratx, Portals Nous i Son Vida generen perfils de comprador, velocitats d'absorció i rangs de preu distints. Operar sense aquesta lectura és perdre posicionament abans d'iniciar la conversa.",
       },
       {
         eyebrow: "Senyal 03",
         title: "La preparació de l'actiu condiciona la velocitat i la qualitat de l'operació.",
+        body: "Els actius amb documentació completa, narrativa comercial clara i presentació acurada redueixen el temps d'exposició i milloren la selectivitat de les converses que generen.",
       },
     ],
     whitelist: {
@@ -2349,6 +2710,32 @@ const siteCopyCa: SiteCopy = {
   },
   scroll: { up: "Pujar", down: "Baixar" },
   social: { followUs: "SEGUEIX-NOS" },
+  faq: {
+    eyebrow: "Preguntes freqüents",
+    title: "El que ens pregunten els propietaris, compradors i inversors.",
+    items: [
+      {
+        question: "Què és exactament una venda off-market o discreta?",
+        answer: "Una venda off-market és aquella en la qual el actiu no es publica a portals immobiliaris d'accés massiu. Es treballa de forma confidencial amb un grup selecte de compradors qualificats, preservant la privacitat del venedor i mantenint el poder de negociació de l'actiu.",
+      },
+      {
+        question: "Quant de temps triga normalment una venda privada a Mallorca?",
+        answer: "Depèn de l'actiu, la microzona i el preu de posicionament. Una operació ben executada pot tancar-se entre 3 i 12 mesos. Prioritzem el preu adequat i el comprador correcte per sobre de la velocitat.",
+      },
+      {
+        question: "Com accedeixo a propietats no publicades a Mallorca?",
+        answer: "A través de la nostra llista de compradors qualificats. Treballem amb perfils que han estat avaluats prèviament i que compten amb capacitat de decisió real. Si el teu perfil s'hi ajusta, pots accedir a actius que no estan a cap portal.",
+      },
+      {
+        question: "Quina rendibilitat puc esperar com a inversor al sud-oest de Mallorca?",
+        answer: "La rendibilitat varia segons el tipus d'actiu, la microzona i l'estratègia. En zones prime com Son Vida o Portals, el mercat mostra resistència de preu i demanda internacional sostinguda. Avaluem cada cas amb dades actualitzades.",
+      },
+      {
+        question: "En quines zones de Mallorca opereu?",
+        answer: "Operem principalment a Palma, Andratx, Calvià, Son Vida, Portals Nous, Bendinat, Deià i Valldemossa. Avaluem actius en altres ubicacions segons criteri.",
+      },
+    ],
+  },
   trustBadgeText: "Suport internacional i confiança operativa a través d'eXp Group Spain.",
   contactFloatingLabel: "CONTACTAR",
 };
@@ -2441,7 +2828,7 @@ const siteCopySv: SiteCopy = createEuropeanCopy(siteCopyEn, {
     eyebrow: "Palma · Sydvästra Mallorca · Premiumkapital",
     title: "För ägare som överväger en privat försäljning på Mallorca.",
     description: "Värdering och förberedelse av villor, fincas och premiumtillgångar för diskret försäljning med kvalificerade köpare.",
-    primaryCta: "Begär konfidentiell åtkomst",
+    primaryCta: "Begär privat värdering",
     secondaryCta: "Utforska det lokala fokuset",
     scrollLabel: "Fortsätt",
     scrollText: "Upptäck",
@@ -2492,7 +2879,7 @@ const siteCopyIt: SiteCopy = createEuropeanCopy(siteCopyEn, {
     eyebrow: "Palma · Sud-ovest di Mallorca · Capitale premium",
     title: "Per proprietari che valutano una vendita privata a Mallorca.",
     description: "Valutazione e preparazione di ville, fincas e asset premium per vendere con discrezione e acquirenti qualificati.",
-    primaryCta: "Richiedi accesso riservato",
+    primaryCta: "Richiedi una valutazione privata",
     secondaryCta: "Esplora il focus territoriale",
     scrollLabel: "Continua",
     scrollText: "Scopri",
@@ -2543,7 +2930,7 @@ const siteCopyDa: SiteCopy = createEuropeanCopy(siteCopyEn, {
     eyebrow: "Palma · Sydvestlige Mallorca · Premiumkapital",
     title: "For ejere, der overvejer et privat salg på Mallorca.",
     description: "Vurdering og forberedelse af villaer, fincas og premiumaktiver til diskret salg med kvalificerede købere.",
-    primaryCta: "Anmod om fortrolig adgang",
+    primaryCta: "Anmod om privat vurdering",
     secondaryCta: "Udforsk det territoriale fokus",
     scrollLabel: "Fortsæt",
     scrollText: "Opdag",
@@ -2594,7 +2981,7 @@ const siteCopyNl: SiteCopy = createEuropeanCopy(siteCopyEn, {
     eyebrow: "Palma · Zuidwest-Mallorca · Premiumkapitaal",
     title: "Voor eigenaren die een private verkoop op Mallorca overwegen.",
     description: "Waardering en voorbereiding van villa's, fincas en premiumobjecten voor discrete verkoop met gekwalificeerde kopers.",
-    primaryCta: "Vertrouwelijke toegang aanvragen",
+    primaryCta: "Privé taxatie aanvragen",
     secondaryCta: "Verken de territoriale focus",
     scrollLabel: "Doorgaan",
     scrollText: "Ontdek",
@@ -2645,7 +3032,7 @@ const siteCopyNo: SiteCopy = createEuropeanCopy(siteCopyEn, {
     eyebrow: "Palma · Sørvest-Mallorca · Premiumkapital",
     title: "For eiere som vurderer et privat salg på Mallorca.",
     description: "Verdivurdering og klargjøring av villaer, fincas og premiumaktiva for diskret salg med kvalifiserte kjøpere.",
-    primaryCta: "Be om konfidensiell tilgang",
+    primaryCta: "Be om privat verdivurdering",
     secondaryCta: "Utforsk det territorielle fokuset",
     scrollLabel: "Fortsett",
     scrollText: "Oppdag",
@@ -2696,7 +3083,7 @@ const siteCopyPt: SiteCopy = createEuropeanCopy(siteCopyEn, {
     eyebrow: "Palma · Sudoeste de Mallorca · Capital premium",
     title: "Para proprietários que ponderam uma venda privada em Mallorca.",
     description: "Avaliação e preparação de villas, fincas e activos premium para vender com discrição e compradores qualificados.",
-    primaryCta: "Solicitar acesso confidencial",
+    primaryCta: "Solicitar avaliação privada",
     secondaryCta: "Explorar o foco territorial",
     scrollLabel: "Continuar",
     scrollText: "Descobrir",
@@ -2718,6 +3105,11 @@ Object.assign(siteCopySv, {
       "Oberoende rådgivare med stöd av eXp Group Spain.",
       "Över 25 års teknisk erfarenhet tillämpad på en mer strukturerad fastighetsprocess.",
       "Territoriell intelligens, optimerade processer och ett selektivt nätverk som verklig skillnad mot traditionell byrålogik.",
+    ],
+    credentialBadges: [
+      { text: "eXp Group Spain", detail: "Globalt nätverk med 80 000+ aktiva agenter" },
+      { text: "Mallorca Premium", detail: "Exklusivt fokus på sydvästra Mallorca" },
+      { text: "International köparaccess", detail: "Kvalificerade profiler från 40+ länder" },
     ],
   },
   mallorcaFocus: {
@@ -2756,23 +3148,25 @@ Object.assign(siteCopySv, {
     ],
   },
   valuation: { ...siteCopyEn.valuation, eyebrow: "Begär värdering", title: "Vad är din fastighet på Mallorca värd?", body: "Om du äger en fastighet i Palma eller sydvästra Mallorca och vill veta det reella marknadsvärdet kan vi göra en konfidentiell och förbehållslös värdering.", checklistLabel: "Värderingen inkluderar", checklist: ["Analys av mikroläge och verklig konkurrens", "Genomgång av marknadstiming", "Värdering anpassad till rätt köparprofil"], form: { ...siteCopyEn.valuation.form, name: "Namn", email: "E-post", phone: "Telefon", address: "Fastighetsadress", message: "Meddelande (valfritt)", placeholders: { name: "Ditt namn", email: "namn@domän.se", phone: "+46 ...", address: "Gata, område eller fastighetsreferens", message: "Dela relevanta detaljer." }, privacyLabel: "Jag har läst och accepterar integritetspolicyn.", submitLabel: "Begär konfidentiell värdering", successTitle: "Förfrågan mottagen", successBody: "Vi återkommer inom två arbetsdagar med en privat värdering.", captchaError: "Slutför säkerhetsverifieringen." } },
-  sellerIntake: { ...siteCopyEn.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning för ägare, köpare och investerare.", body: "Vi bedömer varje förfrågan efter avsikt: försäljning, köp, värdering eller investering. Ett konfidentiellt premiumupplägg för utvalda tillgångar i Palma och sydvästra Mallorca.", checklistLabel: "Kriterier för privat bedömning", checklist: ["Mikroläge och verklig konkurrens", "Positionerande berättelse", "Kvalificerad timing och tillgång"], trustBadgeText: "Internationellt stöd och operativ trygghet genom eXp Group Spain.", form: { ...siteCopyEn.sellerIntake.form, intentLabel: "Hur kan vi hjälpa dig?", intentOptions: [{ value: "sell", label: "Jag vill sälja en fastighet" }, { value: "valuation", label: "Jag vill ha en privat värdering" }, { value: "buy", label: "Jag vill köpa en premiumfastighet" }, { value: "invest", label: "Jag söker investeringsmöjligheter" }], name: "Namn", email: "E-post", phone: "Telefon", zone: "Fastighetsområde", propertyType: "Fastighetstyp", commercialization: "Försäljningsupplägg", address: "Fastighetsadress", budget: "Ungefärlig budget", timing: "Planerad tidsram", ticket: "Investeringsnivå", goal: "Investeringsmål", message: "Meddelande", placeholders: { name: "Ditt namn", email: "namn@domän.se", phone: "+46 ...", zone: "Son Vida, Portals, Andratx...", address: "Gata, område eller fastighetsreferens", budget: "t.ex. 1M - 3M €", timing: "t.ex. Omedelbart, 6 månader...", ticket: "t.ex. 500k+, 2M+...", goal: "t.ex. Förmögenhet, Avkastning...", message: "Berätta mer om din förfrågan." }, selectPlaceholder: "Välj ett alternativ", propertyTypeOptions: ["Villa", "Takvåning", "Premiumlägenhet", "Finca"], commercializationOptions: ["Konfidentiell bedömning", "Exklusiv försäljning", "Selektiv försäljning utan massportal"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Omedelbart", "1-3 månader", "3-6 månader", "Endast utforskar"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Skicka privat förfrågan" } },
+  sellerIntake: { ...siteCopyEn.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning för ägare, köpare och investerare.", body: "Vi bedömer varje förfrågan efter avsikt: försäljning, köp, värdering eller investering. Ett konfidentiellt premiumupplägg för utvalda tillgångar i Palma och sydvästra Mallorca.", checklistLabel: "Kriterier för privat bedömning", checklist: ["Mikroläge och verklig konkurrens", "Positionerande berättelse", "Kvalificerad timing och tillgång"], trustBadgeText: "Internationellt stöd och operativ trygghet genom eXp Group Spain.", form: { ...siteCopyEn.sellerIntake.form, intentLabel: "Hur kan vi hjälpa dig?", intentOptions: [{ value: "sell", label: "Jag vill sälja en fastighet" }, { value: "valuation", label: "Jag vill ha en privat värdering" }, { value: "buy", label: "Jag vill köpa en premiumfastighet" }, { value: "invest", label: "Jag söker investeringsmöjligheter" }, { value: "holiday_rental", label: "Jag vill hyra ut min fastighet för semesteruthyrning" }], holidayRentalObjective: "Uthyrningsmål", holidayRentalAvailability: "Förväntad tillgänglighet", holidayRentalObjectiveOptions: ["Maximal avkastning", "Blandat bruk (privat + uthyrning)", "Full-service förvaltning"], name: "Namn", email: "E-post", phone: "Telefon", zone: "Fastighetsområde", propertyType: "Fastighetstyp", commercialization: "Försäljningsupplägg", address: "Fastighetsadress", budget: "Ungefärlig budget", timing: "Planerad tidsram", ticket: "Investeringsnivå", goal: "Investeringsmål", message: "Meddelande", placeholders: { name: "Ditt namn", email: "namn@domän.se", phone: "+46 ...", zone: "Son Vida, Portals, Andratx...", address: "Gata, område eller fastighetsreferens", budget: "t.ex. 1M - 3M €", timing: "t.ex. Omedelbart, 6 månader...", ticket: "t.ex. 500k+, 2M+...", goal: "t.ex. Förmögenhet, Avkastning...", message: "Berätta mer om din förfrågan." }, selectPlaceholder: "Välj ett alternativ", propertyTypeOptions: ["Villa", "Takvåning", "Premiumlägenhet", "Finca"], commercializationOptions: ["Konfidentiell bedömning", "Exklusiv försäljning", "Selektiv försäljning utan massportal"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Omedelbart", "1-3 månader", "3-6 månader", "Endast utforskar"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Skicka privat förfrågan" } },
   partners: { ...siteCopyEn.partners, eyebrow: "Synergi · Partnernätverk", title: "Ett selektivt nätverk för samarbetspartner som förstår premiummarknaden.", body: "Anclora Synergi är den privata portalen för redan validerade partners: oberoende agenter, branschproffs och samarbetspartner med territoriellt omdöme.", features: ["Selektiv tillgång till delade möjligheter", "Samarbete med fokus på mikroläge och tillgångskvalitet", "Kurerad antagning utan kommersiell friktion"], form: { ...siteCopyEn.partners.form, name: "Namn", email: "E-post", serviceCategory: "Tjänstekategori", serviceSummary: "Beskriv din profil och hur du arbetar", placeholders: { name: "Ditt namn eller företag", email: "namn@domän.se", serviceSummary: "Beskriv din profil, specialisering och hur du skulle kunna samarbeta med Anclora (min. 20 tecken)." }, selectPlaceholder: "Välj kategori", serviceCategoryOptions: [{ value: "real_estate", label: "Fastigheter" }, { value: "professional", label: "Juridik / Finans / Professionellt" }, { value: "luxury", label: "Lifestyle & Lyx" }, { value: "eco", label: "Hållbarhet" }, { value: "other", label: "Annat" }], privacyLabel: "Jag har läst och accepterar integritetspolicyn.", submitLabel: "Begär tillgång till Synergi", successTitle: "Förfrågan mottagen", successBody: "Vi granskar din profil och återkommer inom sju dagar." } },
-  dataLab: { ...siteCopyEn.dataLab, title: "Territoriella signaler för att läsa premiummarknaden lugnare och mindre reaktivt.", intro: "Vi presenterar inte dashboards. Vi visar signaler som hjälper till att rama in tillgångskvalitet, efterfrågetryck och premiumköparens känslighet.", lead: { eyebrow: "Signal 01", title: "Bristen på väl positionerade prime-objekt gynnar mer selektiva och mindre reaktiva beslut.", body: "I Palma och sydväst stärker begränsat utbud, stabil internationell efterfrågan och ökad känslighet för turnkey-objekt värdet på väl förberedda och väl berättade tillgångar." }, signals: [{ eyebrow: "Signal 02", title: "Mikroläget väger tyngre än kommunens övergripande etikett." }, { eyebrow: "Signal 03", title: "Tillgångens förberedelse påverkar både hastighet och kvalitet i affären." }], whitelist: { ...siteCopyEn.dataLab.whitelist, eyebrow: "Selektiv tillgång", title: "Gå med i listan för tidig tillgång.", body: "Anclora Data Lab är i selektiv tillgångsfas för investerare, family offices och institutionella profiler.", form: { ...siteCopyEn.dataLab.whitelist.form, name: "Namn", intendedUse: "Varför är du intresserad av Data Lab?", placeholders: { name: "Ditt namn eller företag", email: "namn@domän.se", intendedUse: "Beskriv kortfattat ditt intresse och investerarprofil (min. 20 tecken)." }, privacyLabel: "Jag har läst och accepterar integritetspolicyn.", submitLabel: "Begär tidig tillgång", successTitle: "På väntelistan", successBody: "Vi meddelar dig när nästa tillgångsblock öppnar för din profil." } } },
+  dataLab: { ...siteCopyEn.dataLab, title: "Territoriella signaler för att läsa premiummarknaden lugnare och mindre reaktivt.", intro: "Vi presenterar inte dashboards. Vi visar signaler som hjälper till att rama in tillgångskvalitet, efterfrågetryck och premiumköparens känslighet.", lead: { eyebrow: "Signal 01", title: "Bristen på väl positionerade prime-objekt gynnar mer selektiva och mindre reaktiva beslut.", body: "I Palma och sydväst stärker begränsat utbud, stabil internationell efterfrågan och ökad känslighet för turnkey-objekt värdet på väl förberedda och väl berättade tillgångar." }, signals: [{ eyebrow: "Signal 02", title: "Mikroläget väger tyngre än kommunens övergripande etikett.", body: "Andratx, Portals Nous och Son Vida genererar skilda köparprofiler, absorptionshastigheter och prisspann. Att agera utan denna läsning innebär att man tappar positioneringen redan innan samtalet börjar." }, { eyebrow: "Signal 03", title: "Tillgångens förberedelse påverkar både hastighet och kvalitet i affären.", body: "Tillgångar med fullständig dokumentation, tydlig kommersiell berättelse och omsorgsfull presentation minskar exponeringstiden och förbättrar selektiviteten i de samtal de genererar." }], whitelist: { ...siteCopyEn.dataLab.whitelist, eyebrow: "Selektiv tillgång", title: "Gå med i listan för tidig tillgång.", body: "Anclora Data Lab är i selektiv tillgångsfas för investerare, family offices och institutionella profiler.", form: { ...siteCopyEn.dataLab.whitelist.form, name: "Namn", intendedUse: "Varför är du intresserad av Data Lab?", placeholders: { name: "Ditt namn eller företag", email: "namn@domän.se", intendedUse: "Beskriv kortfattat ditt intresse och investerarprofil (min. 20 tecken)." }, privacyLabel: "Jag har läst och accepterar integritetspolicyn.", submitLabel: "Begär tidig tillgång", successTitle: "På väntelistan", successBody: "Vi meddelar dig när nästa tillgångsblock öppnar för din profil." } } },
   contact: { ...siteCopySv.contact, body: "Om du överväger att sälja, investera eller utforska en fastighetsmöjlighet i Palma eller sydvästra Mallorca kan vi bedöma ditt fall med omdöme, konfidentialitet och premiumfokus.", responseNote: "Samtal hanteras selektivt och med personlig återkoppling.", detailsTitle: "Kontaktuppgifter", details: [{ label: "E-post", value: "antonio@anclora.com", href: "mailto:antonio@anclora.com" }, { label: "Telefon", value: "+34 633 947 810", href: "tel:+34633947810" }, { label: "Plats", value: "Palma de Mallorca · Balearerna" }] },
   finalCta: { ...siteCopySv.finalCta, eyebrow: "Privat samtal", body: "Palma och sydvästra Mallorca kräver territoriellt omdöme, konfidentialitet och mer precis kommersiell exekvering. Om du överväger att sälja, köpa eller utforska en möjlighet kan vi bedöma ditt fall privat.", primaryCta: "Starta privat bedömning", secondaryCta: "Öppna privat samtal" },
   footer: { ...siteCopySv.footer, columns: [{ title: "Kontakt", links: [{ label: "Öppna privat samtal", href: "#contacto" }] }, { title: "Selektivt tillträde", links: [{ label: "Mallorca", href: "#mallorca-focus" }, { label: "Investerare", href: "#inversores" }, { label: "Kunder", href: "#clientes" }, { label: "Partners", href: "#partners" }, { label: "Data Lab", href: "#data-lab" }] }, { title: "Juridik", links: [{ label: "Integritet", href: "/privacy" }, { label: "Villkor", href: "/terms" }, { label: "Juridisk information", href: "/legal" }] }] },
   cookies: { ...siteCopyEn.cookies, title: "Cookieinställningar", description: "Denna webbplats använder cookies för att ge en bättre upplevelse. Du kan hantera dina inställningar när som helst.", acceptAll: "Acceptera alla", settings: "Inställningar", settingsTitle: "Hantera cookies", necessary: { title: "Nödvändiga cookies", description: "Dessa cookies krävs för att webbplatsen ska fungera." }, analytics: { title: "Analyscookies", description: "De hjälper oss att förstå hur besökare använder webbplatsen." }, marketing: { title: "Marknadsföringscookies", description: "Används för att visa relevanta annonser." }, savePreferences: "Spara inställningar", back: "Tillbaka", rejectAll: "Avvisa valfria" },
   scroll: { up: "Upp", down: "Ned" },
+  howWeWork: { eyebrow: "Process · Hur vi arbetar", title: "Fyra steg för en operation byggd på omdöme och diskretion.", steps: [{ number: "01", title: "Privat värdering", description: "Vi analyserar tillgången, mikroläget och ägarens profil innan vi avtalar om någon åtgärd." }, { number: "02", title: "Territoriell strategi", description: "Vi definierar värdenarrativet, positioneringen och rätt köparprofil för tillgången." }, { number: "03", title: "Kvalificerad åtkomst", description: "Vi aktiverar åtkomst till utvalda köpare och investerare utan offentlig exponering av tillgången." }, { number: "04", title: "Uppföljning och avslut", description: "Vi följer varje samtal fram till avslut med omdöme, konfidentialitet och operativt stöd." }] },
+  holidayRental: { eyebrow: "Premiumägare · Semesteruthyrning i toppklass", title: "Tjäna på din Mallorca-fastighet utan att offra diskretion, kontroll eller premiumpositionering.", body: "För villor, fincas och unika lägenheter bör semesteruthyrning inte behandlas som en masstouristprodukt. Vi utvärderar tillgångens potential, mikroläget, gästprofilen och operativ genomförbarhet för att bygga en selektiv strategi.", benefits: ["Privat utvärdering av uthyrningspotential.", "Positionering anpassad till premiumtillgångar.", "Inriktning mot kvalificerade gäster.", "Mer strukturerad operativ och dokumentär förberedelse.", "Möjlighet att kombinera eget boende, inkomst och framtida försäljning."], technologyNote: "Operationen kan stödjas av Anclora SyncXML-teknologi för att granska bokningsdata och förbereda granskningsbar XML för SES.HOSPEDAJES-flödet. Detta lager ersätter varken mänsklig granskning eller rättsligt omdöme.", primaryCta: "Utvärdera uthyrningspotential", secondaryCta: "Öppna privat samtal" },
   trustBadgeText: "Internationellt stöd och operativ trygghet genom eXp Group Spain.",
 });
 
 Object.assign(siteCopyDa, {
-  credibility: { eyebrow: "Troværdighed", title: "Et premiumtilbud, der ikke behøver at simulere størrelse for at skabe tillid.", intro: "Autoritet formidles gennem struktur, forankring og en mere moden markedsforståelse.", pillars: ["Uafhængig rådgiver med støtte fra eXp Group Spain.", "Mere end 25 års teknologisk erfaring anvendt på en bedre struktureret ejendomsproces.", "Territorial intelligens, optimerede processer og et selektivt netværk som reel forskel fra traditionel mæglerlogik."] },
+  credibility: { eyebrow: "Troværdighed", title: "Et premiumtilbud, der ikke behøver at simulere størrelse for at skabe tillid.", intro: "Autoritet formidles gennem struktur, forankring og en mere moden markedsforståelse.", pillars: ["Uafhængig rådgiver med støtte fra eXp Group Spain.", "Mere end 25 års teknologisk erfaring anvendt på en bedre struktureret ejendomsproces.", "Territorial intelligens, optimerede processer og et selektivt netværk som reel forskel fra traditionel mæglerlogik."], credentialBadges: [{ text: "eXp Group Spain", detail: "Globalt netværk med 80.000+ aktive agenter" }, { text: "Mallorca Premium", detail: "Eksklusivt fokus på det sydvestlige Mallorca" }, { text: "International køberadgang", detail: "Kvalificerede profiler fra 40+ lande" }] },
   mallorcaFocus: { ...siteCopySv.mallorcaFocus, title: "Mallorca læses ikke som en flad liste over områder, men som et system af mikroområder og signaler.", intro: "Hvert område kræver sit eget kommercielle sprog. Samme æstetik fungerer ikke for Palma, Portals eller Valldemossa.", areasLabel: "Områder", clusters: siteCopySv.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma og højdeliggende boligområder", "Calviàs premiumkyst", "Sydvest: livsstil og kapital", "Serra og indlandskarakter"][index], title: ["Kapital, højtliggende boligmiljø og institutionel nærhed.", "Etableret kyst med livsstil og likviditet.", "Premiumindgang med livsstil, afkast og timing.", "Indland med karakter, landskab og boligsmæssig særpræg."][index], body: ["Palma, Son Vida, Cala Major, San Agustín og Cas Català samler lokal kapital, international efterspørgsel og aktiver, hvor urban fortælling og privatliv vejer lige så tungt som placering.", "Illetas, Bendinat, Portals, Costa d'en Blanes og Punta Negra fungerer som et system, hvor hav, marina, privatliv og premiumservice bliver centrale værdisignaler.", "Palmanova, Paguera og Costa de la Calma viser et mere fleksibelt premiumsegment, hvor livsstil, indgangsniveau og salgshastighed kræver præcis læsning af mikroområdet.", "Puerto de Andratx, Andratx, Esporles og Valldemossa danner et kluster, hvor arv, landskab, privatliv og boligfortælling vejer mere end nærhed til kysten."][index], audienceLabel: "Køberprofil", audience: ["Formuekøber, der prioriterer kapital, skoler, service og daglig logistik.", "International køber eller family office med fokus på prime-kyst og relationel kontinuitet.", "Hybrid investor, der søger balance mellem eget brug, efterspørgsel og kapitalbevarelse.", "Relationsdrevet UHNW-køber, der værdsætter særpræg, diskretion og aktiver med varig fortælling."][index] })) },
   investors: { ...siteCopySv.investors, eyebrow: "Investorer", title: "National og international kapital, der har brug for mindre udstilling og bedre kontekst.", intro: "Premiuminvestoren søger ikke blot udbud, men en pålidelig læsning af adgang, timing, værdibevarelse og relationel kontinuitet.", asideQuote: "Forskellen ligger ikke i at vise mere produkt, men i at forstå hvilken køber og hvilket tempo hvert aktiv kræver.", profiles: [{ title: "National formueinvestor", body: "Søger solide aktiver, værdibeskyttelse og territorial dømmekraft uden afhængighed af kommerciel støj." }, { title: "International livsstilsinvestor", body: "Prioriterer mikroområde, privatliv, marina, skoler, forbindelse og sikker eksekvering på tværs af grænser." }, { title: "Relationsdrevet UHNW-køber", body: "Kommer ikke ind via katalog, men gennem tillid, adgang, timing og det rigtige netværk." }] },
   valuation: { ...siteCopyEn.valuation, eyebrow: "Anmod om vurdering", title: "Hvad er din ejendom på Mallorca værd?", body: "Hvis du ejer en ejendom i Palma eller sydvestlige Mallorca og ønsker at kende dens reelle markedsværdi, kan vi udføre en fortrolig og uforpligtende vurdering.", checklistLabel: "Vurderingen inkluderer", checklist: ["Analyse af mikroområde og reel konkurrence", "Gennemgang af markeds-timing", "Vurdering tilpasset den rette køberprofil"], form: { ...siteCopyEn.valuation.form, name: "Navn", email: "E-mail", phone: "Telefon", address: "Ejendommens adresse", message: "Besked (valgfrit)", placeholders: { name: "Dit navn", email: "navn@domæne.dk", phone: "+45 ...", address: "Gade, område eller matrikelreference", message: "Del relevante detaljer." }, privacyLabel: "Jeg har læst og accepterer privatlivspolitikken.", submitLabel: "Anmod om fortrolig vurdering", successTitle: "Henvendelse modtaget", successBody: "Vi vender tilbage inden for to hverdage med en privat vurdering.", captchaError: "Gennemfør venligst sikkerhedsbekræftelsen." } },
-  sellerIntake: { ...siteCopySv.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning til ejere, købere og investorer.", body: "Vi vurderer hver henvendelse efter intention: salg, køb, vurdering eller investering. En fortrolig premiumtilgang til særlige aktiver i Palma og sydvestlige Mallorca.", checklistLabel: "Kriterier for privat vurdering", checklist: ["Mikroområde og reel konkurrence", "Positionerende fortælling", "Kvalificeret timing og adgang"], form: { ...siteCopySv.sellerIntake.form, intentLabel: "Hvordan kan vi hjælpe?", intentOptions: [{ value: "sell", label: "Jeg ønsker at sælge en ejendom" }, { value: "valuation", label: "Jeg ønsker en privat vurdering" }, { value: "buy", label: "Jeg ønsker at købe en premiumerjendom" }, { value: "invest", label: "Jeg søger investeringsmuligheder" }], name: "Navn", email: "E-mail", phone: "Telefon", zone: "Ejendommens område", propertyType: "Ejendomstype", commercialization: "Salgspræference", address: "Ejendommens adresse", budget: "Omtrentligt budget", timing: "Forventet tidslinje", ticket: "Investeringsniveau", goal: "Investeringsmål", message: "Besked", placeholders: { name: "Dit navn", email: "navn@domæne.dk", phone: "+45 ...", zone: "Son Vida, Portals, Andratx...", address: "Gade, område eller matrikelreference", budget: "f.eks. 1M - 3M €", timing: "f.eks. Straks, 6 måneder...", ticket: "f.eks. 500k+, 2M+...", goal: "f.eks. Formue, Afkast...", message: "Fortæl os mere om din henvendelse." }, selectPlaceholder: "Vælg en mulighed", propertyTypeOptions: ["Villa", "Penthouse", "Premiumlejlighed", "Finca"], commercializationOptions: ["Fortrolig vurdering", "Eksklusivt salg", "Selektivt salg uden masseportal"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Straks", "1-3 måneder", "3-6 måneder", "Blot undersøger"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Send privat henvendelse" } },
+  sellerIntake: { ...siteCopySv.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning til ejere, købere og investorer.", body: "Vi vurderer hver henvendelse efter intention: salg, køb, vurdering eller investering. En fortrolig premiumtilgang til særlige aktiver i Palma og sydvestlige Mallorca.", checklistLabel: "Kriterier for privat vurdering", checklist: ["Mikroområde og reel konkurrence", "Positionerende fortælling", "Kvalificeret timing og adgang"], form: { ...siteCopySv.sellerIntake.form, intentLabel: "Hvordan kan vi hjælpe?", intentOptions: [{ value: "sell", label: "Jeg ønsker at sælge en ejendom" }, { value: "valuation", label: "Jeg ønsker en privat vurdering" }, { value: "buy", label: "Jeg ønsker at købe en premiumerjendom" }, { value: "invest", label: "Jeg søger investeringsmuligheder" }, { value: "holiday_rental", label: "Jeg vil udleje min ejendom som feriebolig" }], holidayRentalObjective: "Udlejningsmål", holidayRentalAvailability: "Forventet tilgængelighed", holidayRentalObjectiveOptions: ["Maksimalt afkast", "Blandet brug (privat + udlejning)", "Full-service forvaltning"], name: "Navn", email: "E-mail", phone: "Telefon", zone: "Ejendommens område", propertyType: "Ejendomstype", commercialization: "Salgspræference", address: "Ejendommens adresse", budget: "Omtrentligt budget", timing: "Forventet tidslinje", ticket: "Investeringsniveau", goal: "Investeringsmål", message: "Besked", placeholders: { name: "Dit navn", email: "navn@domæne.dk", phone: "+45 ...", zone: "Son Vida, Portals, Andratx...", address: "Gade, område eller matrikelreference", budget: "f.eks. 1M - 3M €", timing: "f.eks. Straks, 6 måneder...", ticket: "f.eks. 500k+, 2M+...", goal: "f.eks. Formue, Afkast...", message: "Fortæl os mere om din henvendelse." }, selectPlaceholder: "Vælg en mulighed", propertyTypeOptions: ["Villa", "Penthouse", "Premiumlejlighed", "Finca"], commercializationOptions: ["Fortrolig vurdering", "Eksklusivt salg", "Selektivt salg uden masseportal"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Straks", "1-3 måneder", "3-6 måneder", "Blot undersøger"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Send privat henvendelse" } },
   partners: { ...siteCopySv.partners, eyebrow: "Synergi · Partnernetværk", title: "Et selektivt netværk for samarbejdspartnere, der forstår premiummarkedet.", body: "Anclora Synergi er den private portal for validerede partnere med territorial dømmekraft.", features: ["Selektiv adgang til delte muligheder", "Samarbejde med fokus på mikroområde og aktivkvalitet", "Kureret optagelse uden kommerciel friktion"], form: { ...siteCopySv.partners.form, name: "Navn", email: "E-mail", serviceCategory: "Servicekategori", serviceSummary: "Beskriv din profil og arbejdsmetode", placeholders: { name: "Dit navn eller virksomhed", email: "navn@domæne.dk", serviceSummary: "Beskriv din professionelle profil, speciale og hvordan du kunne samarbejde med Anclora (min. 20 tegn)." }, selectPlaceholder: "Vælg kategori", serviceCategoryOptions: [{ value: "real_estate", label: "Ejendomme" }, { value: "professional", label: "Professionel / Juridisk / Finans" }, { value: "luxury", label: "Lifestyle & Luksus" }, { value: "eco", label: "Bæredygtighed" }, { value: "other", label: "Andet" }], privacyLabel: "Jeg har læst og accepterer privatlivspolitikken.", submitLabel: "Anmod om adgang til Synergi", successTitle: "Henvendelse modtaget", successBody: "Vi gennemgår din profil og vender tilbage inden for syv dage." } },
   dataLab: { ...siteCopySv.dataLab, title: "Territoriale signaler til at læse premiummarkedet roligere og mindre reaktivt.", intro: "Vi viser ikke dashboards. Vi viser signaler, der hjælper med at forstå aktivkvalitet, efterspørgselspres og premiumkøberens følsomhed.", lead: { eyebrow: "Signal 01", title: "Mangel på velpositionerede prime-aktiver fremmer mere selektive og mindre reaktive beslutninger.", body: "I Palma og sydvest styrker begrænset udbud, vedvarende international efterspørgsel og interesse for turnkey-aktiver værdien af godt forberedte aktiver." }, whitelist: { ...siteCopySv.dataLab.whitelist, form: { ...siteCopySv.dataLab.whitelist.form, intendedUse: "Hvorfor er du interesseret i Data Lab?", placeholders: { name: "Dit navn eller virksomhed", email: "navn@domæne.dk", intendedUse: "Beskriv kort din interesse og investorprofil (min. 20 tegn)." }, privacyLabel: "Jeg har læst og accepterer privatlivspolitikken.", submitLabel: "Anmod om tidlig adgang", successTitle: "På ventelisten", successBody: "Vi giver dig besked, når vi åbner det næste adgangsblok for din profil." } } },
   contact: { ...siteCopyDa.contact, body: "Hvis du overvejer salg, investering eller en ejendomsmulighed i Palma eller sydvestlige Mallorca, kan vi vurdere sagen med dømmekraft, fortrolighed og premiumfokus.", responseNote: "Samtaler håndteres selektivt og med personlig opfølgning.", detailsTitle: "Kontaktoplysninger" },
@@ -2780,15 +3174,17 @@ Object.assign(siteCopyDa, {
   footer: { ...siteCopyDa.footer, columns: [{ title: "Kontakt", links: [{ label: "Åbn privat samtale", href: "#contacto" }] }, { title: "Selektiv adgang", links: [{ label: "Mallorca", href: "#mallorca-focus" }, { label: "Investorer", href: "#inversores" }, { label: "Kunder", href: "#clientes" }, { label: "Partnere", href: "#partners" }, { label: "Data Lab", href: "#data-lab" }] }, { title: "Juridisk", links: [{ label: "Privatliv", href: "/privacy" }, { label: "Vilkår", href: "/terms" }, { label: "Juridisk information", href: "/legal" }] }] },
   cookies: { ...siteCopyDa.cookies, title: "Cookieindstillinger", description: "Dette websted bruger cookies til at give en bedre oplevelse. Du kan administrere dine præferencer når som helst.", acceptAll: "Accepter alle", settings: "Indstillinger", settingsTitle: "Administrer cookies", necessary: { title: "Nødvendige cookies", description: "Disse cookies er nødvendige for, at webstedet fungerer." }, analytics: { title: "Analysecookies", description: "De hjælper os med at forstå brugen af webstedet." }, marketing: { title: "Marketingcookies", description: "Bruges til relevante annoncer." }, savePreferences: "Gem præferencer", back: "Tilbage", rejectAll: "Afvis valgfrie" },
   scroll: { up: "Op", down: "Ned" },
+  howWeWork: { eyebrow: "Proces · Sådan arbejder vi", title: "Fire trin til en operation baseret på dømmekraft og diskretion.", steps: [{ number: "01", title: "Privat vurdering", description: "Vi analyserer aktivet, mikroområdet og ejerens profil, inden vi aftaler nogen handling." }, { number: "02", title: "Territorial strategi", description: "Vi definerer værdinarrativet, positioneringen og den rette køberprofil for aktivet." }, { number: "03", title: "Kvalificeret adgang", description: "Vi aktiverer adgang til udvalgte købere og investorer uden offentlig eksponering af aktivet." }, { number: "04", title: "Opfølgning og afslutning", description: "Vi ledsager hvert samtale frem til afslutning med dømmekraft, fortrolighed og operationel støtte." }] },
+  holidayRental: { eyebrow: "Premiumejere · Ferieboligudlejning i topklasse", title: "Opnå indkomst fra din Mallorca-ejendom uden at opgive diskretion, kontrol eller premiumpositionering.", body: "For villaer, fincas og unikke lejligheder bør ferieboligudlejning ikke behandles som et masseturistprodukt. Vi evaluerer aktivets potentiale, mikroområdet, gæsteprofilen og den operative gennemførlighed.", benefits: ["Privat evaluering af udlejningspotentiale.", "Positionering tilpasset premiumaktiver.", "Rekruttering rettet mod kvalificerede gæster.", "Mere struktureret operativ og dokumentarisk forberedelse.", "Mulighed for at kombinere eget brug, indkomst og fremtidigt salg."], technologyNote: "Driften kan understøttes af Anclora SyncXML-teknologi til at gennemgå bookingdata og forberede gennemgåeligt XML til SES.HOSPEDAJES-flowet.", primaryCta: "Evaluér udlejningspotentiale", secondaryCta: "Åbn privat samtale" },
   trustBadgeText: "International støtte og operationel tillid gennem eXp Group Spain.",
 });
 
 Object.assign(siteCopyNl, {
-  credibility: { eyebrow: "Geloofwaardigheid", title: "Een premiumvoorstel dat geen schaal hoeft te simuleren om vertrouwen te wekken.", intro: "Autoriteit ontstaat hier uit structuur, rugdekking en een volwassen marktlezing.", pillars: ["Onafhankelijke adviseur met steun van eXp Group Spain.", "Meer dan 25 jaar technologische ervaring toegepast op een beter gestructureerde vastgoedaanpak.", "Territoriale intelligentie, geoptimaliseerde processen en een selectief netwerk als werkelijk onderscheid."] },
+  credibility: { eyebrow: "Geloofwaardigheid", title: "Een premiumvoorstel dat geen schaal hoeft te simuleren om vertrouwen te wekken.", intro: "Autoriteit ontstaat hier uit structuur, rugdekking en een volwassen marktlezing.", pillars: ["Onafhankelijke adviseur met steun van eXp Group Spain.", "Meer dan 25 jaar technologische ervaring toegepast op een beter gestructureerde vastgoedaanpak.", "Territoriale intelligentie, geoptimaliseerde processen en een selectief netwerk als werkelijk onderscheid."], credentialBadges: [{ text: "eXp Group Spain", detail: "Globaal netwerk van 80.000+ actieve agenten" }, { text: "Mallorca Premium", detail: "Exclusieve focus op Zuidwest-Mallorca" }, { text: "Internationale koperstoegang", detail: "Gekwalificeerde profielen uit 40+ landen" }] },
   mallorcaFocus: { ...siteCopyDa.mallorcaFocus, title: "Mallorca is geen vlakke lijst met zones, maar een systeem van microzones en signalen.", intro: "Elke enclave vraagt om een eigen commerciële taal. Palma, Portals en Valldemossa hebben niet dezelfde esthetiek of waardeverhaallijn nodig.", areasLabel: "Gebieden", clusters: siteCopyDa.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma en residentiële hoogte", "Premiumkust van Calvià", "Zuidwest: lifestyle en vermogen", "Serra en binnenlandkarakter"][index], title: ["Kapitaal, residentiële hoogte en institutionele nabijheid.", "Gevestigde kust met lifestyle en liquiditeit.", "Premiuminstap met lifestyle, rendement en timing.", "Binnenland met karakter, landschap en residentiële eigenheid."][index], body: ["Palma, Son Vida, Cala Major, San Agustín en Cas Català combineren lokaal kapitaal, internationale vraag en objecten waar stedelijk verhaal en privacy even zwaar wegen als locatie.", "Illetas, Bendinat, Portals, Costa d'en Blanes en Punta Negra vormen een systeem waarin zee, marina, privacy en premiumdiensten duidelijke waardesignalen zijn.", "Palmanova, Paguera en Costa de la Calma tonen een flexibeler premiumsegment waar lifestyle, instapniveau en verkoopsnelheid fijnzinnige microzonekennis vragen.", "Puerto de Andratx, Andratx, Esporles en Valldemossa vormen een cluster waar erfgoed, landschap, privacy en woonverhaal meer wegen dan kustnabijheid."][index], audienceLabel: "Kopersprofiel", audience: ["Vermogenskoper die kapitaal, scholen, diensten en dagelijkse logistiek prioriteert.", "Internationale koper of family office gericht op prime kust en relationele continuïteit.", "Hybride investeerder die balans zoekt tussen eigen gebruik, vraag en vermogensbehoud.", "Relationele UHNW-koper die eigenheid, discretie en objecten met blijvend verhaal waardeert."][index] })) },
   investors: { ...siteCopyDa.investors, eyebrow: "Investeerders", title: "Nationaal en internationaal kapitaal dat minder etalage en meer context nodig heeft.", intro: "De premiuminvesteerder zoekt niet alleen aanbod, maar een betrouwbare interpretatie van toegang, timing, waardebehoud en relationele continuïteit.", asideQuote: "Het verschil zit niet in meer product tonen, maar in beter begrijpen welke koper en welk tempo elk object vraagt." },
   valuation: { ...siteCopyEn.valuation, eyebrow: "Waardering aanvragen", title: "Wat is uw eigendom op Mallorca waard?", body: "Als u een eigendom bezit in Palma of Zuidwest-Mallorca en de reële marktwaarde wilt kennen, kunnen we een vertrouwelijke en vrijblijvende waardering opstellen.", checklistLabel: "De waardering omvat", checklist: ["Analyse van microzone en reële concurrentie", "Beoordeling van markttiming", "Waardering afgestemd op het juiste kopersprofiel"], form: { ...siteCopyEn.valuation.form, name: "Naam", email: "E-mail", phone: "Telefoon", address: "Adres van het object", message: "Bericht (optioneel)", placeholders: { name: "Uw naam", email: "naam@domein.nl", phone: "+31 ...", address: "Straat, gebied of kadastreferentie", message: "Deel relevante details." }, privacyLabel: "Ik heb het privacybeleid gelezen en accepteer het.", submitLabel: "Vertrouwelijke waardering aanvragen", successTitle: "Aanvraag ontvangen", successBody: "We nemen binnen twee werkdagen contact met u op met een private waardering.", captchaError: "Voltooi de beveiligingsverificatie." } },
-  sellerIntake: { ...siteCopyDa.sellerIntake, eyebrow: "Klanten", title: "Selectief advies voor eigenaren, kopers en investeerders.", body: "We beoordelen elke aanvraag naar intentie: verkoop, aankoop, waardering of investering. Een vertrouwelijke premiumaanpak voor bijzondere objecten in Palma en Zuidwest-Mallorca.", checklistLabel: "Criteria voor private beoordeling", checklist: ["Microzone en reële concurrentie", "Positioneringsverhaal", "Gekwalificeerde timing en toegang"], form: { ...siteCopyDa.sellerIntake.form, intentLabel: "Hoe kunnen we u helpen?", intentOptions: [{ value: "sell", label: "Ik wil een object verkopen" }, { value: "valuation", label: "Ik wil een private waardering" }, { value: "buy", label: "Ik wil een premiumobject kopen" }, { value: "invest", label: "Ik zoek investeringsmogelijkheden" }], name: "Naam", email: "E-mail", phone: "Telefoon", zone: "Gebied van het object", propertyType: "Type object", commercialization: "Voorkeur commercialisering", address: "Adres van het object", budget: "Geschat budget", timing: "Verwachte tijdlijn", ticket: "Investeringsniveau", goal: "Investeringsdoel", message: "Bericht", placeholders: { name: "Uw naam", email: "naam@domein.nl", phone: "+31 ...", zone: "Son Vida, Portals, Andratx...", address: "Straat, gebied of kadastreferentie", budget: "bijv. 1M - 3M €", timing: "bijv. Direct, 6 maanden...", ticket: "bijv. 500k+, 2M+...", goal: "bijv. Vermogen, Rendement...", message: "Vertel ons meer over uw aanvraag." }, selectPlaceholder: "Selecteer een optie", propertyTypeOptions: ["Villa", "Penthouse", "Premiumappartement", "Finca"], commercializationOptions: ["Vertrouwelijke beoordeling", "Exclusieve verkoop", "Selectieve verkoop zonder massamarktportal"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Direct", "1-3 maanden", "3-6 maanden", "Alleen verkennen"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Privé aanvraag verzenden" } },
+  sellerIntake: { ...siteCopyDa.sellerIntake, eyebrow: "Klanten", title: "Selectief advies voor eigenaren, kopers en investeerders.", body: "We beoordelen elke aanvraag naar intentie: verkoop, aankoop, waardering of investering. Een vertrouwelijke premiumaanpak voor bijzondere objecten in Palma en Zuidwest-Mallorca.", checklistLabel: "Criteria voor private beoordeling", checklist: ["Microzone en reële concurrentie", "Positioneringsverhaal", "Gekwalificeerde timing en toegang"], form: { ...siteCopyDa.sellerIntake.form, intentLabel: "Hoe kunnen we u helpen?", intentOptions: [{ value: "sell", label: "Ik wil een object verkopen" }, { value: "valuation", label: "Ik wil een private waardering" }, { value: "buy", label: "Ik wil een premiumobject kopen" }, { value: "invest", label: "Ik zoek investeringsmogelijkheden" }, { value: "holiday_rental", label: "Ik wil mijn object verhuren als vakantiewoning" }], holidayRentalObjective: "Verhuurdoel", holidayRentalAvailability: "Verwachte beschikbaarheid", holidayRentalObjectiveOptions: ["Maximaal rendement", "Gemengd gebruik (privé + verhuur)", "Full-service beheer"], name: "Naam", email: "E-mail", phone: "Telefoon", zone: "Gebied van het object", propertyType: "Type object", commercialization: "Voorkeur commercialisering", address: "Adres van het object", budget: "Geschat budget", timing: "Verwachte tijdlijn", ticket: "Investeringsniveau", goal: "Investeringsdoel", message: "Bericht", placeholders: { name: "Uw naam", email: "naam@domein.nl", phone: "+31 ...", zone: "Son Vida, Portals, Andratx...", address: "Straat, gebied of kadastreferentie", budget: "bijv. 1M - 3M €", timing: "bijv. Direct, 6 maanden...", ticket: "bijv. 500k+, 2M+...", goal: "bijv. Vermogen, Rendement...", message: "Vertel ons meer over uw aanvraag." }, selectPlaceholder: "Selecteer een optie", propertyTypeOptions: ["Villa", "Penthouse", "Premiumappartement", "Finca"], commercializationOptions: ["Vertrouwelijke beoordeling", "Exclusieve verkoop", "Selectieve verkoop zonder massamarktportal"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Direct", "1-3 maanden", "3-6 maanden", "Alleen verkennen"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Privé aanvraag verzenden" } },
   partners: { ...siteCopyDa.partners, eyebrow: "Synergi · Partnernetwerk", title: "Een selectief netwerk voor partners die de premiummarkt begrijpen.", body: "Anclora Synergi is de private portal voor gevalideerde partners met territoriaal oordeel.", features: ["Selectieve toegang tot gedeelde kansen", "Samenwerking met focus op microzone en objectkwaliteit", "Gecureerd toelatingsproces zonder commerciële frictie"], form: { ...siteCopyDa.partners.form, name: "Naam", email: "E-mail", serviceCategory: "Servicecategorie", serviceSummary: "Beschrijf uw profiel en werkwijze", placeholders: { name: "Uw naam of bedrijf", email: "naam@domein.nl", serviceSummary: "Beschrijf uw professioneel profiel, specialisatie en hoe u met Anclora zou kunnen samenwerken (min. 20 tekens)." }, selectPlaceholder: "Selecteer een categorie", serviceCategoryOptions: [{ value: "real_estate", label: "Vastgoed" }, { value: "professional", label: "Professioneel / Juridisch / Financieel" }, { value: "luxury", label: "Lifestyle & Luxe" }, { value: "eco", label: "Duurzaamheid" }, { value: "other", label: "Overig" }], privacyLabel: "Ik heb het privacybeleid gelezen en accepteer het.", submitLabel: "Toegang aanvragen tot Synergi", successTitle: "Aanvraag ontvangen", successBody: "We beoordelen uw profiel en nemen binnen zeven dagen contact met u op." } },
   dataLab: { ...siteCopyDa.dataLab, title: "Territoriale signalen om de premiummarkt rustiger en minder reactief te lezen.", intro: "We tonen geen dashboards. We tonen signalen die objectkwaliteit, vraagdruk en gevoeligheid van premiumkopers helpen duiden.", whitelist: { ...siteCopyDa.dataLab.whitelist, form: { ...siteCopyDa.dataLab.whitelist.form, intendedUse: "Waarom bent u geïnteresseerd in het Data Lab?", placeholders: { name: "Uw naam of bedrijf", email: "naam@domein.nl", intendedUse: "Beschrijf kort uw interesse en investeursprofiel (min. 20 tekens)." }, privacyLabel: "Ik heb het privacybeleid gelezen en accepteer het.", submitLabel: "Vroege toegang aanvragen", successTitle: "Op de wachtlijst", successBody: "We informeren u wanneer het volgende toegangsblok voor uw profiel opengaat." } } },
   contact: { ...siteCopyNl.contact, body: "Als u verkoop, investering of een vastgoedkans in Palma of Zuidwest-Mallorca overweegt, kunnen we uw situatie met oordeel, vertrouwelijkheid en premiumfocus beoordelen.", responseNote: "Gesprekken worden selectief en persoonlijk opgevolgd.", detailsTitle: "Contactgegevens" },
@@ -2796,15 +3192,17 @@ Object.assign(siteCopyNl, {
   footer: { ...siteCopyNl.footer, columns: [{ title: "Contact", links: [{ label: "Privégesprek openen", href: "#contacto" }] }, { title: "Selectieve toegang", links: [{ label: "Mallorca", href: "#mallorca-focus" }, { label: "Investeerders", href: "#inversores" }, { label: "Klanten", href: "#clientes" }, { label: "Partners", href: "#partners" }, { label: "Data Lab", href: "#data-lab" }] }, { title: "Juridisch", links: [{ label: "Privacy", href: "/privacy" }, { label: "Voorwaarden", href: "/terms" }, { label: "Juridische mededeling", href: "/legal" }] }] },
   cookies: { ...siteCopyNl.cookies, title: "Cookievoorkeuren", description: "Deze site gebruikt cookies voor een betere ervaring. U kunt uw voorkeuren altijd beheren.", acceptAll: "Alles accepteren", settings: "Instellingen", settingsTitle: "Cookies beheren", necessary: { title: "Noodzakelijke cookies", description: "Deze cookies zijn nodig voor de werking van de site." }, analytics: { title: "Analysecookies", description: "Ze helpen ons te begrijpen hoe bezoekers de site gebruiken." }, marketing: { title: "Marketingcookies", description: "Worden gebruikt voor relevante advertenties." }, savePreferences: "Voorkeuren opslaan", back: "Terug", rejectAll: "Optionele weigeren" },
   scroll: { up: "Omhoog", down: "Omlaag" },
+  howWeWork: { eyebrow: "Proces · Hoe wij werken", title: "Vier stappen voor een operatie gebouwd op oordeel en discretie.", steps: [{ number: "01", title: "Privé beoordeling", description: "We analyseren het actief, de microlocatie en het profiel van de eigenaar voordat we actie ondernemen." }, { number: "02", title: "Territoriale strategie", description: "We definiëren het waardenarrief, de positionering en het juiste kopersprofiel voor het actief." }, { number: "03", title: "Gekwalificeerde toegang", description: "We activeren toegang tot geselecteerde kopers en investeerders zonder publieke blootstelling van het actief." }, { number: "04", title: "Opvolging en afsluiting", description: "We begeleiden elk gesprek tot afsluiting met oordeel, vertrouwelijkheid en operationele ondersteuning." }] },
+  holidayRental: { eyebrow: "Premiumeigenaren · Vakantieverhuur in het topsegment", title: "Verdien aan uw Mallorca-woning zonder afstand te doen van discretie, controle of premiumpositionering.", body: "Voor villa's, finca's en unieke appartementen mag vakantieverhuur niet als een massatoerismeproduct worden behandeld. We beoordelen het potentieel van het actief, de microlocatie, het gastprofiel en de operationele haalbaarheid.", benefits: ["Privé evaluatie van verhuringspotentieel.", "Positionering afgestemd op premiumactiva.", "Werving gericht op gekwalificeerde gasten.", "Meer gestructureerde operationele en documentaire voorbereiding.", "Mogelijkheid om eigen gebruik, inkomen en toekomstige verkoop te combineren."], technologyNote: "De operatie kan worden ondersteund door Anclora SyncXML-technologie voor het beoordelen van boekingsgegevens en het voorbereiden van controleerbare XML voor de SES.HOSPEDAJES-stroom.", primaryCta: "Verhuringspotentieel beoordelen", secondaryCta: "Privégesprek openen" },
   trustBadgeText: "Internationale steun en operationeel vertrouwen via eXp Group Spain.",
 });
 
 Object.assign(siteCopyIt, {
-  credibility: { eyebrow: "Credibilità", title: "Una proposta premium che non ha bisogno di simulare scala per generare fiducia.", intro: "L'autorevolezza nasce da struttura, supporto e una lettura più matura del mercato.", pillars: ["Agente indipendente con il supporto di eXp Group Spain.", "Oltre 25 anni di esperienza tecnologica applicati a un'operatività immobiliare più strutturata.", "Intelligenza territoriale, processi ottimizzati e rete selettiva come differenza reale."] },
+  credibility: { eyebrow: "Credibilità", title: "Una proposta premium che non ha bisogno di simulare scala per generare fiducia.", intro: "L'autorevolezza nasce da struttura, supporto e una lettura più matura del mercato.", pillars: ["Agente indipendente con il supporto di eXp Group Spain.", "Oltre 25 anni di esperienza tecnologica applicati a un'operatività immobiliare più strutturata.", "Intelligenza territoriale, processi ottimizzati e rete selettiva come differenza reale."], credentialBadges: [{ text: "eXp Group Spain", detail: "Rete globale di 80.000+ agenti attivi" }, { text: "Mallorca Premium", detail: "Focus esclusivo sul sud-ovest di Maiorca" }, { text: "Accesso acquirenti internazionali", detail: "Profili qualificati da 40+ paesi" }] },
   mallorcaFocus: { ...siteCopyNl.mallorcaFocus, title: "Mallorca non si legge come una lista piatta di zone, ma come un sistema di microzone e segnali.", intro: "Ogni enclave richiede un linguaggio commerciale proprio. Palma, Portals e Valldemossa non hanno bisogno della stessa estetica né dello stesso racconto di valore.", areasLabel: "Aree", clusters: siteCopyNl.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma e residenziale in altura", "Costa premium di Calvià", "Sud-ovest: lifestyle e patrimonio", "Serra e carattere dell'interno"][index], title: ["Capitale, residenziale elevato e accesso istituzionale.", "Costa consolidata con lifestyle e liquidità.", "Ingresso premium con lifestyle, rendimento e timing.", "Interno con carattere, paesaggio e singolarità residenziale."][index], body: ["Palma, Son Vida, Cala Major, San Agustín e Cas Català concentrano capitale locale, domanda internazionale e asset in cui racconto urbano e privacy contano quanto la posizione.", "Illetas, Bendinat, Portals, Costa d'en Blanes e Punta Negra funzionano come un sistema in cui mare, marina, privacy e servizi premium diventano segnali chiave di valore.", "Palmanova, Paguera e Costa de la Calma mostrano una fascia premium più flessibile, dove lifestyle, ticket d'ingresso e velocità commerciale richiedono criterio di microzona.", "Puerto de Andratx, Andratx, Esporles e Valldemossa formano un cluster in cui patrimonio, paesaggio, privacy e racconto residenziale pesano più della vicinanza alla costa."][index], audienceLabel: "Profilo acquirente", audience: ["Acquirente patrimoniale che privilegia capitale, scuole, servizi e logistica quotidiana.", "Acquirente internazionale o family office orientato a costa prime e continuità relazionale.", "Investitore ibrido che cerca equilibrio tra uso personale, domanda e conservazione patrimoniale.", "Acquirente UHNW relazionale che apprezza singolarità, discrezione e asset con racconto duraturo."][index] })) },
   investors: { ...siteCopyNl.investors, eyebrow: "Investitori", title: "Capitale nazionale e internazionale che richiede meno vetrina e più contesto.", intro: "L'investitore premium non cerca solo stock; cerca una lettura affidabile di accesso, timing, conservazione del valore e continuità relazionale.", asideQuote: "La differenza non è mostrare più prodotto, ma capire quale acquirente e quale ritmo richiede ogni asset." },
   valuation: { ...siteCopyEn.valuation, eyebrow: "Richiedi valutazione", title: "Quanto vale il tuo immobile a Mallorca?", body: "Se possiedi un immobile a Palma o nel sud-ovest di Mallorca e vuoi conoscerne il valore reale di mercato, possiamo eseguire una valutazione riservata e senza impegno.", checklistLabel: "La valutazione include", checklist: ["Analisi della microzona e della concorrenza reale", "Lettura del timing di mercato", "Valutazione orientata al profilo acquirente adatto"], form: { ...siteCopyEn.valuation.form, name: "Nome", email: "E-mail", phone: "Telefono", address: "Indirizzo dell'immobile", message: "Messaggio (opzionale)", placeholders: { name: "Il tuo nome", email: "nome@dominio.it", phone: "+39 ...", address: "Via, zona o riferimento catastale", message: "Condividi dettagli rilevanti." }, privacyLabel: "Ho letto e accetto la politica sulla privacy.", submitLabel: "Richiedi valutazione riservata", successTitle: "Richiesta ricevuta", successBody: "Ti risponderemo entro due giorni lavorativi con una valutazione privata.", captchaError: "Completa la verifica di sicurezza." } },
-  sellerIntake: { ...siteCopyNl.sellerIntake, eyebrow: "Clienti", title: "Consulenza selettiva per proprietari, acquirenti e investitori.", body: "Valutiamo ogni richiesta in base all'intenzione: vendita, acquisto, valutazione o investimento. Approccio premium e riservato per asset singolari a Palma e nel sud-ovest di Mallorca.", checklistLabel: "Criteri di valutazione privata", checklist: ["Microzona e concorrenza reale", "Racconto di posizionamento", "Timing e accesso qualificato"], form: { ...siteCopyNl.sellerIntake.form, intentLabel: "Come possiamo aiutarti?", intentOptions: [{ value: "sell", label: "Voglio vendere un immobile" }, { value: "valuation", label: "Voglio una valutazione privata" }, { value: "buy", label: "Voglio acquistare un immobile premium" }, { value: "invest", label: "Cerco opportunità di investimento" }], name: "Nome", email: "E-mail", phone: "Telefono", zone: "Zona dell'immobile", propertyType: "Tipo di immobile", commercialization: "Preferenza di commercializzazione", address: "Indirizzo dell'immobile", budget: "Budget approssimativo", timing: "Tempistica prevista", ticket: "Ticket di investimento", goal: "Obiettivo di investimento", message: "Messaggio", placeholders: { name: "Il tuo nome", email: "nome@dominio.it", phone: "+39 ...", zone: "Son Vida, Portals, Andratx...", address: "Via, zona o riferimento catastale", budget: "es. 1M - 3M €", timing: "es. Immediato, 6 mesi...", ticket: "es. 500k+, 2M+...", goal: "es. Patrimonio, Rendimento...", message: "Raccontaci i dettagli della tua richiesta." }, selectPlaceholder: "Seleziona un'opzione", propertyTypeOptions: ["Villa", "Attico", "Appartamento premium", "Finca"], commercializationOptions: ["Valutazione riservata", "Vendita in esclusiva", "Vendita selettiva senza portale di massa"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Immediato", "1-3 mesi", "3-6 mesi", "Solo esplorazione"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Invia richiesta privata" } },
+  sellerIntake: { ...siteCopyNl.sellerIntake, eyebrow: "Clienti", title: "Consulenza selettiva per proprietari, acquirenti e investitori.", body: "Valutiamo ogni richiesta in base all'intenzione: vendita, acquisto, valutazione o investimento. Approccio premium e riservato per asset singolari a Palma e nel sud-ovest di Mallorca.", checklistLabel: "Criteri di valutazione privata", checklist: ["Microzona e concorrenza reale", "Racconto di posizionamento", "Timing e accesso qualificato"], form: { ...siteCopyNl.sellerIntake.form, intentLabel: "Come possiamo aiutarti?", intentOptions: [{ value: "sell", label: "Voglio vendere un immobile" }, { value: "valuation", label: "Voglio una valutazione privata" }, { value: "buy", label: "Voglio acquistare un immobile premium" }, { value: "invest", label: "Cerco opportunità di investimento" }, { value: "holiday_rental", label: "Voglio affittare il mio immobile come casa vacanza" }], holidayRentalObjective: "Obiettivo di locazione", holidayRentalAvailability: "Disponibilità prevista", holidayRentalObjectiveOptions: ["Rendimento massimo", "Uso misto (personale + affitto)", "Gestione full-service"], name: "Nome", email: "E-mail", phone: "Telefono", zone: "Zona dell'immobile", propertyType: "Tipo di immobile", commercialization: "Preferenza di commercializzazione", address: "Indirizzo dell'immobile", budget: "Budget approssimativo", timing: "Tempistica prevista", ticket: "Ticket di investimento", goal: "Obiettivo di investimento", message: "Messaggio", placeholders: { name: "Il tuo nome", email: "nome@dominio.it", phone: "+39 ...", zone: "Son Vida, Portals, Andratx...", address: "Via, zona o riferimento catastale", budget: "es. 1M - 3M €", timing: "es. Immediato, 6 mesi...", ticket: "es. 500k+, 2M+...", goal: "es. Patrimonio, Rendimento...", message: "Raccontaci i dettagli della tua richiesta." }, selectPlaceholder: "Seleziona un'opzione", propertyTypeOptions: ["Villa", "Attico", "Appartamento premium", "Finca"], commercializationOptions: ["Valutazione riservata", "Vendita in esclusiva", "Vendita selettiva senza portale di massa"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Immediato", "1-3 mesi", "3-6 mesi", "Solo esplorazione"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Invia richiesta privata" } },
   partners: { ...siteCopyNl.partners, eyebrow: "Synergi · Rete partner", title: "Una rete selettiva per partner che comprendono il mercato premium.", body: "Anclora Synergi è il portale privato per partner validati con criterio territoriale.", features: ["Accesso selettivo a opportunità condivise", "Collaborazione centrata su microzona e qualità dell'asset", "Processo di ammissione curato e senza frizione commerciale"], form: { ...siteCopyNl.partners.form, name: "Nome", email: "E-mail", serviceCategory: "Tipo di servizio", serviceSummary: "Descrivi il tuo profilo e il tuo metodo di lavoro", placeholders: { name: "Il tuo nome o azienda", email: "nome@dominio.it", serviceSummary: "Descrivi il tuo profilo professionale, la specializzazione e come potresti collaborare con Anclora (min. 20 caratteri)." }, selectPlaceholder: "Seleziona una categoria", serviceCategoryOptions: [{ value: "real_estate", label: "Immobiliare" }, { value: "professional", label: "Professionale / Legale / Finanziario" }, { value: "luxury", label: "Lifestyle & Lusso" }, { value: "eco", label: "Sostenibilità" }, { value: "other", label: "Altro" }], privacyLabel: "Ho letto e accetto la politica sulla privacy.", submitLabel: "Richiedi accesso a Synergi", successTitle: "Richiesta ricevuta", successBody: "Esamineremo il tuo profilo e ti risponderemo entro sette giorni." } },
   dataLab: { ...siteCopyNl.dataLab, title: "Segnali territoriali per leggere il mercato premium con più calma e meno reazione.", intro: "Non presentiamo dashboard. Presentiamo segnali che aiutano a inquadrare qualità dell'asset, pressione della domanda e sensibilità dell'acquirente premium.", whitelist: { ...siteCopyNl.dataLab.whitelist, form: { ...siteCopyNl.dataLab.whitelist.form, intendedUse: "Perché sei interessato al Data Lab?", placeholders: { name: "Il tuo nome o azienda", email: "nome@dominio.it", intendedUse: "Descrivi brevemente il tuo interesse e il profilo investitore (min. 20 caratteri)." }, privacyLabel: "Ho letto e accetto la politica sulla privacy.", submitLabel: "Richiedi accesso anticipato", successTitle: "In lista d'attesa", successBody: "Ti informeremo quando apriremo il prossimo blocco di accesso per il tuo profilo." } } },
   contact: { ...siteCopyIt.contact, body: "Se stai valutando una vendita, un investimento o un'opportunità patrimoniale a Palma o nel sud-ovest di Mallorca, possiamo studiare il tuo caso con criterio, riservatezza e approccio premium.", responseNote: "Le conversazioni sono gestite in modo selettivo con riscontro personale.", detailsTitle: "Contatti" },
@@ -2812,15 +3210,17 @@ Object.assign(siteCopyIt, {
   footer: { ...siteCopyIt.footer, columns: [{ title: "Contatto", links: [{ label: "Apri conversazione privata", href: "#contacto" }] }, { title: "Accesso selettivo", links: [{ label: "Mallorca", href: "#mallorca-focus" }, { label: "Investitori", href: "#inversores" }, { label: "Clienti", href: "#clientes" }, { label: "Partner", href: "#partners" }, { label: "Data Lab", href: "#data-lab" }] }, { title: "Legale", links: [{ label: "Privacy", href: "/privacy" }, { label: "Termini", href: "/terms" }, { label: "Note legali", href: "/legal" }] }] },
   cookies: { ...siteCopyIt.cookies, title: "Preferenze cookie", description: "Questo sito utilizza cookie per offrirti un'esperienza migliore. Puoi gestire le preferenze in qualsiasi momento.", acceptAll: "Accetta tutti", settings: "Impostazioni", settingsTitle: "Gestisci cookie", necessary: { title: "Cookie necessari", description: "Sono necessari per il funzionamento del sito." }, analytics: { title: "Cookie di analisi", description: "Ci aiutano a capire come i visitatori usano il sito." }, marketing: { title: "Cookie marketing", description: "Sono usati per mostrare annunci pertinenti." }, savePreferences: "Salva preferenze", back: "Indietro", rejectAll: "Rifiuta opzionali" },
   scroll: { up: "Su", down: "Giù" },
+  howWeWork: { eyebrow: "Processo · Come lavoriamo", title: "Quattro passi per un'operazione condotta con criterio e discrezione.", steps: [{ number: "01", title: "Valutazione privata", description: "Analizziamo l'asset, la microzona e il profilo del proprietario prima di concordare qualsiasi azione." }, { number: "02", title: "Strategia territoriale", description: "Definiamo il racconto di valore, il posizionamento e il profilo di acquirente adatto all'asset." }, { number: "03", title: "Accesso qualificato", description: "Attiviamo l'accesso ad acquirenti e investitori selezionati senza esposizione pubblica dell'asset." }, { number: "04", title: "Accompagnamento e chiusura", description: "Accompagniamo ogni conversazione fino alla chiusura con criterio, riservatezza e supporto operativo." }] },
+  holidayRental: { eyebrow: "Proprietari premium · Affitto vacanziero di alto standing", title: "Rendere redditizia la tua proprietà a Mallorca senza rinunciare a discrezione, controllo né posizionamento premium.", body: "Per ville, fincas e appartamenti singolari, l'affitto vacanziero non dovrebbe essere trattato come un prodotto turistico di massa. Valutiamo il potenziale dell'asset, la microzona, il profilo dell'ospite e la fattibilità operativa.", benefits: ["Valutazione privata del potenziale locativo.", "Posizionamento allineato ad asset di alto standing.", "Acquisizione orientata a ospiti qualificati.", "Preparazione operativa e documentale più ordinata.", "Possibilità di combinare uso personale, reddito e futura vendita."], technologyNote: "L'operativa può avvalersi della tecnologia Anclora SyncXML per esaminare i dati delle prenotazioni e preparare XML verificabile per il flusso SES.HOSPEDAJES.", primaryCta: "Valutare il potenziale locativo", secondaryCta: "Aprire conversazione privata" },
   trustBadgeText: "Supporto internazionale e fiducia operativa tramite eXp Group Spain.",
 });
 
 Object.assign(siteCopyNo, {
-  credibility: { ...siteCopyDa.credibility, eyebrow: "Tillit", title: "Et premiumtilbud som ikke trenger å late som det er større for å skape tillit.", intro: "Autoritet formidles gjennom struktur, forankring og en mer moden markedsforståelse.", pillars: ["Uavhengig rådgiver med støtte fra eXp Group Spain.", "Mer enn 25 års teknologisk erfaring brukt på en bedre strukturert eiendomsprosess.", "Territoriell intelligens, optimaliserte prosesser og et selektivt nettverk som reell forskjell."] },
+  credibility: { ...siteCopyDa.credibility, eyebrow: "Tillit", title: "Et premiumtilbud som ikke trenger å late som det er større for å skape tillit.", intro: "Autoritet formidles gjennom struktur, forankring og en mer moden markedsforståelse.", pillars: ["Uavhengig rådgiver med støtte fra eXp Group Spain.", "Mer enn 25 års teknologisk erfaring brukt på en bedre strukturert eiendomsprosess.", "Territoriell intelligens, optimaliserte prosesser og et selektivt nettverk som reell forskjell."], credentialBadges: [{ text: "eXp Group Spain", detail: "Globalt nettverk med 80 000+ aktive agenter" }, { text: "Mallorca Premium", detail: "Eksklusivt fokus på sørvest Mallorca" }, { text: "Internasjonal kjøpertilgang", detail: "Kvalifiserte profiler fra 40+ land" }] },
   mallorcaFocus: { ...siteCopyDa.mallorcaFocus, title: "Mallorca leses ikke som en flat liste over områder, men som et system av mikrosoner og signaler.", intro: "Hvert område krever sitt eget kommersielle språk. Palma, Portals og Valldemossa trenger ikke samme estetikk eller verdifortelling.", areasLabel: "Områder", clusters: siteCopyDa.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma og høytliggende boligområder", "Calviàs premiumkyst", "Sørvest: livsstil og kapital", "Serra og innlandskarakter"][index], audienceLabel: "Kjøperprofil" })) },
   investors: { ...siteCopyDa.investors, eyebrow: "Investorer", title: "Nasjonal og internasjonal kapital som trenger mindre utstilling og bedre kontekst.", intro: "Premiuminvestoren søker ikke bare tilbud, men en pålitelig lesning av tilgang, timing, verdibevaring og relasjonell kontinuitet." },
   valuation: { ...siteCopyEn.valuation, eyebrow: "Be om verdivurdering", title: "Hva er eiendommen din på Mallorca verdt?", body: "Hvis du eier en eiendom i Palma eller sørvestlige Mallorca og ønsker å kjenne den reelle markedsverdien, kan vi gjennomføre en konfidensiell og uforpliktende vurdering.", checklistLabel: "Verdivurderingen inkluderer", checklist: ["Analyse av mikrosone og reell konkurranse", "Gjennomgang av markeds-timing", "Vurdering tilpasset riktig kjøperprofil"], form: { ...siteCopyEn.valuation.form, name: "Navn", email: "E-post", phone: "Telefon", address: "Eiendommens adresse", message: "Melding (valgfritt)", placeholders: { name: "Ditt navn", email: "navn@domene.no", phone: "+47 ...", address: "Gate, område eller matrikkelreferanse", message: "Del relevante detaljer." }, privacyLabel: "Jeg har lest og aksepterer personvernpolicyen.", submitLabel: "Be om konfidensiell verdivurdering", successTitle: "Henvendelse mottatt", successBody: "Vi svarer innen to virkedager med en privat vurdering.", captchaError: "Fullfør sikkerhetsverifiseringen." } },
-  sellerIntake: { ...siteCopyDa.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning for eiere, kjøpere og investorer.", body: "Vi vurderer hver henvendelse etter intensjon: salg, kjøp, verdivurdering eller investering. En konfidensiell premiumtilnærming for særlige eiendeler i Palma og sørvestlige Mallorca.", checklistLabel: "Kriterier for privat vurdering", checklist: ["Mikrosone og reell konkurranse", "Posisjoneringsfortelling", "Kvalifisert timing og tilgang"], form: { ...siteCopyDa.sellerIntake.form, intentLabel: "Hvordan kan vi hjelpe?", intentOptions: [{ value: "sell", label: "Jeg ønsker å selge en eiendom" }, { value: "valuation", label: "Jeg ønsker en privat vurdering" }, { value: "buy", label: "Jeg ønsker å kjøpe en premiumeiendom" }, { value: "invest", label: "Jeg søker investeringsmuligheter" }], name: "Navn", email: "E-post", phone: "Telefon", zone: "Eiendommens område", propertyType: "Eiendomstype", commercialization: "Salgspreferanse", address: "Eiendommens adresse", budget: "Omtrentlig budsjett", timing: "Forventet tidslinje", ticket: "Investeringsnivå", goal: "Investeringsmål", message: "Melding", placeholders: { name: "Ditt navn", email: "navn@domene.no", phone: "+47 ...", zone: "Son Vida, Portals, Andratx...", address: "Gate, område eller matrikkelreferanse", budget: "f.eks. 1M - 3M €", timing: "f.eks. Umiddelbart, 6 måneder...", ticket: "f.eks. 500k+, 2M+...", goal: "f.eks. Formue, Avkastning...", message: "Fortell oss mer om henvendelsen din." }, selectPlaceholder: "Velg et alternativ", propertyTypeOptions: ["Villa", "Penthouse", "Premiumleilighet", "Finca"], commercializationOptions: ["Konfidensiell vurdering", "Eksklusivt salg", "Selektivt salg uten masseportal"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Umiddelbart", "1-3 måneder", "3-6 måneder", "Bare utforsker"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Send privat henvendelse" } },
+  sellerIntake: { ...siteCopyDa.sellerIntake, eyebrow: "Kunder", title: "Selektiv rådgivning for eiere, kjøpere og investorer.", body: "Vi vurderer hver henvendelse etter intensjon: salg, kjøp, verdivurdering eller investering. En konfidensiell premiumtilnærming for særlige eiendeler i Palma og sørvestlige Mallorca.", checklistLabel: "Kriterier for privat vurdering", checklist: ["Mikrosone og reell konkurranse", "Posisjoneringsfortelling", "Kvalifisert timing og tilgang"], form: { ...siteCopyDa.sellerIntake.form, intentLabel: "Hvordan kan vi hjelpe?", intentOptions: [{ value: "sell", label: "Jeg ønsker å selge en eiendom" }, { value: "valuation", label: "Jeg ønsker en privat vurdering" }, { value: "buy", label: "Jeg ønsker å kjøpe en premiumeiendom" }, { value: "invest", label: "Jeg søker investeringsmuligheter" }, { value: "holiday_rental", label: "Jeg vil leie ut eiendommen min som feriebolig" }], holidayRentalObjective: "Utleiemål", holidayRentalAvailability: "Forventet tilgjengelighet", holidayRentalObjectiveOptions: ["Maksimal avkastning", "Blandet bruk (privat + utleie)", "Full-service forvaltning"], name: "Navn", email: "E-post", phone: "Telefon", zone: "Eiendommens område", propertyType: "Eiendomstype", commercialization: "Salgspreferanse", address: "Eiendommens adresse", budget: "Omtrentlig budsjett", timing: "Forventet tidslinje", ticket: "Investeringsnivå", goal: "Investeringsmål", message: "Melding", placeholders: { name: "Ditt navn", email: "navn@domene.no", phone: "+47 ...", zone: "Son Vida, Portals, Andratx...", address: "Gate, område eller matrikkelreferanse", budget: "f.eks. 1M - 3M €", timing: "f.eks. Umiddelbart, 6 måneder...", ticket: "f.eks. 500k+, 2M+...", goal: "f.eks. Formue, Avkastning...", message: "Fortell oss mer om henvendelsen din." }, selectPlaceholder: "Velg et alternativ", propertyTypeOptions: ["Villa", "Penthouse", "Premiumleilighet", "Finca"], commercializationOptions: ["Konfidensiell vurdering", "Eksklusivt salg", "Selektivt salg uten masseportal"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Umiddelbart", "1-3 måneder", "3-6 måneder", "Bare utforsker"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Send privat henvendelse" } },
   partners: { ...siteCopyDa.partners, eyebrow: "Synergi · Partnernettverk", title: "Et selektivt nettverk for partnere som forstår premiummarkedet.", form: { ...siteCopyDa.partners.form, name: "Navn", email: "E-post", serviceCategory: "Tjenestekategori", serviceSummary: "Beskriv din profil og arbeidsmåte", placeholders: { name: "Ditt navn eller selskap", email: "navn@domene.no", serviceSummary: "Beskriv din faglige profil, spesialisering og hvordan du kan samarbeide med Anclora (min. 20 tegn)." }, selectPlaceholder: "Velg kategori", serviceCategoryOptions: [{ value: "real_estate", label: "Eiendom" }, { value: "professional", label: "Profesjonell / Juridisk / Finans" }, { value: "luxury", label: "Lifestyle & Luksus" }, { value: "eco", label: "Bærekraft" }, { value: "other", label: "Annet" }], privacyLabel: "Jeg har lest og aksepterer personvernpolicyen.", submitLabel: "Be om tilgang til Synergi", successTitle: "Henvendelse mottatt", successBody: "Vi gjennomgår profilen din og svarer innen syv dager." } },
   dataLab: { ...siteCopyDa.dataLab, title: "Territorielle signaler for å lese premiummarkedet roligere og mindre reaktivt.", intro: "Vi viser ikke dashboards. Vi viser signaler som hjelper med å forstå eiendelskvalitet, etterspørselspress og premiumkjøperens følsomhet.", whitelist: { ...siteCopyDa.dataLab.whitelist, form: { ...siteCopyDa.dataLab.whitelist.form, intendedUse: "Hvorfor er du interessert i Data Lab?", placeholders: { name: "Ditt navn eller selskap", email: "navn@domene.no", intendedUse: "Beskriv kort din interesse og investorprofil (min. 20 tegn)." }, privacyLabel: "Jeg har lest og aksepterer personvernpolicyen.", submitLabel: "Be om tidlig tilgang", successTitle: "På ventelisten", successBody: "Vi gir deg beskjed når neste tilgangsblokk åpner for din profil." } } },
   contact: { ...siteCopyNo.contact, body: "Hvis du vurderer salg, investering eller en eiendomsmulighet i Palma eller sørvestlige Mallorca, kan vi vurdere saken med skjønn, konfidensialitet og premiumfokus.", responseNote: "Samtaler håndteres selektivt og med personlig oppfølging.", detailsTitle: "Kontaktinformasjon" },
@@ -2828,15 +3228,17 @@ Object.assign(siteCopyNo, {
   footer: { ...siteCopyNo.footer, columns: [{ title: "Kontakt", links: [{ label: "Åpne privat samtale", href: "#contacto" }] }, { title: "Selektiv tilgang", links: [{ label: "Mallorca", href: "#mallorca-focus" }, { label: "Investorer", href: "#inversores" }, { label: "Kunder", href: "#clientes" }, { label: "Partnere", href: "#partners" }, { label: "Data Lab", href: "#data-lab" }] }, { title: "Juridisk", links: [{ label: "Personvern", href: "/privacy" }, { label: "Vilkår", href: "/terms" }, { label: "Juridisk informasjon", href: "/legal" }] }] },
   cookies: { ...siteCopyDa.cookies, title: "Cookieinnstillinger", description: "Dette nettstedet bruker informasjonskapsler for å gi en bedre opplevelse. Du kan administrere dine preferanser når som helst.", acceptAll: "Godta alle", settings: "Innstillinger", settingsTitle: "Administrer cookies", necessary: { title: "Nødvendige cookies", description: "Disse informasjonskapslene er nødvendige for at nettstedet skal fungere." }, analytics: { title: "Analysecookies", description: "De hjelper oss å forstå hvordan besøkende bruker nettstedet." }, marketing: { title: "Markedsføringscookies", description: "Brukes til å vise relevante annonser." }, savePreferences: "Lagre preferanser", back: "Tilbake", rejectAll: "Avvis valgfrie" },
   scroll: { up: "Opp", down: "Ned" },
+  howWeWork: { eyebrow: "Prosess · Slik jobber vi", title: "Fire trinn for en operasjon bygget på skjønn og diskresjon.", steps: [{ number: "01", title: "Privat vurdering", description: "Vi analyserer eiendelen, mikrosonen og eierens profil før vi avtaler noen handling." }, { number: "02", title: "Territoriell strategi", description: "Vi definerer verdinarrativet, posisjoneringen og riktig kjøperprofil for eiendelen." }, { number: "03", title: "Kvalifisert tilgang", description: "Vi aktiverer tilgang til utvalgte kjøpere og investorer uten offentlig eksponering av eiendelen." }, { number: "04", title: "Oppfølging og avslutning", description: "Vi følger hvert samtale frem til avslutning med skjønn, konfidensialitet og operativ støtte." }] },
+  holidayRental: { eyebrow: "Premiumeiere · Ferieutleie i toppklassen", title: "Generer inntekter fra din Mallorca-eiendom uten å ofre diskresjon, kontroll eller premiumposisjonering.", body: "For villaer, fincas og unike leiligheter bør ferieutleie ikke behandles som et masseturistprodukt. Vi evaluerer eiendelens potensial, mikrosonen, gjesteprofilen og operativ gjennomførbarhet.", benefits: ["Privat evaluering av utleiepotensial.", "Posisjonering tilpasset premiueiendeler.", "Rekruttering rettet mot kvalifiserte gjester.", "Mer strukturert operativ og dokumentarisk forberedelse.", "Mulighet til å kombinere eget bruk, inntekt og fremtidig salg."], technologyNote: "Driften kan støttes av Anclora SyncXML-teknologi for å gjennomgå bestillingsdata og forberede gjennomgåbar XML for SES.HOSPEDAJES-flyten.", primaryCta: "Evaluer utleiepotensial", secondaryCta: "Åpne privat samtale" },
   trustBadgeText: "Internasjonal støtte og operativ tillit gjennom eXp Group Spain.",
 });
 
 Object.assign(siteCopyPt, {
-  credibility: { eyebrow: "Credibilidade", title: "Uma proposta premium que não precisa de simular escala para transmitir confiança.", intro: "A autoridade nasce de estrutura, suporte e uma leitura mais madura do mercado.", pillars: ["Consultor independente com suporte da eXp Group Spain.", "Mais de 25 anos de experiência tecnológica aplicados a uma operação imobiliária mais estruturada.", "Inteligência territorial, processos optimizados e rede selectiva como diferença real."] },
+  credibility: { eyebrow: "Credibilidade", title: "Uma proposta premium que não precisa de simular escala para transmitir confiança.", intro: "A autoridade nasce de estrutura, suporte e uma leitura mais madura do mercado.", pillars: ["Consultor independente com suporte da eXp Group Spain.", "Mais de 25 anos de experiência tecnológica aplicados a uma operação imobiliária mais estruturada.", "Inteligência territorial, processos optimizados e rede selectiva como diferença real."], credentialBadges: [{ text: "eXp Group Spain", detail: "Rede global com 80.000+ agentes activos" }, { text: "Mallorca Premium", detail: "Foco exclusivo no sudoeste de Maiorca" }, { text: "Acesso a compradores internacionais", detail: "Perfis qualificados de 40+ países" }] },
   mallorcaFocus: { ...siteCopyIt.mallorcaFocus, title: "Mallorca não se lê como uma lista plana de zonas, mas como um sistema de microzonas e sinais.", intro: "Cada enclave exige uma linguagem comercial própria. Palma, Portals e Valldemossa não pedem a mesma estética nem a mesma narrativa de valor.", areasLabel: "Áreas", clusters: siteCopyIt.mallorcaFocus.clusters.map((cluster, index) => ({ ...cluster, eyebrow: ["Palma e zona residencial elevada", "Costa premium de Calvià", "Sudoeste: lifestyle e património", "Serra e carácter de interior"][index], audienceLabel: "Perfil de comprador" })) },
   investors: { ...siteCopyIt.investors, eyebrow: "Investidores", title: "Capital nacional e internacional que precisa de menos montra e mais contexto.", intro: "O investidor premium não procura apenas oferta; procura uma leitura fiável de acesso, timing, preservação de valor e continuidade relacional." },
   valuation: { ...siteCopyEn.valuation, eyebrow: "Solicitar avaliação", title: "Quanto vale o seu imóvel em Mallorca?", body: "Se possui um imóvel em Palma ou no sudoeste de Mallorca e quer conhecer o seu valor real de mercado, podemos realizar uma avaliação confidencial e sem compromisso.", checklistLabel: "A avaliação inclui", checklist: ["Análise de microzona e concorrência real", "Leitura do timing de mercado", "Avaliação orientada para o perfil de comprador adequado"], form: { ...siteCopyEn.valuation.form, name: "Nome", email: "E-mail", phone: "Telefone", address: "Endereço do imóvel", message: "Mensagem (opcional)", placeholders: { name: "O seu nome", email: "nome@dominio.pt", phone: "+351 ...", address: "Rua, zona ou referência cadastral", message: "Partilhe detalhes relevantes." }, privacyLabel: "Li e aceito a política de privacidade.", submitLabel: "Solicitar avaliação confidencial", successTitle: "Pedido recebido", successBody: "Respondemos em dois dias úteis com uma avaliação privada.", captchaError: "Conclua a verificação de segurança." } },
-  sellerIntake: { ...siteCopyIt.sellerIntake, eyebrow: "Clientes", title: "Consultoria selectiva para proprietários, compradores e investidores.", body: "Avaliamos cada pedido segundo a sua intenção: venda, compra, avaliação ou investimento. Abordagem premium e confidencial para activos singulares em Palma e no sudoeste de Mallorca.", checklistLabel: "Critérios de avaliação privada", checklist: ["Microzona e concorrência real", "Narrativa de posicionamento", "Timing e acesso qualificado"], form: { ...siteCopyIt.sellerIntake.form, intentLabel: "Como podemos ajudar?", intentOptions: [{ value: "sell", label: "Quero vender um imóvel" }, { value: "valuation", label: "Quero uma avaliação privada" }, { value: "buy", label: "Quero comprar um imóvel premium" }, { value: "invest", label: "Procuro oportunidades de investimento" }], name: "Nome", email: "E-mail", phone: "Telefone", zone: "Zona do imóvel", propertyType: "Tipo de imóvel", commercialization: "Preferência de comercialização", address: "Endereço do imóvel", budget: "Orçamento aproximado", timing: "Prazo previsto", ticket: "Ticket de investimento", goal: "Objectivo de investimento", message: "Mensagem", placeholders: { name: "O seu nome", email: "nome@dominio.pt", phone: "+351 ...", zone: "Son Vida, Portals, Andratx...", address: "Rua, zona ou referência cadastral", budget: "ex: 1M - 3M €", timing: "ex: Imediato, 6 meses...", ticket: "ex: 500k+, 2M+...", goal: "ex: Património, Rendimento...", message: "Conte-nos mais detalhes sobre o seu pedido." }, selectPlaceholder: "Seleccione uma opção", propertyTypeOptions: ["Villa", "Penthouse", "Apartamento premium", "Finca"], commercializationOptions: ["Avaliação confidencial", "Venda em exclusivo", "Venda selectiva sem portal de massas"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Imediato", "1-3 meses", "3-6 meses", "Apenas a explorar"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Enviar pedido privado" } },
+  sellerIntake: { ...siteCopyIt.sellerIntake, eyebrow: "Clientes", title: "Consultoria selectiva para proprietários, compradores e investidores.", body: "Avaliamos cada pedido segundo a sua intenção: venda, compra, avaliação ou investimento. Abordagem premium e confidencial para activos singulares em Palma e no sudoeste de Mallorca.", checklistLabel: "Critérios de avaliação privada", checklist: ["Microzona e concorrência real", "Narrativa de posicionamento", "Timing e acesso qualificado"], form: { ...siteCopyIt.sellerIntake.form, intentLabel: "Como podemos ajudar?", intentOptions: [{ value: "sell", label: "Quero vender um imóvel" }, { value: "valuation", label: "Quero uma avaliação privada" }, { value: "buy", label: "Quero comprar um imóvel premium" }, { value: "invest", label: "Procuro oportunidades de investimento" }, { value: "holiday_rental", label: "Quero rentabilizar o meu imóvel como alojamento de férias" }], holidayRentalObjective: "Objectivo de exploração", holidayRentalAvailability: "Disponibilidade prevista", holidayRentalObjectiveOptions: ["Rendimento máximo", "Uso misto (pessoal + arrendamento)", "Gestão full-service"], name: "Nome", email: "E-mail", phone: "Telefone", zone: "Zona do imóvel", propertyType: "Tipo de imóvel", commercialization: "Preferência de comercialização", address: "Endereço do imóvel", budget: "Orçamento aproximado", timing: "Prazo previsto", ticket: "Ticket de investimento", goal: "Objectivo de investimento", message: "Mensagem", placeholders: { name: "O seu nome", email: "nome@dominio.pt", phone: "+351 ...", zone: "Son Vida, Portals, Andratx...", address: "Rua, zona ou referência cadastral", budget: "ex: 1M - 3M €", timing: "ex: Imediato, 6 meses...", ticket: "ex: 500k+, 2M+...", goal: "ex: Património, Rendimento...", message: "Conte-nos mais detalhes sobre o seu pedido." }, selectPlaceholder: "Seleccione uma opção", propertyTypeOptions: ["Villa", "Penthouse", "Apartamento premium", "Finca"], commercializationOptions: ["Avaliação confidencial", "Venda em exclusivo", "Venda selectiva sem portal de massas"], budgetOptions: ["< 1M €", "1M - 3M €", "3M - 5M €", "5M - 10M €", "10M+ €"], timingOptions: ["Imediato", "1-3 meses", "3-6 meses", "Apenas a explorar"], ticketOptions: ["< 500k €", "500k - 2M €", "2M - 5M €", "5M+ €"], submitLabel: "Enviar pedido privado" } },
   partners: { ...siteCopyIt.partners, eyebrow: "Synergi · Rede de parceiros", title: "Uma rede selectiva para parceiros que compreendem o mercado premium.", body: "Anclora Synergi é o portal privado para parceiros validados com critério territorial.", form: { ...siteCopyIt.partners.form, name: "Nome", email: "E-mail", serviceCategory: "Tipo de serviço", serviceSummary: "Descreva o seu perfil e método de trabalho", placeholders: { name: "O seu nome ou empresa", email: "nome@dominio.pt", serviceSummary: "Descreva o seu perfil profissional, especialização e como poderia colaborar com a Anclora (mín. 20 caracteres)." }, selectPlaceholder: "Seleccione uma categoria", serviceCategoryOptions: [{ value: "real_estate", label: "Imobiliário" }, { value: "professional", label: "Profissional / Jurídico / Financeiro" }, { value: "luxury", label: "Lifestyle & Luxo" }, { value: "eco", label: "Sustentabilidade" }, { value: "other", label: "Outro" }], privacyLabel: "Li e aceito a política de privacidade.", submitLabel: "Solicitar acesso ao Synergi", successTitle: "Pedido recebido", successBody: "Analisaremos o seu perfil e responderemos no prazo de sete dias." } },
   dataLab: { ...siteCopyIt.dataLab, title: "Sinais territoriais para ler o mercado premium com mais calma e menos reacção.", intro: "Não apresentamos dashboards. Apresentamos sinais que ajudam a enquadrar qualidade do activo, pressão de procura e sensibilidade do comprador premium.", whitelist: { ...siteCopyIt.dataLab.whitelist, form: { ...siteCopyIt.dataLab.whitelist.form, intendedUse: "Por que razão se interessa pelo Data Lab?", placeholders: { name: "O seu nome ou empresa", email: "nome@dominio.pt", intendedUse: "Descreva brevemente o seu interesse e perfil de investidor (mín. 20 caracteres)." }, privacyLabel: "Li e aceito a política de privacidade.", submitLabel: "Solicitar acesso antecipado", successTitle: "Na lista de espera", successBody: "Avisaremos quando abrirmos o próximo bloco de acesso para o seu perfil." } } },
   contact: { ...siteCopyPt.contact, body: "Se está a ponderar vender, investir ou explorar uma oportunidade patrimonial em Palma ou no sudoeste de Mallorca, podemos estudar o seu caso com critério, confidencialidade e abordagem premium.", responseNote: "As conversas são geridas de forma selectiva e com resposta pessoal.", detailsTitle: "Contactos" },
@@ -2844,6 +3246,8 @@ Object.assign(siteCopyPt, {
   footer: { ...siteCopyPt.footer, columns: [{ title: "Contacto", links: [{ label: "Abrir conversa privada", href: "#contacto" }] }, { title: "Acesso selectivo", links: [{ label: "Mallorca", href: "#mallorca-focus" }, { label: "Investidores", href: "#inversores" }, { label: "Clientes", href: "#clientes" }, { label: "Parceiros", href: "#partners" }, { label: "Data Lab", href: "#data-lab" }] }, { title: "Legal", links: [{ label: "Privacidade", href: "/privacy" }, { label: "Termos", href: "/terms" }, { label: "Aviso legal", href: "/legal" }] }] },
   cookies: { ...siteCopyIt.cookies, title: "Preferências de cookies", description: "Este site utiliza cookies para oferecer uma melhor experiência. Pode gerir as suas preferências em qualquer momento.", acceptAll: "Aceitar todas", settings: "Definições", settingsTitle: "Gerir cookies", necessary: { title: "Cookies necessários", description: "Estes cookies são essenciais para o funcionamento do site." }, analytics: { title: "Cookies de análise", description: "Ajudam-nos a perceber como os visitantes utilizam o site." }, marketing: { title: "Cookies de marketing", description: "Utilizados para mostrar anúncios relevantes aos visitantes." }, savePreferences: "Guardar preferências", back: "Voltar", rejectAll: "Rejeitar opcionais" },
   scroll: { up: "Subir", down: "Descer" },
+  howWeWork: { eyebrow: "Processo · Como trabalhamos", title: "Quatro passos para uma operação conduzida com critério e discrição.", steps: [{ number: "01", title: "Avaliação privada", description: "Analisamos o activo, a microzona e o perfil do proprietário antes de acordar qualquer acção." }, { number: "02", title: "Estratégia territorial", description: "Definimos a narrativa de valor, o posicionamento e o perfil de comprador adequado ao activo." }, { number: "03", title: "Acesso qualificado", description: "Activamos o acesso a compradores e investidores seleccionados sem exposição pública do activo." }, { number: "04", title: "Acompanhamento e fecho", description: "Acompanhamos cada conversa até ao fecho com critério, confidencialidade e suporte operativo." }] },
+  holidayRental: { eyebrow: "Proprietários premium · Aluguer de férias de alto standing", title: "Rentabilize a sua propriedade em Mallorca sem abdicar de discrição, controlo nem posicionamento premium.", body: "Para villas, fincas e apartamentos singulares, o aluguer de férias não deve ser tratado como um produto turístico de massas. Avaliamos o potencial do activo, a microzona, o perfil do hóspede e a viabilidade operativa.", benefits: ["Avaliação privada do potencial de aluguer.", "Posicionamento alinhado com activos de alto standing.", "Captação orientada para hóspedes qualificados.", "Preparação operativa e documental mais estruturada.", "Possibilidade de combinar uso pessoal, rendimento e futura venda."], technologyNote: "A operativa pode apoiar-se na tecnologia Anclora SyncXML para rever dados de reservas e preparar XML revisável orientado ao fluxo SES.HOSPEDAJES.", primaryCta: "Avaliar potencial de aluguer premium", secondaryCta: "Abrir conversa privada" },
   trustBadgeText: "Suporte internacional e confiança operativa através da eXp Group Spain.",
 });
 

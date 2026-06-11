@@ -7,7 +7,7 @@ const DEFAULT_PUBLIC_LEAD_INTAKE_PATH = "/api/public/lead-intake";
  * Definitive Lead Intent types for internal logic.
  * Corrected to exclude partners (handled by Synergi).
  */
-export type LeadIntent = "sell" | "valuation" | "buy" | "invest";
+export type LeadIntent = "sell" | "valuation" | "buy" | "invest" | "holiday_rental";
 
 /**
  * Unified Lead Intake Payload.
@@ -24,7 +24,7 @@ export type LeadIntakePayload = {
   source: "private_estates_landing";
   submission_source?: "private_estates_landing"; // Alias for Nexus
   
-  lead_type: LeadIntent | "seller_intake" | "buyer_intake" | "investment_intake" | "valuation_intake"; // Explicitly typed for Nexus enums
+  lead_type: LeadIntent | "seller_intake" | "buyer_intake" | "investment_intake" | "valuation_intake" | "holiday_rental_intake"; // Explicitly typed for Nexus enums
   
   language: LanguageCode;
   submission_language?: LanguageCode; // Alias for Nexus
@@ -65,6 +65,12 @@ export type LeadIntakePayload = {
   // Investor (Property-focused)
   investment_ticket?: string;
   investment_goal?: string;
+
+  // Holiday Rental
+  holiday_rental_zone?: string;
+  holiday_rental_property_type?: string;
+  holiday_rental_availability?: string;
+  holiday_rental_objective?: string;
 };
 
 /**
@@ -153,6 +159,7 @@ export function buildLeadIntakePayload(input: {
     buy: "buyer_intake",
     invest: "investment_intake",
     valuation: "valuation_intake",
+    holiday_rental: "holiday_rental_intake",
   };
 
   const wireLeadType = intentToWireMap[input.intent];
