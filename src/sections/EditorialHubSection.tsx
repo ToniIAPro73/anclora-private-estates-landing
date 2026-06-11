@@ -19,7 +19,7 @@ function formatDate(iso: string): string {
 function ArticleCard({ article }: { article: EditorialArticle }) {
   return (
     <article
-      className="pe-card pe-offset-card pe-card-hover-gold"
+      className="pe-card pe-offset-card pe-card-hover-gold pe-pillar-card"
       data-testid={`editorial-card-${article.id}`}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", height: "100%" }}>
