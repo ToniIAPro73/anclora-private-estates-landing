@@ -25,6 +25,56 @@ export function CredibilitySection({ copy }: CredibilitySectionProps) {
             </article>
           ))}
         </div>
+
+        {copy.credentialBadges && copy.credentialBadges.length > 0 && (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "1rem",
+              justifyContent: "center",
+              paddingTop: "0.5rem",
+            }}
+          >
+            {copy.credentialBadges.map((badge) => (
+              <div
+                key={badge.text}
+                style={{
+                  border: "1px solid var(--pe-gold-muted, rgba(212,175,55,0.35))",
+                  borderRadius: "4px",
+                  padding: "0.6rem 1.1rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.2rem",
+                  minWidth: "11rem",
+                }}
+                data-testid="credential-badge"
+              >
+                <span
+                  style={{
+                    color: "var(--pe-gold)",
+                    fontSize: "0.75rem",
+                    fontFamily: "var(--pe-font-sans)",
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {badge.text}
+                </span>
+                <span
+                  style={{
+                    color: "var(--pe-text-muted)",
+                    fontSize: "0.78rem",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {badge.detail}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

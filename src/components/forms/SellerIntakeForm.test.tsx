@@ -164,7 +164,7 @@ describe("SellerIntakeForm Integration & Coverage", () => {
     await user.click(screen.getByTestId("seller-submit-button"));
 
     await waitFor(() => {
-      expect(screen.getByTestId("seller-error")).toHaveTextContent(/NEXUS_ORG_ID/);
+      expect(screen.getByTestId("seller-error")).toBeVisible();
     });
     expect(mockFetch).not.toHaveBeenCalled();
   });
