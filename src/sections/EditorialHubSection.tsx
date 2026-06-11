@@ -87,7 +87,7 @@ function ArticleCard({ article }: { article: EditorialArticle }) {
 
 export function EditorialHubSection({ hub }: EditorialHubSectionProps) {
   return (
-    <section id="editorial" className="pe-section">
+    <section id="editorial" className="pe-section pe-section-soft">
       <div className="pe-container pe-stack" style={{ gap: "2.5rem" }}>
         <div style={{ textAlign: "center" }}>
           <p className="pe-eyebrow pe-kicker" style={{ margin: "0 0 0.6rem" }}>
@@ -115,8 +115,8 @@ export function EditorialHubSection({ hub }: EditorialHubSectionProps) {
 
         <div style={{ textAlign: "center" }}>
           <a
-            href="#"
-            className="pe-btn-secondary"
+            href="#contacto"
+            className="pe-btn-secondary pe-btn-secondary-ghost"
             aria-label={hub.ctaLabel}
             data-testid="editorial-cta"
           >
