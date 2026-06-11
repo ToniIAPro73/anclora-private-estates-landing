@@ -40,7 +40,8 @@ jobs:
         run: git checkout main
 
       - name: Merge production
-        run: git merge --no-ff origin/production -m "chore: merge production to main [ci-skip]"
+        run: |
+          git merge --no-ff origin/production -m "chore: merge production to main [ci-skip]"
 
       - name: Test
         run: npm test

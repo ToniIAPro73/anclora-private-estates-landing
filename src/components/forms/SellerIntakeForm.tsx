@@ -176,6 +176,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [configError, setConfigError] = useState(false);
 
   const language = resolveCurrentLanguage();
   const messages = sellerFormMessagesByLanguage[language];
@@ -183,6 +184,7 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+    setConfigError(false);
 
     // Final validation check
     if (!intent || !name || !email || !message || !privacyAccepted) {
@@ -248,7 +250,11 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
       setTargetZone(""); setBudgetRange(""); setBuyTiming("");
       setInvestmentTicket(""); setInvestmentGoal("");
     } catch (submissionError) {
-      setError(submissionError instanceof Error ? submissionError.message : messages.genericError);
+      if (submissionError instanceof Error && submissionError.message.includes("NEXUS_ORG_ID")) {
+        setConfigError(true);
+      } else {
+        setError(submissionError instanceof Error ? submissionError.message : messages.genericError);
+      }
     } finally {
       setSubmitting(false);
     }
@@ -529,7 +535,15 @@ export function SellerIntakeForm({ copy }: SellerIntakeFormProps) {
         <span className="pe-note">{messages.privacyLabel}</span>
       </label>
 
-      {error ? (
+      {configError ? (
+        <p className="pe-form-error" data-testid="seller-error">
+          {messages.genericError}{" "}
+          <a href="#contacto" style={{ color: "var(--pe-gold)", textDecoration: "underline" }}>
+            Contáctanos directamente
+          </a>
+          .
+        </p>
+      ) : error ? (
         <p className="pe-form-error" data-testid="seller-error">
           {error}
         </p>
