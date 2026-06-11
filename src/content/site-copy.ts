@@ -420,9 +420,9 @@ const siteCopyEs: SiteCopy = {
   },
   hero: {
     eyebrow: "Palma · Suroeste de Mallorca · Capital premium",
-    title: "Únete a los principales compradores y vendedores para impulsar tus oportunidades.",
+    title: "Para propietarios que valoran una venta privada en Mallorca.",
     description:
-      "Activos seleccionados en Andratx, Calvià, Son Vida y Portals. Operamos con discreción y criterio.",
+      "Valoración y preparación de villas, fincas y activos premium para vender con discreción, criterio territorial y acceso a compradores cualificados.",
     chips: [],
     note:
       "No diseñamos una presencia para parecer grandes. Diseñamos una presencia para transmitir criterio, silencio operativo y una relación más sofisticada con el activo.",
@@ -847,9 +847,9 @@ const siteCopyEn: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Southwest Mallorca · Premium capital",
-    title: "Join the leading buyers and sellers to boost your opportunities.",
+    title: "For owners considering a private sale in Mallorca.",
     description:
-      "Curated assets in Andratx, Calvià, Son Vida, and Portals. We operate with discretion and criteria.",
+      "We value and prepare villas, fincas and premium assets for discreet sale, territorial judgment and access to qualified buyers.",
     chips: [],
     note:
       "We are not designing a presence to look large. We are designing a presence that signals judgment, operational silence and a more sophisticated relationship with the asset.",
@@ -1269,9 +1269,9 @@ const siteCopyDe: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Südwest-Mallorca · Premium-Kapital",
-    title: "Schließe dich den führenden Käufern und Verkäufern an, um deine Möglichkeiten zu fördern.",
+    title: "Für Eigentümer, die einen privaten Verkauf auf Mallorca prüfen.",
     description:
-      "Entdecken Sie unsere einzigartigen Immobilien in Andratx, Calvià, Son Vida und Portals. Wir freuen uns auf Ihre Fragen!",
+      "Wir bewerten und positionieren Villen, Fincas und Premium-Assets diskret, mit territorialer Urteilskraft und Zugang zu qualifizierten Käufern.",
     chips: [],
     note:
       "Wir gestalten diese Präsenz nicht, um groß zu wirken. Wir gestalten sie, um Urteilskraft, operative Ruhe und einen anspruchsvolleren Umgang mit dem Asset zu vermitteln.",
@@ -1696,9 +1696,9 @@ const siteCopyFr: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Sud-Ouest de Majorque · Capital premium",
-    title: "Accès exclusif à des acheteurs à haut pouvoir d'achat.",
+    title: "Pour propriétaires envisageant une vente privée à Majorque.",
     description:
-      "Vente discrète à Andratx, Calvià, Son Vida et Portals.\nSans portails. Seulement des acheteurs qualifiés.",
+      "Évaluation et préparation de villas, fincas et actifs premium pour vendre avec discrétion, lecture territoriale et acheteurs qualifiés.",
     chips: [],
     note:
       "Nous ne construisons pas cette présence pour paraître plus grands. Nous la construisons pour transmettre du discernement, du silence opérationnel y une relation plus sophistiquée avec l'actif.",
@@ -2079,9 +2079,9 @@ const siteCopyCa: SiteCopy = {
   hero: {
     ...siteCopyEs.hero,
     eyebrow: "Palma · Sud-oest de Mallorca · Capital premium",
-    title: "Accés exclusiu a compradors d'alt poder adquisitiu.",
+    title: "Per a propietaris que valoren una venda privada a Mallorca.",
     description:
-      "Ven la teva finca al sud-oest de Mallorca sense exposar-la públicament.\nNomés cobrem si venem.",
+      "Valoració i preparació de vil·les, finques i actius premium per vendre amb discreció, criteri territorial i compradors qualificats.",
     primaryCta: "Sol·licitar accés confidencial",
     secondaryCta: "Explorar el focus territorial",
     scrollLabel: "Continuar",
@@ -2439,8 +2439,8 @@ const siteCopySv: SiteCopy = createEuropeanCopy(siteCopyEn, {
   },
   hero: {
     eyebrow: "Palma · Sydvästra Mallorca · Premiumkapital",
-    title: "Exklusiv tillgång till kapitalstarka köpare.",
-    description: "Diskret försäljning i Andratx, Calvià, Son Vida och Portals.\nInga portaler. Endast kvalificerade köpare.",
+    title: "För ägare som överväger en privat försäljning på Mallorca.",
+    description: "Värdering och förberedelse av villor, fincas och premiumtillgångar för diskret försäljning med kvalificerade köpare.",
     primaryCta: "Begär konfidentiell åtkomst",
     secondaryCta: "Utforska det lokala fokuset",
     scrollLabel: "Fortsätt",
@@ -2490,8 +2490,8 @@ const siteCopyIt: SiteCopy = createEuropeanCopy(siteCopyEn, {
   },
   hero: {
     eyebrow: "Palma · Sud-ovest di Mallorca · Capitale premium",
-    title: "Accesso esclusivo a compratori ad alto patrimonio.",
-    description: "Vendita discreta ad Andratx, Calvià, Son Vida e Portals.\nNiente portali. Solo acquirenti qualificati.",
+    title: "Per proprietari che valutano una vendita privata a Mallorca.",
+    description: "Valutazione e preparazione di ville, fincas e asset premium per vendere con discrezione e acquirenti qualificati.",
     primaryCta: "Richiedi accesso riservato",
     secondaryCta: "Esplora il focus territoriale",
     scrollLabel: "Continua",
@@ -2541,8 +2541,8 @@ const siteCopyDa: SiteCopy = createEuropeanCopy(siteCopyEn, {
   },
   hero: {
     eyebrow: "Palma · Sydvestlige Mallorca · Premiumkapital",
-    title: "Eksklusiv adgang til kapitalstærke købere.",
-    description: "Diskret salg i Andratx, Calvià, Son Vida og Portals.\nIngen portaler. Kun kvalificerede købere.",
+    title: "For ejere, der overvejer et privat salg på Mallorca.",
+    description: "Vurdering og forberedelse af villaer, fincas og premiumaktiver til diskret salg med kvalificerede købere.",
     primaryCta: "Anmod om fortrolig adgang",
     secondaryCta: "Udforsk det territoriale fokus",
     scrollLabel: "Fortsæt",
@@ -2592,8 +2592,8 @@ const siteCopyNl: SiteCopy = createEuropeanCopy(siteCopyEn, {
   },
   hero: {
     eyebrow: "Palma · Zuidwest-Mallorca · Premiumkapitaal",
-    title: "Exclusieve toegang tot vermogende kopers.",
-    description: "Discrete verkoop in Andratx, Calvià, Son Vida en Portals.\nGeen portalen. Alleen gekwalificeerde kopers.",
+    title: "Voor eigenaren die een private verkoop op Mallorca overwegen.",
+    description: "Waardering en voorbereiding van villa's, fincas en premiumobjecten voor discrete verkoop met gekwalificeerde kopers.",
     primaryCta: "Vertrouwelijke toegang aanvragen",
     secondaryCta: "Verken de territoriale focus",
     scrollLabel: "Doorgaan",
@@ -2643,8 +2643,8 @@ const siteCopyNo: SiteCopy = createEuropeanCopy(siteCopyEn, {
   },
   hero: {
     eyebrow: "Palma · Sørvest-Mallorca · Premiumkapital",
-    title: "Eksklusiv tilgang til kjøpere med høy kapital.",
-    description: "Diskret salg i Andratx, Calvià, Son Vida og Portals.\nIngen portaler. Kun kvalifiserte kjøpere.",
+    title: "For eiere som vurderer et privat salg på Mallorca.",
+    description: "Verdivurdering og klargjøring av villaer, fincas og premiumaktiva for diskret salg med kvalifiserte kjøpere.",
     primaryCta: "Be om konfidensiell tilgang",
     secondaryCta: "Utforsk det territorielle fokuset",
     scrollLabel: "Fortsett",
@@ -2694,8 +2694,8 @@ const siteCopyPt: SiteCopy = createEuropeanCopy(siteCopyEn, {
   },
   hero: {
     eyebrow: "Palma · Sudoeste de Mallorca · Capital premium",
-    title: "Acesso exclusivo a compradores de elevado património.",
-    description: "Venda discreta em Andratx, Calvià, Son Vida e Portals.\nSem portais. Apenas compradores qualificados.",
+    title: "Para proprietários que ponderam uma venda privada em Mallorca.",
+    description: "Avaliação e preparação de villas, fincas e activos premium para vender com discrição e compradores qualificados.",
     primaryCta: "Solicitar acesso confidencial",
     secondaryCta: "Explorar o foco territorial",
     scrollLabel: "Continuar",
