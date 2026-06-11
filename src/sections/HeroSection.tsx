@@ -81,7 +81,7 @@ export function HeroSection({ copy, trustBadgeText, onCtaClick }: HeroSectionPro
           </button>
           <a
             className="pe-btn-secondary"
-            href="#mallorca-focus"
+            href="#alquiler-vacacional"
             data-testid="hero-secondary-cta"
             style={{ minHeight: "52px" }}
           >
