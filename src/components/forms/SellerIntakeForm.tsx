@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import type { LanguageCode, SellerFormCopy } from "@/content/site-copy";
 import {
   buildLeadIntakePayload,
+  buildNexusLeadIntakePayload,
   submitLeadIntake,
-  type LeadIntent
+  submitNexusLeadIntake,
+  type LeadIntent,
 } from "@/lib/lead-intake";
 import { useTurnstile } from "@/hooks/useTurnstile";
 import { trackEvent } from "@/hooks/useAnalytics";
@@ -28,111 +30,155 @@ type SellerFormMessages = {
 const sellerFormMessagesByLanguage: Record<LanguageCode, SellerFormMessages> = {
   es: {
     privacyLabel: "He leído y acepto la política de privacidad.",
-    marketingConsentLabel: "Acepto recibir comunicaciones comerciales sobre servicios similares (opcional).",
-    privacyFirstLayer: "Responsable: Anclora Private Estates. Finalidad: gestionar solicitudes de información, valoración o contacto. Derechos: acceso, rectificación, supresión, oposición y otros derechos aplicables a través de legal@anclora.com.",
+    marketingConsentLabel:
+      "Acepto recibir comunicaciones comerciales sobre servicios similares (opcional).",
+    privacyFirstLayer:
+      "Responsable: Anclora Private Estates. Finalidad: gestionar solicitudes de información, valoración o contacto. Derechos: acceso, rectificación, supresión, oposición y otros derechos aplicables a través de legal@anclora.com.",
     successTitle: "Solicitud recibida",
-    successBody: "Revisaremos tu activo y te responderemos en un plazo de dos días hábiles.",
-    genericError: "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.",
+    successBody:
+      "Revisaremos tu activo y te responderemos en un plazo de dos días hábiles.",
+    genericError:
+      "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.",
     validationError: "Por favor, completa todos los campos obligatorios.",
     captchaError: "Por favor completa la verificación de seguridad.",
   },
   ca: {
     privacyLabel: "He llegit i accepto la política de privacitat.",
-    marketingConsentLabel: "Accepto rebre comunicacions comercials sobre serveis similars (opcional).",
-    privacyFirstLayer: "Responsable: Anclora Private Estates. Finalitat: gestionar sol·licituds d'informació, valoració o contacte. Drets: accés, rectificació, supressió, oposició i altres drets aplicables a través de legal@anclora.com.",
+    marketingConsentLabel:
+      "Accepto rebre comunicacions comercials sobre serveis similars (opcional).",
+    privacyFirstLayer:
+      "Responsable: Anclora Private Estates. Finalitat: gestionar sol·licituds d'informació, valoració o contacte. Drets: accés, rectificació, supressió, oposició i altres drets aplicables a través de legal@anclora.com.",
     successTitle: "Sol·licitud rebuda",
-    successBody: "Revisarem el teu actiu i et respondrem en un termini de dos dies hàbils.",
-    genericError: "No hem pogut enviar la sol·licitud. Torna-ho a provar d'aquí a uns minuts.",
+    successBody:
+      "Revisarem el teu actiu i et respondrem en un termini de dos dies hàbils.",
+    genericError:
+      "No hem pogut enviar la sol·licitud. Torna-ho a provar d'aquí a uns minuts.",
     validationError: "Completa tots els camps obligatoris.",
     captchaError: "Completa la verificació de seguretat.",
   },
   en: {
     privacyLabel: "I have read and accept the privacy policy.",
-    marketingConsentLabel: "I agree to receive commercial communications about similar services (optional).",
-    privacyFirstLayer: "Controller: Anclora Private Estates. Purpose: managing information, valuation and contact requests. Rights: access, rectification, erasure, objection and other applicable rights via legal@anclora.com.",
+    marketingConsentLabel:
+      "I agree to receive commercial communications about similar services (optional).",
+    privacyFirstLayer:
+      "Controller: Anclora Private Estates. Purpose: managing information, valuation and contact requests. Rights: access, rectification, erasure, objection and other applicable rights via legal@anclora.com.",
     successTitle: "Request received",
-    successBody: "We will review your asset and get back to you within two working days.",
-    genericError: "We could not send your request. Please try again in a few minutes.",
+    successBody:
+      "We will review your asset and get back to you within two working days.",
+    genericError:
+      "We could not send your request. Please try again in a few minutes.",
     validationError: "Please complete all required fields.",
     captchaError: "Please complete the security verification.",
   },
   de: {
-    privacyLabel: "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
-    marketingConsentLabel: "Ich stimme dem Erhalt kommerzieller Mitteilungen über ähnliche Dienstleistungen zu (optional).",
-    privacyFirstLayer: "Verantwortlicher: Anclora Private Estates. Zweck: Bearbeitung von Informations-, Bewertungs- und Kontaktanfragen. Rechte: Auskunft, Berichtigung, Löschung, Widerspruch und weitere Rechte über legal@anclora.com.",
+    privacyLabel:
+      "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
+    marketingConsentLabel:
+      "Ich stimme dem Erhalt kommerzieller Mitteilungen über ähnliche Dienstleistungen zu (optional).",
+    privacyFirstLayer:
+      "Verantwortlicher: Anclora Private Estates. Zweck: Bearbeitung von Informations-, Bewertungs- und Kontaktanfragen. Rechte: Auskunft, Berichtigung, Löschung, Widerspruch und weitere Rechte über legal@anclora.com.",
     successTitle: "Anfrage erhalten",
-    successBody: "Wir prüfen Ihren Vermögenswert und melden uns innerhalb von zwei Werktagen.",
-    genericError: "Wir konnten Ihre Anfrage nicht senden. Bitte versuchen Sie es in einigen Minuten erneut.",
+    successBody:
+      "Wir prüfen Ihren Vermögenswert und melden uns innerhalb von zwei Werktagen.",
+    genericError:
+      "Wir konnten Ihre Anfrage nicht senden. Bitte versuchen Sie es in einigen Minuten erneut.",
     validationError: "Bitte füllen Sie alle erforderlichen Felder aus.",
     captchaError: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
   },
   sv: {
     privacyLabel: "Jag har läst och accepterar integritetspolicyn.",
-    marketingConsentLabel: "Jag godkänner att ta emot kommersiella meddelanden om liknande tjänster (valfritt).",
-    privacyFirstLayer: "Personuppgiftsansvarig: Anclora Private Estates. Ändamål: hantering av informations-, värdering- och kontaktförfrågningar. Rättigheter: tillgång, rättelse, radering, invändning via legal@anclora.com.",
+    marketingConsentLabel:
+      "Jag godkänner att ta emot kommersiella meddelanden om liknande tjänster (valfritt).",
+    privacyFirstLayer:
+      "Personuppgiftsansvarig: Anclora Private Estates. Ändamål: hantering av informations-, värdering- och kontaktförfrågningar. Rättigheter: tillgång, rättelse, radering, invändning via legal@anclora.com.",
     successTitle: "Förfrågan mottagen",
-    successBody: "Vi granskar din tillgång och återkommer inom två arbetsdagar.",
-    genericError: "Vi kunde inte skicka din förfrågan. Försök igen om några minuter.",
+    successBody:
+      "Vi granskar din tillgång och återkommer inom två arbetsdagar.",
+    genericError:
+      "Vi kunde inte skicka din förfrågan. Försök igen om några minuter.",
     validationError: "Fyll i alla obligatoriska fält.",
     captchaError: "Slutför säkerhetsverifieringen.",
   },
   fr: {
     privacyLabel: "J'ai lu et j'accepte la politique de confidentialité.",
-    marketingConsentLabel: "J'accepte de recevoir des communications commerciales sur des services similaires (optionnel).",
-    privacyFirstLayer: "Responsable: Anclora Private Estates. Finalité: traitement des demandes d'information, d'évaluation et de contact. Droits: accès, rectification, suppression, opposition et autres droits via legal@anclora.com.",
+    marketingConsentLabel:
+      "J'accepte de recevoir des communications commerciales sur des services similaires (optionnel).",
+    privacyFirstLayer:
+      "Responsable: Anclora Private Estates. Finalité: traitement des demandes d'information, d'évaluation et de contact. Droits: accès, rectification, suppression, opposition et autres droits via legal@anclora.com.",
     successTitle: "Demande reçue",
-    successBody: "Nous examinerons votre actif et vous répondrons sous deux jours ouvrés.",
-    genericError: "Nous n'avons pas pu envoyer votre demande. Veuillez réessayer dans quelques minutes.",
+    successBody:
+      "Nous examinerons votre actif et vous répondrons sous deux jours ouvrés.",
+    genericError:
+      "Nous n'avons pas pu envoyer votre demande. Veuillez réessayer dans quelques minutes.",
     validationError: "Veuillez compléter tous les champs obligatoires.",
     captchaError: "Veuillez compléter la vérification de sécurité.",
   },
   it: {
     privacyLabel: "Ho letto e accetto l'informativa sulla privacy.",
-    marketingConsentLabel: "Accetto di ricevere comunicazioni commerciali su servizi simili (opzionale).",
-    privacyFirstLayer: "Titolare: Anclora Private Estates. Finalità: gestione di richieste di informazioni, valutazione e contatto. Diritti: accesso, rettifica, cancellazione, opposizione e altri diritti tramite legal@anclora.com.",
+    marketingConsentLabel:
+      "Accetto di ricevere comunicazioni commerciali su servizi simili (opzionale).",
+    privacyFirstLayer:
+      "Titolare: Anclora Private Estates. Finalità: gestione di richieste di informazioni, valutazione e contatto. Diritti: accesso, rettifica, cancellazione, opposizione e altri diritti tramite legal@anclora.com.",
     successTitle: "Richiesta ricevuta",
-    successBody: "Esamineremo il tuo asset e ti risponderemo entro due giorni lavorativi.",
-    genericError: "Non siamo riusciti a inviare la richiesta. Riprova tra qualche minuto.",
+    successBody:
+      "Esamineremo il tuo asset e ti risponderemo entro due giorni lavorativi.",
+    genericError:
+      "Non siamo riusciti a inviare la richiesta. Riprova tra qualche minuto.",
     validationError: "Completa tutti i campi obbligatori.",
     captchaError: "Completa la verifica di sicurezza.",
   },
   da: {
     privacyLabel: "Jeg har læst og accepterer privatlivspolitikken.",
-    marketingConsentLabel: "Jeg accepterer at modtage kommercielle meddelelser om lignende tjenester (valgfrit).",
-    privacyFirstLayer: "Dataansvarlig: Anclora Private Estates. Formål: behandling af informations-, vurderings- og kontaktanmodninger. Rettigheder: adgang, berigtigelse, sletning, indsigelse via legal@anclora.com.",
+    marketingConsentLabel:
+      "Jeg accepterer at modtage kommercielle meddelelser om lignende tjenester (valgfrit).",
+    privacyFirstLayer:
+      "Dataansvarlig: Anclora Private Estates. Formål: behandling af informations-, vurderings- og kontaktanmodninger. Rettigheder: adgang, berigtigelse, sletning, indsigelse via legal@anclora.com.",
     successTitle: "Anmodning modtaget",
-    successBody: "Vi gennemgår dit aktiv og vender tilbage inden for to hverdage.",
-    genericError: "Vi kunne ikke sende din anmodning. Prøv igen om et par minutter.",
+    successBody:
+      "Vi gennemgår dit aktiv og vender tilbage inden for to hverdage.",
+    genericError:
+      "Vi kunne ikke sende din anmodning. Prøv igen om et par minutter.",
     validationError: "Udfyld alle obligatoriske felter.",
     captchaError: "Gennemfør sikkerhedsbekræftelsen.",
   },
   nl: {
     privacyLabel: "Ik heb het privacybeleid gelezen en accepteer het.",
-    marketingConsentLabel: "Ik ga akkoord met het ontvangen van commerciële communicatie over vergelijkbare diensten (optioneel).",
-    privacyFirstLayer: "Verwerkingsverantwoordelijke: Anclora Private Estates. Doel: verwerking van informatie-, taxatie- en contactverzoeken. Rechten: inzage, rectificatie, verwijdering, bezwaar via legal@anclora.com.",
+    marketingConsentLabel:
+      "Ik ga akkoord met het ontvangen van commerciële communicatie over vergelijkbare diensten (optioneel).",
+    privacyFirstLayer:
+      "Verwerkingsverantwoordelijke: Anclora Private Estates. Doel: verwerking van informatie-, taxatie- en contactverzoeken. Rechten: inzage, rectificatie, verwijdering, bezwaar via legal@anclora.com.",
     successTitle: "Aanvraag ontvangen",
-    successBody: "We beoordelen uw object en nemen binnen twee werkdagen contact op.",
-    genericError: "We konden uw aanvraag niet verzenden. Probeer het over enkele minuten opnieuw.",
+    successBody:
+      "We beoordelen uw object en nemen binnen twee werkdagen contact op.",
+    genericError:
+      "We konden uw aanvraag niet verzenden. Probeer het over enkele minuten opnieuw.",
     validationError: "Vul alle verplichte velden in.",
     captchaError: "Voltooi de veiligheidsverificatie.",
   },
   no: {
     privacyLabel: "Jeg har lest og godtar personvernerklæringen.",
-    marketingConsentLabel: "Jeg samtykker til å motta kommersielle meldinger om lignende tjenester (valgfritt).",
-    privacyFirstLayer: "Behandlingsansvarlig: Anclora Private Estates. Formål: behandling av informasjons-, verdsettings- og kontaktforespørsler. Rettigheter: innsyn, retting, sletting, innsigelse via legal@anclora.com.",
+    marketingConsentLabel:
+      "Jeg samtykker til å motta kommersielle meldinger om lignende tjenester (valgfritt).",
+    privacyFirstLayer:
+      "Behandlingsansvarlig: Anclora Private Estates. Formål: behandling av informasjons-, verdsettings- og kontaktforespørsler. Rettigheter: innsyn, retting, sletting, innsigelse via legal@anclora.com.",
     successTitle: "Forespørsel mottatt",
     successBody: "Vi vurderer eiendelen din og svarer innen to virkedager.",
-    genericError: "Vi kunne ikke sende forespørselen. Prøv igjen om noen minutter.",
+    genericError:
+      "Vi kunne ikke sende forespørselen. Prøv igjen om noen minutter.",
     validationError: "Fyll ut alle obligatoriske felt.",
     captchaError: "Fullfør sikkerhetsverifiseringen.",
   },
   pt: {
     privacyLabel: "Li e aceito a política de privacidade.",
-    marketingConsentLabel: "Aceito receber comunicações comerciais sobre serviços similares (opcional).",
-    privacyFirstLayer: "Responsável: Anclora Private Estates. Finalidade: gestão de pedidos de informação, avaliação e contacto. Direitos: acesso, rectificação, apagamento, oposição e outros direitos via legal@anclora.com.",
+    marketingConsentLabel:
+      "Aceito receber comunicações comerciais sobre serviços similares (opcional).",
+    privacyFirstLayer:
+      "Responsável: Anclora Private Estates. Finalidade: gestão de pedidos de informação, avaliação e contacto. Direitos: acesso, rectificação, apagamento, oposição e outros direitos via legal@anclora.com.",
     successTitle: "Pedido recebido",
-    successBody: "Analisaremos o seu activo e responderemos no prazo de dois dias úteis.",
-    genericError: "Não foi possível enviar o pedido. Tente novamente dentro de alguns minutos.",
+    successBody:
+      "Analisaremos o seu activo e responderemos no prazo de dois dias úteis.",
+    genericError:
+      "Não foi possível enviar o pedido. Tente novamente dentro de alguns minutos.",
     validationError: "Preencha todos os campos obrigatórios.",
     captchaError: "Conclua a verificação de segurança.",
   },
@@ -152,7 +198,7 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
   // Intent Selection
   const [intent, setIntent] = useState<LeadIntent>("sell");
   const intentSelectRef = useRef<HTMLSelectElement>(null);
-  
+
   // Common Fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -160,11 +206,14 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [marketingAccepted, setMarketingAccepted] = useState(false);
-  
+
   // Focus behavior for hash navigation
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === "#clientes" || window.location.hash === "#propietarios") {
+      if (
+        window.location.hash === "#clientes" ||
+        window.location.hash === "#propietarios"
+      ) {
         intentSelectRef.current?.focus();
       }
     };
@@ -177,8 +226,14 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
   }, []);
 
   // Captcha
-  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useTurnstile(
-    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
+  const {
+    captchaToken,
+    captchaStatus,
+    captchaContainerRef,
+    resetCaptcha,
+    siteKey,
+  } = useTurnstile(
+    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined,
   );
 
   // Intent-Specific Fields
@@ -186,24 +241,26 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
   const [zone, setZone] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [commercialization, setCommercialization] = useState("");
-  
+
   // Valuation
   const [valuationAddress, setValuationAddress] = useState("");
   const [valuationPropertyType, setValuationPropertyType] = useState("");
-  
+
   // Buyer
   const [targetZone, setTargetZone] = useState("");
   const [budgetRange, setBudgetRange] = useState("");
   const [buyTiming, setBuyTiming] = useState("");
-  
+
   // Investor
   const [investmentTicket, setInvestmentTicket] = useState("");
   const [investmentGoal, setInvestmentGoal] = useState("");
 
   // Holiday Rental
   const [holidayRentalZone, setHolidayRentalZone] = useState("");
-  const [holidayRentalPropertyType, setHolidayRentalPropertyType] = useState("");
-  const [holidayRentalAvailability, setHolidayRentalAvailability] = useState("");
+  const [holidayRentalPropertyType, setHolidayRentalPropertyType] =
+    useState("");
+  const [holidayRentalAvailability, setHolidayRentalAvailability] =
+    useState("");
   const [holidayRentalObjective, setHolidayRentalObjective] = useState("");
 
   // Status
@@ -237,7 +294,7 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
     try {
       // Collect qualifiers based on intent
       const qualifiers: Record<string, string | undefined> = {};
-      
+
       if (intent === "sell") {
         qualifiers.zone = zone;
         qualifiers.property_type = propertyType;
@@ -277,28 +334,85 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
         preSubmitCtaClicks: signals?.pre_submit_cta_clicks,
       });
 
-      await submitLeadIntake({
-        payload,
-        webhookUrl: import.meta.env.VITE_N8N_LEAD_INTAKE_WEBHOOK_URL as string | undefined,
-        nexusBaseUrl: import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined,
+      // Submit to Nexus v1 lead intake API with standardized schema
+      const nexusPayload = buildNexusLeadIntakePayload({
+        name,
+        email,
+        phone,
+        sourceChannel: "form-main",
+        metadata: {
+          intent,
+          language,
+          message,
+          page_url: typeof window !== "undefined" ? window.location.href : "",
+          ...qualifiers,
+          captcha_provider: captchaToken ? "turnstile" : undefined,
+          time_on_page_s: signals?.time_on_page_s,
+          scroll_depth_pct: signals?.scroll_depth_pct,
+          pre_submit_cta_clicks: signals?.pre_submit_cta_clicks,
+          gdpr_consent: !!privacyAccepted,
+          org_id: import.meta.env.VITE_NEXUS_ORG_ID as string | undefined,
+        },
       });
+
+      await submitNexusLeadIntake({
+        payload: nexusPayload,
+        nexusBaseUrl: import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as
+          | string
+          | undefined,
+      });
+
+      // Also send to legacy webhook if configured (n8n, backward compat)
+      const webhookUrl = import.meta.env.VITE_N8N_LEAD_INTAKE_WEBHOOK_URL as
+        | string
+        | undefined;
+      if (webhookUrl?.trim()) {
+        submitLeadIntake({
+          payload,
+          webhookUrl,
+          nexusBaseUrl: import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as
+            | string
+            | undefined,
+        }).catch(() => {
+          // Legacy webhook failure is non-blocking
+        });
+      }
 
       trackEvent("form_submit", { intent, language });
       setSuccess(true);
       // Reset form
-      setName(""); setEmail(""); setPhone(""); setMessage("");
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
       setPrivacyAccepted(false);
       resetCaptcha();
-      setZone(""); setPropertyType(""); setCommercialization("");
-      setValuationAddress(""); setValuationPropertyType("");
-      setTargetZone(""); setBudgetRange(""); setBuyTiming("");
-      setInvestmentTicket(""); setInvestmentGoal("");
-      setHolidayRentalZone(""); setHolidayRentalPropertyType(""); setHolidayRentalAvailability(""); setHolidayRentalObjective("");
+      setZone("");
+      setPropertyType("");
+      setCommercialization("");
+      setValuationAddress("");
+      setValuationPropertyType("");
+      setTargetZone("");
+      setBudgetRange("");
+      setBuyTiming("");
+      setInvestmentTicket("");
+      setInvestmentGoal("");
+      setHolidayRentalZone("");
+      setHolidayRentalPropertyType("");
+      setHolidayRentalAvailability("");
+      setHolidayRentalObjective("");
     } catch (submissionError) {
-      if (submissionError instanceof Error && submissionError.message.includes("NEXUS_ORG_ID")) {
+      if (
+        submissionError instanceof Error &&
+        submissionError.message.includes("NEXUS_ORG_ID")
+      ) {
         setConfigError(true);
       } else {
-        setError(submissionError instanceof Error ? submissionError.message : messages.genericError);
+        setError(
+          submissionError instanceof Error
+            ? submissionError.message
+            : messages.genericError,
+        );
       }
     } finally {
       setSubmitting(false);
@@ -308,7 +422,10 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
   if (success) {
     return (
       <div className="pe-form-success" data-testid="seller-success">
-        <p className="pe-eyebrow pe-kicker" style={{ color: "var(--pe-gold)", margin: 0 }}>
+        <p
+          className="pe-eyebrow pe-kicker"
+          style={{ color: "var(--pe-gold)", margin: 0 }}
+        >
           {messages.successTitle}
         </p>
         <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>
@@ -319,7 +436,11 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
   }
 
   return (
-    <form className="pe-form" onSubmit={handleSubmit} data-testid="seller-intake-form">
+    <form
+      className="pe-form"
+      onSubmit={handleSubmit}
+      data-testid="seller-intake-form"
+    >
       {/* Intent Selector */}
       <label className="pe-form-field" style={{ marginBottom: "2rem" }}>
         <span className="pe-eyebrow">{copy.intentLabel}</span>
@@ -406,9 +527,13 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
                 onChange={(event) => setPropertyType(event.target.value)}
                 required
               >
-                <option value="" disabled>{copy.selectPlaceholder}</option>
+                <option value="" disabled>
+                  {copy.selectPlaceholder}
+                </option>
                 {copy.propertyTypeOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </label>
@@ -421,9 +546,13 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
                 onChange={(event) => setCommercialization(event.target.value)}
                 required
               >
-                <option value="" disabled>{copy.selectPlaceholder}</option>
+                <option value="" disabled>
+                  {copy.selectPlaceholder}
+                </option>
                 {copy.commercializationOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </label>
@@ -453,9 +582,13 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
                 onChange={(e) => setValuationPropertyType(e.target.value)}
                 required
               >
-                <option value="" disabled>{copy.selectPlaceholder}</option>
+                <option value="" disabled>
+                  {copy.selectPlaceholder}
+                </option>
                 {copy.propertyTypeOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </label>
@@ -485,9 +618,13 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
                 onChange={(e) => setBudgetRange(e.target.value)}
                 required
               >
-                <option value="" disabled>{copy.selectPlaceholder}</option>
+                <option value="" disabled>
+                  {copy.selectPlaceholder}
+                </option>
                 {copy.budgetOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </label>
@@ -500,9 +637,13 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
                 onChange={(e) => setBuyTiming(e.target.value)}
                 required
               >
-                <option value="" disabled>{copy.selectPlaceholder}</option>
+                <option value="" disabled>
+                  {copy.selectPlaceholder}
+                </option>
                 {copy.timingOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </label>
@@ -521,9 +662,13 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
                 onChange={(e) => setInvestmentTicket(e.target.value)}
                 required
               >
-                <option value="" disabled>{copy.selectPlaceholder}</option>
+                <option value="" disabled>
+                  {copy.selectPlaceholder}
+                </option>
                 {copy.ticketOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </label>
@@ -564,30 +709,42 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
                 onChange={(e) => setHolidayRentalPropertyType(e.target.value)}
                 required
               >
-                <option value="" disabled>{copy.selectPlaceholder}</option>
+                <option value="" disabled>
+                  {copy.selectPlaceholder}
+                </option>
                 {copy.propertyTypeOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </label>
             {copy.holidayRentalObjectiveOptions && (
               <label className="pe-form-field">
-                <span className="pe-eyebrow">{copy.holidayRentalObjective ?? copy.goal}</span>
+                <span className="pe-eyebrow">
+                  {copy.holidayRentalObjective ?? copy.goal}
+                </span>
                 <select
                   className="pe-select"
                   name="holidayRentalObjective"
                   value={holidayRentalObjective}
                   onChange={(e) => setHolidayRentalObjective(e.target.value)}
                 >
-                  <option value="" disabled>{copy.selectPlaceholder}</option>
+                  <option value="" disabled>
+                    {copy.selectPlaceholder}
+                  </option>
                   {copy.holidayRentalObjectiveOptions.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
                   ))}
                 </select>
               </label>
             )}
             <label className="pe-form-field">
-              <span className="pe-eyebrow">{copy.holidayRentalAvailability ?? copy.timing}</span>
+              <span className="pe-eyebrow">
+                {copy.holidayRentalAvailability ?? copy.timing}
+              </span>
               <input
                 className="pe-input"
                 name="holidayRentalAvailability"
@@ -614,19 +771,25 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
       </label>
 
       {siteKey && (
-        <div 
-          ref={captchaContainerRef} 
-          style={{ 
-            margin: "1.5rem 0", 
-            minHeight: (captchaStatus === "ready" || captchaStatus === "loading") ? "65px" : "0",
+        <div
+          ref={captchaContainerRef}
+          style={{
+            margin: "1.5rem 0",
+            minHeight:
+              captchaStatus === "ready" || captchaStatus === "loading"
+                ? "65px"
+                : "0",
             display: "flex",
-            justifyContent: "flex-start" 
-          }} 
-          data-testid="seller-captcha" 
+            justifyContent: "flex-start",
+          }}
+          data-testid="seller-captcha"
         />
       )}
 
-      <label className="pe-form-field pe-privacy-row" style={{ marginTop: "1.5rem" }}>
+      <label
+        className="pe-form-field pe-privacy-row"
+        style={{ marginTop: "1.5rem" }}
+      >
         <input
           type="checkbox"
           required
@@ -638,7 +801,10 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
         <span className="pe-note">{messages.privacyLabel}</span>
       </label>
 
-      <label className="pe-form-field pe-privacy-row" style={{ marginTop: "0.75rem" }}>
+      <label
+        className="pe-form-field pe-privacy-row"
+        style={{ marginTop: "0.75rem" }}
+      >
         <input
           type="checkbox"
           checked={marketingAccepted}
@@ -646,13 +812,18 @@ export function SellerIntakeForm({ copy, getSignals }: SellerIntakeFormProps) {
           data-testid="seller-marketing-checkbox"
           className="pe-checkbox"
         />
-        <span className="pe-note" style={{ color: "var(--pe-text-muted)" }}>{messages.marketingConsentLabel}</span>
+        <span className="pe-note" style={{ color: "var(--pe-text-muted)" }}>
+          {messages.marketingConsentLabel}
+        </span>
       </label>
 
       {configError ? (
         <p className="pe-form-error" data-testid="seller-error">
           {messages.genericError}{" "}
-          <a href="#contacto" style={{ color: "var(--pe-gold)", textDecoration: "underline" }}>
+          <a
+            href="#contacto"
+            style={{ color: "var(--pe-gold)", textDecoration: "underline" }}
+          >
             Contáctanos directamente
           </a>
           .

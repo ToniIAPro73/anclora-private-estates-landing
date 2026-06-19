@@ -1,22 +1,35 @@
 import { useState } from "react";
 import type { ValuationFormCopy } from "@/content/site-copy";
 import { useTurnstile } from "@/hooks/useTurnstile";
+import {
+  buildNexusLeadIntakePayload,
+  submitNexusLeadIntake,
+} from "@/lib/lead-intake";
 
 type ValuationRequestFormProps = {
   copy: ValuationFormCopy;
   language?: string;
 };
 
-export function ValuationRequestForm({ copy, language = "es" }: ValuationRequestFormProps) {
+export function ValuationRequestForm({
+  copy,
+  language = "es",
+}: ValuationRequestFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
-  
-  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useTurnstile(
-    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
+
+  const {
+    captchaToken,
+    captchaStatus,
+    captchaContainerRef,
+    resetCaptcha,
+    siteKey,
+  } = useTurnstile(
+    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined,
   );
 
   const [submitting, setSubmitting] = useState(false);
@@ -38,16 +51,38 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
         (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||
         "https://nexus.anclora.group";
       const orgId = import.meta.env.VITE_NEXUS_ORG_ID as string | undefined;
-      
+
       if (!orgId) {
         throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
       }
 
+      // Submit to Nexus v1 lead intake API with standardized schema
+      const nexusPayload = buildNexusLeadIntakePayload({
+        name,
+        email,
+        phone: phone || undefined,
+        sourceChannel: "valuation-form",
+        metadata: {
+          property_address: address || undefined,
+          message: message || undefined,
+          language,
+          gdpr_consent: privacyAccepted,
+          org_id: orgId,
+          captcha_provider: captchaToken ? "turnstile" : undefined,
+        },
+      });
+
+      await submitNexusLeadIntake({
+        payload: nexusPayload,
+        nexusBaseUrl: nexusBase,
+      });
+
+      // Also send to legacy endpoint (backward compat, non-blocking)
       const source_system_enum = "cta_web";
       const source_channel_enum = "website";
       const internal_trace_prefix = "private_estates_landing";
-      
-      const res = await fetch(`${nexusBase}/api/public/valuation-requests`, {
+
+      fetch(`${nexusBase}/api/public/valuation-requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -67,25 +102,17 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
           privacy_accepted: privacyAccepted,
           gdpr_consent: privacyAccepted,
         }),
+      }).catch(() => {
+        // Legacy endpoint failure is non-blocking
       });
 
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        // Safe parsing of backend validation errors
-        let errorMsg = "Error en el envío.";
-        if (typeof body.detail === "string") {
-          errorMsg = body.detail;
-        } else if (Array.isArray(body.detail)) {
-          errorMsg = body.detail.map((err: any) => `${err.loc.join(".")}: ${err.msg}`).join(", ");
-        } else if (body.message) {
-          errorMsg = body.message;
-        }
-        throw new Error(errorMsg);
-      }
-
       setSuccess(true);
-      setName(""); setEmail(""); setPhone(""); setAddress(""); setMessage("");
-      setPrivacyAccepted(false); 
+      setName("");
+      setEmail("");
+      setPhone("");
+      setAddress("");
+      setMessage("");
+      setPrivacyAccepted(false);
       resetCaptcha();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido.");
@@ -97,7 +124,10 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
   if (success) {
     return (
       <div className="pe-form-success" data-testid="valuation-success">
-        <p className="pe-eyebrow pe-kicker" style={{ color: "var(--pe-gold)", margin: 0 }}>
+        <p
+          className="pe-eyebrow pe-kicker"
+          style={{ color: "var(--pe-gold)", margin: 0 }}
+        >
           {copy.successTitle}
         </p>
         <p className="pe-section-copy" style={{ margin: "0.75rem 0 0" }}>
@@ -108,7 +138,11 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
   }
 
   return (
-    <form className="pe-form" onSubmit={handleSubmit} data-testid="valuation-request-form">
+    <form
+      className="pe-form"
+      onSubmit={handleSubmit}
+      data-testid="valuation-request-form"
+    >
       <div className="pe-form-grid">
         <label className="pe-form-field">
           <span className="pe-eyebrow">{copy.name}</span>
@@ -173,19 +207,31 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
       </label>
 
       {siteKey && (
-        <div 
-          ref={captchaContainerRef} 
-          style={{ 
-            margin: "1.5rem 0", 
-            minHeight: (captchaStatus === "ready" || captchaStatus === "loading") ? "65px" : "0",
+        <div
+          ref={captchaContainerRef}
+          style={{
+            margin: "1.5rem 0",
+            minHeight:
+              captchaStatus === "ready" || captchaStatus === "loading"
+                ? "65px"
+                : "0",
             display: "flex",
-            justifyContent: "flex-start" 
-          }} 
-          data-testid="valuation-captcha" 
+            justifyContent: "flex-start",
+          }}
+          data-testid="valuation-captcha"
         />
       )}
 
-      <label className="pe-form-field pe-form-field--checkbox" style={{ marginTop: "1rem", display: "flex", gap: "0.75rem", alignItems: "flex-start", cursor: "pointer" }}>
+      <label
+        className="pe-form-field pe-form-field--checkbox"
+        style={{
+          marginTop: "1rem",
+          display: "flex",
+          gap: "0.75rem",
+          alignItems: "flex-start",
+          cursor: "pointer",
+        }}
+      >
         <input
           type="checkbox"
           required
@@ -198,7 +244,15 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
       </label>
 
       {error && (
-        <p className="pe-form-error" style={{ color: "var(--pe-gold)", marginTop: "0.75rem", fontSize: "0.875rem" }} data-testid="valuation-error">
+        <p
+          className="pe-form-error"
+          style={{
+            color: "var(--pe-gold)",
+            marginTop: "0.75rem",
+            fontSize: "0.875rem",
+          }}
+          data-testid="valuation-error"
+        >
           {error}
         </p>
       )}

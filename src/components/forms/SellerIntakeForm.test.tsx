@@ -27,15 +27,21 @@ describe("SellerIntakeForm Integration & Coverage", () => {
     vi.clearAllMocks();
     window.location.hash = "";
     // Default mock implementation
-    (useTurnstileHook.useTurnstile as any).mockReturnValue(defaultTurnstileMock);
-    
+    (useTurnstileHook.useTurnstile as any).mockReturnValue(
+      defaultTurnstileMock,
+    );
+
     // Set default env variables
     vi.stubEnv("VITE_NEXUS_ORG_ID", "test-org-id");
     vi.stubEnv("VITE_TURNSTILE_SITE_KEY", "test-site-key");
-    
+
     mockFetch.mockResolvedValue({
       ok: true,
-      json: async () => ({ success: true }),
+      json: async () => ({
+        lead_id: "test-lead-123",
+        status: "created",
+        temperature: "cold",
+      }),
     });
   });
 
@@ -45,7 +51,10 @@ describe("SellerIntakeForm Integration & Coverage", () => {
 
   async function fillCommonFields(user: any) {
     await user.type(screen.getByTestId("seller-name-input"), "Test User");
-    await user.type(screen.getByTestId("seller-email-input"), "test@example.com");
+    await user.type(
+      screen.getByTestId("seller-email-input"),
+      "test@example.com",
+    );
     await user.type(screen.getByTestId("seller-message-input"), "Test message");
     await user.click(screen.getByTestId("seller-privacy-checkbox"));
   }
@@ -71,19 +80,22 @@ describe("SellerIntakeForm Integration & Coverage", () => {
       expect(mockFetch).toHaveBeenCalled();
     });
 
+    // First call is the Nexus v1 lead intake API (standardized schema)
     const callArgs = mockFetch.mock.calls[0];
     const payload = JSON.parse(callArgs[1].body);
 
-    // Verify Nexus mandatory fields
-    expect(payload.org_id).toBe("test-org-id");
-    expect(payload.external_id).toMatch(/^private_estates_landing_/);
-    expect(payload.source_system).toBe("cta_web");
-    expect(payload.source_channel).toBe("website");
-    expect(payload.source).toBe("private_estates_landing");
-    expect(payload.submission_source).toBe("private_estates_landing");
-    expect(payload.submission_language).toBe("es");
-    expect(payload.gdpr_consent).toBe(true);
-    expect(payload.privacy_accepted).toBe(true);
+    // Verify Nexus v1 standardized fields
+    expect(callArgs[0]).toContain("/api/v1/leads/intake");
+    expect(payload.source_system).toBe("private-estates-landing");
+    expect(payload.source_channel).toBe("form-main");
+    expect(payload.contact.name).toBe("Test User");
+    expect(payload.contact.email).toBe("test@example.com");
+    expect(payload.timestamp).toBeDefined();
+    expect(payload.metadata).toBeDefined();
+    expect(payload.metadata.intent).toBe("sell");
+    expect(payload.metadata.language).toBe("es");
+    expect(payload.metadata.gdpr_consent).toBe(true);
+    expect(payload.metadata.org_id).toBe("test-org-id");
   });
 
   describe("2. Captcha behavior coverage", () => {
@@ -103,7 +115,9 @@ describe("SellerIntakeForm Integration & Coverage", () => {
       await user.click(screen.getByTestId("seller-submit-button"));
 
       expect(mockFetch).not.toHaveBeenCalled();
-      expect(screen.getByTestId("seller-error")).toHaveTextContent(/seguridad/i);
+      expect(screen.getByTestId("seller-error")).toHaveTextContent(
+        /seguridad/i,
+      );
     });
 
     test("includes captcha_token and captcha_provider when token is present", async () => {
@@ -125,9 +139,9 @@ describe("SellerIntakeForm Integration & Coverage", () => {
         expect(mockFetch).toHaveBeenCalled();
       });
 
+      // Primary call is Nexus v1 — captcha info is in metadata
       const payload = JSON.parse(mockFetch.mock.calls[0][1].body);
-      expect(payload.captcha_token).toBe("valid-token");
-      expect(payload.captcha_provider).toBe("turnstile");
+      expect(payload.metadata.captcha_provider).toBe("turnstile");
     });
 
     test("allows graceful submission when status is failed", async () => {
@@ -152,9 +166,9 @@ describe("SellerIntakeForm Integration & Coverage", () => {
     });
   });
 
-  test("3. Env behavior: missing VITE_NEXUS_ORG_ID blocks submit visibly", async () => {
+  test("3. Env behavior: missing VITE_NEXUS_ORG_ID still submits to Nexus v1", async () => {
     vi.stubEnv("VITE_NEXUS_ORG_ID", "");
-    
+
     const user = userEvent.setup();
     render(<SellerIntakeForm copy={copy} />);
 
@@ -163,10 +177,15 @@ describe("SellerIntakeForm Integration & Coverage", () => {
 
     await user.click(screen.getByTestId("seller-submit-button"));
 
+    // Nexus v1 endpoint does not require org_id (it's passed in metadata as optional)
     await waitFor(() => {
-      expect(screen.getByTestId("seller-error")).toBeVisible();
+      expect(mockFetch).toHaveBeenCalled();
     });
-    expect(mockFetch).not.toHaveBeenCalled();
+
+    const payload = JSON.parse(mockFetch.mock.calls[0][1].body);
+    expect(payload.source_system).toBe("private-estates-landing");
+    // org_id is empty in metadata since it's not set
+    expect(payload.metadata.org_id).toBe("");
   });
 
   describe("4. Backend error formatting coverage", () => {
@@ -175,9 +194,13 @@ describe("SellerIntakeForm Integration & Coverage", () => {
         ok: false,
         json: async () => ({
           detail: [
-            { loc: ["body", "email"], msg: "invalid email format", type: "value_error" },
-            { loc: ["body", "phone"], msg: "too short", type: "value_error" }
-          ]
+            {
+              loc: ["body", "email"],
+              msg: "invalid email format",
+              type: "value_error",
+            },
+            { loc: ["body", "phone"], msg: "too short", type: "value_error" },
+          ],
         }),
       });
 
@@ -212,7 +235,7 @@ describe("SellerIntakeForm Integration & Coverage", () => {
       cleanup(); // Reset component state completely for each intent
       render(<SellerIntakeForm copy={copy} />);
       mockFetch.mockClear();
-      
+
       const select = screen.getByTestId("lead-intent-select");
       await user.selectOptions(select, value);
 
@@ -228,16 +251,25 @@ describe("SellerIntakeForm Integration & Coverage", () => {
         await user.selectOptions(selects[1], copy.propertyTypeOptions[0]);
         await user.selectOptions(selects[2], copy.commercializationOptions[0]);
       } else if (value === "buy") {
-        await user.type(screen.getByPlaceholderText(copy.placeholders.zone), "Z");
+        await user.type(
+          screen.getByPlaceholderText(copy.placeholders.zone),
+          "Z",
+        );
         const selects = screen.getAllByRole("combobox");
         await user.selectOptions(selects[1], copy.budgetOptions[0]);
         await user.selectOptions(selects[2], copy.timingOptions[0]);
       } else if (value === "invest") {
         const selects = screen.getAllByRole("combobox");
         await user.selectOptions(selects[1], copy.ticketOptions[0]);
-        await user.type(screen.getByPlaceholderText(copy.placeholders.goal), "G");
+        await user.type(
+          screen.getByPlaceholderText(copy.placeholders.goal),
+          "G",
+        );
       } else if (value === "valuation") {
-        await user.type(screen.getByPlaceholderText(copy.placeholders.address), "A");
+        await user.type(
+          screen.getByPlaceholderText(copy.placeholders.address),
+          "A",
+        );
         const selects = screen.getAllByRole("combobox");
         await user.selectOptions(selects[1], copy.propertyTypeOptions[0]);
       }
@@ -248,16 +280,19 @@ describe("SellerIntakeForm Integration & Coverage", () => {
         expect(mockFetch).toHaveBeenCalled();
       });
 
+      // Nexus v1 payload uses metadata.intent instead of lead_type
       const payload = JSON.parse(mockFetch.mock.calls[0][1].body);
-      expect(payload.lead_type).toBe(expected);
+      expect(payload.source_system).toBe("private-estates-landing");
+      expect(payload.metadata.intent).toBe(value);
     }
   });
 
   test("6. Required fields validation", async () => {
     render(<SellerIntakeForm copy={copy} />);
     const form = screen.getByTestId("seller-intake-form");
-    
-    const { fireEvent: testingFireEvent } = await import("@testing-library/react");
+
+    const { fireEvent: testingFireEvent } =
+      await import("@testing-library/react");
     testingFireEvent.submit(form);
 
     expect(mockFetch).not.toHaveBeenCalled();
@@ -267,7 +302,7 @@ describe("SellerIntakeForm Integration & Coverage", () => {
   test("7. Focus behavior: #clientes focuses intent selector", () => {
     window.location.hash = "#clientes";
     render(<SellerIntakeForm copy={copy} />);
-    
+
     const select = screen.getByTestId("lead-intent-select");
     expect(document.activeElement).toBe(select);
   });
