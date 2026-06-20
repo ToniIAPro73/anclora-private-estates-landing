@@ -9,11 +9,61 @@ const DEFAULT_PUBLIC_LEAD_INTAKE_PATH = "/api/public/lead-intake";
  */
 export type LeadIntent = "sell" | "valuation" | "buy" | "invest" | "holiday_rental";
 
+// Anclora Intake Contract v1 types
+export type IntakeRequestType =
+  | "seller_valuation_request"
+  | "seller_lead"
+  | "buyer_lead"
+  | "vacation_rental_management_interest"
+  | "general_commercial_inquiry";
+
+export type ServiceInterest =
+  | "property_sale"
+  | "property_purchase"
+  | "property_valuation"
+  | "vacation_rental_management"
+  | "other";
+
+export type RoutingTargetDomain = "leads" | "valuations" | "buyers";
+
+const INTENT_TO_REQUEST_TYPE: Record<LeadIntent, IntakeRequestType> = {
+  sell: "seller_lead",
+  valuation: "seller_valuation_request",
+  buy: "buyer_lead",
+  invest: "buyer_lead",
+  holiday_rental: "vacation_rental_management_interest",
+};
+
+const INTENT_TO_SERVICE_INTEREST: Record<LeadIntent, ServiceInterest> = {
+  sell: "property_sale",
+  valuation: "property_valuation",
+  buy: "property_purchase",
+  invest: "property_purchase",
+  holiday_rental: "vacation_rental_management",
+};
+
+const INTENT_TO_ROUTING: Record<LeadIntent, RoutingTargetDomain> = {
+  sell: "leads",
+  valuation: "valuations",
+  buy: "buyers",
+  invest: "buyers",
+  holiday_rental: "leads",
+};
+
 /**
  * Unified Lead Intake Payload.
- * Designed to be flat for n8n/Nexus compatibility.
+ * Includes Anclora Intake Contract v1 fields for traceability and routing.
  */
 export type LeadIntakePayload = {
+  // Anclora Intake Contract v1
+  schema_version: "anclora-intake-v1";
+  intake_domain: "commercial_lead";
+  request_type: IntakeRequestType;
+  target_product: null;
+  service_interest: ServiceInterest;
+  idempotency_key: string;
+  routing_target_domain: RoutingTargetDomain;
+
   // Nexus Mandatory Ingestion Fields (Enum aligned)
   org_id: string;
   external_id: string;
@@ -23,7 +73,7 @@ export type LeadIntakePayload = {
   // Common Fields
   source: "private_estates_landing";
   submission_source?: "private_estates_landing"; // Alias for Nexus
-  
+
   lead_type: LeadIntent | "seller_intake" | "buyer_intake" | "investment_intake" | "valuation_intake" | "holiday_rental_intake"; // Explicitly typed for Nexus enums
   
   language: LanguageCode;
@@ -172,17 +222,27 @@ export function buildLeadIntakePayload(input: {
 
   const wireLeadType = intentToWireMap[input.intent];
 
+  const idempotencyKey = crypto.randomUUID();
   const payload: LeadIntakePayload = {
+    // Anclora Intake Contract v1
+    schema_version: "anclora-intake-v1",
+    intake_domain: "commercial_lead",
+    request_type: INTENT_TO_REQUEST_TYPE[input.intent],
+    target_product: null,
+    service_interest: INTENT_TO_SERVICE_INTEREST[input.intent],
+    idempotency_key: idempotencyKey,
+    routing_target_domain: INTENT_TO_ROUTING[input.intent],
+
     // Nexus Ingestion Alignment (Enum strict)
-    org_id: input.orgId || "", 
+    org_id: input.orgId || "",
     source_system: "cta_web",
     source_channel: "website",
-    external_id: input.externalId || `${internal_trace_prefix}_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+    external_id: input.externalId || idempotencyKey,
 
     // Legacy and Common Fields (Preserve for internal traceability)
     source: "private_estates_landing",
     submission_source: "private_estates_landing",
-    
+
     lead_type: wireLeadType as LeadIntent | "seller_intake",
     
     language: input.language,
