@@ -1,7 +1,7 @@
 import type { LanguageCode } from "@/content/site-copy";
 
 const DEFAULT_NEXUS_BASE_URL = "https://nexus.anclora.group";
-const DEFAULT_PUBLIC_LEAD_INTAKE_PATH = "/api/public/lead-intake";
+const DEFAULT_PUBLIC_LEAD_INTAKE_PATH = "/api/public/intake/commercial-leads";
 
 /**
  * Definitive Lead Intent types for internal logic.
