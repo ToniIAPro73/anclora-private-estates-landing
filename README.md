@@ -1,49 +1,84 @@
+<!-- markdownlint-disable MD001 MD013 MD033 MD041 MD060 -->
+
+<div align="center">
+
+<img src="./public/brand/logo-anclora-private-estates-exp.png" alt="Anclora Private Estates Landing" width="120" />
+
 # Anclora Private Estates Landing
 
-Base de proyecto para la landing pública premium de `Anclora Private Estates`.
+### Producto del ecosistema Anclora documentado como repositorio publico de familia ultra_premium
 
-## Estructura
+**Español** · [English](./README.en.md) · [Deutsch](./README.de.md)
 
-- `docs/strategy/`: posicionamiento, SEO y fuentes conversacionales.
-- `docs/architecture/`: estructura técnica, orden de implementación y mapa de secciones.
-- `docs/qa/`: checklist de lanzamiento.
-- `public/`: assets públicos de marca, hero, territorio y SEO.
-- `src/app/`: punto de entrada y ensamblado principal.
-- `src/components/`: bloques reutilizables de marca, layout, formularios y SEO.
-- `src/sections/`: secciones de la home.
-- `src/content/`: contenido estructurado, navegación e inputs editoriales.
-- `src/content/site-copy.ts`: fuente tipada de copy por idioma.
-- `src/styles/`: tokens, helpers y base visual.
-- `src/lib/`: utilidades de navegación, SEO y schema.
-- `tests/`: smoke tests, SEO y contenido.
+<br />
 
-## Estado actual
+![Anclora](https://img.shields.io/badge/Anclora-ecosystem-111827)
+![Documentation](https://img.shields.io/badge/documentation-premium-BFA46A)
+![Languages](https://img.shields.io/badge/languages-ES%20%7C%20EN-047857)
 
-Este repo deja preparada la estructura para implementar una landing `Vite + React + TypeScript` centrada en:
+</div>
 
-- autoridad territorial en Mallorca, con foco en Palma y suroeste
-- captación cualificada de propietarios, compradores e inversores
-- acceso selectivo a `Data Lab` y `Synergi`
-- base SEO e internacionalización desde el inicio
+---
 
-## Siguiente paso
+> [!IMPORTANT]
+> Repositorio publico reducido. Describe el producto y su arquitectura conceptual; no expone logica operativa, secretos ni datos reales.
 
-Implementar la home a partir de los documentos de `docs/architecture/` y consolidar el copy maestro en `docs/strategy/`.
-## Global Preferences Toggle
+## Vista rapida
 
-Esta app sigue el contrato global de preferencias de Anclora Group.
+| Problema | Respuesta de producto |
+| --- | --- |
+| Contexto disperso | Experiencia guiada y trazable |
+| Datos sensibles | Privacidad por diseno y minimizacion |
+| Decision compleja | Flujo conceptual claro y revisable |
+| Operacion profesional | Arquitectura modular y controles de calidad |
 
-Incluye:
-- idioma
-- moneda, porque muestra presupuestos/importes
+## Flujo conceptual
 
-El Theme Toggle se gestiona por separado y no aparece en apps Ultra Premium.
+```text
+Entrada de usuario / evidencia
+        ↓
+Validacion y normalizacion
+        ↓
+Flujo de producto
+        ↓
+Revision o resultado explicable
+        ↓
+Salida profesional / siguiente accion
+```
 
-## Ultra Premium locales
+## Que muestra este repositorio
 
-This landing follows Anclora Group Ultra Premium locale governance.
+Producto del ecosistema Anclora documentado como repositorio publico de familia ultra_premium.
 
-Supported locales:
-ES, CA, DE, EN, SV, FR, IT, DA, NL, NO, PT.
+El README presenta el alcance publico del producto, su posicionamiento dentro del ecosistema
+Anclora y los limites de exposicion adecuados para un repositorio abierto.
 
-Copy localization follows Anclora Locale Copy Guardian: intent over literal translation, premium tone, no added claims and no artificial machine-translated phrasing.
+## Tecnologia
+
+| Area | Detalle |
+| --- | --- |
+| React | Presente en el repositorio |
+| TypeScript | Presente en el repositorio |
+| Tailwind CSS | Presente en el repositorio |
+| Vitest | Presente en el repositorio |
+
+## Documentacion
+
+- [Documentacion](./docs)
+
+## Marca
+
+- Producto canonico: `anclora-private-estates-landing`
+- Familia: `ultra_premium`
+- Visibilidad objetivo: `public`
+- Asset de marca: `presente`
+
+---
+
+<div align="center">
+
+### Antonio Ballesteros · Anclora Group
+
+Software, IA generativa y automatizacion para productos digitales trazables.
+
+</div>
