@@ -237,7 +237,7 @@ export function buildLeadIntakePayload(input: {
     org_id: input.orgId || "",
     source_system: "cta_web",
     source_channel: "website",
-    external_id: input.externalId || idempotencyKey,
+    external_id: input.externalId || `${internal_trace_prefix}_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
 
     // Legacy and Common Fields (Preserve for internal traceability)
     source: "private_estates_landing",
