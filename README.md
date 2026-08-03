@@ -10,7 +10,7 @@
 
 Landing pública dark-only, comparte identidad completa con `anclora-private-estates`, orientada a captación de leads de alto valor.
 
-**Español** · [English](./README.en.md) · [Deutsch](./README.de.md)
+**Español** · [Català](./README.ca.md) · [Deutsch](./README.de.md) · [English](./README.en.md) · [Svenska](./README.sv.md) · [Français](./README.fr.md) · [Italiano](./README.it.md) · [Dansk](./README.da.md) · [Nederlands](./README.nl.md) · [Norsk](./README.no.md) · [Português](./README.pt.md)
 
 <br />
 
@@ -63,7 +63,7 @@ npm run dev
 
 El producto en producción soporta 11 idiomas: Español (predeterminado), Català, Deutsch, English, Svenska, Français, Italiano, Dansk, Nederlands, Norsk, Português (`ULTRA_PREMIUM_LOCALES`, `src/lib/anclora-language-toggle.ts`).
 
-Esta documentación se mantiene en ES/EN/DE.
+Esta documentación se mantiene en los 11 idiomas del producto.
 
 ## Documentación y gobernanza
 

@@ -10,7 +10,7 @@
 
 Öffentliche, ausschließlich dunkle Landingpage mit vollständiger Identität von `anclora-private-estates`, ausgerichtet auf hochwertige Lead-Erfassung.
 
-[Español](./README.md) · [English](./README.en.md) · **Deutsch**
+[Español](./README.md) · [Català](./README.ca.md) · **Deutsch** · [English](./README.en.md) · [Svenska](./README.sv.md) · [Français](./README.fr.md) · [Italiano](./README.it.md) · [Dansk](./README.da.md) · [Nederlands](./README.nl.md) · [Norsk](./README.no.md) · [Português](./README.pt.md)
 
 <br />
 
@@ -63,7 +63,7 @@ npm run dev
 
 Das Produkt unterstützt in der Produktion 11 Sprachen: Español (Standard), Català, Deutsch, English, Svenska, Français, Italiano, Dansk, Nederlands, Norsk, Português (`ULTRA_PREMIUM_LOCALES`, `src/lib/anclora-language-toggle.ts`).
 
-Diese Dokumentation wird in ES/EN/DE gepflegt.
+Diese Dokumentation wird in allen 11 Produktsprachen gepflegt.
 
 ## Dokumentation und Governance
 
