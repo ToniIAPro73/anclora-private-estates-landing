@@ -2,83 +2,78 @@
 
 <div align="center">
 
-<img src="./public/brand/logo-anclora-private-estates-exp.png" alt="Anclora Private Estates Landing" width="120" />
+<img src="./public/brand/anclora-private-estates-landing.png" alt="Anclora Private Estates Landing" width="132" />
 
 # Anclora Private Estates Landing
 
-### Producto del ecosistema Anclora documentado como repositorio publico de familia ultra_premium
+### Public capture landing page for Anclora Private Estates
+
+Public dark-only landing page, sharing full identity with `anclora-private-estates`, geared toward high-value lead capture.
 
 [Español](./README.md) · **English** · [Deutsch](./README.de.md)
 
 <br />
 
 ![Anclora](https://img.shields.io/badge/Anclora-ecosystem-111827)
-![Documentation](https://img.shields.io/badge/documentation-premium-BFA46A)
-![Languages](https://img.shields.io/badge/languages-ES%20%7C%20EN-047857)
+![Category](https://img.shields.io/badge/category-Ultra%20Premium-D4AF37)
+![Languages](https://img.shields.io/badge/product%20languages-11-047857)
 
 </div>
 
 ---
 
 > [!IMPORTANT]
-> Reduced public repository. It describes the product and conceptual architecture; it does not expose operational logic, secrets or real data.
+> Reduced public repository. It describes the product and its conceptual architecture; it does not expose operational logic, secrets, or real data.
 
-## At a glance
+## What it is
 
-| Product challenge | Product response |
-| --- | --- |
-| Fragmented context | Guided and traceable experience |
-| Sensitive data | Privacy by design and minimisation |
-| Complex decision | Clear and reviewable conceptual flow |
-| Professional operation | Modular architecture and quality controls |
+Anclora Private Estates Landing is the public capture landing page for the Private Estates brand. It operates exclusively in dark mode (no theme toggle, a deliberate decision) with an 11-language switcher, reinforcing the luxury brand's visual signature.
 
-## Conceptual workflow
+## Category in the ecosystem
 
-```text
-User input / evidence
-        ↓
-Validation and normalisation
-        ↓
-Product workflow
-        ↓
-Review or explainable result
-        ↓
-Professional output / next action
+| Field | Value |
+|---|---|
+| Category | Ultra Premium (public landing) |
+| Brand accent | `#D4AF37` |
+| Typography | Cardo + Inter + Fraunces |
+| Canonical repository | `anclora-private-estates-landing` |
+
+## Key features
+
+- Dark-only landing with full Private Estates identity
+- 11-language switcher (no theme toggle, by design)
+- High-value lead capture
+
+## Technology stack
+
+| Area | Technology |
+|---|---|
+| Frontend | React, TypeScript |
+| Styling | Tailwind CSS |
+| Testing | Vitest |
+
+## Local setup
+
+```bash
+npm install
+npm run dev
 ```
 
-## What this repository shows
+## Supported languages
 
-Producto del ecosistema Anclora documentado como repositorio publico de familia ultra_premium.
+- Español (default)
+- English
+- Deutsch
 
-This README documents the public scope of the product, its position in the Anclora ecosystem
-and the right exposure limits for an open repository.
+## Documentation and governance
 
-## Technology
-
-| Area | Detail |
-| --- | --- |
-| React | Present in repository |
-| TypeScript | Present in repository |
-| Tailwind CSS | Present in repository |
-| Vitest | Present in repository |
-
-## Documentation
-
-- [Documentacion](./docs)
-
-## Brand
-
-- Canonical product: `anclora-private-estates-landing`
-- Family: `ultra_premium`
-- Target visibility: `public`
-- Brand asset: `present`
+- Brand and governance contracts: [`docs/standards/`](./docs/standards/)
+- Anclora Vault (source of truth): `contracts/` and `docs/governance/`
 
 ---
 
 <div align="center">
 
-### Antonio Ballesteros · Anclora Group
-
-Software, generative AI and automation for traceable digital products.
+### Anclora Group
 
 </div>

@@ -11,7 +11,7 @@ export function BrandLockup({ variant = "full", alt }: BrandLockupProps) {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <img
-        src="/brand/logo-anclora-private-estates-exp.png"
+        src="/brand/anclora-private-estates-exp.png"
         alt={alt ?? (variant === "full-exp" ? "Anclora Private Estates by eXp Group Spain" : "Anclora Private Estates")}
         style={{
           display: "block",

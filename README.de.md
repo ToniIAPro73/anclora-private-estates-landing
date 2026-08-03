@@ -2,53 +2,78 @@
 
 <div align="center">
 
-<img src="./public/brand/logo-anclora-private-estates-exp.png" alt="Anclora Private Estates Landing" width="120" />
+<img src="./public/brand/anclora-private-estates-landing.png" alt="Anclora Private Estates Landing" width="132" />
 
 # Anclora Private Estates Landing
 
-### Producto del ecosistema Anclora documentado como repositorio publico de familia ultra_premium
+### Öffentliche Landingpage zur Lead-Erfassung für Anclora Private Estates
+
+Öffentliche, ausschließlich dunkle Landingpage mit vollständiger Identität von `anclora-private-estates`, ausgerichtet auf hochwertige Lead-Erfassung.
 
 [Español](./README.md) · [English](./README.en.md) · **Deutsch**
 
 <br />
 
 ![Anclora](https://img.shields.io/badge/Anclora-ecosystem-111827)
-![Documentation](https://img.shields.io/badge/documentation-premium-BFA46A)
-![Languages](https://img.shields.io/badge/languages-ES%20%7C%20EN-047857)
+![Kategorie](https://img.shields.io/badge/kategorie-Ultra%20Premium-D4AF37)
+![Sprachen](https://img.shields.io/badge/produktsprachen-11-047857)
 
 </div>
 
 ---
 
 > [!IMPORTANT]
-> Reduziertes Repository des Anclora-Okosystems. Es beschreibt Produktumfang und Architektur,
-> ohne operative Logik, Geheimnisse oder reale Daten offenzulegen.
+> Reduziertes öffentliches Repository. Es beschreibt das Produkt und seine konzeptionelle Architektur, ohne operative Logik, Geheimnisse oder reale Daten offenzulegen.
 
-## Kurzuberblick
+## Was es ist
 
-| Herausforderung | Produktantwort |
-| --- | --- |
-| Fragmentierter Kontext | Gefuhrter und nachvollziehbarer Ablauf |
-| Sensible Daten | Datenschutz durch Design |
-| Komplexe Entscheidung | Klarer konzeptioneller Prozess |
-| Professioneller Betrieb | Modulare Architektur und Qualitatskontrollen |
+Anclora Private Estates Landing ist die öffentliche Landingpage zur Lead-Erfassung der Marke Private Estates. Sie läuft ausschließlich im Dunkelmodus (kein Theme-Umschalter, eine bewusste Entscheidung) mit einem Umschalter für 11 Sprachen, was die visuelle Signatur der Luxusmarke stärkt.
 
-## Konzeptueller Ablauf
+## Kategorie im Ökosystem
 
-```text
-Eingabe / Evidenz
-      ↓
-Validierung und Normalisierung
-      ↓
-Produktfluss
-      ↓
-Prufung oder erklarbares Ergebnis
-      ↓
-Professionelle Ausgabe
+| Feld | Wert |
+|---|---|
+| Kategorie | Ultra Premium (öffentliche Landingpage) |
+| Markenakzent | `#D4AF37` |
+| Typografie | Cardo + Inter + Fraunces |
+| Kanonisches Repository | `anclora-private-estates-landing` |
+
+## Kernfunktionen
+
+- Ausschließlich dunkle Landingpage mit vollständiger Private-Estates-Identität
+- Umschalter für 11 Sprachen (kein Theme-Umschalter, per Design)
+- Hochwertige Lead-Erfassung
+
+## Technologie-Stack
+
+| Bereich | Technologie |
+|---|---|
+| Frontend | React, TypeScript |
+| Styling | Tailwind CSS |
+| Tests | Vitest |
+
+## Lokaler Start
+
+```bash
+npm install
+npm run dev
 ```
 
-## Governance
+## Unterstützte Sprachen
 
-- Kanonisches Produkt: `anclora-private-estates-landing`
-- Familie: `ultra_premium`
-- Ziel-Sichtbarkeit: `public`
+Das Produkt unterstützt in der Produktion 11 Sprachen: Español (Standard), Català, Deutsch, English, Svenska, Français, Italiano, Dansk, Nederlands, Norsk, Português (`ULTRA_PREMIUM_LOCALES`, `src/lib/anclora-language-toggle.ts`).
+
+Diese Dokumentation wird in ES/EN/DE gepflegt.
+
+## Dokumentation und Governance
+
+- Marken- und Governance-Verträge: [`docs/standards/`](./docs/standards/)
+- Anclora Vault (Quelle der Wahrheit): `contracts/` und `docs/governance/`
+
+---
+
+<div align="center">
+
+### Anclora Group
+
+</div>

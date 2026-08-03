@@ -2,83 +2,78 @@
 
 <div align="center">
 
-<img src="./public/brand/logo-anclora-private-estates-exp.png" alt="Anclora Private Estates Landing" width="120" />
+<img src="./public/brand/anclora-private-estates-landing.png" alt="Anclora Private Estates Landing" width="132" />
 
 # Anclora Private Estates Landing
 
-### Producto del ecosistema Anclora documentado como repositorio publico de familia ultra_premium
+### Landing pública de captación para Anclora Private Estates
+
+Landing pública dark-only, comparte identidad completa con `anclora-private-estates`, orientada a captación de leads de alto valor.
 
 **Español** · [English](./README.en.md) · [Deutsch](./README.de.md)
 
 <br />
 
 ![Anclora](https://img.shields.io/badge/Anclora-ecosystem-111827)
-![Documentation](https://img.shields.io/badge/documentation-premium-BFA46A)
-![Languages](https://img.shields.io/badge/languages-ES%20%7C%20EN-047857)
+![Categoría](https://img.shields.io/badge/categoría-Ultra%20Premium-D4AF37)
+![Idiomas](https://img.shields.io/badge/idiomas%20producto-11-047857)
 
 </div>
 
 ---
 
 > [!IMPORTANT]
-> Repositorio publico reducido. Describe el producto y su arquitectura conceptual; no expone logica operativa, secretos ni datos reales.
+> Repositorio público reducido. Describe el producto y su arquitectura conceptual; no expone lógica operativa, secretos ni datos reales.
 
-## Vista rapida
+## Qué es
 
-| Problema | Respuesta de producto |
-| --- | --- |
-| Contexto disperso | Experiencia guiada y trazable |
-| Datos sensibles | Privacidad por diseno y minimizacion |
-| Decision compleja | Flujo conceptual claro y revisable |
-| Operacion profesional | Arquitectura modular y controles de calidad |
+Anclora Private Estates Landing es la landing pública de captación de la marca Private Estates. Opera exclusivamente en modo oscuro (sin selector de tema, decisión deliberada) con selector de idioma de 11 idiomas, reforzando la firma visual de la marca de lujo.
 
-## Flujo conceptual
+## Categoría en el ecosistema
 
-```text
-Entrada de usuario / evidencia
-        ↓
-Validacion y normalizacion
-        ↓
-Flujo de producto
-        ↓
-Revision o resultado explicable
-        ↓
-Salida profesional / siguiente accion
+| Campo | Valor |
+|---|---|
+| Categoría | Ultra Premium (landing pública) |
+| Acento de marca | `#D4AF37` |
+| Tipografía | Cardo + Inter + Fraunces |
+| Repositorio canónico | `anclora-private-estates-landing` |
+
+## Funcionalidades principales
+
+- Landing dark-only con identidad completa de Private Estates
+- Selector de 11 idiomas (sin selector de tema, por diseño)
+- Captación de leads de alto valor
+
+## Stack tecnológico
+
+| Área | Tecnología |
+|---|---|
+| Frontend | React, TypeScript |
+| Estilos | Tailwind CSS |
+| Testing | Vitest |
+
+## Arranque local
+
+```bash
+npm install
+npm run dev
 ```
 
-## Que muestra este repositorio
+## Idiomas soportados
 
-Producto del ecosistema Anclora documentado como repositorio publico de familia ultra_premium.
+El producto en producción soporta 11 idiomas: Español (predeterminado), Català, Deutsch, English, Svenska, Français, Italiano, Dansk, Nederlands, Norsk, Português (`ULTRA_PREMIUM_LOCALES`, `src/lib/anclora-language-toggle.ts`).
 
-El README presenta el alcance publico del producto, su posicionamiento dentro del ecosistema
-Anclora y los limites de exposicion adecuados para un repositorio abierto.
+Esta documentación se mantiene en ES/EN/DE.
 
-## Tecnologia
+## Documentación y gobernanza
 
-| Area | Detalle |
-| --- | --- |
-| React | Presente en el repositorio |
-| TypeScript | Presente en el repositorio |
-| Tailwind CSS | Presente en el repositorio |
-| Vitest | Presente en el repositorio |
-
-## Documentacion
-
-- [Documentacion](./docs)
-
-## Marca
-
-- Producto canonico: `anclora-private-estates-landing`
-- Familia: `ultra_premium`
-- Visibilidad objetivo: `public`
-- Asset de marca: `presente`
+- Contratos de marca y gobernanza: [`docs/standards/`](./docs/standards/)
+- Bóveda Anclora (fuente de verdad): `contracts/` y `docs/governance/`
 
 ---
 
 <div align="center">
 
-### Antonio Ballesteros · Anclora Group
-
-Software, IA generativa y automatizacion para productos digitales trazables.
+### Anclora Group
 
 </div>
