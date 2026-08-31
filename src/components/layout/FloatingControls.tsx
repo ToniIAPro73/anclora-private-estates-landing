@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useCallback } from 'react';
 import { MessageCircle, ChevronUp, ChevronDown } from 'lucide-react';
 import { ScrollCopy } from '@/content/site-copy';
+import { useActiveSectionIndex } from '@/hooks/useActiveSectionIndex';
 
 interface FloatingControlsProps {
   onOpenCookieModal: () => void;
@@ -8,41 +9,43 @@ interface FloatingControlsProps {
   contactLabel: string;
 }
 
+// Real, ordered section ids as mounted in App.tsx.
+const SECTION_IDS = [
+  'hero',
+  'credibilidad',
+  'como-trabajamos',
+  'mallorca-focus',
+  'alquiler-vacacional',
+  'inversores',
+  'despues-del-contacto',
+  'clientes',
+  'faq',
+  'partners',
+  'data-lab',
+  'editorial',
+  'contacto',
+  'final-cta',
+];
+
 export function FloatingControls({ onOpenCookieModal, scrollCopy, contactLabel }: FloatingControlsProps) {
-  const [showScrollNav, setShowScrollNav] = useState(true);
-  const [showUpButton, setShowUpButton] = useState(false);
-  const [showDownButton, setShowDownButton] = useState(true);
+  const activeIndex = useActiveSectionIndex(SECTION_IDS);
+  const showScrollNav = true;
+  const showUpButton = activeIndex > 0;
+  const showDownButton = activeIndex < SECTION_IDS.length - 1;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY;
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const upThreshold = Math.max(0, totalHeight * 0.3);
-      const downThreshold = Math.max(0, totalHeight * 0.7);
-      const nearBottom = scrolled >= totalHeight - 120;
-
-      // Hero/top: only down. Middle band: both. Bottom/footer: only up.
-      setShowScrollNav(totalHeight > 300);
-      setShowUpButton(scrolled >= upThreshold);
-      setShowDownButton(scrolled <= downThreshold && !nearBottom);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+  const goToIndex = useCallback((index: number) => {
+    const target = document.getElementById(SECTION_IDS[index]);
+    if (!target) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    goToIndex(Math.max(0, activeIndex - 1));
   };
 
   const scrollToBottom = () => {
-    const footer = document.querySelector('#footer') as HTMLElement | null;
-    if (footer) {
-      footer.scrollIntoView({ behavior: 'smooth' });
-      return;
-    }
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    goToIndex(Math.min(SECTION_IDS.length - 1, activeIndex + 1));
   };
 
   const scrollToContact = () => {

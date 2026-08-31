@@ -10,7 +10,7 @@ type FinalCTASectionProps = {
 
 export function FinalCTASection({ copy, mediaAlt, onCtaClick }: FinalCTASectionProps) {
   return (
-    <section className="pe-section pe-final-cta-section">
+    <section id="final-cta" className="pe-section pe-final-cta-section">
       <div className="pe-final-cta-background" aria-hidden="true">
         <div className="pe-final-cta-background__glow pe-final-cta-background__glow--gold" />
         <div className="pe-final-cta-background__glow pe-final-cta-background__glow--teal" />

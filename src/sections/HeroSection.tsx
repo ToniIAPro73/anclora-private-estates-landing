@@ -11,7 +11,7 @@ export function HeroSection({ copy, trustBadgeText, onCtaClick }: HeroSectionPro
   const descriptionLines = copy.description.split("\n");
 
   return (
-    <section className="pe-hero-fullscreen pe-brand-panel">
+    <section id="hero" className="pe-hero-fullscreen pe-brand-panel">
       {/* Background image — animates in from blurred/scaled */}
       <div className="pe-hero-bg" aria-hidden="true" />
 
