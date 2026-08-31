@@ -27,6 +27,7 @@ jobs:
           repository: ToniIAPro73/anclora-content-generator-ai
           ref: main
           path: .hermes-tooling/anclora-content-generator-ai
+          token: ${{ secrets.HERMES_TOOLING_PAT }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
