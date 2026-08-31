@@ -30,7 +30,7 @@ These are present in the UI and considered accurate and defensible:
 - **25+ years in technology**: founder biography; internally verified.
 - **"Acceso a compradores cualificados de +40 países"**: refers to eXp Group's documented global network, not a proprietary claim.
 - **Off-market approach**: accurately describes the operational method.
-- **SES.HOSPEDAJES documentation support via SyncXML**: describes a technical capability; technologyNote explicitly states this does not replace legal review.
+- **SES.HOSPEDAJES documentation support via GuestHub**: describes a technical capability; technologyNote explicitly states this does not replace legal review.
 
 ## P2 — AI Guardrails
 
@@ -42,7 +42,7 @@ No AI-generated scoring, no automated valuation figures, and no AI recommendatio
 
 1. **Do not publish AI-generated scores or ranks as facts.** Phrases like "the AI rates your property at 8.2/10" are prohibited without documented calibration and disclosure.
 2. **AI-assisted copy generation** (this document, for example) must be reviewed by a human before publishing. Accuracy of statistics, credentials, and legal claims is the human reviewer's responsibility.
-3. **SyncXML technology notes** must always include the prudence caveat ("no sustituye la revisión legal ni el criterio del profesional" or equivalent) in all locales.
+3. **GuestHub technology notes** must always include the prudence caveat ("no sustituye la revisión legal ni el criterio del profesional" or equivalent) in all locales.
 
 ## P3 — Regulatory Context
 
