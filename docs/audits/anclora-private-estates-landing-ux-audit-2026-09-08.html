@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anclora Private Estates — Private-Client Digital Experience Review</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --bg:#07161a; --panel:#0c2126; --panel-2:#0f2a30; --border:rgba(212,175,55,0.22);
+  --ink:#eef1ee; --ink-soft:#c3ccc8; --ink-muted:#8b9a95;
+  --gold:#c9a24a; --gold-bright:#e0bd66; --teal:#3aa090;
+  --ok:#4f9d7c; --warn:#c98f3a; --bad:#c65b4e; --crit:#e0453a;
+  --serif:'Cardo', Georgia, serif; --accent:'Fraunces', Georgia, serif; --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --radius:4px;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;}
+img{max-width:100%;display:block;border-radius:2px;}
+a{color:var(--gold-bright);text-decoration:none;border-bottom:1px solid rgba(224,189,102,0.3);}
+a:hover{border-bottom-color:var(--gold-bright);}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;color:#fff;letter-spacing:0.01em;margin:0 0 0.6em;}
+h2{font-size:1.7rem;border-bottom:1px solid var(--border);padding-bottom:0.5rem;margin-top:0;}
+h3{font-size:1.2rem;color:var(--gold-bright);}
+h4{font-size:1rem;color:var(--ink-soft);font-family:var(--sans);text-transform:uppercase;letter-spacing:0.08em;font-size:0.75rem;}
+p{margin:0 0 1em;color:var(--ink-soft);}
+.kicker{font-family:var(--sans);text-transform:uppercase;letter-spacing:0.16em;font-size:0.7rem;color:var(--gold);margin-bottom:0.8em;}
+.accent{font-family:var(--accent);font-style:italic;color:var(--gold-bright);}
+
+/* Cover */
+.cover{min-height:78vh;display:flex;flex-direction:column;justify-content:center;position:relative;border-bottom:1px solid var(--border);
+  background:radial-gradient(ellipse at 30% 20%, rgba(58,160,144,0.14), transparent 60%), linear-gradient(180deg,#07161a,#0a1e23);}
+.cover .wrap{padding-top:60px;padding-bottom:60px;}
+.cover h1{font-size:clamp(2.2rem,5vw,3.4rem);max-width:14ch;line-height:1.15;margin-bottom:0.3em;}
+.cover .sub{font-family:var(--accent);font-style:italic;font-size:1.3rem;color:var(--gold-bright);margin-bottom:2rem;}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px 28px;margin-top:2.4rem;border-top:1px solid var(--border);padding-top:1.6rem;}
+.meta-grid div{font-size:0.82rem;}
+.meta-grid .k{color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.08em;font-size:0.68rem;margin-bottom:2px;}
+.meta-grid .v{color:var(--ink);font-family:'SF Mono',Consolas,monospace;font-size:0.82rem;word-break:break-word;}
+
+/* status pill */
+.pill{display:inline-block;padding:3px 11px;border-radius:20px;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;}
+.pill.pass{background:rgba(79,157,124,0.18);color:#7fd6ac;border:1px solid rgba(79,157,124,0.4);}
+.pill.gaps{background:rgba(201,143,58,0.18);color:#e8b872;border:1px solid rgba(201,143,58,0.45);}
+.pill.crit{background:rgba(224,69,58,0.18);color:#f38077;border:1px solid rgba(224,69,58,0.45);}
+.pill.na{background:rgba(139,154,149,0.15);color:var(--ink-muted);border:1px solid rgba(139,154,149,0.3);}
+
+/* nav */
+nav.toc{position:sticky;top:0;z-index:20;background:rgba(7,22,26,0.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);}
+nav.toc .wrap{display:flex;gap:0;overflow-x:auto;padding:0 32px;scrollbar-width:thin;}
+nav.toc a{white-space:nowrap;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-muted);border-bottom:2px solid transparent;padding:14px 12px;border-bottom-width:2px;}
+nav.toc a:hover{color:var(--gold-bright);border-bottom-color:var(--gold);}
+
+section{padding:56px 0;border-bottom:1px solid rgba(212,175,55,0.10);}
+section:last-of-type{border-bottom:none;}
+.section-num{color:var(--ink-muted);font-size:0.75rem;letter-spacing:0.1em;font-family:var(--sans);}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin:1.2em 0;font-size:0.86rem;}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid rgba(212,175,55,0.14);vertical-align:top;}
+th{color:var(--gold-bright);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;border-bottom:1px solid var(--border);}
+tr:hover td{background:rgba(255,255,255,0.015);}
+.tbl-wrap{overflow-x:auto;}
+
+/* cards */
+.grid{display:grid;gap:18px;}
+.grid.c2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.grid.c3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;}
+.card h4{margin-bottom:0.5em;}
+
+/* score badges */
+.score{display:inline-block;padding:2px 10px;border-radius:3px;font-size:0.72rem;font-weight:600;letter-spacing:0.03em;}
+.score.EXCELLENT{background:rgba(79,157,124,0.2);color:#7fd6ac;}
+.score.GOOD{background:rgba(58,160,144,0.2);color:#7ecbc0;}
+.score.FAIR{background:rgba(201,143,58,0.2);color:#e8b872;}
+.score.POOR{background:rgba(198,91,78,0.2);color:#e8968c;}
+.score.CRITICAL{background:rgba(224,69,58,0.25);color:#f38077;}
+.score.NOT_EVALUATED, .score.NOT_APPLICABLE, .score.UNKNOWN{background:rgba(139,154,149,0.15);color:var(--ink-muted);}
+
+/* finding cards */
+.finding{border:1px solid var(--border);border-left:3px solid var(--gold);background:var(--panel);border-radius:var(--radius);padding:22px 24px;margin:20px 0;}
+.finding.sev-CRITICAL{border-left-color:var(--crit);}
+.finding.sev-HIGH{border-left-color:var(--bad);}
+.finding.sev-MEDIUM{border-left-color:var(--warn);}
+.finding.sev-LOW{border-left-color:var(--teal);}
+.finding.sev-OPPORTUNITY{border-left-color:var(--ink-muted);}
+.finding-head{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:10px;}
+.finding-head h4{margin:0;font-size:1.02rem;font-family:var(--serif);color:#fff;text-transform:none;letter-spacing:0;}
+.tag{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.05em;padding:2px 8px;border-radius:20px;border:1px solid var(--border);color:var(--ink-muted);}
+.tag.sev-CRITICAL{color:#f38077;border-color:rgba(224,69,58,0.4);}
+.tag.sev-HIGH{color:#e8968c;border-color:rgba(198,91,78,0.4);}
+.tag.sev-MEDIUM{color:#e8b872;border-color:rgba(201,143,58,0.4);}
+.tag.sev-LOW{color:#7ecbc0;border-color:rgba(58,160,144,0.4);}
+.finding dl{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;margin:0.8em 0;font-size:0.88rem;}
+.finding dt{color:var(--ink-muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;padding-top:2px;}
+.finding dd{margin:0;color:var(--ink-soft);}
+
+/* evidence */
+.evidence-block{margin:26px 0;}
+.evidence-block figure{margin:0;}
+.evidence-block figcaption{font-size:0.78rem;color:var(--ink-muted);padding:10px 4px 0;line-height:1.5;}
+.evidence-block figcaption .caps{color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;font-size:0.68rem;}
+.shot-frame{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:#000;}
+.shot-row{display:grid;gap:20px;}
+.shot-row.two{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+
+blockquote{font-family:var(--accent);font-style:italic;font-size:1.25rem;color:var(--gold-bright);border-left:2px solid var(--gold);padding:0.3em 0 0.3em 1.2em;margin:1.4em 0;line-height:1.5;}
+code{background:rgba(0,0,0,0.3);padding:1px 6px;border-radius:3px;font-size:0.85em;color:#e0bd66;}
+ul,ol{color:var(--ink-soft);padding-left:1.3em;}
+li{margin-bottom:0.4em;}
+.small{font-size:0.82rem;color:var(--ink-muted);}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:2em 0;}
+.answer-box{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:6px;padding:32px 34px;margin-top:1.5em;}
+
+footer.doc-footer{padding:40px 0;text-align:center;color:var(--ink-muted);font-size:0.78rem;}
+
+@media print{
+  nav.toc{position:static;}
+  section{break-inside:avoid-page;page-break-inside:avoid;}
+  .finding{break-inside:avoid;page-break-inside:avoid;}
+  .cover{min-height:auto;}
+  body{background:#fff;color:#111;font-size:11pt;}
+  h1,h2,h3,h4{color:#111;}
+  .card,.finding,.answer-box{background:#f6f4ee;border-color:#ccc;}
+  a{color:#7a5c1e;}
+  img{max-width:100%;}
+}
+@media (max-width:700px){
+  .meta-grid{grid-template-columns:repeat(2,1fr);}
+  .finding dl{grid-template-columns:1fr;}
+  section{padding:36px 0;}
+  .wrap{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="wrap">
+    <div class="kicker">Private-Client Digital Experience Review</div>
+    <h1>Anclora Private Estates <span class="accent">Landing</span></h1>
+    <div class="sub">Quiet luxury, tested against reachability, discretion and conversion.</div>
+    <span class="pill gaps">STATUS: PASS_WITH_GAPS</span>
+    <div class="meta-grid">
+      <div><div class="k">Date</div><div class="v">2026-09-08</div></div>
+      <div><div class="k">Repository</div><div class="v">anclora-private-estates-landing</div></div>
+      <div><div class="k">Branch</div><div class="v">development</div></div>
+      <div><div class="k">Local HEAD</div><div class="v">5aaf0d6</div></div>
+      <div><div class="k">Remote development HEAD</div><div class="v">5aaf0d6 (match)</div></div>
+      <div><div class="k">Canonical deployed URL audited</div><div class="v">private-estates-landing.anclora.com</div></div>
+      <div><div class="k">Audited browser environment</div><div class="v">PRODUCTION only</div></div>
+      <div><div class="k">Skill</div><div class="v">ux-product-experience-review</div></div>
+      <div><div class="k">Skill version (SKILL.md)</div><div class="v">1.5.0</div></div>
+      <div><div class="k">Skill version (skill.yaml)</div><div class="v">1.4.0 — mismatch</div></div>
+      <div><div class="k">Surface mode</div><div class="v">MARKETING_SITE</div></div>
+      <div><div class="k">Domain profile</div><div class="v">LUXURY_REAL_ESTATE</div></div>
+      <div><div class="k">Browser evidence items</div><div class="v">13 screenshots + DOM/network probes</div></div>
+      <div><div class="k">Product UX findings (PRODUCT_UX + PRODUCT_ACCESS)</div><div class="v">7</div></div>
+      <div><div class="k">Engineering support findings</div><div class="v">2</div></div>
+      <div><div class="k">Compliance review items</div><div class="v">2</div></div>
+      <div><div class="k">Total findings logged</div><div class="v">10</div></div>
+    </div>
+  </div>
+</div>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#exec">Executive Summary</a>
+    <a href="#surface">Surface</a>
+    <a href="#product-model">Product Model</a>
+    <a href="#audiences">Audiences</a>
+    <a href="#journeys">Journeys</a>
+    <a href="#sections">Section Map</a>
+    <a href="#hero">Hero</a>
+    <a href="#i18n">I18n</a>
+    <a href="#access">Canonical &amp; Access</a>
+    <a href="#forms">Forms</a>
+    <a href="#cookies">Cookies &amp; Analytics</a>
+    <a href="#responsive">Responsive</a>
+    <a href="#premium">Premium Surface</a>
+    <a href="#scorecard">Scorecard</a>
+    <a href="#findings">Findings</a>
+    <a href="#works-well">What Works Well</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#coverage">Evidence Coverage</a>
+    <a href="#final">Final Answer</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section id="exec">
+  <div class="section-num">01 — Executive Summary</div>
+  <h2>The site is genuinely premium where it is visible — and unreachable where it is shared</h2>
+  <p>Anclora Private Estates Landing is a real, carefully built <strong>MARKETING_SITE</strong>: eleven fully-translated languages, three distinct lead-capture forms serving three different audiences (owner/seller, Synergi partners, Data Lab subscribers), a disciplined navy-teal-and-controlled-gold visual language, and a genuinely restrained hero that states offer, audience and trust signal within the first viewport at every tested breakpoint. This is not template luxury — the type system (Cardo/Inter/Fraunces), the palette, and the absence of a public property catalogue (a deliberate echo of the "discreet, off-market" promise) are coherent brand decisions, not decoration.</p>
+  <p>The dominant problem is not on the page a visitor lands on — it is what happens the moment that visitor tries to <em>share</em> it or a search engine tries to <em>index</em> it. The page's own canonical link, Open Graph tags, Twitter card and hreflang alternates all point to <code>https://anclora.com/private-estates</code> — a domain whose TLS certificate has <strong>expired</strong>, confirmed by a direct connection attempt during this audit. Every international buyer who receives this link via WhatsApp, LinkedIn or a shared social preview is one click from a browser security interstitial, not the property page. This sits directly against the domain-profile question this audit is built around: private-client trust.</p>
+  <div class="grid c2" style="margin-top:1.8em;">
+    <div class="card"><h4>Biggest user friction</h4><p style="margin:0;color:var(--ink)">Canonical/OG/hreflang metadata resolves to an unreachable, cert-expired domain (<code>anclora.com</code>), disconnected from the real, working deployment.</p></div>
+    <div class="card"><h4>Biggest quick win</h4><p style="margin:0;color:var(--ink)">Editorial Hub content (headings, article cards, category labels, date formatting) is hardcoded in Spanish regardless of the selected language — confirmed in production in English and German.</p></div>
+    <div class="card"><h4>Biggest trust/compliance gap</h4><p style="margin:0;color:var(--ink)">Privacy Policy never mentions cookies, analytics, or the behavioral signals (scroll depth, time-on-page, CTA clicks) that are attached to Seller Intake submissions.</p></div>
+    <div class="card"><h4>Biggest structural opportunity</h4><p style="margin:0;color:var(--ink)">The page is a single ~14,770px scroll (≈16 screens at 1440×900); the Partners and Data Lab forms sit at 59% and 68% depth respectively — reachable only by audiences willing to scroll past two other audiences' content first.</p></div>
+  </div>
+  <p style="margin-top:1.6em">Overall assessment: the on-page experience is closer to authentic private-client advisory than most "luxury" landing pages this audit's doctrine warns about — restrained, specific about Mallorca, calm in its use of gold. What undermines the promise is not the surface but its edges: a broken canonical destination, a translation system with one real gap, and a consent/disclosure model that is more careful in code (consent-gated analytics, opt-in marketing checkbox) than in the policy text a visitor is asked to trust.</p>
+</section>
+
+<section id="surface">
+  <div class="section-num">02 — Surface Classification</div>
+  <h2>MARKETING_SITE, confirmed by rendered structure</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>SURFACE_MODE</td><td><strong>MARKETING_SITE</strong></td></tr>
+    <tr><td>SURFACE_MODE_SOURCE</td><td>CODE+BROWSER</td></tr>
+    <tr><td>SURFACE_MODE_CONFIDENCE</td><td>HIGH</td></tr>
+    <tr><td>SURFACE_MODE_AUTO_DETECTED</td><td>true (auto-detection agrees with the user's declared MARKETING_SITE hint)</td></tr>
+    <tr><td>SURFACE_MODE_CONFIRMED_BY_BROWSER</td><td>true — production DOM inspected end to end</td></tr>
+    <tr><td>SURFACE_MODE_MISMATCH_WARNING</td><td>none</td></tr>
+    <tr><td>PLATFORM_MODE</td><td>WEB (override, as instructed)</td></tr>
+    <tr><td>DOMAIN_PROFILE</td><td>LUXURY_REAL_ESTATE (override, as instructed)</td></tr>
+    <tr><td>PRIMARY_SURFACE</td><td>MARKETING_SITE (single page, anchor-routed)</td></tr>
+    <tr><td>SECONDARY_SURFACES</td><td>3 static content routes (<code>/privacy</code>, <code>/terms</code>, <code>/legal</code>) — evaluated as LEGAL content, not a separate surface</td></tr>
+  </table></div>
+  <p><strong>Why MARKETING_SITE and not LANDING_PAGE:</strong> the site has no single dominant CTA or single audience. It hosts six distinct audience narratives (buyer, seller/owner, investor, holiday-rental client, Synergi partner, Data Lab subscriber), three independent lead-capture forms, a footer navigation with five in-page destinations, and an editorial content hub. A single-offer LANDING_PAGE scorecard would misclassify this breadth as "off-message"; it is a deliberate, navigable marketing site compressed onto one scrolling page rather than routed pages — itself a notable architectural choice (see §Scroll Narrative).</p>
+  <p><strong>Skill metadata:</strong> <code>SKILL.md</code> front-matter declares version <code>1.5.0</code>; the sibling <code>skill.yaml</code> declares <code>1.4.0</code>. <code>SKILL_METADATA_VERSION_MISMATCH = TRUE</code>. Per the skill's own external-reference authority order (§1B.7: "1. This SKILL.md / current AOS contracts") and the release notes' own statement that v1.5.0 is "the current working version, not yet represented by a committed release," this audit treats <strong>SKILL.md v1.5.0 as the effective, authoritative contract</strong> — a packaging lag in <code>skill.yaml</code>, not a substantive contradiction.</p>
+</section>
+
+<section id="product-model">
+  <div class="section-num">03–04 — Product Model &amp; Promise vs. Experience</div>
+  <h2>What is actually running</h2>
+  <div class="grid c2">
+    <div class="card">
+      <h4>Verified stack</h4>
+      <ul>
+        <li>React 19.2 + TypeScript, Vite 7 build, Vitest 3 test runner (MEASURED_CODE, <code>package.json</code>)</li>
+        <li>Lucide React icons; no router package; no analytics SDK dependency</li>
+        <li>Hand-authored CSS design tokens (<code>private-estates-tokens.css</code>, <code>components.css</code>) — <strong>not Tailwind</strong></li>
+        <li>Cloudflare Turnstile bot-check embedded in the Seller Intake form</li>
+        <li>Client-side-only locale switch (no router, no URL param) — a single anchor-scrolled document plus three statically-rewritten legal routes (<code>vercel.json</code>: catch-all → <code>index.html</code>)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Promise vs. observed experience</h4>
+      <table style="margin:0;">
+        <tr><td>README claims</td><td>Tailwind CSS styling</td></tr>
+        <tr><td>Observed (code)</td><td>No <code>tailwindcss</code> dependency anywhere; real system is custom CSS tokens</td></tr>
+        <tr><td>Verdict</td><td><span class="score FAIR">STALE DOC</span> — ENGINEERING_SUPPORT, no user impact</td></tr>
+      </table>
+      <table style="margin-top:1em;">
+        <tr><td>Brand promise</td><td>"Discreet, off-market, no mass exposure"</td></tr>
+        <tr><td>Observed</td><td>No public property catalogue anywhere on the site — consistent with the promise, not a gap</td></tr>
+        <tr><td>Verdict</td><td><span class="score GOOD">COHERENT</span></td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="small">FINDING_SCOPE note: the Tailwind/README mismatch is classified ENGINEERING_SUPPORT — it does not degrade the UX scorecard, but is surfaced because a future contributor relying on the README would build the wrong mental model of the codebase.</p>
+</section>
+
+<section id="audiences">
+  <div class="section-num">05 — Audiences</div>
+  <h2>Six retained personas, each with a real entry point</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Audience</th><th>Entry point (observed)</th><th>Primary CTA</th><th>Confidence</th></tr>
+    <tr><td>Owner / Seller</td><td>Hero → "Request private evaluation"</td><td>Seller Intake form (<code>#clientes</code>)</td><td>HIGH</td></tr>
+    <tr><td>Buyer (domestic + international)</td><td>Mallorca Focus micro-locations</td><td>Same intake form, intent selector = "buy a premium property"</td><td>HIGH</td></tr>
+    <tr><td>Investor (national / international / UHNW)</td><td>Investor audience section</td><td>Intake form, intent = "investment opportunities"; Data Lab early access</td><td>HIGH</td></tr>
+    <tr><td>Holiday-rental owner</td><td>Hero secondary CTA "Explore premium holiday rental"</td><td>Intake form, intent = "monetise as holiday rental"</td><td>HIGH</td></tr>
+    <tr><td>Referral / Synergi partner</td><td>"A selective network for collaborators" section</td><td>Dedicated Synergi application form (<code>#partners</code>)</td><td>HIGH</td></tr>
+    <tr><td>Editorial reader</td><td>"Lecturas para decisiones..." hub</td><td>"Ver todos los análisis" (Spanish-only, all locales)</td><td>HIGH</td></tr>
+  </table></div>
+  <p><strong>CAN_EACH_VISITOR_IDENTIFY_THEIR_PATH_WITHOUT_READING_THE_ENTIRE_PAGE?</strong> Partially. The hero and its two CTAs correctly split buyer/seller-adjacent intent from holiday-rental intent immediately. But Investor, Synergi Partner and Data Lab audiences have <em>no</em> above-the-fold signal — a partner or investor must scroll 36%–68% of a 14,770px page before reaching content addressed to them, with no persistent audience switcher to jump there directly (the floating controls are Cookies / Down / Contact, not an audience index).</p>
+</section>
+
+<section id="journeys">
+  <div class="section-num">07 — Critical Journeys (executed)</div>
+  <h2>Journeys traversed live in production</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Journey</th><th>Result</th><th>Evidence</th></tr>
+    <tr><td>J1 First impression (hero, no scroll)</td><td>Value prop + dual CTA + trust line all visible, no scroll, at 1440×900 and 390×844</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+    <tr><td>J3 Mallorca intent → CTA</td><td>Micro-location narrative → same shared intake form</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+    <tr><td>J4 Holiday rental</td><td>Reachable from hero secondary CTA; lands on shared form pre-filtered by intent</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+    <tr><td>J6 Seller / owner intake</td><td>Branching field set observed; native-only validation on empty submit (see §Forms)</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+    <tr><td>J7 Partner (Synergi)</td><td>Reached at 59% scroll depth; independent form, own consent checkbox</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+    <tr><td>J9 Contact</td><td>Direct <code>mailto:</code> and <code>tel:</code> links present alongside forms — high-touch channel, not funnel-only</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+    <tr><td>J11 Language change (ES→EN→DE)</td><td>Full chrome + hero + FAQ translate correctly; Editorial Hub does not (see §I18n)</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+    <tr><td>J12 Cookie / legal</td><td>Consent modal on first load; <code>/privacy</code>, <code>/terms</code>, <code>/legal</code> resolve to real content</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+    <tr><td>J10 Final CTA → destination</td><td>Resolves to <code>#contacto</code> anchor, not an external booking/checkout step — consistent with an advisory (not transactional) product</td><td>MEASURED_BROWSER / PRODUCTION</td></tr>
+  </table></div>
+  <p class="small">Not executed, by design: a real form submission (would create a real lead/email — excluded under the read-only/no-external-write mandate), mobile-landscape orientation, and staging/preview environments (none discovered — see §Evidence Coverage).</p>
+</section>
+
+<section id="sections">
+  <div class="section-num">08 &amp; 25 — Section Map &amp; Scroll Narrative</div>
+  <h2>A 14,770px page — roughly sixteen 1440×900 screens</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Order</th><th>Section</th><th>Y (px @1440×900)</th><th>Classification</th></tr>
+    <tr><td>1</td><td>Hero (value prop, dual CTA, trust line, mini valuation flow)</td><td>0–~950</td><td>CORE / CONVERSION</td></tr>
+    <tr><td>2</td><td>"Four steps" process overview</td><td>~950</td><td>SUPPORTING / TRUST_BUILDING</td></tr>
+    <tr><td>3</td><td>Mallorca Focus (4 micro-locations)</td><td>1,967</td><td>CORE / TRUST_BUILDING</td></tr>
+    <tr><td>4</td><td>Holiday Rental monetisation</td><td>3,860</td><td>AUDIENCE_SPECIFIC / CONVERSION</td></tr>
+    <tr><td>5</td><td>Investor audiences (3 profiles)</td><td>5,146</td><td>AUDIENCE_SPECIFIC</td></tr>
+    <tr><td>6</td><td>"A process without empty promises"</td><td>~6,100</td><td>SUPPORTING / TRUST_BUILDING</td></tr>
+    <tr><td>7</td><td>Seller/buyer/investor intake form</td><td>6,770 (46%)</td><td>CORE / CONVERSION</td></tr>
+    <tr><td>8</td><td>FAQ (5 questions)</td><td>~7,700</td><td>SUPPORTING / OBJECTION_HANDLING</td></tr>
+    <tr><td>9</td><td>Synergi partner application form</td><td>8,775 (59%)</td><td>AUDIENCE_SPECIFIC / CONVERSION</td></tr>
+    <tr><td>10</td><td>Data Lab territorial signals + early-access form</td><td>10,089 (68%)</td><td>AUDIENCE_SPECIFIC / CONVERSION</td></tr>
+    <tr><td>11</td><td>Editorial Hub ("Lecturas...")</td><td>~11,200</td><td>EDITORIAL</td></tr>
+    <tr><td>12</td><td>Contact (email + phone, direct)</td><td>12,648</td><td>TRUST_BUILDING / CONVERSION</td></tr>
+    <tr><td>13</td><td>Final CTA</td><td>~13,600</td><td>CONVERSION</td></tr>
+    <tr><td>14</td><td>Footer (nav anchors + legal links)</td><td>14,300–14,771</td><td>LEGAL / SUPPORTING</td></tr>
+  </table></div>
+  <p><strong>DOES_EACH_SECTION_EARN_THE_NEXT_ONE?</strong> Mostly yes for the buyer/seller narrative (process → geography → audience-fit → form → objections), which reads as deliberate trust-building sequencing, not padding. The exception is structural: Partners and Data Lab — two entire audiences with their own forms — are placed <em>after</em> the primary seller/buyer FAQ, with no shortcut. A partner arriving from a referral link with no anchor deep-link must scroll through five unrelated audience sections first.</p>
+</section>
+
+<section id="hero">
+  <div class="section-num">11 — First Viewport / Hero</div>
+  <h2>The offer is legible in five seconds, at every width tested</h2>
+  <div class="evidence-block">
+    <div class="shot-row two">
+      <figure class="shot-frame"><img src="evidence/anclora-private-estates-landing-2026-09-08/01-desktop-hero-1440x900.png" alt="Desktop hero at 1440x900"/></figure>
+      <figure class="shot-frame"><img src="evidence/anclora-private-estates-landing-2026-09-08/06-mobile-hero-390x844.png" alt="Mobile hero at 390x844"/></figure>
+    </div>
+    <figcaption><span class="caps">Evidence level: Measured_Browser · Environment: Production</span><br/>Left: 1440×900, first viewport, no scroll. Right: 390×844, first viewport, no scroll. URL: private-estates-landing.anclora.com. Observation: headline, one-line subhead, dual CTA and a third-party trust line ("International backing... through eXp Group Spain") are all visible without scrolling at both widths.</figcaption>
+  </div>
+  <table>
+    <tr><td>FIRST_VIEWPORT_VALUE_PROP_VISIBLE</td><td><span class="score GOOD">YES</span> — "Discreet sale and premium monetisation of singular assets in Mallorca"</td></tr>
+    <tr><td>FIRST_VIEWPORT_PRIMARY_CTA_VISIBLE</td><td><span class="score GOOD">YES</span> — "Request private evaluation" (desktop &amp; mobile)</td></tr>
+    <tr><td>FIRST_VIEWPORT_PROOF_VISIBLE</td><td><span class="score GOOD">YES</span> — eXp Group Spain affiliation line, doubled by the "eXp Realty" lockup in the navbar itself</td></tr>
+    <tr><td>AUDIENCE_CLARITY</td><td><span class="score GOOD">GOOD</span> — two CTAs split sell/buy from holiday-rental intent immediately</td></tr>
+    <tr><td>MALLORCA_SIGNAL</td><td><span class="score EXCELLENT">EXCELLENT</span> — "Palma · Southwest Mallorca · Premium capital" eyebrow + real coastal-villa photography, not generic stock luxury</td></tr>
+    <tr><td>CONTENT_DENSITY</td><td><span class="score GOOD">GOOD</span> — one headline, one sentence of support copy, no stacked value-prop paragraphs</td></tr>
+  </table>
+  <p><strong>CAN_A_HIGH_VALUE_VISITOR_EXPLAIN_THE_OFFER_AFTER_5–10_SECONDS?</strong> Yes: discreet, high-value asset sale/monetisation, in Mallorca, backed by an international brokerage (eXp), with a clear next step. This is not premised on cinematic motion or scale — a restrained credit to the doctrine that premium is disciplined hierarchy, not decoration.</p>
+</section>
+
+<section id="i18n">
+  <div class="section-num">34 — Internationalization (11 locales)</div>
+  <h2>A real, complete 11-locale system — with one hardcoded exception</h2>
+  <div class="grid c2">
+    <div class="card">
+      <h4>What was verified</h4>
+      <ul>
+        <li><code>src/content/site-copy.ts</code> (3,577 lines): eleven independent, complete <code>siteCopyXx</code> objects — <strong>es, ca, de, en, sv, fr, it, da, nl, no, pt</strong> — MEASURED_CODE</li>
+        <li>ES / EN / DE deep-tested live: hero, nav, language/currency panel, and FAQ all translate correctly, register-appropriate, not machine-stub — MEASURED_BROWSER / PRODUCTION</li>
+        <li><code>html lang</code> attribute updates correctly on switch (<code>en</code> → <code>es</code> → <code>de</code>) — MEASURED_BROWSER</li>
+        <li>7 remaining locales (ca, sv, fr, it, da, nl, no) verified as complete, real content <em>in code</em> only — not rendered live in this pass</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>The gap</h4>
+      <p>The Editorial Hub section is not wired into the locale system at all. <code>src/content/editorial/hub-copy.ts</code> hardcodes <code>title</code>, <code>eyebrow</code>, <code>intro</code> and <code>ctaLabel</code> in Spanish; <code>EditorialHubSection.tsx</code> additionally hardcodes a <code>CATEGORY_LABELS</code> record in Spanish and formats every article date with <code>toLocaleDateString("es-ES", …)</code> plus a literal <code>"min de lectura"</code> string — regardless of the active locale.</p>
+      <p style="margin:0">Confirmed live: switching to English or German changes every other heading on the page, but "Lecturas para decisiones mejor informadas." and all three article cards remain in Spanish in both cases.</p>
+    </div>
+  </div>
+  <div class="evidence-block">
+    <div class="shot-row two">
+      <figure class="shot-frame"><img src="evidence/anclora-private-estates-landing-2026-09-08/04-lang-es-hero.png" alt="Hero in Spanish"/></figure>
+      <figure class="shot-frame"><img src="evidence/anclora-private-estates-landing-2026-09-08/05-lang-de-hero.png" alt="Hero in German"/></figure>
+    </div>
+    <figcaption><span class="caps">Evidence level: Measured_Browser · Environment: Production</span><br/>Hero after switching to Spanish (left) and German (right) via the in-page language selector. Headline, eyebrow and CTAs translate correctly in both. The chrome around the language panel (labels "Idioma"/"Sprache", option list) also localizes fully — the underlying mechanism is sound; the Editorial Hub bypasses it.</figcaption>
+  </div>
+  <p><strong>A second, distinct instance of the same pattern:</strong> with the UI in English, the Seller Intake form's <strong>"PROPERTY TYPE"</strong> dropdown offers <em>Villa, Ático, Apartamento premium, Finca</em>, and its <strong>"COMMERCIAL APPROACH"</strong> dropdown offers <em>Evaluación confidencial, Venta en exclusiva, Venta selectiva sin portal masivo</em> — all option labels hardcoded in Spanish, verified directly in the production accessibility-tree snapshot while the rest of the same form ("NAME," "EMAIL," "PROPERTY AREA," validation copy) was correctly in English. This is inside the site's primary lead-capture form, not a secondary content block — see F10.</p>
+  <p><strong>DISCOVERABILITY_FRICTION:</strong> the site never writes a locale into the URL (no <code>?lang=</code>, no path prefix) despite <code>index.html</code> declaring <code>hreflang</code> alternates that assume exactly that scheme (see next section) — a German lead cannot be sent a link that opens directly in German; language state resets to the browser/document default on every fresh load.</p>
+</section>
+
+<section id="access">
+  <div class="section-num">05 &amp; 33 — Canonical Destination, SEO Structure &amp; Deployment</div>
+  <h2>The page's own metadata points visitors away from itself</h2>
+  <p><code>index.html</code> declares, verbatim:</p>
+  <div class="tbl-wrap"><table>
+    <tr><td><code>&lt;link rel="canonical"&gt;</code></td><td><code>https://anclora.com/private-estates</code></td></tr>
+    <tr><td><code>og:url</code></td><td><code>https://anclora.com/private-estates</code></td></tr>
+    <tr><td><code>og:image</code> / <code>twitter:image</code></td><td><code>https://anclora.com/og-image.jpg</code></td></tr>
+    <tr><td><code>hreflang</code> alternates</td><td><code>https://anclora.com/private-estates?lang={es,en,ca,de}</code></td></tr>
+    <tr><td>Actual audited deployment</td><td><code>https://private-estates-landing.anclora.com/</code> (the URL this audit was asked to review)</td></tr>
+  </table></div>
+  <p>A direct connection attempt to <code>anclora.com</code>, independently re-verified for this report with <code>curl -v</code> and <code>openssl s_client</code>, returned:</p>
+  <blockquote>SSL certificate problem: certificate has expired — <code>notBefore=Nov 15 2024</code>, <code>notAfter=Nov 15 2025</code> (expired ~10 months before this audit). <strong>The certificate's subject is <code>CN=*.myshopify.com</code></strong> — a wildcard Shopify certificate, not an Anclora-issued one. The same failure occurs in a real Chromium browser (hard "Privacy error" / cert-mismatch interstitial) for both <code>https://anclora.com/</code> and <code>https://anclora.com/private-estates</code>.</blockquote>
+  <p>This is a materially worse condition than a simple lapsed renewal: the certificate Chrome is being offered doesn't even belong to Anclora's own infrastructure, which suggests <code>anclora.com</code> may currently be pointed at unrelated or long-stale DNS/hosting (a parked or expired Shopify storefront), not merely an unrenewed cert on Anclora's own edge. This audit does not have DNS/hosting-account evidence to determine which — flagged as <code>EXTERNAL_INFRASTRUCTURE</code> pending confirmation.</p>
+  <p>Meanwhile <code>https://private-estates-landing.anclora.com/</code> — the real, working deployment — returns a clean <code>HTTP/2 200</code> and is not referenced anywhere in the page's own canonical/OG/hreflang metadata.</p>
+  <p><strong>Practical consequence:</strong> a social preview card (WhatsApp, LinkedIn, X) built from this page's <code>og:url</code> will carry a link to a domain that presents a certificate-expired security warning to any recipient who clicks it — precisely the audience (international, high-value, security-conscious) this product is trying to earn trust with. Search engines resolving the declared canonical face the same dead end, which can suppress indexing of the real, working page in favor of a URL that returns nothing.</p>
+  <p class="small">FINDING_SCOPE: <strong>PRODUCT_ACCESS</strong> (the metadata is part of this repository and actively misdirects real distribution channels) with an <strong>EXTERNAL_INFRASTRUCTURE</strong> component (the certificate itself is not controlled by this repository). Not evaluated: whether <code>anclora.com</code> is meant to host this product at all, or is a legacy/unrelated property — outside repo-context evidence.</p>
+</section>
+
+<section id="forms">
+  <div class="section-num">17–18 &amp; 14 — Forms &amp; Input UX</div>
+  <h2>Three real, well-differentiated forms — native-only validation feedback</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Form</th><th>Fields</th><th>Notable design</th></tr>
+    <tr><td>Seller / Buyer / Investor / Rental intake</td><td>Intent selector (5 options) branches the field set; Name*, Email*, Phone, Property Area*, Property Type, Commercial Approach, Message*, consent* + marketing (optional)</td><td>Progressive disclosure by declared intent — genuinely adaptive, not one generic contact form</td></tr>
+    <tr><td>Synergi partner application</td><td>Name*, Email*, Service Type, Profile description*, consent*</td><td>Separate audience, separate consent checkbox</td></tr>
+    <tr><td>Data Lab early access</td><td>Name*, Email*, "Why are you interested"*, consent*</td><td>Lightweight, appropriately short for a newsletter-weight ask</td></tr>
+  </table></div>
+  <div class="evidence-block">
+    <div class="shot-frame" style="max-width:600px;"><img src="evidence/anclora-private-estates-landing-2026-09-08/13-form-validation-top.png" alt="Empty submit attempt on Seller Intake form"/></div>
+    <figcaption><span class="caps">Evidence level: Measured_Browser · Environment: Production</span><br/>Result of clicking "Send private request" with all fields empty. The browser's native focus ring appears on the first required field (NAME); there is no custom inline error text, no red border, and <code>aria-invalid</code> is <code>null</code> on the field (verified via DOM inspection) after the failed attempt.</figcaption>
+  </div>
+  <p><strong>FORM_UX / ACCESSIBILITY finding:</strong> validation relies entirely on the browser's built-in <code>required</code> constraint behavior. This is functionally safe (the form cannot be submitted empty) but has two real costs: (1) a screen-reader user gets no accessible failure announcement, since no <code>aria-invalid</code> or live-region message is set; (2) native validation bubbles are unstyled and not consistently rendered across browsers/mobile Safari, so the failure can be silent or off-brand at the exact moment a private-client prospect is asked to trust the form with sensitive intent ("I want to sell a property").</p>
+  <p>Also observed: the Cloudflare Turnstile widget embedded in the Seller Intake form reported <code>Unable to connect to website</code> and repeated console warnings (<code>[Cloudflare Turnstile] Error: 110200</code>) during this automated pass. This is consistent with Turnstile's designed behavior toward headless/automated browsers and is <strong>not presented as a confirmed defect for human visitors</strong> — it does mean this audit cannot independently verify, end to end, that a real human submission completes successfully in production. Recorded as <code>TEMPORARY_EXECUTION_WORKAROUND</code> / evidence gap, not a finding.</p>
+</section>
+
+<section id="cookies">
+  <div class="section-num">19 &amp; 35 — Analytics, Behavior Signals &amp; Cookie/Privacy Trust</div>
+  <h2>Consent-gated by default in code; not fully disclosed in policy</h2>
+  <div class="evidence-block">
+    <div class="shot-frame" style="max-width:600px;margin:0 auto;"><img src="evidence/anclora-private-estates-landing-2026-09-08/09-cookie-preferences.png" alt="Cookie preferences modal"/></div>
+    <figcaption><span class="caps">Evidence level: Measured_Browser · Environment: Production</span><br/>Cookie modal shown on first load. On-brand (Fraunces italic heading, teal card, gold primary action). Two options only: "ACCEPT ALL" (primary, gold-filled) and "SETTINGS" (secondary, outlined) — no equally-prominent one-click "reject/decline all."</figcaption>
+  </div>
+  <div class="grid c2">
+    <div class="card">
+      <h4>What the code actually does (MEASURED_CODE)</h4>
+      <ul>
+        <li><code>getCookieConsent()</code> defaults to <code>{analytics:false, marketing:false}</code> until the user explicitly saves a preference — opt-in by default, which is the privacy-respecting direction</li>
+        <li><code>trackEvent()</code> is a no-op unless <code>consent.analytics === true</code></li>
+        <li>Events (<code>cta_click</code>, <code>form_submit</code>, <code>language_change</code>, <code>section_view</code>, <code>faq_open</code>) push to <code>window.dataLayer</code> (GTM-shaped) and to a 50-entry <code>localStorage</code> ring buffer</li>
+        <li><strong>No GTM/GA script tag exists in <code>index.html</code></strong> — the <code>dataLayer</code> push currently has no container to consume it; today this is inert wiring, not live external tracking (ENGINEERING_SUPPORT)</li>
+        <li><code>useBehaviorSignals()</code> independently and passively collects <code>time_on_page_s</code>, <code>scroll_depth_pct</code>, and <code>pre_submit_cta_clicks</code> — explicitly "for lead scoring enrichment" — and this payload <em>is</em> attached to real Seller Intake submissions (<code>SellerIntakeForm.tsx:262</code>), independent of the consent gate above</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>What the Privacy Policy discloses (MEASURED_BROWSER, <code>/privacy</code>, full text read)</h4>
+      <p>Name, email, phone, property/investment interest, motivation/timeline, and voluntarily-provided wealth data. GDPR legal basis, 24–36 month retention, AML disclosure, third-party sharing only with explicit consent.</p>
+      <p style="margin:0"><strong>Not mentioned anywhere:</strong> cookies, analytics, the behavioral-signal capture attached to form submissions, or the third-party Cloudflare Turnstile widget.</p>
+    </div>
+  </div>
+  <p class="small">FINDING_SCOPE: both items in this section are <strong>COMPLIANCE_REVIEW</strong> with <strong>LEGAL_REVIEW_REQUIRED</strong> — this audit does not assert that the current implementation is unlawful; it identifies a UX/trust gap (a private-client prospect cannot learn, from the policy they are asked to accept, that behavioral metadata rides along with their enquiry) that a qualified reviewer should close.</p>
+</section>
+
+<section id="responsive">
+  <div class="section-num">21 &amp; 31 — Responsive Task Completion</div>
+  <h2>No overflow observed; one touch-target below guideline size</h2>
+  <div class="evidence-block">
+    <div class="shot-row two">
+      <figure class="shot-frame"><img src="evidence/anclora-private-estates-landing-2026-09-08/08-tablet-hero-768x1024.png" alt="Tablet hero 768x1024"/></figure>
+      <figure class="shot-frame"><img src="evidence/anclora-private-estates-landing-2026-09-08/11-faq-expanded.png" alt="FAQ expanded, desktop"/></figure>
+    </div>
+    <figcaption><span class="caps">Evidence level: Measured_Browser · Environment: Production</span><br/>Left: tablet 768×1024 first viewport — hero, dual CTA and trust line remain intact, no wrapping regression. Right: FAQ accordion expanded at desktop width, showing a specific, substantive answer (not filler copy).</figcaption>
+  </div>
+  <table>
+    <tr><td>DESKTOP_COVERED (1440×900)</td><td><span class="score GOOD">MEASURED_BROWSER</span></td></tr>
+    <tr><td>TABLET_COVERED (768×1024)</td><td><span class="score GOOD">MEASURED_BROWSER</span> (hero only, lighter depth)</td></tr>
+    <tr><td>MOBILE_PORTRAIT_COVERED (390×844)</td><td><span class="score GOOD">MEASURED_BROWSER</span> — no horizontal overflow (<code>scrollWidth === clientWidth === 390</code>)</td></tr>
+    <tr><td>MOBILE_LANDSCAPE_COVERED</td><td><span class="score NOT_EVALUATED">NOT_EVALUATED</span></td></tr>
+    <tr><td>Floating-control overlap with hero CTAs (mobile)</td><td><span class="score GOOD">NO OVERLAP</span> — measured bounding boxes: hero CTAs end at y≈635; floating Cookies/Down/Contact controls begin at y≈717–773</td></tr>
+    <tr><td>Touch target sizing</td><td><span class="score FAIR">FAIR</span> — Cookies (48×48) and Contact (50×50) meet the 44×44 guideline; the "Down" scroll button measures 42×42, marginally under it</td></tr>
+  </table>
+</section>
+
+<section id="premium">
+  <div class="section-num">26–30 — Premium Surface, Typography, Anti-Template</div>
+  <h2>An intentional, restrained visual system</h2>
+  <div class="grid c3">
+    <div class="card"><h4>Typography</h4><p style="margin:0">Cardo (display serif, headline), Inter (sans, body/nav/forms), Fraunces (italic accent, used sparingly — e.g. the cookie modal heading). All three confirmed wired via CSS custom properties and rendered live, matching the README's claim exactly. Role separation is clear and consistent across the pages sampled.</p></div>
+    <div class="card"><h4>Palette</h4><p style="margin:0">Deep navy/teal ground (<code>#07252F</code> family) with a single controlled-gold accent (<code>#D4AF37</code>) reserved for the primary CTA fill and micro-labels. No plain-white surfaces; gold never becomes a background field. Matches the "accent, not surface" doctrine.</p></div>
+    <div class="card"><h4>Anti-template</h4><p style="margin:0">No glassmorphism observed; no arbitrary gradients beyond one controlled gold gradient on primary buttons; real, specific coastal-villa photography rather than generic luxury stock. The absence of a public listings grid is a brand-coherent choice, not a missing feature.</p></div>
+  </div>
+  <p class="small">Dead-code note (ENGINEERING_SUPPORT, no user impact): <code>private-estates-tokens.css</code> also defines a complete light-theme token set (<code>--pe-bg:#FBF9F4</code> etc.) even though the product is dark-only by design with no theme toggle in the UI — likely inherited from the sister application's shared token file. Confirm it is intentionally unreachable rather than partially wired.</p>
+</section>
+
+<section id="scorecard">
+  <div class="section-num">40 — Surface-Aware Scorecard</div>
+  <h2>MARKETING_SITE dimensions (skill §32A) + LUXURY_REAL_ESTATE domain extension</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Dimension</th><th>Rating</th><th>Basis</th></tr>
+    <tr><td>Task / Goal Completion</td><td><span class="score GOOD">GOOD</span></td><td>Every audience can reach an appropriate form; success/failure states not end-to-end verified (safety)</td></tr>
+    <tr><td>Clarity</td><td><span class="score GOOD">GOOD</span></td><td>Hero + section eyebrows consistently state audience and purpose</td></tr>
+    <tr><td>Brand Positioning</td><td><span class="score EXCELLENT">EXCELLENT</span></td><td>Discreet/off-market promise reflected structurally, not just in copy</td></tr>
+    <tr><td>Information Architecture</td><td><span class="score FAIR">FAIR</span></td><td>No audience index; partner/investor content requires deep scroll with no shortcut</td></tr>
+    <tr><td>Public Site Shell</td><td><span class="score GOOD">GOOD</span></td><td>Persistent nav, working language/currency selector, non-overlapping floating controls</td></tr>
+    <tr><td>Content Discovery</td><td><span class="score FAIR">FAIR</span></td><td>Footer anchor nav exists but is the only cross-section wayfinding aid</td></tr>
+    <tr><td>Content Sequence</td><td><span class="score GOOD">GOOD</span></td><td>Buyer/seller narrative sequencing is deliberate; partner/data-lab placement is the exception</td></tr>
+    <tr><td>Editorial Hierarchy</td><td><span class="score POOR">POOR</span></td><td>Real hub, but entirely unlocalized (§I18n) — undermines "editorial authority" for 10 of 11 locales</td></tr>
+    <tr><td>CTA Hierarchy</td><td><span class="score GOOD">GOOD</span></td><td>Consistent "Open private conversation" labeling reused predictably; no competing primaries observed</td></tr>
+    <tr><td>Conversion Architecture</td><td><span class="score GOOD">GOOD</span></td><td>Three audience-specific forms + direct email/phone, not one generic contact box</td></tr>
+    <tr><td>Form Friction</td><td><span class="score FAIR">FAIR</span></td><td>Well-scoped fields, but native-only validation with no <code>aria-invalid</code></td></tr>
+    <tr><td>Trust</td><td><span class="score GOOD">GOOD</span></td><td>eXp Realty affiliation, specific FAQ answers, direct human contact — undercut by the canonical/cert-expiry issue at the edges</td></tr>
+    <tr><td>Visual Storytelling</td><td><span class="score GOOD">GOOD</span></td><td>Real, specific Mallorca photography; no stock-luxury sameness</td></tr>
+    <tr><td>Premium Visual Quality</td><td><span class="score EXCELLENT">EXCELLENT</span></td><td>Disciplined type system, restrained gold accent, no decorative clutter</td></tr>
+    <tr><td>Memorability</td><td><span class="score GOOD">GOOD</span></td><td>"Discreet sale," micro-location narrative and the eXp affiliation are distinct anchors</td></tr>
+    <tr><td>Accessibility</td><td><span class="score FAIR">FAIR</span></td><td>FAQ/combobox semantics correct; form error state and dedicated accessibility-audit composition both incomplete</td></tr>
+    <tr><td>Responsive</td><td><span class="score GOOD">GOOD</span></td><td>No overflow across three widths tested; one sub-guideline touch target</td></tr>
+    <tr><td>System Feedback / Error Recovery</td><td><span class="score FAIR">FAIR</span></td><td>Native browser feedback only on form failure; no submission ever completed end to end</td></tr>
+    <tr><td>Mallorca Differentiation (domain)</td><td><span class="score EXCELLENT">EXCELLENT</span></td><td>Micro-location framing reads as domain expertise, not scenery</td></tr>
+    <tr><td>Private Client Confidence (domain)</td><td><span class="score FAIR">FAIR</span></td><td>Strong on-page; undercut by canonical/cert and disclosure gaps a sophisticated buyer's team would notice</td></tr>
+    <tr><td>Application Shell / Viewport Economy / Checkout / Task Completion (app-only)</td><td><span class="score NOT_APPLICABLE">NOT_APPLICABLE</span></td><td>No authenticated workspace; no cart/checkout</td></tr>
+  </table></div>
+</section>
+
+<section id="findings">
+  <div class="section-num">41 — Findings</div>
+  <h2>Ten findings: 7 product UX/access, 2 compliance-review, 1 engineering-support</h2>
+  <p class="small">Per the skill's finding-scope rule, only <code>PRODUCT_UX</code> and <code>PRODUCT_ACCESS</code> findings count toward the UX scorecard (F1, F2, F5, F6, F7, F8, F10 — 7 items). F3 and F4 are <code>COMPLIANCE_REVIEW</code> (<code>LEGAL_REVIEW_REQUIRED</code>, not asserted as unlawful by this audit) and are reported separately, not scored as UX defects. F9 is <code>ENGINEERING_SUPPORT</code> (documentation drift, no user-facing impact) and does not degrade the UX scorecard either.</p>
+
+  <div class="finding sev-HIGH">
+    <div class="finding-head"><h4>F1 — Canonical, Open Graph and hreflang metadata resolve to a cert-expired, unreachable domain</h4><span class="tag sev-HIGH">HIGH</span><span class="tag">PRODUCT_ACCESS</span><span class="tag">QUICK_WIN</span></div>
+    <dl>
+      <dt>Journey</dt><dd>J11 language change; social-share / search-indexing paths</dd>
+      <dt>Evidence</dt><dd><code>index.html</code> canonical/og:url/hreflang → <code>anclora.com/private-estates</code>; independently re-verified via <code>curl -v</code> and <code>openssl s_client</code>: certificate expired 2025-11-15, subject <code>CN=*.myshopify.com</code> (not an Anclora certificate) — MEASURED_CODE + direct TLS verification, PRODUCTION</dd>
+      <dt>Current behavior</dt><dd>Real visitors sharing or search engines indexing the audited page are pointed to a different, broken domain</dd>
+      <dt>Root UX cause</dt><dd>Metadata block was authored for a different (or planned) domain and never updated to the live deployment</dd>
+      <dt>User impact</dt><dd>International/high-value prospects following a shared link hit a security warning instead of the property page — direct trust damage for exactly the audience this product targets</dd>
+      <dt>Recommended change</dt><dd>Point canonical/og:url/twitter:image/hreflang to <code>https://private-estates-landing.anclora.com/</code> (or fix/retire <code>anclora.com</code>'s certificate if that domain is the intended long-term home); align hreflang scheme with how locale switching actually works (see F2)</dd>
+      <dt>Effort / Risk</dt><dd>LOW / LOW — metadata-only change</dd>
+      <dt>Do not break</dt><dd>Existing <code>vercel.json</code> catch-all rewrite for <code>/privacy</code>, <code>/terms</code>, <code>/legal</code></dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-HIGH">
+    <div class="finding-head"><h4>F2 — Editorial Hub is entirely unlocalized across all 10 non-Spanish languages</h4><span class="tag sev-HIGH">HIGH</span><span class="tag">PRODUCT_UX</span><span class="tag">QUICK_WIN</span></div>
+    <dl>
+      <dt>Journey</dt><dd>J8 editorial authority; J11 language change</dd>
+      <dt>Evidence</dt><dd><code>src/content/editorial/hub-copy.ts</code> and <code>articles.ts</code> hardcode Spanish content outside the <code>site-copy.ts</code> locale system; <code>EditorialHubSection.tsx</code> hardcodes <code>CATEGORY_LABELS</code> and <code>toLocaleDateString("es-ES", …)</code> — confirmed unchanged live in English and German (MEASURED_CODE + MEASURED_BROWSER, PRODUCTION)</dd>
+      <dt>Current behavior</dt><dd>An English- or German-reading visitor sees a fully-translated page except one entire section, in Spanish, with no visual explanation</dd>
+      <dt>User impact</dt><dd>Breaks the "sophisticated, considered" impression the rest of the localization creates; a non-Spanish-reading investor cannot evaluate the editorial authority content at all</dd>
+      <dt>Recommended change</dt><dd>Move editorial hub copy and category labels into the existing per-locale <code>siteCopyXx</code> structure; parameterize <code>toLocaleDateString</code> by active locale; localize "min de lectura"</dd>
+      <dt>Effort / Risk</dt><dd>MEDIUM / LOW — additive to an existing, working localization system</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-MEDIUM">
+    <div class="finding-head"><h4>F3 — Privacy Policy does not disclose cookies, analytics, or behavioral lead-scoring signals</h4><span class="tag sev-MEDIUM">MEDIUM</span><span class="tag">COMPLIANCE_REVIEW</span></div>
+    <dl>
+      <dt>Evidence</dt><dd>Full text of <code>/privacy</code> read live (PRODUCTION); no mention of cookies/analytics/tracking. <code>useBehaviorSignals.ts</code> + <code>SellerIntakeForm.tsx:262</code> confirm scroll-depth/time-on-page/CTA-click metadata is attached to real submissions (MEASURED_CODE)</dd>
+      <dt>User impact</dt><dd>A prospect consents to a policy that does not describe metadata collected alongside their enquiry</dd>
+      <dt>Recommended change</dt><dd>Add a disclosure covering cookies, the analytics ring buffer, behavioral lead-scoring signals, and the Cloudflare Turnstile widget; route through qualified legal review before wording is finalized</dd>
+      <dt>Note</dt><dd>Compliance status: <strong>LEGAL_REVIEW_REQUIRED</strong> — not asserted as unlawful by this audit</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-MEDIUM">
+    <div class="finding-head"><h4>F4 — Cookie modal offers "Accept All" with equal prominence but no matching one-click decline</h4><span class="tag sev-MEDIUM">MEDIUM</span><span class="tag">COMPLIANCE_REVIEW</span></div>
+    <dl>
+      <dt>Evidence</dt><dd>Cookie Preferences modal, production, screenshot 09 — buttons are "ACCEPT ALL" (primary gold) and "SETTINGS" (secondary) only</dd>
+      <dt>Recommended change</dt><dd>Add a "Reject non-essential" action with visual parity to "Accept All," or confirm via legal review that Settings→decline is an accepted equivalent</dd>
+      <dt>Note</dt><dd>LEGAL_REVIEW_REQUIRED</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-MEDIUM">
+    <div class="finding-head"><h4>F5 — Form validation gives no accessible or styled failure feedback</h4><span class="tag sev-MEDIUM">MEDIUM</span><span class="tag">FORM_UX</span><span class="tag">ACCESSIBILITY</span></div>
+    <dl>
+      <dt>Evidence</dt><dd>Empty-submit attempt on Seller Intake, production (screenshots 12–13); <code>aria-invalid</code> confirmed <code>null</code> on the failing field via DOM query after the attempt</dd>
+      <dt>User impact</dt><dd>Screen-reader users receive no announcement of failure; sighted users depend on an unstyled native browser bubble at a high-stakes moment (disclosing an intent to sell/invest)</dd>
+      <dt>Recommended change</dt><dd>Add inline, localized error text and <code>aria-invalid</code>/<code>aria-describedby</code> wiring on each required field, consistent with the site's own visual language</dd>
+      <dt>Effort / Risk</dt><dd>LOW / LOW</dd>
+      <dt>Quick win</dt><dd>Yes</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-MEDIUM">
+    <div class="finding-head"><h4>F6 — Partner and Data Lab audiences have no above-the-fold or persistent entry point</h4><span class="tag sev-MEDIUM">MEDIUM</span><span class="tag">INFORMATION_ARCHITECTURE</span></div>
+    <dl>
+      <dt>Evidence</dt><dd>Synergi form at 59% scroll depth, Data Lab form at 68% (measured, 1440×900, production); footer anchor nav is the only cross-section index and sits at the very bottom of a 14,770px page</dd>
+      <dt>User impact</dt><dd>A referral partner or data-signal subscriber arriving without a deep link must scroll past five sections addressed to other audiences</dd>
+      <dt>Recommended change</dt><dd>Surface a lightweight audience index near the hero (e.g. within the existing nav menu) linking directly to Partners/Data Lab, or provide locale-stable deep-link anchors in outbound partner communications</dd>
+      <dt>Effort / Risk</dt><dd>LOW / LOW</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-LOW">
+    <div class="finding-head"><h4>F7 — No URL-addressable locale despite hreflang implying one</h4><span class="tag sev-LOW">LOW</span><span class="tag">DISCOVERABILITY</span></div>
+    <dl>
+      <dt>Evidence</dt><dd>Language switch changes <code>html lang</code> and content client-side only; no <code>?lang=</code> param or path prefix appears in the address bar at any point (MEASURED_BROWSER)</dd>
+      <dt>Recommended change</dt><dd>Either implement the URL scheme the hreflang tags already claim, or remove/simplify the hreflang block to match actual behavior (ties to F1)</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-LOW">
+    <div class="finding-head"><h4>F8 — "Down" scroll-indicator touch target is marginally under the 44×44 guideline</h4><span class="tag sev-LOW">LOW</span><span class="tag">RESPONSIVE</span><span class="tag">ACCESSIBILITY</span></div>
+    <dl>
+      <dt>Evidence</dt><dd>Bounding box measured at 390×844: 42×42px (production)</dd>
+      <dt>Recommended change</dt><dd>Increase to at least 44×44 to match the neighboring Cookies (48×48) and Contact (50×50) controls</dd>
+      <dt>Effort / Risk</dt><dd>LOW / LOW — quick win</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-LOW">
+    <div class="finding-head"><h4>F9 — README documents Tailwind CSS; the codebase uses none</h4><span class="tag sev-LOW">LOW</span><span class="tag">ENGINEERING_SUPPORT</span></div>
+    <dl>
+      <dt>Evidence</dt><dd><code>README.md</code> "Estilos | Tailwind CSS"; no <code>tailwindcss</code> in <code>package.json</code>; real system is hand-authored CSS tokens (MEASURED_CODE)</dd>
+      <dt>Note</dt><dd>Does not affect the audited UX scorecard; surfaced for documentation accuracy only</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-HIGH">
+    <div class="finding-head"><h4>F10 — Seller Intake form dropdown options ("Property Type," "Commercial Approach") are hardcoded in Spanish in every locale</h4><span class="tag sev-HIGH">HIGH</span><span class="tag">PRODUCT_UX</span><span class="tag">FORM_UX</span></div>
+    <dl>
+      <dt>Journey</dt><dd>J6 seller/owner intake; J11 language change</dd>
+      <dt>Evidence</dt><dd>Production accessibility-tree snapshot with the UI in English: <code>combobox "PROPERTY TYPE"</code> lists <em>Villa, Ático, Apartamento premium, Finca</em>; <code>combobox "COMMERCIAL APPROACH"</code> lists <em>Evaluación confidencial, Venta en exclusiva, Venta selectiva sin portal masivo</em> — while every surrounding field label, placeholder and validation message in the same form was correctly in English (MEASURED_BROWSER, PRODUCTION)</dd>
+      <dt>Current behavior</dt><dd>The same hardcoded-content pattern as F2 (Editorial Hub), but inside the primary lead-capture form rather than a secondary content block</dd>
+      <dt>User impact</dt><dd>A non-Spanish-speaking owner selecting how they want to sell ("Venta en exclusiva" vs. "Venta selectiva sin portal masivo") must decode Spanish real-estate terminology at the exact moment they are committing to an approach — the highest-stakes field in the form</dd>
+      <dt>Recommended change</dt><dd>Move these option sets into the existing per-locale <code>siteCopyXx</code> structure alongside the rest of the form copy, the same fix path as F2</dd>
+      <dt>Effort / Risk</dt><dd>LOW / LOW — same mechanism already exists and works for every other field in this form</dd>
+      <dt>Quick win</dt><dd>Yes</dd>
+    </dl>
+    <div class="evidence-block" style="margin-top:16px;">
+      <div class="shot-row two">
+        <figure class="shot-frame"><img src="evidence/anclora-private-estates-landing-2026-09-08/desktop-1440x900-i18n-bug-propertytype.png" alt="Property Type dropdown showing Spanish options in English locale"/></figure>
+        <figure class="shot-frame"><img src="evidence/anclora-private-estates-landing-2026-09-08/desktop-1440x900-i18n-bug-commercialapproach.png" alt="Commercial Approach dropdown showing Spanish options in English locale"/></figure>
+      </div>
+      <figcaption><span class="caps">Evidence level: Measured_Browser · Environment: Production</span><br/>Left: "PROPERTY TYPE" dropdown open, UI locale = English, options rendered in Spanish. Right: same for "COMMERCIAL APPROACH." Field label above each dropdown is correctly translated — only the option list is not.</figcaption>
+    </div>
+  </div>
+</section>
+
+<section id="works-well">
+  <div class="section-num">36 — What Works Well</div>
+  <h2>Do not break these</h2>
+  <ul>
+    <li><strong>Consent-gated analytics, opt-in by default</strong> (<code>getCookieConsent()</code> defaults to <code>false</code>) — the privacy-respecting direction, in code, ahead of the policy text</li>
+    <li><strong>Real, disciplined three-font editorial type system</strong> (Cardo/Inter/Fraunces) with clear, consistent role separation across every page sampled</li>
+    <li><strong>Controlled gold as accent, never as surface</strong> — no gradient overuse, no glassmorphism</li>
+    <li><strong>Progressive, intent-branching Seller Intake form</strong> — a single form that adapts its fields to five distinct declared intents, rather than one generic contact form for every audience</li>
+    <li><strong>Direct human channels alongside every form</strong> (email + phone in the Contact section) — reinforces the "high-touch, advisory, not funnel" promise</li>
+    <li><strong>Accessible-by-default FAQ accordion</strong> — real <code>&lt;button&gt;</code> elements with correct <code>aria-expanded</code> state, keyboard-operable with no extra work</li>
+    <li><strong>Genuinely complete 11-locale content system</strong> for every section except Editorial Hub — real, register-appropriate translations, not machine stubs, verified in three languages live</li>
+    <li><strong>No public listings catalogue</strong> — the absence is a brand-coherent decision (discreet/off-market positioning), not a missing feature</li>
+  </ul>
+</section>
+
+<section id="roadmap">
+  <div class="section-num">45 &amp; 47 — Quick Wins &amp; Recommended Roadmap</div>
+  <h2>Phased roadmap</h2>
+  <h3>Phase 1 — Quick Wins</h3>
+  <ul>
+    <li>F1 — Correct canonical/og:url/hreflang to the real deployed domain</li>
+    <li>F10 — Localize the Seller Intake form's "Property Type" and "Commercial Approach" dropdown options</li>
+    <li>F5 — Add inline, accessible validation errors to all three forms</li>
+    <li>F8 — Enlarge the "Down" scroll control to 44×44</li>
+  </ul>
+  <h3>Phase 2 — High Impact</h3>
+  <ul>
+    <li>F2 — Localize the Editorial Hub (content, category labels, date formatting, "min de lectura")</li>
+    <li>F3 / F4 — Close the cookie/analytics/behavioral-signal disclosure gap and cookie-decline symmetry, via legal review</li>
+    <li>F6 — Give Partner and Data Lab audiences a discoverable entry point above the fold or in navigation</li>
+  </ul>
+  <h3>Phase 3 — Structural</h3>
+  <ul>
+    <li>F7 — Decide and implement a real URL-addressable locale scheme (or retire the hreflang claim to match current behavior)</li>
+    <li>Reassess whether the single 14,770px scroll should remain fully monolithic as more audiences/content are added, or whether Partners/Data Lab/Editorial deserve their own routed destinations</li>
+  </ul>
+</section>
+
+<section id="coverage">
+  <div class="section-num">42 — Evidence Coverage</div>
+  <h2>What was and wasn't covered</h2>
+  <div class="tbl-wrap"><table>
+    <tr><td>BROWSER_AVAILABLE</td><td>true (agent-browser CLI, Chromium via CDP)</td></tr>
+    <tr><td>PRODUCTION_BROWSER_COVERED</td><td>true — sole browser environment audited</td></tr>
+    <tr><td>STAGING_BROWSER_COVERED / PREVIEW_BROWSER_COVERED</td><td>false — no staging/preview URL discovered in README, <code>.env.example</code>, <code>vercel.json</code>, or docs</td></tr>
+    <tr><td>LOCAL_BUILD_BROWSER_COVERED</td><td>false — not started; production coverage was sufficient and safer</td></tr>
+    <tr><td>DEPLOYED_SURFACE_COVERED</td><td>true</td></tr>
+    <tr><td>DESKTOP_COVERED (1440×900)</td><td>true</td></tr>
+    <tr><td>TABLET_COVERED (768×1024)</td><td>true (lighter depth — hero only)</td></tr>
+    <tr><td>MOBILE_PORTRAIT_COVERED (390×844)</td><td>true</td></tr>
+    <tr><td>MOBILE_LANDSCAPE_COVERED</td><td>false</td></tr>
+    <tr><td>LIGHT_THEME_COVERED</td><td>NOT_APPLICABLE — dark-only by design, no toggle exists</td></tr>
+    <tr><td>DARK_THEME_COVERED</td><td>true</td></tr>
+    <tr><td>I18N_COMPOSED (dedicated <code>i18n-integrity-check</code> AOS skill)</td><td><strong>UNAVAILABLE</strong> — TOOL_COMPATIBILITY_GAP; substituted with direct browser (ES/EN/DE) + code inspection (all 11 locale files) in §I18n</td></tr>
+    <tr><td>ACCESSIBILITY_COMPOSED (dedicated <code>accessibility-audit</code> AOS skill)</td><td><strong>UNAVAILABLE</strong> — TOOL_COMPATIBILITY_GAP; substituted with manual browser semantics checks (FAQ, comboboxes, form <code>aria-invalid</code>)</td></tr>
+    <tr><td>DESIGN_SYSTEM_COMPOSED / VISUAL_REGRESSION_COMPOSED</td><td><strong>UNAVAILABLE</strong> — no <code>aos</code> CLI in this environment; not composed</td></tr>
+    <tr><td>repo-preflight / aos-compliance-preflight / change-impact-analysis</td><td><strong>UNAVAILABLE</strong> — same reason</td></tr>
+    <tr><td>SURFACE_MODE_AUTO_DETECTED</td><td>true</td></tr>
+    <tr><td>SURFACE_MODE_CONFIRMED_BY_BROWSER</td><td>true</td></tr>
+    <tr><td>Form end-to-end submission (success/failure states)</td><td>NOT TESTED — read-only/no-real-lead mandate; native validation only</td></tr>
+    <tr><td>Locales rendered live</td><td>es, en, de (3 of 11); remaining 7 verified as complete in code only</td></tr>
+    <tr><td>Historical regression</td><td>N/A — <code>docs/audits/</code> contained no prior report before this run; first audit of record</td></tr>
+  </table></div>
+</section>
+
+<section id="final">
+  <div class="section-num">51 — Final Answer</div>
+  <h2>Final Answer</h2>
+  <div class="answer-box">
+    <p style="color:var(--ink);font-size:1.02rem">Anclora Private Estates Landing largely delivers the ultra-premium, private-client experience it is designed to project: a restrained visual language, a real and specific Mallorca narrative rather than generic luxury scenery, six coherently differentiated audience paths each with its own appropriately-scoped form, and direct human contact channels sitting alongside every conversion point rather than behind it. The parts of the experience a visitor actually reads and clicks through — hero, FAQ, forms, language selector, cookie modal — hold up to the "quiet luxury" doctrine this audit applies: no glassmorphism, no gold-as-wallpaper, no generic three-column filler.</p>
+    <p style="color:var(--ink);font-size:1.02rem;margin-bottom:0">Where the distance between aesthetic and authentic private-client advisory actually opens up is at the seams the visitor doesn't see directly: a canonical/social/search identity that points to a certificate-expired domain, an editorial section that silently reverts to Spanish for ten of eleven audiences, a privacy policy that is more conservative than the code it describes, and an information architecture that makes three of six audiences scroll past everyone else's content to find their own. None of these breaks the promise on the page itself — but for the specific buyer this product is built for (someone who will check a link before clicking it, and read a policy before trusting it), they are exactly the details that would be noticed.</p>
+  </div>
+</section>
+
+</div>
+
+<footer class="doc-footer">
+  <div class="wrap">
+    Generated under AOS skill <code>ux-product-experience-review</code> v1.5.0 (SKILL.md authoritative; skill.yaml lagged at 1.4.0). Read-only audit — repository and product left unmodified except for this report and its evidence folder.
+  </div>
+</footer>
+
+</body>
+</html>
