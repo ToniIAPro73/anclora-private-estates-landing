@@ -65,7 +65,7 @@ export type LeadIntakePayload = {
   routing_target_domain: RoutingTargetDomain;
 
   // Nexus Mandatory Ingestion Fields (Enum aligned)
-  org_id: string;
+  org_id?: string;
   external_id: string;
   source_system: "cta_web" | "manual" | "import" | "referral" | "partner" | "social";
   source_channel: "website" | "linkedin" | "instagram" | "facebook" | "email" | "phone" | "other";
@@ -342,8 +342,8 @@ export async function submitLeadIntake({
   webhookUrl,
   nexusBaseUrl,
 }: SubmitLeadIntakeOptions) {
-  // Validate org_id before POST
-  if (!payload.org_id) {
+  // Validate org_id if explicitly provided as empty string (legacy env check)
+  if (payload.org_id !== undefined && !payload.org_id) {
     throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
   }
 

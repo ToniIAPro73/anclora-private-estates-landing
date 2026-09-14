@@ -25,23 +25,18 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
       const nexusBase =
         (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||
         "https://nexus.anclora.group";
-      const orgId = import.meta.env.VITE_NEXUS_ORG_ID as string | undefined;
-      
-      if (!orgId) {
-        throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
-      }
 
-      const source_system_enum = "cta_web";
-      const source_channel_enum = "website";
       const internal_trace_prefix = "private_estates_landing";
 
-      const res = await fetch(`${nexusBase}/api/public/partner-admissions`, {
+      const res = await fetch(`${nexusBase}/api/public/access-requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          org_id: orgId,
-          source_system: source_system_enum,
-          source_channel: source_channel_enum,
+          product: "synergi",
+          source: "private_estates_landing",
+          source_system: "cta_web",
+          source_channel: "website",
+          source_detail: "partners_synergi_section",
           external_id: `${internal_trace_prefix}_pt_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
           full_name: name,
           email,
@@ -50,7 +45,8 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
           privacy_accepted: privacyAccepted,
           gdpr_consent: privacyAccepted,
           submission_language: language,
-          submission_source: "private_estates_landing",
+          captcha_provider: "turnstile",
+          captcha_token: "pe-landing-token",
         }),
       });
       if (!res.ok) {

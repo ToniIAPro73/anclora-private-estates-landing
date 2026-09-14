@@ -38,10 +38,6 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
         (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||
         "https://nexus.anclora.group";
       const orgId = import.meta.env.VITE_NEXUS_ORG_ID as string | undefined;
-      
-      if (!orgId) {
-        throw new Error("Configuration Error: NEXUS_ORG_ID is missing.");
-      }
 
       const source_system_enum = "cta_web";
       const source_channel_enum = "website";
@@ -51,9 +47,11 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          org_id: orgId,
+          org_id: orgId || undefined,
+          source: "private_estates_landing",
           source_system: source_system_enum,
           source_channel: source_channel_enum,
+          source_detail: "valuation_request_form",
           external_id: `${internal_trace_prefix}_val_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
           full_name: name,
           email,
