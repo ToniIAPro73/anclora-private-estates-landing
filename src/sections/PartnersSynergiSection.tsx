@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { PartnersSectionCopy } from "@/content/site-copy";
 import type { LanguageCode } from "@/content/site-copy";
+import { useTurnstile } from "@/hooks/useTurnstile";
 
 type PartnersSynergiSectionProps = {
   copy: PartnersSectionCopy;
@@ -16,10 +17,19 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useTurnstile(
+    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    if (siteKey && !captchaToken) {
+      setError(captchaStatus === "loading"
+        ? "Completa la verificación de seguridad antes de enviar."
+        : "Completa la verificación de seguridad.");
+      return;
+    }
     setSubmitting(true);
     try {
       const nexusBase =
@@ -45,8 +55,8 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
           privacy_accepted: privacyAccepted,
           gdpr_consent: privacyAccepted,
           submission_language: language,
-          captcha_provider: "turnstile",
-          captcha_token: "pe-landing-token",
+          captcha_provider: captchaToken ? "turnstile" : undefined,
+          captcha_token: captchaToken || undefined,
         }),
       });
       if (!res.ok) {
@@ -62,6 +72,7 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
       setSuccess(true);
       setName(""); setEmail(""); setServiceCategory(""); setServiceSummary("");
       setPrivacyAccepted(false);
+      resetCaptcha();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido.");
     } finally {
@@ -168,6 +179,14 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
                 />
                 <span className="pe-note">{copy.form.privacyLabel}</span>
               </label>
+
+              {siteKey && (
+                <div
+                  ref={captchaContainerRef}
+                  style={{ margin: "1.5rem 0", minHeight: "65px" }}
+                  data-testid="partners-captcha"
+                />
+              )}
 
               {error && (
                 <p className="pe-form-error" data-testid="partners-error">{error}</p>
