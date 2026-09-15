@@ -18,7 +18,8 @@ export function PartnersSynergiSection({ copy, language = "es" }: PartnersSynerg
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useTurnstile(
-    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
+    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined,
+    "synergi_access"
   );
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -16,7 +16,8 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   
   const { captchaToken, captchaStatus, captchaContainerRef, resetCaptcha, siteKey } = useTurnstile(
-    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
+    import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined,
+    "valuation"
   );
 
   const [submitting, setSubmitting] = useState(false);

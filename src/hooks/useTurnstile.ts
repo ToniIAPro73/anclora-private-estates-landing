@@ -4,6 +4,7 @@ export type CaptchaStatus = "disabled" | "loading" | "ready" | "failed";
 
 interface TurnstileOptions {
   sitekey: string;
+  action?: string;
   callback?: (token: string) => void;
   "expired-callback"?: () => void;
   "error-callback"?: () => void;
@@ -29,7 +30,7 @@ declare global {
  * Hook for Cloudflare Turnstile integration.
  * Matches API shape of useRecaptcha for easy migration.
  */
-export function useTurnstile(siteKey?: string) {
+export function useTurnstile(siteKey?: string, action = "submit") {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [status, setStatus] = useState<CaptchaStatus>(siteKey ? "loading" : "disabled");
   const captchaContainerRef = useRef<HTMLDivElement>(null);
@@ -74,6 +75,7 @@ export function useTurnstile(siteKey?: string) {
 
           widgetIdRef.current = window.turnstile.render(captchaContainerRef.current, {
             sitekey: siteKey,
+            action,
             callback: (token: string) => {
               if (isMounted) {
                 if (renderTimeoutRef.current) clearTimeout(renderTimeoutRef.current);
@@ -125,7 +127,7 @@ export function useTurnstile(siteKey?: string) {
         }
       }
     };
-  }, [siteKey]);
+  }, [siteKey, action]);
 
   const resetCaptcha = () => {
     if (renderTimeoutRef.current) clearTimeout(renderTimeoutRef.current);
