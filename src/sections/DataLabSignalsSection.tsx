@@ -22,7 +22,7 @@ export function DataLabSignalsSection({ copy, language = "es" }: DataLabSignalsS
     try {
       const nexusBase =
         (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||
-        "https://nexus.anclora.group";
+        "https://anclora-nexus.onrender.com";
 
       const internal_trace_prefix = "private_estates_landing";
 

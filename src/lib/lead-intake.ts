@@ -1,6 +1,6 @@
 import type { LanguageCode } from "@/content/site-copy";
 
-const DEFAULT_NEXUS_BASE_URL = "https://nexus.anclora.group";
+const DEFAULT_NEXUS_BASE_URL = "https://anclora-nexus.onrender.com";
 const DEFAULT_PUBLIC_LEAD_INTAKE_PATH = "/api/public/intake/commercial-leads";
 
 /**

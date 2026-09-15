@@ -36,7 +36,7 @@ export function ValuationRequestForm({ copy, language = "es" }: ValuationRequest
     try {
       const nexusBase =
         (import.meta.env.VITE_ANCLORA_NEXUS_BASE_URL as string | undefined) ||
-        "https://nexus.anclora.group";
+        "https://anclora-nexus.onrender.com";
       const orgId = import.meta.env.VITE_NEXUS_ORG_ID as string | undefined;
 
       const source_system_enum = "cta_web";
