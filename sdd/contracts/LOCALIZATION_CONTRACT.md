@@ -1,10 +1,3 @@
-<!--
-Source: Bóveda Anclora
-Source path: /mnt/c/Users/antonio.ballesterosa/Desktop/Proyectos/Boveda-Anclora/docs/standards/LOCALIZATION_CONTRACT.md
-Imported for: ANCLORA-LUC-002 — Landing SDD Contracts Baseline
-Scope: Anclora Private Estates Landing / Ultra Premium / dark-only / es-en-de
-Note: Local copy for repo-level SDD traceability. Bóveda remains canonical.
--->
 # Localization Contract
 
 ## Objetivo
@@ -22,8 +15,8 @@ Regla:
 
 ## Autoridad
 
-- Registro operativo: `docs/governance/contracts-registry.json`
-- Inventario aplicable: `docs/governance/ecosystem-repos.json`
+- Registro operativo: `00-governance/registry/contracts-registry.json`
+- Inventario aplicable: `00-governance/registry/ecosystem-repos.json`
 - Fuente ejecutable relacionada: `anclora-design-system`
 
 ## Regla base
@@ -37,9 +30,10 @@ Cobertura objetivo por aplicación:
 - `anclora-command-center`: `es`, `en`, `de`
 - `anclora-synergi`: `es`, `en`, `de`
 - `anclora-data-lab`: `es`, `en`, `de`
+- `anclora-energyscan`: `es`, `en`, `de` con preferencias asociadas `es/de -> EUR + m²` y `en -> GBP + sq ft`
 - `anclora-talent`: `es`, `en`
 - `anclora-private-estates`: `es`, `en`, `de`, `fr`
-- landing pública de `anclora-private-estates`: `es`, `en`, `de` (excepción: `fr` aplazado; ver nota en `ANCLORA_ECOSYSTEM_CONTRACT_GROUPS.md`)
+- landing pública de `anclora-private-estates`: `es`, `en`, `de` (excepción: `fr` aplazado; ver nota en `00-governance/contracts/core/ANCLORA_ECOSYSTEM_CONTRACT_GROUPS.md`)
 
 ## Repos a los que aplica
 
@@ -50,54 +44,50 @@ Cobertura objetivo por aplicación:
 - `anclora-command-center`
 - `anclora-synergi`
 - `anclora-data-lab`
+- `anclora-energyscan`
 - `anclora-talent`
 - `anclora-private-estates`
 - `anclora-portfolio`
 - `anclora-azure-bay-landing`
-- `anclora-playa-viva-uniestate`
 
 Nota:
 - `anclora-group` mantiene la autoridad matriz de marca y gobernanza, pero no es target normal de propagación de este contrato transversal.
 
 ## Sincronización con repos consumidores
 
-- Contrato fuente en la bóveda: `docs/standards/LOCALIZATION_CONTRACT.md`
-- Target normal de propagación: `docs/standards/`
-- Dependencia de auditoría y propagación desde `docs/governance/contracts-registry.json`
+- Contrato fuente en la bóveda: `00-governance/contracts/logic/LOCALIZATION_CONTRACT.md`
+- Target normal de propagación: `10-group/brand/`
+- Dependencia de auditoría y propagación desde `00-governance/registry/contracts-registry.json`
 
-## Reglas obligatorias
+## Directrices Editoriales y de Copy (Unified)
+
+### Principios
+- La localización no es traducción literal.
+- Cada idioma debe sonar natural en su propio contexto.
+- La intención original debe preservarse.
+- No se deben añadir claims no presentes en el texto original.
+- La coherencia de marca prevalece sobre la simetría palabra por palabra.
+- El copy debe adaptarse al tipo de app: Ultra Premium, Premium, Internal, Portfolio.
+
+### Idiomas oficiales de referencia
+- ES, CA, EN, DE, FR, IT, PT, SV, DA, NL, NO (Cada app usa su subconjunto definido en Cobertura Objetivo).
+
+### Reglas de localización editorial
+- Preservar nombres propios, lugares, marcas y datos factuales.
+- Adaptar cortesía, registro y fórmula comercial al idioma destino.
+- Evitar literalismos y frases con apariencia de IA.
+- Respetar límites visuales de la superficie UI.
+- Mantener placeholders, interpolaciones y formato funcional.
+
+### Política de claims
+- No añadir promesas comerciales, garantías o datos no proporcionados originalmente.
+
+## Reglas obligatorias de implementación
 - No mezclar idiomas en una misma vista salvo contenido de terceros o nombres propios.
 - Todo texto visible de producto debe nacer en la capa de traducción aprobada por el repo.
 - No cerrar una feature con copy sólo en el idioma por defecto.
-- El idioma visible al usuario debe poder trazarse a:
-  - selector visible
-  - preferencia persistida
-  - o fallback explícito documentado
-- Las pantallas deben soportar expansión de copy sin desbordes, truncados peligrosos ni CTAs rotos.
-
-## Reglas de implementación
-- No hardcodear labels, placeholders, estados, validaciones ni títulos de modal si la app soporta más de un idioma.
-- Las claves deben agruparse por dominio y no crecer como lista plana sin criterio.
-- El fallback de una clave ausente no puede quedar silenciosamente en otro idioma sin detectarse en QA.
-- Todo selector de idioma debe actualizar:
-  - `lang`
-  - estado visual del toggle
-  - persistencia local o equivalente
-
-## Reglas de layout
-- No resolver diferencias de longitud con truncado agresivo como solución principal.
-- Permitir wraps controlados en:
-  - tabs
-  - botones secundarios largos
-  - headings
-  - labels de filtros
-- Si un idioma rompe la composición, se corrige la composición, no se sacrifica la traducción.
-
-## Excepciones permitidas
-- marca
-- nombres propios
-- términos legales o de terceros cuando no tenga sentido traducirlos
-- datos del usuario o payloads externos
+- No hardcodear labels, placeholders, estados, validaciones ni títulos de modal.
+- Las pantallas deben soportar expansión de copy sin desbordes ni truncados peligrosos.
 
 ## Gate de aceptación
 
@@ -105,4 +95,5 @@ Una feature no está lista si:
 - deja textos nuevos fuera de i18n
 - la vista mezcla idiomas
 - el selector de idioma existe pero no gobierna toda la superficie afectada
-- una traducción rompe layout y se ignora como “caso raro”
+- una traducción rompe layout y se ignora
+- el copy suena artificial o puramente literal (falla QA lingüístico)

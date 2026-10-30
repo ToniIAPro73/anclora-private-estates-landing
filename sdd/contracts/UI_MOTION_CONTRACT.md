@@ -1,10 +1,3 @@
-<!--
-Source: Bóveda Anclora
-Source path: /mnt/c/Users/antonio.ballesterosa/Desktop/Proyectos/Boveda-Anclora/docs/standards/UI_MOTION_CONTRACT.md
-Imported for: ANCLORA-LUC-002 — Landing SDD Contracts Baseline
-Scope: Anclora Private Estates Landing / Ultra Premium / dark-only / es-en-de
-Note: Local copy for repo-level SDD traceability. Bóveda remains canonical.
--->
 # UI Motion Contract
 
 ## Objetivo
@@ -22,8 +15,8 @@ La bóveda no define animaciones locales; define qué familias de motion existen
 
 ## Autoridad
 
-- Registro operativo: `docs/governance/contracts-registry.json`
-- Inventario aplicable: `docs/governance/ecosystem-repos.json`
+- Registro operativo: `00-governance/registry/contracts-registry.json`
+- Inventario aplicable: `00-governance/registry/ecosystem-repos.json`
 - Fuente ejecutable relacionada: `anclora-design-system`
 
 ## Superficies soportadas
@@ -90,20 +83,20 @@ Aplicaciones ultra premium:
 - `anclora-command-center`
 - `anclora-synergi`
 - `anclora-data-lab`
+- `anclora-energyscan`
 - `anclora-talent`
 - `anclora-private-estates`
 - `anclora-portfolio`
 - `anclora-azure-bay-landing`
-- `anclora-playa-viva-uniestate`
 
 Nota:
 - `anclora-group` mantiene autoridad matriz y criterios globales, pero no es target normal de propagación de este contrato transversal.
 
 ## Sincronización con repos consumidores
 
-- Contrato fuente en la bóveda: `docs/standards/UI_MOTION_CONTRACT.md`
-- Target normal de propagación: `docs/standards/`
-- Dependencia de auditoría y propagación desde `docs/governance/contracts-registry.json`
+- Contrato fuente en la bóveda: `00-governance/contracts/components/UI_MOTION_CONTRACT.md`
+- Target normal de propagación: `10-group/brand/`
+- Dependencia de auditoría y propagación desde `00-governance/registry/contracts-registry.json`
 
 ## Gate de aceptación
 
@@ -131,3 +124,4 @@ Una superficie no está lista si:
   - que el comportamiento sigue siendo estable en desktop y mobile
 - Si una surface funciona bien en escritorio pero rompe layout o jerarquía en móvil, no cumple el contrato.
 - Si la verificación visual falla o no puede completarse en ambos viewports obligatorios, el cambio no debe darse por válido ni subirse sin avisarlo explícitamente.
+
